@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Web," />
 
 
 
@@ -87,15 +87,27 @@
 
 
 
-<meta name="description" content="Learning is doing">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lucia">
-<meta property="og:url" content="http://lupeipei.github.io/index.html">
+<meta name="description" content="数码网络的运作： 将要传输的数据拆碎成适当大小的区块，每个区块叫做数据包(packet)，每个数据包有个首部(header)会写上接收方的地址，要传输的数据本身称为酬载（payload），然后再通过网络来传输  网络传输协议： 就是指数据包首部的格式，要规范这个格式，才可以顺利地将数据包发送出去，告诉中间传输的网络设备，让它知道要寄到哪里去。  网络分层设计：实务被分为四层：    层 定义">
+<meta name="keywords" content="Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络概论">
+<meta property="og:url" content="http://lupeipei.github.io/2017/08/01/Introduction-to-the-Web/index.html">
 <meta property="og:site_name" content="Lucia">
-<meta property="og:description" content="Learning is doing">
+<meta property="og:description" content="数码网络的运作： 将要传输的数据拆碎成适当大小的区块，每个区块叫做数据包(packet)，每个数据包有个首部(header)会写上接收方的地址，要传输的数据本身称为酬载（payload），然后再通过网络来传输  网络传输协议： 就是指数据包首部的格式，要规范这个格式，才可以顺利地将数据包发送出去，告诉中间传输的网络设备，让它知道要寄到哪里去。  网络分层设计：实务被分为四层：    层 定义">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fi3zvbb5mej30hy074gng.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fi422qon2gj30h706ogne.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fi427otnx9j30jd057wf7.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fi46vrrv3cj30k008l0u0.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fi47abl399j30nc0ildjy.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fi47aezmivj30oh0j4425.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fi47eqcwghj30li09875t.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fi48kbitr0j30mv0fhjv6.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fi4b9atjvqj31kw23v1k3.jpg">
+<meta property="og:updated_time" content="2017-08-01T10:25:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lucia">
-<meta name="twitter:description" content="Learning is doing">
+<meta name="twitter:title" content="网络概论">
+<meta name="twitter:description" content="数码网络的运作： 将要传输的数据拆碎成适当大小的区块，每个区块叫做数据包(packet)，每个数据包有个首部(header)会写上接收方的地址，要传输的数据本身称为酬载（payload），然后再通过网络来传输  网络传输协议： 就是指数据包首部的格式，要规范这个格式，才可以顺利地将数据包发送出去，告诉中间传输的网络设备，让它知道要寄到哪里去。  网络分层设计：实务被分为四层：    层 定义">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fi3zvbb5mej30hy074gng.jpg">
 
 
 
@@ -123,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://lupeipei.github.io/"/>
+  <link rel="canonical" href="http://lupeipei.github.io/2017/08/01/Introduction-to-the-Web/"/>
 
 
 
 
 
-  <title> Lucia </title>
+  <title> 网络概论 | Lucia </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -154,9 +166,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -259,9 +269,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -291,10 +301,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/08/01/Introduction-to-the-Web/" itemprop="url">
-                  网络概论
-                </a>
+                网络概论
               
             
           </h1>
@@ -378,9 +385,7 @@
       
 
       
-        
-          
-            <h4 id="数码网络的运作："><a href="#数码网络的运作：" class="headerlink" title="数码网络的运作："></a>数码网络的运作：</h4><blockquote>
+        <h4 id="数码网络的运作："><a href="#数码网络的运作：" class="headerlink" title="数码网络的运作："></a>数码网络的运作：</h4><blockquote>
 <p>将要传输的数据拆碎成适当大小的区块，每个区块叫做数据包(packet)，每个数据包有个首部(header)会写上接收方的地址，要传输的数据本身称为酬载（payload），然后再通过网络来传输</p>
 </blockquote>
 <h5 id="网络传输协议："><a href="#网络传输协议：" class="headerlink" title="网络传输协议："></a>网络传输协议：</h5><blockquote>
@@ -645,647 +650,72 @@
 <p>看完了这些多，我的理解是：</p>
 <p>当我们在网页浏览器的地址栏中输入一个网址后，浏览器会对这个网址进行解析，分解出protocol，host，port，path，然后DNS会根据host将网址转化成IP地址，生成IP数据包，TCP将这个数据包拆分成多个大小在1.4KB个小数据包，浏览器发送请求，然后电脑将Mac地址传给路由器，路由器根据接收到的这个Mac地址，换上ISP的Mac地址，然后将数据包传送给下一个路由器，数据包在多个路由器之间进行传送，每次传送都会离目的地更近一些，这些数据包到达目的地后，根据TCP协议，进行重新组装，然后服务器根据数据包中的HTTP request 内容给到相应的response，并将response回传给到浏览器，浏览器根据回传到的response信息，进行解析，生成网页。</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/07/31/notes-of-together-is-better/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/source/images/avtar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lucia">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/31/notes-of-together-is-better/" itemprop="url">
-                  读《together is better》
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-31T10:02:08+08:00">
-                2017-07-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">读书笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/Web/" rel="tag"># Web</a>
           
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/07/31/notes-of-together-is-better/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/07/31/notes-of-together-is-better/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
         
-          
-            <h4 id="缘起："><a href="#缘起：" class="headerlink" title="缘起："></a>缘起：</h4><p>在一个暴雨后的夜晚，读一本带着香气的书，真的是一件顶幸福的事儿。</p>
-<p>不仅仅是书香沁脾，更重要的是内容很有营养，推荐这本《together is better》.</p>
-<h4 id="正文："><a href="#正文：" class="headerlink" title="正文："></a>正文：</h4><p>本书作者Simon  Sinek，在他著名的Ted演讲：<a href="https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action" target="_blank" rel="external">how great leaders inspire action</a> 中提到了黄金圈法则：What，How,Why. 去年第一次看了他的演讲时，便觉得观点独特，但是看完后，我的想法是：“嗯，这很对，很cool，可是离我很遥远，leadership这种东西我应该是用不上的。” 现在想来，当时的想法真的是够愚蠢的。狭隘地理解了领导力，错以为领导力只是在职场中运用，更错到离谱地以为领导力代表着强权与控制欲。呃，貌似跑题了，言归正传。</p>
-<p>Simon Sinek的这本《together is better》主要也是以阐述领导力为主，但是全书通篇以简短的文字加配图相结合的方式，还创造性地为书添加上了香气，读来让人感觉特别舒服。通过三位主角从逃离原有环境，一起去寻找愿景，历经磨难，抵达目的地，成功后选择回到原地，回报他人，最后成长为被他人追随的领导者的过程，将那些简单却深刻的道理娓娓道来，真是个很欢畅的洗脑过程。</p>
-<p>下面就从领导力，领导者属性，团队这三个方面，摘录文中的几个要点，顺便附上个人的一些见解。</p>
-<h5 id="什么是领导力？"><a href="#什么是领导力？" class="headerlink" title="什么是领导力？"></a>什么是领导力？</h5><ul>
-<li><p>It is not about being in charge, it is about taking care of those in your charge.</p>
-</li>
-<li><p>It is not a rank or position to be attained, it is a service to be given.</p>
-</li>
-<li><p>Leadership is an education. And the best leaders think of themselves as the students, not the teachers.</p>
-<blockquote>
-<p>书中提到领导力是可以通过日常的练习习得的一种能力，如何练习？方法是通过考量他人的生活（consider the lives of others），即使损及自身的利益。 个人的理解是和他人一起共同成长，创造双赢的局面，嗯，together is better。</p>
-</blockquote>
-</li>
-</ul>
-<h5 id="好的领导具有哪些属性？"><a href="#好的领导具有哪些属性？" class="headerlink" title="好的领导具有哪些属性？"></a>好的领导具有哪些属性？</h5><ul>
-<li><p>With good leader, we feel like we work for each other.</p>
-</li>
-<li><p>Leaders give us the chance to try and fail, then give us another chance to try and succeed.</p>
-</li>
-<li><p>Bad leaders care about who’s right, good leaders care about what’s right.</p>
-</li>
-<li><p>A good leader doesn’t only inspire us to have confidence in what they can do, A great leader inspires us to have confidence in what we can do.</p>
-</li>
-<li><p>The true value of a leader is not measured by the work they do, the true value of a leader is measured by the work they inspire others to do.</p>
-</li>
-<li><p>A leader must be inspired by the people before a leader can inspire the people</p>
-<blockquote>
-<p>一句话小结就是：好的领导是给你提供成长的机会，鼓励你突破你的玻璃顶的人。可是问题来了，一是现实中这样的领导实在是太少，二是对于绝大多数的普通人，比如我，遇到这样的领导的概率几乎等于零。那怎么破？我能想到的是，不断提高自身的能力，特别是专业水平，这样才有可能遇到。</p>
-</blockquote>
-</li>
-</ul>
-<h5 id="什么是团队？"><a href="#什么是团队？" class="headerlink" title="什么是团队？"></a>什么是团队？</h5><ul>
-<li>A team is not a group of people who work together, a team is a group of people who trust each other.</li>
-</ul>
-<blockquote>
-<p>单单从相互信任这一点看，大部分的团队其实都是不合格的，现实中更多的是找一群人来做一件事，重要的是把这件事情完成了，至于是否能做到相互信任倒是其次了.</p>
-</blockquote>
-<p>当然文中还有很多金句，不过我个人特别喜欢亚里士多德的这句：</p>
-<blockquote>
-<p>There is only one way to avoid criticism: do nothing, say nothing , and be nothing.</p>
-</blockquote>
-<p>P.S. 这本由台湾远流出版社发行的书，里面的一些翻译用语可能与大陆读者平时的用词不大一样，读来有些别扭，但如果你对繁体字有偏爱，那么读这本书会是个很享受的过程，Enjoy！</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fi32kel7ifj30zk0qotcx.jpg" alt=""></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/07/29/build-blog-with-hexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/source/images/avtar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lucia">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-              
-                
-                <a class="post-title-link" href="/2017/07/29/build-blog-with-hexo/" itemprop="url">
-                  使用Hexo在GitHub上为自己搭建一个静态Blog站点
-                </a>
-              
+              <a href="/2017/07/31/notes-of-together-is-better/" rel="prev" title="读《together is better》">
+                读《together is better》 <i class="fa fa-chevron-right"></i>
+              </a>
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-29T16:35:57+08:00">
-                2017-07-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/07/29/build-blog-with-hexo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/07/29/build-blog-with-hexo/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>不废话，直接上货。</p>
-<h3 id="初步搭建"><a href="#初步搭建" class="headerlink" title="初步搭建"></a>初步搭建</h3><h4 id="Step1-在GitHub上创建一个Repo"><a href="#Step1-在GitHub上创建一个Repo" class="headerlink" title="Step1. 在GitHub上创建一个Repo"></a>Step1. 在GitHub上创建一个Repo</h4><p>登陆GitHub，当然没有账号的话，注册个。</p>
-<p>创建一个Repo，名称格式为<code>yourname.github.io</code>, 这里要注意，yourname 不是你随随便便起一个的，要和你GitHub的账户名保持一致，不然后面你会发现无法部署。</p>
-<h4 id="Step2-本地安装git-npm"><a href="#Step2-本地安装git-npm" class="headerlink" title="Step2. 本地安装git , npm"></a>Step2. 本地安装git , npm</h4><p>这里以homebrew为例来说明安装git, npm的方法，你也可以通过其他方式来安装。</p>
-<p>安装Xcode和Homebrew：</p>
-<ul>
-<li><p>Xcode：在App Store中下载，建议关闭VPN，以免下载速度过慢</p>
-</li>
-<li><p>Homebrew：在终端输入</p>
-<p><code>/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</code></p>
-<p>回车, 安装过程中，会被问到系统密码，此时只管输入密码，回车即可。</p>
-<p>了解更多，参见：<a href="https://brew.sh/index_zh-tw.html" target="_blank" rel="external">Homebrew 的官方网址</a></p>
-</li>
-</ul>
-<p>安装git , npm 并确认安装成功：</p>
-<ul>
-<li>安装 npm<ul>
-<li>终端输入：<code>brew install node</code>，休息下，等它安装完毕；</li>
-<li>输入：<code>node -v</code> , <code>npm -v</code>会显示版本号，表示已经安装成功；</li>
-</ul>
-</li>
-<li>安装 git<ul>
-<li>终端输入：<code>brew install git</code>， 同样的，等安装完成；</li>
-<li>输入：<code>git --version</code>，显示git的版本，安装完成。</li>
-</ul>
-</li>
-</ul>
-<h4 id="Step3-安装hexo"><a href="#Step3-安装hexo" class="headerlink" title="Step3. 安装hexo"></a>Step3. 安装hexo</h4><p>终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install hexo -g</div><div class="line">npm install hexo-cli -g</div></pre></td></tr></table></figure>
-<h4 id="Step4-创建本地目录"><a href="#Step4-创建本地目录" class="headerlink" title="Step4. 创建本地目录"></a>Step4. 创建本地目录</h4><p>去GitHub复制你Repo的git地址，然后在终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/yourname/yourname.github.io.git</div></pre></td></tr></table></figure>
-<h4 id="Step5-初始化本地站点"><a href="#Step5-初始化本地站点" class="headerlink" title="Step5. 初始化本地站点"></a>Step5. 初始化本地站点</h4><p>终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">hexo init yourname.github.io</div><div class="line">cd yourname.github.io</div><div class="line">npm install hexo-deployer-git --save</div><div class="line">git init</div><div class="line">hexo generate</div><div class="line">hexo server</div></pre></td></tr></table></figure>
-<p>此时，可以打开浏览器，输入：<code>localhost:4000</code>, 可以在本地看到网站的样子。</p>
-<h4 id="Step6-部署到GitHub"><a href="#Step6-部署到GitHub" class="headerlink" title="Step6. 部署到GitHub"></a>Step6. 部署到GitHub</h4><p>终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">atom .</div></pre></td></tr></table></figure>
-<p>Atom打开后，按快捷键command+P，搜索<code>_config.yml</code>文件，在文件的下面，会看到<code>deploy</code>部分，修改如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">	type: git</div><div class="line">	repo: https://github.com/yourname/yourname.github.io</div></pre></td></tr></table></figure>
-<p>command+S 保存。</p>
-<p>最后，在终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo deploy</div><div class="line">open yourname.github.io</div></pre></td></tr></table></figure>
-<p>稍等一下，就可以看到你的个人网站了！给自己点个赞吧：P</p>
-<p>好，大功告成！下面我们来装饰一下，让它变美美哒。</p>
-<h3 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h3><h4 id="Step1-选择你喜欢的主题"><a href="#Step1-选择你喜欢的主题" class="headerlink" title="Step1. 选择你喜欢的主题"></a>Step1. 选择你喜欢的主题</h4><p>hexo默认的主题是landscape，其实界面也还可以，不过就好比Mac自带了safari，但我们总想用用chrome啥的，所以，点击<a href="https://hexo.io/themes/" target="_blank" rel="external">Themes</a>， you may find something cool. 找到你钟意的那一款吧。</p>
-<h4 id="Step2-安装主题"><a href="#Step2-安装主题" class="headerlink" title="Step2. 安装主题"></a>Step2. 安装主题</h4><p>选中主题后，点击目标主题，会跳到相应的GitHub repo 中，可以按照GitHub 上的指示进行安装，或者在终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git  submodule add &#123;theme-github-url&#125; themes/&#123;theme-name&#125;</div></pre></td></tr></table></figure>
-<p>复制主题下的<code>_config.yml.example</code>，命名为<code>_config.yml</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp themes/&#123;theme-name&#125;/_config.yml.example themes/&#123;theme-name&#125;/_config.yml</div></pre></td></tr></table></figure>
-<p>修改文档的<code>_config.yml</code>（注意，不是theme下的<code>_config.yml</code>文件），启用新主题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">theme: &#123;theme-name&#125;</div></pre></td></tr></table></figure>
-<h3 id="发表文章"><a href="#发表文章" class="headerlink" title="发表文章"></a>发表文章</h3><ul>
-<li><p>新建文章</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new &#123;postname&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>编辑文章,使用markdown格式</p>
-</li>
-<li><p>生成文件并部署</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo generate -d</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="添加评论功能"><a href="#添加评论功能" class="headerlink" title="添加评论功能"></a>添加评论功能</h3><p>这里我们用Disqus。</p>
-<h4 id="注册Disqus"><a href="#注册Disqus" class="headerlink" title="注册Disqus"></a>注册<a href="https://disqus.com/" target="_blank" rel="external">Disqus</a></h4><ul>
-<li>登录后，点击首页的 GET STARTED 按钮，然后选择 I want to install Disqus on my site</li>
-<li>在弹出的Create a new site窗口中，填写你的Website Name， 也就是你的short name，后面会用到，点击create Site</li>
-<li>创建完成后，在新页面点击Install Disqus， Platform选择Universal Code，拉到最下面点击按钮即可</li>
-<li>点击Configure Disqus，将Website Name改为你想要的名称，URL设置为你的Github page地址<code>https://yourname.github.io</code></li>
-</ul>
-<h4 id="配置Hexo"><a href="#配置Hexo" class="headerlink" title="配置Hexo"></a>配置Hexo</h4><ul>
-<li>修改theme下的<code>_config.yml</code>，找到 disqus部分，修改如下：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">disqus:</div><div class="line">  enable: true</div><div class="line">  shortname: &#123;your_website_short_name&#125;</div><div class="line">  count: true</div></pre></td></tr></table></figure>
-<p>short name就是之前你在Disqus中生成的short name</p>
-<ul>
-<li>终端输入：<code>hexo g -d</code></li>
-<li>刷新你的网站，Disqus可见</li>
-</ul>
-<p>Happy posting!</p>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
-<li><a href="http://lixiaolai.com/2016/06/22/makecs-build-a-blog-with-hexo-on-github/#more" target="_blank" rel="external">使用 Hexo 为自己在 Github 上建一个静态 Blog 站点</a></li>
-<li><a href="https://zirho.github.io/2016/06/04/hexo/" target="_blank" rel="external">How to setup a blog on github with Hexo</a></li>
-<li><a href="https://www.ctolib.com/topics-119380.html" target="_blank" rel="external">GithubPages + Hexo + Disqus博客教程</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/04/04/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/source/images/avtar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lucia">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/04/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-04T18:22:19+08:00">
-                2017-04-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/闲言碎语/" itemprop="url" rel="index">
-                    <span itemprop="name">闲言碎语</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/04/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/04/04/hello-world/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>半个月前搭起这个网站的时候，我在想，我的第一篇要写什么？第一篇应该写点特别的吧？至少不能是煽情地发泄个人情绪，写点对他人有用的。嗯，那应该写什么呢？我在纠结与所谓的准备中迟迟不愿开始，大概给自己找借口是所有拖延症患者的通病吧？</p>
-<p>后来，实在是受不了这首页，我想，管他呢，与其在纠结中虚耗生命，不如走出第一步，take baby step。嗯，反正这是自己的领地，随便瞎搞都可以。 ：P</p>
-<p>翻出五年前的文字，换成现在，是写不出来的，不禁感叹这些年退步得真是快。</p>
-<p>以此文鼓励自己再度踏入文字的世界。</p>
-<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>在门外犹豫了很久，还是推开了，迎面而来的是阵风，里面有久违的味道。</p>
-<p>“还是来了？”</p>
-<p>“终究逃不过这一劫……”</p>
-<p>“呵……”轻笑，嘴角上扬，顿顿，静了一会，“长途而来，喝杯水，昨日刚汲的。”</p>
-<p>“甚好。”</p>
-<p>井水进入快要干枯的躯体，骨子里每个血管似在喊着畅快，多么久违的重逢，别来无恙？</p>
-<p>“别急，慢慢来，绝对够你喝。”末了，加一句“不会是担心等会它从眼中流走？”</p>
-<p>“哈哈……”止杯，笑笑，见窗外，很久，吐出一句“你是好，美景伴余生，羡煞。”环视一周，“倒是勤快，屋里干净。”</p>
-<p>“尘不到，时时自有春风扫。”</p>
-<p>良久，无声，有风，缓缓的风，空中有秋末收获的清香。</p>
-<p>日暮，残阳如血，二人在山边静坐。</p>
-<p>“等月上柳枝？”</p>
-<p>“不，等霜染青丝。”</p>
-<p>“哈哈……”</p>
-<p>黄粱一梦。</p>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -1293,6 +723,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -1312,8 +753,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/source/images/avtar.jpg"
@@ -1404,6 +854,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#数码网络的运作："><span class="nav-number">1.</span> <span class="nav-text">数码网络的运作：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#网络传输协议："><span class="nav-number">1.1.</span> <span class="nav-text">网络传输协议：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#网络分层设计："><span class="nav-number">1.2.</span> <span class="nav-text">网络分层设计：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据链路层link-layer"><span class="nav-number">2.</span> <span class="nav-text">数据链路层link layer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络层Internet-Link"><span class="nav-number">3.</span> <span class="nav-text">网络层Internet Link</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#传输层Transport-layer"><span class="nav-number">4.</span> <span class="nav-text">传输层Transport layer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用层Application-Layer"><span class="nav-number">5.</span> <span class="nav-text">应用层Application Layer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DNS"><span class="nav-number">6.</span> <span class="nav-text">DNS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP"><span class="nav-number">7.</span> <span class="nav-text">HTTP</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1511,6 +977,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
@@ -1528,6 +998,18 @@
       <script id="dsq-count-scr" src="https://https-lupeipei-github-io.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://lupeipei.github.io/2017/08/01/Introduction-to-the-Web/';
+          this.page.identifier = '2017/08/01/Introduction-to-the-Web/';
+          this.page.title = '网络概论';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-lupeipei-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
