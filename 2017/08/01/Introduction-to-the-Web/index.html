@@ -103,7 +103,7 @@
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fi47eqcwghj30li09875t.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fi48kbitr0j30mv0fhjv6.jpg">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fi4b9atjvqj31kw23v1k3.jpg">
-<meta property="og:updated_time" content="2017-08-01T10:25:03.000Z">
+<meta property="og:updated_time" content="2017-08-01T10:43:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络概论">
 <meta name="twitter:description" content="数码网络的运作： 将要传输的数据拆碎成适当大小的区块，每个区块叫做数据包(packet)，每个数据包有个首部(header)会写上接收方的地址，要传输的数据本身称为酬载（payload），然后再通过网络来传输  网络传输协议： 就是指数据包首部的格式，要规范这个格式，才可以顺利地将数据包发送出去，告诉中间传输的网络设备，让它知道要寄到哪里去。  网络分层设计：实务被分为四层：    层 定义">
@@ -648,7 +648,7 @@
 <p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fi4b9atjvqj31kw23v1k3.jpg" alt=""></p>
 <hr>
 <p>看完了这些多，我的理解是：</p>
-<p>当我们在网页浏览器的地址栏中输入一个网址后，浏览器会对这个网址进行解析，分解出protocol，host，port，path，然后DNS会根据host将网址转化成IP地址，生成IP数据包，TCP将这个数据包拆分成多个大小在1.4KB个小数据包，浏览器发送请求，然后电脑将Mac地址传给路由器，路由器根据接收到的这个Mac地址，换上ISP的Mac地址，然后将数据包传送给下一个路由器，数据包在多个路由器之间进行传送，每次传送都会离目的地更近一些，这些数据包到达目的地后，根据TCP协议，进行重新组装，然后服务器根据数据包中的HTTP request 内容给到相应的response，并将response回传给到浏览器，浏览器根据回传到的response信息，进行解析，生成网页。</p>
+<p>当我们在网页浏览器的地址栏中输入一个网址后，浏览器会对这个网址进行解析，分解出protocol，host，port，path，然后DNS会根据host将网址转化成IP地址，生成IP数据包，TCP将这个数据包拆分成多个大小在1.4KB的小数据包，浏览器发送请求，然后电脑将Mac地址传给路由器，路由器根据接收到的这个Mac地址，换上ISP的Mac地址，然后将数据包传送给下一个路由器，数据包在多个路由器之间进行传送，每次传送都会离目的地更近一些，这些数据包到达目的地后，根据TCP协议，进行重新组装，然后服务器根据数据包中的HTTP request 内容给到相应的response，并将response回传给到浏览器，浏览器根据回传到的response信息，进行解析，生成网页。</p>
 
       
     </div>
