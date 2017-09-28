@@ -270,6 +270,198 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/09/29/web-together-build-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/source/images/avtar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lucia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/29/web-together-build-3/" itemprop="url">
+                  Together网站搭建之踩坑系列3
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-29T06:34:34+08:00">
+                2017-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ROR/" itemprop="url" rel="index">
+                    <span itemprop="name">ROR</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/29/web-together-build-3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/09/29/web-together-build-3/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这是功能实现的第二篇，扯一扯<strong>如何添加分类筛选功能</strong>。</p>
+<p>完整作品源码及效果，看这里<a href="https://togetherisbetter.herokuapp.com/" target="_blank" rel="external">作品网站</a>,   <a href="https://github.com/Lupeipei/Together" target="_blank" rel="external">作品源码</a>。</p>
+<h4 id="正文："><a href="#正文：" class="headerlink" title="正文："></a>正文：</h4><p>先上效果图：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fjqcf5bajjg30x40i0k2j.gif" alt=""></p>
+<p><strong>如何实现？</strong></p>
+<ul>
+<li><p>新建model category</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rails g model category name:string</div><div class="line">rake db:migrate</div></pre></td></tr></table></figure>
+</li>
+<li><p>在event中新增category的栏位</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rails g migration add_category_id_to_event category_id:integer</div><div class="line">rake db:migrate</div></pre></td></tr></table></figure>
+</li>
+<li><p>建立category和event的关系，在<code>event.rb</code>中添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">belongs_to :categroy</div></pre></td></tr></table></figure>
+<p><code>category.rb</code>中添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">has_many :events</div></pre></td></tr></table></figure>
+</li>
+<li><p>在event的new ，edit中添加如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;%= select_tag(:category_id, options_for_select(@categories), :prompt =&gt; &quot;类别&quot;) %&gt;</div></pre></td></tr></table></figure>
+<p>如果是simple_form格式，可添加如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;form-group&quot;&gt;</div><div class="line">  &lt;%= f.association :category %&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>events_controller.rb</code>中，将category_id添加到params白名单中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">def event_params</div><div class="line">  params.require(:event).permit(:title, ......, :category_id)</div><div class="line">end</div></pre></td></tr></table></figure>
+</li>
+<li><p>为方便后续部署到heroku,可在seeds文档中新建category。在seeds.rb中添加如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># Category部分</div><div class="line">Category.delete_all</div><div class="line"></div><div class="line">Category.create!(id:1, name: &quot;音乐&quot;)</div><div class="line">Category.create!(id:2, name: &quot;户外&quot;)</div><div class="line">Category.create!(id:3, name: &quot;约厨&quot;)</div><div class="line">Category.create!(id:4, name: &quot;交友&quot;)</div><div class="line">Category.create!(id:5, name: &quot;读书&quot;)</div><div class="line">Category.create!(id:6, name: &quot;游戏&quot;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>在event 的index页面显示分类列表，在event的<code>index.html.erb</code>中添加如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;btn-group&quot;&gt;</div><div class="line">	&lt;%= link_to &quot;全部&quot;, events_path, :class =&gt; &quot;btn btn-default btn-group #&#123;(params[:category].blank?)? &quot;active&quot; : &quot;&quot;&#125;&quot;%&gt;</div><div class="line">	&lt;% Category.all.each do |c| %&gt;</div><div class="line">  	&lt;%= link_to c.name, events_path(category: c), :class =&gt; &quot;btn btn-default btn-group #&#123;(params[:category] == c)? &quot;active&quot; : &quot;&quot; &#125;&quot;%&gt;</div><div class="line">	&lt;% end %&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>用上scope，在<code>event.rb</code>中加入以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scope :by_category, -&gt;(c)&#123;where( :category_id =&gt; c )&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改<code>events_controller.rb</code>，修改index部分：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">def index</div><div class="line">  @events = Event.order(&quot;created_at DESC&quot;)</div><div class="line">  if params[:category].present?</div><div class="line">    @events = @events.by_category(params[:category]).order(&quot;created_at DESC&quot;)</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>大功告成！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/09/28/web-together-build-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -381,9 +573,7 @@
         
           
             <p>打算后面写一些功能实现方面的细节，今天先来一个收藏功能+Ajax优化。</p>
-<p>源码及效果，看这里,看这里：</p>
-<p><a href="https://togetherisbetter.herokuapp.com/" target="_blank" rel="external">作品网站</a></p>
-<p><a href="https://github.com/Lupeipei/Together" target="_blank" rel="external">作品源码</a></p>
+<p>完整作品源码及效果，看这里<a href="https://togetherisbetter.herokuapp.com/" target="_blank" rel="external">作品网站</a>,   <a href="https://github.com/Lupeipei/Together" target="_blank" rel="external">作品源码</a>。</p>
 <h4 id="给活动Events添加收藏功能，并使用Ajax进行优化"><a href="#给活动Events添加收藏功能，并使用Ajax进行优化" class="headerlink" title="给活动Events添加收藏功能，并使用Ajax进行优化"></a>给活动Events添加收藏功能，并使用Ajax进行优化</h4><p>先上效果图：</p>
 <p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fjw79s6kufg30zv0j74qp.gif" alt=""></p>
 <p>咱分两步走：</p>
@@ -2374,7 +2564,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
