@@ -270,6 +270,231 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/02/web-together-build-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/source/images/avtar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lucia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/10/02/web-together-build-6/" itemprop="url">
+                  Together网站搭建之踩坑系列6
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-02T07:52:12+08:00">
+                2017-10-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ROR/" itemprop="url" rel="index">
+                    <span itemprop="name">ROR</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/02/web-together-build-6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/02/web-together-build-6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这是功能实现的第五篇，扯一扯<strong>如何添加评论区，并使用ajax优化</strong>。</p>
+<p>完整作品源码及效果，看这里<a href="https://togetherisbetter.herokuapp.com/" target="_blank" rel="external">作品网站</a>,   <a href="https://github.com/Lupeipei/Together" target="_blank" rel="external">作品源码</a>。</p>
+<h4 id="正文："><a href="#正文：" class="headerlink" title="正文："></a>正文：</h4><p>上效果图先：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fjzf3flg56g30zb0kmk6a.gif" alt=""></p>
+<p>功能描述：用户可以新增，删除自己的评论。</p>
+<p>步骤如下：</p>
+<ul>
+<li><p>新增review model，终端运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rails g model review comment:string user_id:integer event_id:integer</div><div class="line">rake db:migrate</div></pre></td></tr></table></figure>
+</li>
+<li><p>建立review与event，user的关系：</p>
+<ul>
+<li><p>在<code>review.rb</code>中，添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">belongs_to :user</div><div class="line">belongs_to :event</div></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>event.rb</code>中，添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">has_many :reviews</div></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>user.rb</code>中，添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">has_many :reviews</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>编辑<code>config/routes.rb</code>,在resources :events中添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> resources :events do</div><div class="line"> + resources :reviews</div><div class="line">.....</div><div class="line">   end</div></pre></td></tr></table></figure>
+</li>
+<li><p>新建review controller</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rails g controller reviews</div></pre></td></tr></table></figure>
+</li>
+<li><p>编辑<code>app/controllers/reviews_controller.rb</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">class ReviewsController &lt; ApplicationController</div><div class="line">  before_action :authenticate_user!</div><div class="line"></div><div class="line">  def new</div><div class="line">    @event = Event.find(params[:event_id])</div><div class="line">    @review = Review.new</div><div class="line">  end</div><div class="line"></div><div class="line">  def create</div><div class="line">    @event = Event.find(params[:event_id])</div><div class="line">    @review = Review.new(review_params)</div><div class="line">    @review.event = @event</div><div class="line">    @review.user = current_user</div><div class="line">    @review.save</div><div class="line">    redirect_to :back, alert: &quot;评论已经创建&quot;</div><div class="line">  end</div><div class="line"></div><div class="line">  def destroy</div><div class="line">    @event = Event.find(params[:event_id])</div><div class="line">    @review = Review.find(params[:id])</div><div class="line">    @review.destroy</div><div class="line">    redirect_to :back, alert: &quot;评论已经删除&quot;</div><div class="line">  end</div><div class="line"></div><div class="line">  private</div><div class="line"></div><div class="line">  def review_params</div><div class="line">    params.require(:review).permit(:comment)</div><div class="line">  end</div><div class="line"></div><div class="line">end</div></pre></td></tr></table></figure>
+</li>
+<li><p>编辑<code>app/controllers/events_controller.rb</code>, 在show部分，添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">......</div><div class="line">def show</div><div class="line">  @event = Event.find(params[:id])</div><div class="line">+ @reviews = @event.reviews.all</div><div class="line">end</div><div class="line">......</div></pre></td></tr></table></figure>
+</li>
+<li><p>编辑event的<code>show.html.erb</code>，给评论区腾出位置，这里用了两次partial来引用review，后面会建相应的文档:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">......</div><div class="line">&lt;!-- 活动讨论区 --&gt;</div><div class="line">  &lt;div class=&quot;event_reviews&quot;&gt;</div><div class="line">    &lt;div class=&quot;row&quot;&gt;</div><div class="line">      &lt;div class=&quot;col-md-8 col-md-offset-2&quot;&gt;</div><div class="line">        &lt;%= render :partial =&gt; &quot;reviews/form&quot;, :locals =&gt; &#123;:event =&gt; @event &#125; %&gt;</div><div class="line">        &lt;hr&gt;</div><div class="line">        &lt;% if @reviews.blank? %&gt;</div><div class="line">          &lt;p&gt;该活动还没有人讨论，来侃几句吧？&lt;/p&gt;</div><div class="line">        &lt;% else %&gt;</div><div class="line">        &lt;div id=&quot;reviews_list&quot;&gt;</div><div class="line">          &lt;% @reviews.each do |review| %&gt;</div><div class="line">        &lt;%= render :partial =&gt; &quot;reviews/review&quot;, :locals =&gt; &#123; :review =&gt; review &#125;%&gt;</div><div class="line">          &lt;% end %&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">        &lt;% end %&gt;</div><div class="line">        &lt;hr&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line"> ......</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>在<code>app/views/reviews</code>下，新增<code>_review.html.erb</code>, <code>_form.html.erb</code> 。<code>_review.html.erb</code>用来显示评论区列表，<code>_form.html.erb</code>则用于新增评论。</p>
+<ul>
+<li><p>编辑<code>_review.html.erb</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;reivew-&lt;%= review.id %&gt;&quot; class=&quot;reviews&quot; style=&quot;text-align: left;&quot;&gt;</div><div class="line">    &lt;!-- 显示用户头像 --&gt;</div><div class="line">  &lt;ul&gt;</div><div class="line">    &lt;div class=&quot;user_avatar&quot; style=&quot;float: left;&quot;&gt;</div><div class="line">      &lt;% if review.user.avatar.present? %&gt;</div><div class="line">        &lt;%= image_tag(review.user.avatar.thumb.url, class: &quot;review_avatar&quot;)%&gt;</div><div class="line">      &lt;% else %&gt;</div><div class="line">        &lt;%= image_tag(&quot;https://ws4.sinaimg.cn/large/006tNc79gy1fj8fv5d1tdj30zk0npdig.jpg&quot;, class: &quot;review_avatar&quot;)%&gt;</div><div class="line">      &lt;% end %&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &lt;/ul&gt;</div><div class="line">  &lt;!-- 显示其他信息 --&gt;</div><div class="line">    &lt;div class=&quot;row&quot;&gt;</div><div class="line">      &lt;div class=&quot;col-md-9 review-user-info&quot;&gt;</div><div class="line">        &lt;%= review.user.display_name %&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">      &lt;div class=&quot;col-md-3&quot;&gt;</div><div class="line">        &lt;%= review.created_at %&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;div class=&quot;review-comment&quot;&gt;</div><div class="line">      &lt;%= review.content %&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;!-- 用户可以删除自己的评论 --&gt;</div><div class="line">    &lt;% if current_user == review.user %&gt;</div><div class="line">    &lt;div class=&quot;pull-right&quot;&gt;</div><div class="line">      &lt;%= link_to(&quot;delete&quot;, event_review_path(review.event,review), method: :delete, :remote =&gt; true)%&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &lt;% end %&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>编辑<code>_form.html.erb</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;contain&quot;&gt;</div><div class="line">  &lt;div class=&quot;row&quot; style=&quot; margin-top: 50px;&quot;&gt;</div><div class="line">    &lt;div class=&quot;col-md-12&quot;&gt;</div><div class="line">      &lt;%= simple_form_for [@event, @event.reviews.build ], :remote =&gt; true do |f| %&gt;</div><div class="line">        &lt;div class=&quot;form-group&quot;&gt;</div><div class="line">          &lt;%= f.input :content, label: &quot;吐糟或者提问，请随意&quot;, input_html: &#123; class: &quot;form-control&quot;&#125;%&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">        &lt;div class=&quot;form-action&quot;&gt;</div><div class="line">          &lt;%= f.submit &quot;我来说两句&quot;, disable_with: &quot;Submiting....&quot;, class: &quot;btn btn-danger&quot;%&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">      &lt;% end %&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>编辑<code>app/controllers/events_controller.rb</code>， 拿掉create, destroy 的redirect_to：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">......</div><div class="line">def create</div><div class="line">    @event = Event.find(params[:event_id])</div><div class="line">    @review = Review.new(review_params)</div><div class="line">    @review.event = @event</div><div class="line">    @review.user = current_user</div><div class="line">    @review.save</div><div class="line">  - redirect_to :back, alert: &quot;评论已经创建&quot;</div><div class="line">  end</div><div class="line"></div><div class="line">  def destroy</div><div class="line">    @event = Event.find(params[:event_id])</div><div class="line">    @review = Review.find(params[:id])</div><div class="line">    @review.destroy</div><div class="line">  - redirect_to :back, alert: &quot;评论已经删除&quot;</div><div class="line">  end</div><div class="line">  ......</div></pre></td></tr></table></figure>
+</li>
+<li><p>新增<code>app/views/reviews/create.js.erb</code>, <code>app/views/reviews/destroy.js.erb</code>, 分别编辑：</p>
+<ul>
+<li><p><code>app/views/reviews/create.js.erb</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;% if @review.valid? %&gt;</div><div class="line">  $(&quot;#reviews_list&quot;).prepend(&quot;&lt;%=j render :partial =&gt; &quot;review&quot;, :locals =&gt; &#123;:review =&gt; @review &#125; %&gt;&quot;);</div><div class="line">  $(&quot;#review_content&quot;).val(&quot;&quot;);</div><div class="line">&lt;% else %&gt;</div><div class="line">  alert(&quot;评论失败&quot;);</div><div class="line">&lt;% end %&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>app/views/reviews/destroy.js.erb</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&quot;#reivew-&lt;%= @review.id %&gt;&quot;).remove();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>大功告成！试试吧！美化部分，可以根据需要写相应的CSS。</p>
+<hr>
+<p>这里说明一下：</p>
+<ul>
+<li>rails5.0以前的版本已经默认安装<code>gem &#39;jquery-rails&#39;</code>, 如果你版本过高，需要自行安装，不然ajax部分会无法正常实现</li>
+</ul>
+<ul>
+<li>涉及ajax的部分，没有说得太细，可自行Google ajax相关内容了解。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/01/web-together-build-5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2336,204 +2561,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/07/31/notes-of-together-is-better/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/source/images/avtar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lucia">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/31/notes-of-together-is-better/" itemprop="url">
-                  读《together is better》
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-31T10:02:08+08:00">
-                2017-07-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">读书笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/07/31/notes-of-together-is-better/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/07/31/notes-of-together-is-better/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="缘起："><a href="#缘起：" class="headerlink" title="缘起："></a>缘起：</h4><p>在一个暴雨后的夜晚，读一本带着香气的书，真的是一件顶幸福的事儿。</p>
-<p>不仅仅是书香沁脾，更重要的是内容很有营养，推荐这本《together is better》.</p>
-<h4 id="正文："><a href="#正文：" class="headerlink" title="正文："></a>正文：</h4><p>本书作者Simon  Sinek，在他著名的Ted演讲：<a href="https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action" target="_blank" rel="external">how great leaders inspire action</a> 中提到了黄金圈法则：What，How,Why. 去年第一次看了他的演讲时，便觉得观点独特，但是看完后，我的想法是：“嗯，这很对，很cool，可是离我很遥远，leadership这种东西我应该是用不上的。” 现在想来，当时的想法真的是够愚蠢的。狭隘地理解了领导力，错以为领导力只是在职场中运用，更错到离谱地以为领导力代表着强权与控制欲。呃，貌似跑题了，言归正传。</p>
-<p>Simon Sinek的这本《together is better》主要也是以阐述领导力为主，但是全书通篇以简短的文字加配图相结合的方式，还创造性地为书添加上了香气，读来让人感觉特别舒服。通过三位主角从逃离原有环境，一起去寻找愿景，历经磨难，抵达目的地，成功后选择回到原地，回报他人，最后成长为被他人追随的领导者的过程，将那些简单却深刻的道理娓娓道来，真是个很欢畅的洗脑过程。</p>
-<p>下面就从领导力，领导者属性，团队这三个方面，摘录文中的几个要点，顺便附上个人的一些见解。</p>
-<h5 id="什么是领导力？"><a href="#什么是领导力？" class="headerlink" title="什么是领导力？"></a>什么是领导力？</h5><ul>
-<li><p>It is not about being in charge, it is about taking care of those in your charge.</p>
-</li>
-<li><p>It is not a rank or position to be attained, it is a service to be given.</p>
-</li>
-<li><p>Leadership is an education. And the best leaders think of themselves as the students, not the teachers.</p>
-<blockquote>
-<p>书中提到领导力是可以通过日常的练习习得的一种能力，如何练习？方法是通过考量他人的生活（consider the lives of others），即使损及自身的利益。 个人的理解是和他人一起共同成长，创造双赢的局面，嗯，together is better。</p>
-</blockquote>
-</li>
-</ul>
-<h5 id="好的领导具有哪些属性？"><a href="#好的领导具有哪些属性？" class="headerlink" title="好的领导具有哪些属性？"></a>好的领导具有哪些属性？</h5><ul>
-<li><p>With good leader, we feel like we work for each other.</p>
-</li>
-<li><p>Leaders give us the chance to try and fail, then give us another chance to try and succeed.</p>
-</li>
-<li><p>Bad leaders care about who’s right, good leaders care about what’s right.</p>
-</li>
-<li><p>A good leader doesn’t only inspire us to have confidence in what they can do, A great leader inspires us to have confidence in what we can do.</p>
-</li>
-<li><p>The true value of a leader is not measured by the work they do, the true value of a leader is measured by the work they inspire others to do.</p>
-</li>
-<li><p>A leader must be inspired by the people before a leader can inspire the people</p>
-<blockquote>
-<p>一句话小结就是：好的领导是给你提供成长的机会，鼓励你突破你的玻璃顶的人。可是问题来了，一是现实中这样的领导实在是太少，二是对于绝大多数的普通人，比如我，遇到这样的领导的概率几乎等于零。那怎么破？我能想到的是，不断提高自身的能力，特别是专业水平，这样才有可能遇到。</p>
-</blockquote>
-</li>
-</ul>
-<h5 id="什么是团队？"><a href="#什么是团队？" class="headerlink" title="什么是团队？"></a>什么是团队？</h5><ul>
-<li>A team is not a group of people who work together, a team is a group of people who trust each other.</li>
-</ul>
-<blockquote>
-<p>单单从相互信任这一点看，大部分的团队其实都是不合格的，现实中更多的是找一群人来做一件事，重要的是把这件事情完成了，至于是否能做到相互信任倒是其次了.</p>
-</blockquote>
-<p>当然文中还有很多金句，不过我个人特别喜欢亚里士多德的这句：</p>
-<blockquote>
-<p>There is only one way to avoid criticism: do nothing, say nothing , and be nothing.</p>
-</blockquote>
-<p>P.S. 这本由台湾远流出版社发行的书，里面的一些翻译用语可能与大陆读者平时的用词不大一样，读来有些别扭，但如果你对繁体字有偏爱，那么读这本书会是个很享受的过程，Enjoy！</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fi32kel7ifj30zk0qotcx.jpg" alt=""></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2583,7 +2610,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
