@@ -270,6 +270,335 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/05/introduction-to-jQuery-module1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/source/images/avtar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lucia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/10/05/introduction-to-jQuery-module1/" itemprop="url">
+                  introduction to jQuery_module1
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-05T10:17:44+08:00">
+                2017-10-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/05/introduction-to-jQuery-module1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/05/introduction-to-jQuery-module1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>The following contents are the notes I took when learning  Jquery in Edx.</p>
+<p>Mainly for  front-End Web developer, check <a href="https://courses.edx.org/courses/course-v1:Microsoft+DEV208x+4T2017/course/" target="_blank" rel="external">here</a> to get more details.</p>
+<p>BTW, This class is supported by Microsoft. If you are a linux fan, hope it would not make you uncomfortable( cause I am a little uncomfortable about it at first.) : D</p>
+<h3 id="CONTENTS"><a href="#CONTENTS" class="headerlink" title="CONTENTS"></a>CONTENTS</h3><p>Three parts:</p>
+<ul>
+<li>Adding jQuery to web pages</li>
+<li>Managing content, events and effects</li>
+<li>Asynchronous operations and Ajax calls</li>
+</ul>
+<p>DOM: Document Object Model.</p>
+<p>jQuery : the most popular javaScript library. designed to bring additional power to JS.</p>
+<p>Let’s start!</p>
+<h4 id="Module1-Adding-jQuery-to-web-pages"><a href="#Module1-Adding-jQuery-to-web-pages" class="headerlink" title="Module1 : Adding jQuery to web pages"></a>Module1 : Adding jQuery to web pages</h4><ul>
+<li><p>Getting started with jQuery</p>
+<blockquote>
+<p>use Visual Studio</p>
+<p>getting started with <a href="https://code.visualstudio.com" target="_blank" rel="external">Visual Studio Code</a></p>
+</blockquote>
+</li>
+<li><p>Adding jQuery to a page</p>
+<blockquote>
+<p>a simple example to start:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&gt; // you can use either of them:</div><div class="line">&gt;</div><div class="line">&gt; $(document).ready(function() &#123;</div><div class="line">&gt; 	// code here</div><div class="line">&gt; &#125;);</div><div class="line">&gt;</div><div class="line">&gt; $(function() &#123;</div><div class="line">&gt; 	// code here</div><div class="line">&gt; &#125;);</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>Using CSS selectors with jQuery</p>
+<ul>
+<li><p>Common CSS selectors</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; $(&apos;h1&apos;) // selects all h1 elements</div><div class="line">&gt; $(&apos;.class-name&apos;) // selects all elements with a class of class-name</div><div class="line">&gt; $(&apos;#demo&apos;) // selects all elements with an id of demo</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>Attribute based selectors</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&gt; // selects all elements with an attribute matching the specified value</div><div class="line">&gt; $(&apos;[demo-attribute=&quot;demo-value&quot;]&apos;)</div><div class="line">&gt;</div><div class="line">&gt; // selects all h1 elements with an attribute matching the specified value</div><div class="line">&gt; $(&apos;h1[demo-attribute=&quot;demo-value&quot;]&apos;)</div><div class="line">&gt;</div><div class="line">&gt; // If you wish to find all elements where the value starts with a string, use the ^= operator.</div><div class="line">&gt; $(&apos;[class^=&quot;col&quot;]&apos;)</div><div class="line">&gt;</div><div class="line">&gt; // If you wish to find all elements where the value contains a string, use the *= operator.</div><div class="line">&gt; $(&apos;[class*=&quot;md&quot;]&apos;)</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>Positional selectors</p>
+<blockquote>
+<ul>
+<li><strong>Parent/child relationships</strong></li>
+</ul>
+<blockquote>
+<p>Consider the following script:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; &gt; // Selects all a elements that are direct descendants nav element</div><div class="line">&gt; &gt; $(&apos;nav &gt; a&apos;)</div><div class="line">&gt; &gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>In the following HTML, the first link would be selected, but not the second. This is because the first link is a <strong>direct child</strong>, but the second is inside of a <code>div</code>element.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt; &gt; &lt;nav&gt;</div><div class="line">&gt; &gt; 	&lt;a href=&quot;#&quot;&gt;(First) This will be selected&lt;/a&gt;</div><div class="line">&gt; &gt; 	&lt;div&gt;</div><div class="line">&gt; &gt; 		&lt;a href=&quot;#&quot;&gt;(Second) This will not be selected&lt;/a&gt;</div><div class="line">&gt; &gt; 	&lt;/div&gt;</div><div class="line">&gt; &gt; &lt;/nav&gt;</div><div class="line">&gt; &gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<ul>
+<li><strong>Descendants</strong></li>
+</ul>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&gt; &gt; // Selects all a elements that are descendants nav element</div><div class="line">&gt; &gt; // The elements can appear anywhere inside of the element listed first</div><div class="line">&gt; &gt; $(&apos;nav a&apos;)</div><div class="line">&gt; &gt;</div><div class="line">&gt; &gt; //this is an example to show the difference,if you use $(&apos;nav a&apos;), the first and the second will be selected both, if you use $(&apos;nav &gt; a&apos;), only the first one will be selected.</div><div class="line">&gt; &gt; &lt;nav&gt;</div><div class="line">&gt; &gt; 	&lt;a href=&quot;#&quot;&gt;(First) This will be selected&lt;/a&gt;</div><div class="line">&gt; &gt; 	&lt;div&gt;</div><div class="line">&gt; &gt; 		&lt;a href=&quot;#&quot;&gt;(Second) This will be selected&lt;/a&gt;</div><div class="line">&gt; &gt; 	&lt;/div&gt;</div><div class="line">&gt; &gt; &lt;/nav&gt;</div><div class="line">&gt; &gt;</div></pre></td></tr></table></figure>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Navigating the DOM with jQuery</p>
+<ul>
+<li><p>Parent /child relationships</p>
+<blockquote>
+<p>Four methods: <code>children</code> ,<code>find</code>, <code>parent</code>, <code>parents</code></p>
+<ul>
+<li>with<code>children</code>, it’s gonna be just the direct children.</li>
+<li><code>find</code> will walk the entire hierarchy down, but it needs a selector.</li>
+<li><code>parent</code> will be the immediate parent.</li>
+<li>And <code>parents</code>, plural, will walk up the entire chain.</li>
+</ul>
+</blockquote>
+</li>
+<li><p>Siblings</p>
+<blockquote>
+<ul>
+<li><p><code>prev</code> and <code>next</code></p>
+<blockquote>
+<p><code>prev()</code>: To move to the prior element</p>
+<p><code>next()</code>: To move to the next element</p>
+</blockquote>
+</li>
+<li><p><code>prevAll</code> and <code>nextAll</code></p>
+<blockquote>
+<p><code>prevAll</code> and <code>nextAll</code> will select all siblings prior or after the element. Both methods also accept a CSS selector to limit the items.</p>
+</blockquote>
+</li>
+<li><p><code>prevUntil</code> and <code>nextUntil</code></p>
+<blockquote>
+<p><code>prevUntil</code> and <code>nextUntil</code> select all prior or following elements up to, but <strong>not including</strong> the element that matches the selector.</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>Selecting items by position</p>
+<blockquote>
+<ul>
+<li><p>Finding the index of an item</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;   //index method will return the zero based (ordinal) location of the item, or -1 if the item isn&apos;t found.</div><div class="line">&gt;</div><div class="line">&gt;   var currentElement = $(&apos;some selector&apos;);</div><div class="line">&gt;   var parent = $(&apos;some selector&apos;);</div><div class="line">&gt;   var index = parent.children().index(currentElement);</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<ul>
+<li><p>Finding an item by its position</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;   //using the get method</div><div class="line">&gt;   var parent = $(&apos;some selector&apos;);</div><div class="line">&gt;   var element = parent.children().get(index);</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>  One important note about <code>get</code> is it returns a JavaScript DOM object, <strong>not</strong> a jQuery object.</p>
+<p>  In order to call jQuery methods on the object, you must convert it to a jQuery object.</p>
+<p>  Examples below:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;   var parent = $(&apos;some selector&apos;);</div><div class="line">&gt;   var domobject = parent.children().get(index); // DOM object</div><div class="line">&gt;   var jQueryObject = $(parent.children().get(index)); // jQuery object</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Getting started with DOM manipulation</p>
+<ul>
+<li><p>Adding and removing classes</p>
+<blockquote>
+<ul>
+<li><p>Adding a class to an element is just as easy as calling <code>addClass</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;   currentElement.addClass(&apos;class-name&apos;);</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<ul>
+<li><p>Removing a class from an element is just as easy as calling <code>removeClass</code>. If the element in question was not already decorated with the class you’re trying to remove, the method will simply return.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;   currentElement.removeClass(&apos;class-name&apos;);</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>Working with attributes</p>
+<ul>
+<li><p>reading an attribute value</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alert($(&apos;selector&apos;).attr(&apos;attribute-name&apos;));</div></pre></td></tr></table></figure>
+</li>
+<li><p>modifying an attribute value</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&apos;selector&apos;).attr(&apos;attribute-name&apos;, &apos;new value&apos;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>removing an attribute value</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&apos;selector&apos;).removeAttr(&apos;attribute-name&apos;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Modifying content</p>
+<ul>
+<li><p><code>text()</code>: get to replace the existing text in an element</p>
+</li>
+<li><p><code>html()</code>: get to replace the existing HTML in an element</p>
+</li>
+<li><p>the different between <code>text()</code>  and <code>html()</code> is whether or not it’s gonna allow for HTML.</p>
+<p>Examples:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// update the text</div><div class="line">$(item).text(&apos;&lt;h1&gt;Hello, world!!&lt;/h1&gt;&apos;); //output: &lt;h1&gt;Hello, world!!&lt;/h1&gt;</div><div class="line"></div><div class="line">// update the html</div><div class="line">$(item).text(&apos;&lt;h1&gt;Hello, world!!&lt;/h1&gt;&apos;);//output: Hello, world!!</div></pre></td></tr></table></figure>
+<p>you can say that HTML will allow you to modify HTML, Text is going to be for text only.</p>
+</li>
+</ul>
+</li>
+<li><p>Basic event handlers</p>
+<p>like click event, more details in Module 2</p>
+<p>Inside of the event handler code, you can access the object that raised the event by using <code>this</code>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">//examples</div><div class="line">//click event</div><div class="line">//raised when the item is clicked</div><div class="line">$(item).click(function() &#123;</div><div class="line">    alert(&apos;clicked!!&apos;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// hover event</div><div class="line">// raised when the user moves their mouse over the item</div><div class="line">$(item).hover(function() &#123;</div><div class="line">    alert(&apos;hover!!&apos;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// mouseout</div><div class="line">// raised when the user moves their mouse away from an item</div><div class="line">$(item).mouseout(function() &#123;</div><div class="line">    alert(&apos;mouse out&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>This is Module1 all about. Get more <a href="https://courses.edx.org/courses/course-v1:Microsoft+DEV208x+4T2017/course/" target="_blank" rel="external">details</a>.</p>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/04/web-together-build-8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2126,197 +2455,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/08/10/Build-fake-data-for-Rail/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/source/images/avtar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lucia">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/10/Build-fake-data-for-Rail/" itemprop="url">
-                  ROR技能树：批量生成测试数据
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T20:37:02+08:00">
-                2017-08-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ROR/" itemprop="url" rel="index">
-                    <span itemprop="name">ROR</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/10/Build-fake-data-for-Rail/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/10/Build-fake-data-for-Rail/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>使用ROR进行网站开发时，不可避免地需要生成测试数据，常用的方法有两种：</p>
-<ul>
-<li>使用seed.rb</li>
-<li>使用rake task</li>
-</ul>
-<p>下面以 Job这个model为例，看看如何用seed，rake task来批量生成测试数据，并对比两者之间的优劣。</p>
-<p>Job所含字段：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">string   &quot;title&quot;</div><div class="line">text     &quot;description&quot;</div><div class="line">datetime &quot;created_at&quot;,                    </div><div class="line">datetime &quot;updated_at&quot;,                    </div><div class="line">integer  &quot;wage_upper_bound&quot;</div><div class="line">integer  &quot;wage_lower_bound&quot;</div><div class="line">string   &quot;contact_email&quot;</div><div class="line">boolean  &quot;is_hidden</div></pre></td></tr></table></figure>
-<hr>
-<h3 id="测试数据生成"><a href="#测试数据生成" class="headerlink" title="测试数据生成"></a>测试数据生成</h3><h4 id="Seeds-rb"><a href="#Seeds-rb" class="headerlink" title="Seeds.rb"></a>Seeds.rb</h4><p>在seeds.rb中，将不同的字段放在Array中，然后循环调用这些Array，生成测试数据。</p>
-<p>比如下面这种， 将Job的<code>title</code>， <code>description</code> 放在数组jobs_info中，然后循环赋值，具体步骤如下：</p>
-<p>1、将如下代码贴到<code>seed.rb</code>文档中（为增加可读性，此处jobs_info仅放了3个种子）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">jobs_info = [[&quot;Web Application Developer&quot;,&quot;Creates, maintains and implements web-based application systems. Resolves issues and recommends enhancements, when necessary. Has knowledge of HTML, Java and related concepts. Relies on knowledge and professional discretion to plan and accomplish goals. Usually reports to a department head. Significant ingenuity and flexibility is expected. May require a bachelor’s degree in a related area and at least 2-4 years of relevant experience.&quot;</div><div class="line">],[ &quot;Android Developer&quot;,&quot;Designs and builds applications for the Android platform. Works with outside data sources and API’s. Fixes bugs and improves application performance. Collaborates with cross-functional teams to determine and launch new features. Should have knowledge of core web technologies (HTML5, CSS3, JavaScript). Requires a bachelor’s degree in area of specialty and 2 years of relevant experience.&quot;</div><div class="line">],[&quot;iOS Developer&quot;,&quot;Designs and builds applications for the iOS platform. Works with outside data sources and API’s. Fixes bugs and improves application performance. Collaborates with cross-functional teams to determine and launch new features. Should have knowledge of core web technologies (HTML5, CSS3, JavaScript). Requires a bachelor’s degree in area of specialty and 2 years of relevant experience.&quot;</div><div class="line">]]</div><div class="line"></div><div class="line">create_jobs = 10.times to |i|</div><div class="line">	job_test=jobs_info[rand(0..2)]</div><div class="line">	Job.create!([title: job_test[0],description: job_test[1], wage_upper_bound: rand(50..99)*100,wage_lower_bound: rand(10..49)*100, is_hidden:&quot;false&quot;)</div><div class="line">end</div><div class="line"></div><div class="line"></div><div class="line">create_jobs = 10.times to |i|</div><div class="line">	job_test=jobs_info[rand(0..2)]</div><div class="line">	Job.create!([title: job_test[0],description: job_test[1], wage_upper_bound: rand(50..99)*100,wage_lower_bound: rand(10..49)*100, is_hidden:&quot;true&quot;)</div><div class="line">end</div></pre></td></tr></table></figure>
-<p>2、终端运行:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rake db:migrate</div><div class="line">rake db:seed</div></pre></td></tr></table></figure>
-<p>3、重启服务器<code>rails s</code></p>
-<p>大功告成！</p>
-<h4 id="rake-task"><a href="#rake-task" class="headerlink" title="rake task"></a>rake task</h4><p>这里我们需要用到强大的faker。点击，看<a href="https://github.com/stympy/faker" target="_blank" rel="external">faker</a>文档的具体说明。</p>
-<p>此外，类似的gem还有<a href="https://github.com/sevenwire/forgery/tree/master" target="_blank" rel="external">forgery</a> , <a href="https://github.com/tomharris/random_data" target="_blank" rel="external">random_data</a>。</p>
-<p>1、在gemfile中添加faker</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem &apos;faker&apos;</div></pre></td></tr></table></figure>
-<p>终端<code>bundle install</code></p>
-<p>2、建立一个rake task，这里我们建立一个faker_jobs的任务，终端运行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rails g task dev fake_jobs</div></pre></td></tr></table></figure>
-<p>生成lib/tasks/dev.rake文件，内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">namespace :dev do</div><div class="line">  desc &quot;TODO&quot;</div><div class="line">  task fake_jobs: :environment do</div><div class="line">  end</div><div class="line"> end</div></pre></td></tr></table></figure>
-<p>3、根据Job的字段，添加相应的Faker数据。比如下面这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">namespace :dev do</div><div class="line">  desc &quot;TODO&quot;</div><div class="line">  task fake_jobs: :environment do</div><div class="line">    Job.delete_all</div><div class="line"></div><div class="line">    Jobs = []</div><div class="line"></div><div class="line">    100.times do |i|</div><div class="line">      Jobs &lt;&lt; Job.create!(:title =&gt; Faker::Job.title,</div><div class="line">                          :description =&gt; Faker::Job.key_skill,</div><div class="line">                          :wage_upper_bound =&gt; Faker::Number.between(10000,30000),</div><div class="line">                          :wage_lower_bound =&gt; Faker::Number.between(1000,10000),</div><div class="line">                          :contact_email =&gt; Faker::Internet.email,</div><div class="line">                          :is_hidden =&gt; [true, false].sample,</div><div class="line">                          :created_at =&gt; Time.now - rand(10).days - rand(24).hours)</div><div class="line">  end</div><div class="line"> end</div><div class="line">end</div></pre></td></tr></table></figure>
-<p>4、终端运行：<code>rake dev:fake_orders</code></p>
-<p>5、重启服务器<code>rails s</code> , 搞定！</p>
-<h3 id="优劣对比"><a href="#优劣对比" class="headerlink" title="优劣对比"></a>优劣对比</h3><p>两者有何不同？哪个更优？</p>
-<p>【以下纯属个人理解，有不正确之处，非常欢迎指正】</p>
-<p>从个人的使用来看，根据不同的需要去使用相应的方式来生成。</p>
-<ul>
-<li>seeds：种子方式的好处是，你已经将model的一个或多个字段的取值固定，这样每次生成的都是固定范围的，特别当model中含有一一对应的变量时，比如你做一个商店网站，商品和商品图片是对应的，用faker来随机生成，那简直就是灾难，只能通过seeds。但seeds不好的地方也很明显，你得先把这些字段的取值放进去，不管是通过copy的方式还是手敲（应该没人手敲吧？：P），如果仅仅是用来做测试，这样就有点废了。</li>
-<li>rake task：优点是代码清爽，简单直接；缺点在于Faker/random_data／forgery的随机生成，会无视各个字段之间的关系。如果字段之间存在一定的关联，那你用这些gem的后果不是清爽，而是很酸爽。</li>
-</ul>
-<p>相比seeds，个人其实更喜欢用rake task，毕竟这些数据只是用来测试，而且大部分字段之间并没有很直接的逻辑关系，当然也因为<code>less code less bug</code> （捂脸）。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2366,7 +2504,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
