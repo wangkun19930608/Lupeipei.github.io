@@ -393,58 +393,43 @@
 <p>jQuery : the most popular javaScript library. designed to bring additional power to JS.</p>
 <p>Let’s start!</p>
 <h4 id="Module1-Adding-jQuery-to-web-pages"><a href="#Module1-Adding-jQuery-to-web-pages" class="headerlink" title="Module1 : Adding jQuery to web pages"></a>Module1 : Adding jQuery to web pages</h4><ul>
-<li><p>Getting started with jQuery</p>
-<blockquote>
-<p>use Visual Studio</p>
-<p>getting started with <a href="https://code.visualstudio.com" target="_blank" rel="external">Visual Studio Code</a></p>
-</blockquote>
+<li><p><strong>Getting started with jQuery</strong></p>
+<ul>
+<li>use Visual Studio</li>
+<li>getting started with <a href="https://code.visualstudio.com" target="_blank" rel="external">Visual Studio Code</a></li>
+</ul>
 </li>
-<li><p>Adding jQuery to a page</p>
-<blockquote>
-<p>a simple example to start:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&gt; // you can use either of them:</div><div class="line">&gt;</div><div class="line">&gt; $(document).ready(function() &#123;</div><div class="line">&gt; 	// code here</div><div class="line">&gt; &#125;);</div><div class="line">&gt;</div><div class="line">&gt; $(function() &#123;</div><div class="line">&gt; 	// code here</div><div class="line">&gt; &#125;);</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
+<li><p><strong>Adding jQuery to a page</strong></p>
+<p> a simple example to start:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// you can use either of them:</div><div class="line"></div><div class="line">$(document).ready(function() &#123;</div><div class="line">	// code here</div><div class="line">&#125;);</div><div class="line"></div><div class="line">$(function() &#123;</div><div class="line">	// code here</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 </li>
-<li><p>Using CSS selectors with jQuery</p>
+<li><p><strong>Using CSS selectors with jQuery</strong></p>
 <ul>
 <li><p>Common CSS selectors</p>
-<blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; $(&apos;h1&apos;) // selects all h1 elements</div><div class="line">&gt; $(&apos;.class-name&apos;) // selects all elements with a class of class-name</div><div class="line">&gt; $(&apos;#demo&apos;) // selects all elements with an id of demo</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(&apos;h1&apos;) // selects all h1 elements</div><div class="line">$(&apos;.class-name&apos;) // selects all elements with a class of class-name</div><div class="line">$(&apos;#demo&apos;) // selects all elements with an id of demo</div></pre></td></tr></table></figure>
 </li>
 <li><p>Attribute based selectors</p>
-<blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&gt; // selects all elements with an attribute matching the specified value</div><div class="line">&gt; $(&apos;[demo-attribute=&quot;demo-value&quot;]&apos;)</div><div class="line">&gt;</div><div class="line">&gt; // selects all h1 elements with an attribute matching the specified value</div><div class="line">&gt; $(&apos;h1[demo-attribute=&quot;demo-value&quot;]&apos;)</div><div class="line">&gt;</div><div class="line">&gt; // If you wish to find all elements where the value starts with a string, use the ^= operator.</div><div class="line">&gt; $(&apos;[class^=&quot;col&quot;]&apos;)</div><div class="line">&gt;</div><div class="line">&gt; // If you wish to find all elements where the value contains a string, use the *= operator.</div><div class="line">&gt; $(&apos;[class*=&quot;md&quot;]&apos;)</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// selects all elements with an attribute matching the specified value</div><div class="line">$(&apos;[demo-attribute=&quot;demo-value&quot;]&apos;)</div><div class="line"></div><div class="line">// selects all h1 elements with an attribute matching the specified value</div><div class="line">$(&apos;h1[demo-attribute=&quot;demo-value&quot;]&apos;)</div><div class="line"></div><div class="line">// If you wish to find all elements where the value **starts** with a string, use the ^= operator.</div><div class="line">$(&apos;[class^=&quot;col&quot;]&apos;)</div><div class="line"></div><div class="line">// If you wish to find all elements where the value **contains** a string, use the *= operator.</div><div class="line">$(&apos;[class*=&quot;md&quot;]&apos;)</div></pre></td></tr></table></figure>
 </li>
 <li><p>Positional selectors</p>
-<blockquote>
 <ul>
-<li><strong>Parent/child relationships</strong></li>
-</ul>
-<blockquote>
+<li><p><strong>Parent/child relationships</strong></p>
 <p>Consider the following script:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; &gt; // Selects all a elements that are direct descendants nav element</div><div class="line">&gt; &gt; $(&apos;nav &gt; a&apos;)</div><div class="line">&gt; &gt;</div></pre></td></tr></table></figure>
-</blockquote>
-<p>&gt;</p>
-<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// Selects all a elements that are direct descendants nav element</div><div class="line">$(&apos;nav &gt; a&apos;)</div></pre></td></tr></table></figure>
 <p>In the following HTML, the first link would be selected, but not the second. This is because the first link is a <strong>direct child</strong>, but the second is inside of a <code>div</code>element.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt; &gt; &lt;nav&gt;</div><div class="line">&gt; &gt; 	&lt;a href=&quot;#&quot;&gt;(First) This will be selected&lt;/a&gt;</div><div class="line">&gt; &gt; 	&lt;div&gt;</div><div class="line">&gt; &gt; 		&lt;a href=&quot;#&quot;&gt;(Second) This will not be selected&lt;/a&gt;</div><div class="line">&gt; &gt; 	&lt;/div&gt;</div><div class="line">&gt; &gt; &lt;/nav&gt;</div><div class="line">&gt; &gt;</div></pre></td></tr></table></figure>
-</blockquote>
-<ul>
-<li><strong>Descendants</strong></li>
-</ul>
-<blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&gt; &gt; // Selects all a elements that are descendants nav element</div><div class="line">&gt; &gt; // The elements can appear anywhere inside of the element listed first</div><div class="line">&gt; &gt; $(&apos;nav a&apos;)</div><div class="line">&gt; &gt;</div><div class="line">&gt; &gt; //this is an example to show the difference,if you use $(&apos;nav a&apos;), the first and the second will be selected both, if you use $(&apos;nav &gt; a&apos;), only the first one will be selected.</div><div class="line">&gt; &gt; &lt;nav&gt;</div><div class="line">&gt; &gt; 	&lt;a href=&quot;#&quot;&gt;(First) This will be selected&lt;/a&gt;</div><div class="line">&gt; &gt; 	&lt;div&gt;</div><div class="line">&gt; &gt; 		&lt;a href=&quot;#&quot;&gt;(Second) This will be selected&lt;/a&gt;</div><div class="line">&gt; &gt; 	&lt;/div&gt;</div><div class="line">&gt; &gt; &lt;/nav&gt;</div><div class="line">&gt; &gt;</div></pre></td></tr></table></figure>
-</blockquote>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;nav&gt;</div><div class="line">	&lt;a href=&quot;#&quot;&gt;(First) This will be selected&lt;/a&gt;</div><div class="line">	&lt;div&gt;</div><div class="line">		&lt;a href=&quot;#&quot;&gt;(Second) This will not be selected&lt;/a&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">&lt;/nav&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Descendants</strong></p>
+<p>Examples:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// Selects all a elements that are descendants nav element</div><div class="line">// The elements can appear anywhere inside of the element listed first</div><div class="line">$(&apos;nav a&apos;)</div><div class="line"></div><div class="line">//this is an example to show the difference,if you use $(&apos;nav a&apos;), the first and the second will be selected both, if you use $(&apos;nav &gt; a&apos;), only the first one will be selected.</div><div class="line">&lt;nav&gt;</div><div class="line">	&lt;a href=&quot;#&quot;&gt;(First) This will be selected&lt;/a&gt;</div><div class="line">	&lt;div&gt;</div><div class="line">		&lt;a href=&quot;#&quot;&gt;(Second) This will be selected&lt;/a&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">&lt;/nav&gt;</div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
-<li><p>Navigating the DOM with jQuery</p>
+</ul>
+</li>
+<li><p><strong>Navigating the DOM with jQuery</strong></p>
 <ul>
 <li><p>Parent /child relationships</p>
-<blockquote>
 <p>Four methods: <code>children</code> ,<code>find</code>, <code>parent</code>, <code>parents</code></p>
 <ul>
 <li>with<code>children</code>, it’s gonna be just the direct children.</li>
@@ -452,15 +437,13 @@
 <li><code>parent</code> will be the immediate parent.</li>
 <li>And <code>parents</code>, plural, will walk up the entire chain.</li>
 </ul>
-</blockquote>
 </li>
 <li><p>Siblings</p>
-<blockquote>
 <ul>
 <li><p><code>prev</code> and <code>next</code></p>
 <blockquote>
-<p>prev(): To move to the prior element</p>
-<p>next(): To move to the next element</p>
+<p><code>prev()</code>: To move to the prior element</p>
+<p><code>next()</code>: To move to the next element</p>
 </blockquote>
 </li>
 <li><p><code>prevAll</code> and <code>nextAll</code></p>
@@ -474,52 +457,34 @@
 </blockquote>
 </li>
 </ul>
-</blockquote>
 </li>
 <li><p>Selecting items by position</p>
-<blockquote>
 <ul>
 <li><p>Finding the index of an item</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;   //index method will return the zero based (ordinal) location of the item, or -1 if the item isn&apos;t found.</div><div class="line">&gt;</div><div class="line">&gt;   var currentElement = $(&apos;some selector&apos;);</div><div class="line">&gt;   var parent = $(&apos;some selector&apos;);</div><div class="line">&gt;   var index = parent.children().index(currentElement);</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//index method will return the zero based (ordinal) location of the item, or -1 if the item isn&apos;t found.</div><div class="line"></div><div class="line">var currentElement = $(&apos;some selector&apos;);</div><div class="line">var parent = $(&apos;some selector&apos;);</div><div class="line">var index = parent.children().index(currentElement);</div></pre></td></tr></table></figure>
 </li>
-</ul>
-</blockquote>
-<p>&gt;</p>
-<blockquote>
-<ul>
 <li><p>Finding an item by its position</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;   //using the get method</div><div class="line">&gt;   var parent = $(&apos;some selector&apos;);</div><div class="line">&gt;   var element = parent.children().get(index);</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</blockquote>
-<p>&gt;</p>
-<blockquote>
-<p>  One important note about <code>get</code> is it returns a JavaScript DOM object, <strong>not</strong> a jQuery object.</p>
-<p>  In order to call jQuery methods on the object, you must convert it to a jQuery object.</p>
-<p>  Examples below:</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;   var parent = $(&apos;some selector&apos;);</div><div class="line">&gt;   var domobject = parent.children().get(index); // DOM object</div><div class="line">&gt;   var jQueryObject = $(parent.children().get(index)); // jQuery object</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">//using the get method</div><div class="line">var parent = $(&apos;some selector&apos;);</div><div class="line">var element = parent.children().get(index);</div></pre></td></tr></table></figure>
+<p>One important note about <code>get</code> is it returns a JavaScript DOM object, <strong>not</strong> a jQuery object.</p>
+<p>In order to call jQuery methods on the object, you must convert it to a jQuery object.</p>
+<p>Examples below:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var parent = $(&apos;some selector&apos;);</div><div class="line">var domobject = parent.children().get(index); // DOM object</div><div class="line">var jQueryObject = $(parent.children().get(index)); // jQuery object</div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
-<li><p>Getting started with DOM manipulation</p>
+</ul>
+</li>
+<li><p><strong>Getting started with DOM manipulation</strong></p>
 <ul>
 <li><p>Adding and removing classes</p>
-<blockquote>
 <ul>
 <li><p>Adding a class to an element is just as easy as calling <code>addClass</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;   currentElement.addClass(&apos;class-name&apos;);</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">currentElement.addClass(&apos;class-name&apos;);</div></pre></td></tr></table></figure>
 </li>
-</ul>
-</blockquote>
-<p>&gt;</p>
-<blockquote>
-<ul>
 <li><p>Removing a class from an element is just as easy as calling <code>removeClass</code>. If the element in question was not already decorated with the class you’re trying to remove, the method will simply return.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;   currentElement.removeClass(&apos;class-name&apos;);</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">currentElement.removeClass(&apos;class-name&apos;);</div></pre></td></tr></table></figure>
 </li>
 </ul>
-</blockquote>
 </li>
 <li><p>Working with attributes</p>
 <ul>
@@ -536,9 +501,9 @@
 </li>
 <li><p>Modifying content</p>
 <ul>
-<li><p>text(): get to replace the existing text in an element</p>
+<li><p><code>text()</code>: get to replace the existing text in an element</p>
 </li>
-<li><p>html(): get to replace the existing HTML in an element</p>
+<li><p><code>html()</code>: get to replace the existing HTML in an element</p>
 </li>
 <li><p>the different between <code>text()</code>  and <code>html()</code> is whether or not it’s gonna allow for HTML.</p>
 <p>Examples:</p>
