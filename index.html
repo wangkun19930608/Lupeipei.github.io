@@ -404,7 +404,7 @@
 <li><p>登录远端服务器后，新建authorized_keys</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir ~/.ssh</div><div class="line">touch ~/.ssh/authorized_keys</div></pre></td></tr></table></figure>
 </li>
-<li><p>将公钥贴近远端服务器的authorized_keys中</p>
+<li><p>将公钥贴进远端服务器的authorized_keys中</p>
 <p>在A上运行：<code>cat ~/.ssh/id_rsa.pub</code>， 复制本机的公钥</p>
 <p>回到B上，运行：<code>nano ~/.ssh/authorized_keys</code>, 把公钥贴进去</p>
 </li>
@@ -412,10 +412,9 @@
 <p>运行：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod 700 ~/.ssh</div><div class="line">chmod 644 ~/.ssh/authorized_keys</div></pre></td></tr></table></figure>
 <p>有的参考文档要求设置成600，试了下，644，600，保证owner是可读写可执行，而其他用户和群组的最大权限是可读即可。</p>
-<p>​</p>
-<p>可以了！很简单是不是？试试看，退出重新登录下，不用敲密码啦！</p>
 </li>
 </ul>
+<p>可以了！很简单是不是？试试看，退出重新登录下，不用敲密码啦！</p>
 <h4 id="The-end"><a href="#The-end" class="headerlink" title="The end"></a>The end</h4><p> BTW，我之前的问题是passphrase没有设置为空，另外SSH文件复制时也出错，后面重新生成才解决的。</p>
 <p>看了一些有关SSH免登录的操作说明，有一篇挺干货的。推荐：</p>
 <p><a href="https://my.oschina.net/magicalSam/blog/1466144" target="_blank" rel="external">Mac、Linux 上实现SSH免密码登陆到Linux服务器</a></p>
