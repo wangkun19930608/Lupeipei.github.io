@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="闲言碎语," />
+  <meta name="keywords" content="Linux," />
 
 
 
@@ -87,17 +87,20 @@
 
 
 
-<meta name="description" content="前言半个月前搭起这个网站的时候，我在想，我的第一篇要写什么？第一篇应该写点特别的吧？至少不能是煽情地发泄个人情绪，写点对他人有用的。嗯，那应该写什么呢？我在纠结与所谓的准备中迟迟不愿开始，大概给自己找借口是所有拖延症患者的通病吧？ 后来，实在是受不了这首页，我想，管他呢，与其在纠结中虚耗生命，不如走出第一步，take baby step。嗯，反正这是自己的领地，随便瞎搞都可以。 ：P 翻出五年前的">
-<meta name="keywords" content="闲言碎语">
+<meta name="description" content="吐个糟先前段时间开始学习Linux云服务器部署运维，在免密码登录那块卡了很久，一直没找到原因，删除实例，重新生成SSH key，折腾了几次，每次都以为这次没问题了，结果登录的时候，擦，还是要求输入密码，你说糟心不？随性先搁浅了起来，前几天又来找虐，试了两次，竟然成功登录了，小激动啊！ 记录下免密码登录的整个操作流程，庆祝下，也给没踩坑的参考下。 正文远端登入如果每次都要输入密码，还是挺麻烦的，不过">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://lupeipei.github.io/2017/04/04/hello-world/index.html">
+<meta property="og:title" content="SSH免密码登录远端服务器">
+<meta property="og:url" content="http://lupeipei.github.io/2017/10/10/login-server-without-password/index.html">
 <meta property="og:site_name" content="Lucia">
-<meta property="og:description" content="前言半个月前搭起这个网站的时候，我在想，我的第一篇要写什么？第一篇应该写点特别的吧？至少不能是煽情地发泄个人情绪，写点对他人有用的。嗯，那应该写什么呢？我在纠结与所谓的准备中迟迟不愿开始，大概给自己找借口是所有拖延症患者的通病吧？ 后来，实在是受不了这首页，我想，管他呢，与其在纠结中虚耗生命，不如走出第一步，take baby step。嗯，反正这是自己的领地，随便瞎搞都可以。 ：P 翻出五年前的">
-<meta property="og:updated_time" content="2017-07-31T01:59:37.000Z">
+<meta property="og:description" content="吐个糟先前段时间开始学习Linux云服务器部署运维，在免密码登录那块卡了很久，一直没找到原因，删除实例，重新生成SSH key，折腾了几次，每次都以为这次没问题了，结果登录的时候，擦，还是要求输入密码，你说糟心不？随性先搁浅了起来，前几天又来找虐，试了两次，竟然成功登录了，小激动啊！ 记录下免密码登录的整个操作流程，庆祝下，也给没踩坑的参考下。 正文远端登入如果每次都要输入密码，还是挺麻烦的，不过">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fk9qp21kn2j30lt021gmk.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fk9qp2mmr8j30gz02t3yy.jpg">
+<meta property="og:updated_time" content="2017-10-10T00:28:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="前言半个月前搭起这个网站的时候，我在想，我的第一篇要写什么？第一篇应该写点特别的吧？至少不能是煽情地发泄个人情绪，写点对他人有用的。嗯，那应该写什么呢？我在纠结与所谓的准备中迟迟不愿开始，大概给自己找借口是所有拖延症患者的通病吧？ 后来，实在是受不了这首页，我想，管他呢，与其在纠结中虚耗生命，不如走出第一步，take baby step。嗯，反正这是自己的领地，随便瞎搞都可以。 ：P 翻出五年前的">
+<meta name="twitter:title" content="SSH免密码登录远端服务器">
+<meta name="twitter:description" content="吐个糟先前段时间开始学习Linux云服务器部署运维，在免密码登录那块卡了很久，一直没找到原因，删除实例，重新生成SSH key，折腾了几次，每次都以为这次没问题了，结果登录的时候，擦，还是要求输入密码，你说糟心不？随性先搁浅了起来，前几天又来找虐，试了两次，竟然成功登录了，小激动啊！ 记录下免密码登录的整个操作流程，庆祝下，也给没踩坑的参考下。 正文远端登入如果每次都要输入密码，还是挺麻烦的，不过">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fk9qp21kn2j30lt021gmk.jpg">
 
 
 
@@ -125,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://lupeipei.github.io/2017/04/04/hello-world/"/>
+  <link rel="canonical" href="http://lupeipei.github.io/2017/10/10/login-server-without-password/"/>
 
 
 
 
 
-  <title> Hello World | Lucia </title>
+  <title> SSH免密码登录远端服务器 | Lucia </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +273,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/04/04/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/10/login-server-without-password/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lucia">
@@ -291,7 +294,7 @@
             
             
               
-                Hello World
+                SSH免密码登录远端服务器
               
             
           </h1>
@@ -306,8 +309,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-04T18:22:19+08:00">
-                2017-04-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T08:24:21+08:00">
+                2017-10-10
               </time>
             
 
@@ -329,8 +332,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/闲言碎语/" itemprop="url" rel="index">
-                    <span itemprop="name">闲言碎语</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -347,9 +350,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/04/hello-world/#comments" itemprop="discussionUrl">
+                <a href="/2017/10/10/login-server-without-password/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/04/04/hello-world/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/10/10/login-server-without-password/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -375,25 +378,45 @@
       
 
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>半个月前搭起这个网站的时候，我在想，我的第一篇要写什么？第一篇应该写点特别的吧？至少不能是煽情地发泄个人情绪，写点对他人有用的。嗯，那应该写什么呢？我在纠结与所谓的准备中迟迟不愿开始，大概给自己找借口是所有拖延症患者的通病吧？</p>
-<p>后来，实在是受不了这首页，我想，管他呢，与其在纠结中虚耗生命，不如走出第一步，take baby step。嗯，反正这是自己的领地，随便瞎搞都可以。 ：P</p>
-<p>翻出五年前的文字，换成现在，是写不出来的，不禁感叹这些年退步得真是快。</p>
-<p>以此文鼓励自己再度踏入文字的世界。</p>
-<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>在门外犹豫了很久，还是推开了，迎面而来的是阵风，里面有久违的味道。</p>
-<p>“还是来了？”</p>
-<p>“终究逃不过这一劫……”</p>
-<p>“呵……”轻笑，嘴角上扬，顿顿，静了一会，“长途而来，喝杯水，昨日刚汲的。”</p>
-<p>“甚好。”</p>
-<p>井水进入快要干枯的躯体，骨子里每个血管似在喊着畅快，多么久违的重逢，别来无恙？</p>
-<p>“别急，慢慢来，绝对够你喝。”末了，加一句“不会是担心等会它从眼中流走？”</p>
-<p>“哈哈……”止杯，笑笑，见窗外，很久，吐出一句“你是好，美景伴余生，羡煞。”环视一周，“倒是勤快，屋里干净。”</p>
-<p>“尘不到，时时自有春风扫。”</p>
-<p>良久，无声，有风，缓缓的风，空中有秋末收获的清香。</p>
-<p>日暮，残阳如血，二人在山边静坐。</p>
-<p>“等月上柳枝？”</p>
-<p>“不，等霜染青丝。”</p>
-<p>“哈哈……”</p>
-<p>黄粱一梦。</p>
+        <h4 id="吐个糟先"><a href="#吐个糟先" class="headerlink" title="吐个糟先"></a>吐个糟先</h4><p>前段时间开始学习Linux云服务器部署运维，在免密码登录那块卡了很久，一直没找到原因，删除实例，重新生成SSH key，折腾了几次，每次都以为这次没问题了，结果登录的时候，擦，还是要求输入密码，你说糟心不？随性先搁浅了起来，前几天又来找虐，试了两次，竟然成功登录了，小激动啊！</p>
+<p>记录下免密码登录的整个操作流程，庆祝下，也给没踩坑的参考下。</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>远端登入如果每次都要输入密码，还是挺麻烦的，不过，别担心，聪明的前辈们早就想到解决办法啦！用非对称加密的方式来实现免密码登录。那，具体怎么玩？</p>
+<p><strong>步骤：</strong></p>
+<p>机器A： 本地的Mac</p>
+<p>机器B： 远端Linux服务器</p>
+<p>Step1、在<strong>本地机器A</strong>检查是否已经生成id_rsa.pub</p>
+<ul>
+<li><p>终端运行<code>cat ~/.ssh/id_rsa.pub</code></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fk9qp21kn2j30lt021gmk.jpg" alt=""></p>
+<ul>
+<li><p>如果存在该文件，终端运行：<code>ssh-keygen -p</code>, 将passphrase重新设置为空，直接按Enter即可，这一步很重要，不然的话，即使你设置了免密码登录，还是要每次都输入passphrase才可以登录到远端服务器。</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fk9qp2mmr8j30gz02t3yy.jpg" alt=""></p>
+</li>
+<li><p>如果不存在该文件，需要先生成，终端运行：<code>ssh-keygen -t rsa</code>,  就会生成公钥 <code>~/.ssh/id_rsa.pub</code> 以及密钥 <code>~/.ssh/id_rsa</code>啦。同样的，一直按Enter，不要设置passphrase。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Step2、在<strong>机器B</strong>添上本地的公钥</p>
+<ul>
+<li><p>登录远端服务器后，新建authorized_keys</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir ~/.ssh</div><div class="line">touch ~/.ssh/authorized_keys</div></pre></td></tr></table></figure>
+</li>
+<li><p>将公钥贴近远端服务器的authorized_keys中</p>
+<p>在A上运行：<code>cat ~/.ssh/id_rsa.pub</code>， 复制本机的公钥</p>
+<p>回到B上，运行：<code>nano ~/.ssh/authorized_keys</code>, 把公钥贴进去</p>
+</li>
+<li><p>设置机器B上的文件权限</p>
+<p>运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod 700 ~/.ssh</div><div class="line">chmod 644 ~/.ssh/authorized_keys</div></pre></td></tr></table></figure>
+<p>有的参考文档要求设置成600，试了下，644，600，保证owner是可读写可执行，而其他用户和群组的最大权限是可读即可。</p>
+<p>​</p>
+<p>可以了！很简单是不是？试试看，退出重新登录下，不用敲密码啦！</p>
+</li>
+</ul>
+<h4 id="The-end"><a href="#The-end" class="headerlink" title="The end"></a>The end</h4><p> BTW，我之前的问题是passphrase没有设置为空，另外SSH文件复制时也出错，后面重新生成才解决的。</p>
+<p>看了一些有关SSH免登录的操作说明，有一篇挺干货的。推荐：</p>
+<p><a href="https://my.oschina.net/magicalSam/blog/1466144" target="_blank" rel="external">Mac、Linux 上实现SSH免密码登陆到Linux服务器</a></p>
 
       
     </div>
@@ -423,7 +446,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/闲言碎语/" rel="tag"># 闲言碎语</a>
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
           
         </div>
       
@@ -436,15 +459,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/29/build-blog-with-hexo/" rel="next" title="使用Hexo在GitHub上为自己搭建一个静态Blog站点">
-                <i class="fa fa-chevron-left"></i> 使用Hexo在GitHub上为自己搭建一个静态Blog站点
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/09/introduction-to-jquery-module3-2/" rel="prev" title="Introduction to jQuery_5">
+                Introduction to jQuery_5 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -609,7 +632,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#吐个糟先"><span class="nav-number">1.</span> <span class="nav-text">吐个糟先</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-end"><span class="nav-number">3.</span> <span class="nav-text">The end</span></a></li></ol></div>
             
 
           </div>
@@ -746,9 +769,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://lupeipei.github.io/2017/04/04/hello-world/';
-          this.page.identifier = '2017/04/04/hello-world/';
-          this.page.title = 'Hello World';
+          this.page.url = 'http://lupeipei.github.io/2017/10/10/login-server-without-password/';
+          this.page.identifier = '2017/10/10/login-server-without-password/';
+          this.page.title = 'SSH免密码登录远端服务器';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-lupeipei-github-io.disqus.com/embed.js';
