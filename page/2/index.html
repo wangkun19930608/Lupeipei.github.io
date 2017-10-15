@@ -270,6 +270,193 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/01/web-together-build-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/source/images/avtar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lucia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/10/01/web-together-build-5/" itemprop="url">
+                  Together网站搭建之踩坑系列5
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-01T06:26:19+08:00">
+                2017-10-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ROR/" itemprop="url" rel="index">
+                    <span itemprop="name">ROR</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/01/web-together-build-5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/01/web-together-build-5/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这是功能实现的第四篇，扯一扯<strong>如何添加时间筛选功能</strong>。</p>
+<p>完整作品源码及效果，看这里<a href="http://www.togetherisbetter.cn/" target="_blank" rel="external">作品网站</a>,   <a href="https://github.com/Lupeipei/Together" target="_blank" rel="external">作品源码</a>。</p>
+<h4 id="正文："><a href="#正文：" class="headerlink" title="正文："></a>正文：</h4><p>老规矩，上效果图先：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fjzd6h5bqtg30zh0i2e85.gif" alt=""></p>
+<p><strong>具体步骤：</strong></p>
+<p>这里，我用了 bootstrap-datepicker-rails来作为日期筛选，没有用date_field_tag, 既为了美观，也为了避免出现浏览器支援的问题。</p>
+<p>好，开始吧。</p>
+<ul>
+<li><p>安装，在gemfile中加入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem &apos;bootstrap-datepicker-rails&apos;</div></pre></td></tr></table></figure>
+<p>终端运行<code>bundle install</code></p>
+</li>
+<li><p>编辑<code>app/assets/stylesheets/application.scss</code>，加入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@import &quot;bootstrap-datepicker3&quot;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>编辑<code>app/assets/javascripts/application.js</code>，加入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//= require bootstrap-datepicker/core</div><div class="line">//= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN</div></pre></td></tr></table></figure>
+<p>这里，引入了中文版</p>
+</li>
+<li><p>在<code>app/views/events/index.html.erb</code>中，加入日期输入框：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">......</div><div class="line">&lt;div class=&quot;submenu&quot;&gt;</div><div class="line">    &lt;span&gt;&lt;i class=&quot;fa fa-calendar fa-lg&quot;&gt;&lt;/i&gt; 时间: &lt;/span&gt;</div><div class="line">    &lt;div class=&quot;form-group&quot; style=&quot;margin-left: 80px; margin-top: -20px;&quot;&gt;</div><div class="line">    &lt;%= form_tag events_path, :method =&gt; :get do %&gt;</div><div class="line">      &lt;%= text_field_tag :start_on, params[:start_on]%&gt; ~  &lt;%= text_field_tag :end_on, params[:end_on]%&gt;</div><div class="line">      &lt;%= submit_tag &quot;确认&quot;, :class =&gt; &quot;btn btn-default&quot;%&gt;</div><div class="line">    &lt;% end %&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">.....</div></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>app/views/events/index.html.erb</code>中，将script放在最下面。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">  $(&quot;#start_on&quot;).datepicker(&#123;format: &quot;yyyy-mm-dd&quot;&#125;);</div><div class="line">  $(&quot;#end_on&quot;).datepicker(&#123;format: &quot;yyyy-mm-dd&quot;&#125;);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>这里，<code>start_on</code>, <code>end_on</code> 可以通过查看chrome的inspect，得到id。</p>
+<p>另，如果需要指定多语言，可以修改script成这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">  $(&quot;#start_on&quot;).datepicker(&#123;format: &quot;yyyy-mm-dd&quot;, language: &quot;&lt;%= I18n.locale %&gt;&quot;&#125;);</div><div class="line">  $(&quot;#end_on&quot;).datepicker(&#123;format: &quot;yyyy-mm-dd&quot;, language: &quot;&lt;%= I18n.locale %&gt;&quot;&#125;);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>编辑<code>app/controllers/events_controller.rb</code>, 在index部分，加入如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def index</div><div class="line">  @events = Event.order(&quot;created_at DESC&quot;)</div><div class="line">  ......</div><div class="line">  if params[:start_on].present?</div><div class="line">    @events = @events.where(&quot;start_time &gt;= ?&quot;, Date.parse(params[:start_on]).beginning_of_day)</div><div class="line">  end</div><div class="line"></div><div class="line">  if params[:end_on].present?</div><div class="line">    @events = @events.where(&quot;end_time &lt;= ?&quot;, Date.parse(params[:end_on]).end_of_day)</div><div class="line">  end</div><div class="line">  ......</div><div class="line">end</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>重启<code>rails s</code>, 试一下，可以根据时间筛选啦！</p>
+<p>对啦，如果要部署到heroku， 记得运行<code>bundle exec rake assets: precompile</code>后再deploy。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/09/30/web-together-build-4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2347,241 +2534,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/07/29/build-blog-with-hexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/source/images/avtar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lucia">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/29/build-blog-with-hexo/" itemprop="url">
-                  使用Hexo在GitHub上为自己搭建一个静态Blog站点
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-29T16:35:57+08:00">
-                2017-07-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/07/29/build-blog-with-hexo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/07/29/build-blog-with-hexo/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>不废话，直接上货。</p>
-<h3 id="初步搭建"><a href="#初步搭建" class="headerlink" title="初步搭建"></a>初步搭建</h3><h4 id="Step1-在GitHub上创建一个Repo"><a href="#Step1-在GitHub上创建一个Repo" class="headerlink" title="Step1. 在GitHub上创建一个Repo"></a>Step1. 在GitHub上创建一个Repo</h4><p>登陆GitHub，当然没有账号的话，注册个。</p>
-<p>创建一个Repo，名称格式为<code>yourname.github.io</code>, 这里要注意，yourname 不是你随随便便起一个的，要和你GitHub的账户名保持一致，不然后面你会发现无法部署。</p>
-<h4 id="Step2-本地安装git-npm"><a href="#Step2-本地安装git-npm" class="headerlink" title="Step2. 本地安装git , npm"></a>Step2. 本地安装git , npm</h4><p>这里以homebrew为例来说明安装git, npm的方法，你也可以通过其他方式来安装。</p>
-<p>安装Xcode和Homebrew：</p>
-<ul>
-<li><p>Xcode：在App Store中下载，建议关闭VPN，以免下载速度过慢</p>
-</li>
-<li><p>Homebrew：在终端输入</p>
-<p><code>/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</code></p>
-<p>回车, 安装过程中，会被问到系统密码，此时只管输入密码，回车即可。</p>
-<p>了解更多，参见：<a href="https://brew.sh/index_zh-tw.html" target="_blank" rel="external">Homebrew 的官方网址</a></p>
-</li>
-</ul>
-<p>安装git , npm 并确认安装成功：</p>
-<ul>
-<li>安装 npm<ul>
-<li>终端输入：<code>brew install node</code>，休息下，等它安装完毕；</li>
-<li>输入：<code>node -v</code> , <code>npm -v</code>会显示版本号，表示已经安装成功；</li>
-</ul>
-</li>
-<li>安装 git<ul>
-<li>终端输入：<code>brew install git</code>， 同样的，等安装完成；</li>
-<li>输入：<code>git --version</code>，显示git的版本，安装完成。</li>
-</ul>
-</li>
-</ul>
-<h4 id="Step3-安装hexo"><a href="#Step3-安装hexo" class="headerlink" title="Step3. 安装hexo"></a>Step3. 安装hexo</h4><p>终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install hexo -g</div><div class="line">npm install hexo-cli -g</div></pre></td></tr></table></figure>
-<h4 id="Step4-创建本地目录"><a href="#Step4-创建本地目录" class="headerlink" title="Step4. 创建本地目录"></a>Step4. 创建本地目录</h4><p>去GitHub复制你Repo的git地址，然后在终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/yourname/yourname.github.io.git</div></pre></td></tr></table></figure>
-<h4 id="Step5-初始化本地站点"><a href="#Step5-初始化本地站点" class="headerlink" title="Step5. 初始化本地站点"></a>Step5. 初始化本地站点</h4><p>终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">hexo init yourname.github.io</div><div class="line">cd yourname.github.io</div><div class="line">npm install hexo-deployer-git --save</div><div class="line">git init</div><div class="line">hexo generate</div><div class="line">hexo server</div></pre></td></tr></table></figure>
-<p>此时，可以打开浏览器，输入：<code>localhost:4000</code>, 可以在本地看到网站的样子。</p>
-<h4 id="Step6-部署到GitHub"><a href="#Step6-部署到GitHub" class="headerlink" title="Step6. 部署到GitHub"></a>Step6. 部署到GitHub</h4><p>终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">atom .</div></pre></td></tr></table></figure>
-<p>Atom打开后，按快捷键command+P，搜索<code>_config.yml</code>文件，在文件的下面，会看到<code>deploy</code>部分，修改如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">	type: git</div><div class="line">	repo: https://github.com/yourname/yourname.github.io</div></pre></td></tr></table></figure>
-<p>command+S 保存。</p>
-<p>最后，在终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo deploy</div><div class="line">open yourname.github.io</div></pre></td></tr></table></figure>
-<p>稍等一下，就可以看到你的个人网站了！给自己点个赞吧：P</p>
-<p>好，大功告成！下面我们来装饰一下，让它变美美哒。</p>
-<h3 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h3><h4 id="Step1-选择你喜欢的主题"><a href="#Step1-选择你喜欢的主题" class="headerlink" title="Step1. 选择你喜欢的主题"></a>Step1. 选择你喜欢的主题</h4><p>hexo默认的主题是landscape，其实界面也还可以，不过就好比Mac自带了safari，但我们总想用用chrome啥的，所以，点击<a href="https://hexo.io/themes/" target="_blank" rel="external">Themes</a>， you may find something cool. 找到你钟意的那一款吧。</p>
-<h4 id="Step2-安装主题"><a href="#Step2-安装主题" class="headerlink" title="Step2. 安装主题"></a>Step2. 安装主题</h4><p>选中主题后，点击目标主题，会跳到相应的GitHub repo 中，可以按照GitHub 上的指示进行安装，或者在终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git  submodule add &#123;theme-github-url&#125; themes/&#123;theme-name&#125;</div></pre></td></tr></table></figure>
-<p>复制主题下的<code>_config.yml.example</code>，命名为<code>_config.yml</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp themes/&#123;theme-name&#125;/_config.yml.example themes/&#123;theme-name&#125;/_config.yml</div></pre></td></tr></table></figure>
-<p>修改文档的<code>_config.yml</code>（注意，不是theme下的<code>_config.yml</code>文件），启用新主题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">theme: &#123;theme-name&#125;</div></pre></td></tr></table></figure>
-<h3 id="发表文章"><a href="#发表文章" class="headerlink" title="发表文章"></a>发表文章</h3><ul>
-<li><p>新建文章</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new &#123;postname&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>编辑文章,使用markdown格式</p>
-</li>
-<li><p>生成文件并部署</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo generate -d</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="添加评论功能"><a href="#添加评论功能" class="headerlink" title="添加评论功能"></a>添加评论功能</h3><p>这里我们用Disqus。</p>
-<h4 id="注册Disqus"><a href="#注册Disqus" class="headerlink" title="注册Disqus"></a>注册<a href="https://disqus.com/" target="_blank" rel="external">Disqus</a></h4><ul>
-<li>登录后，点击首页的 GET STARTED 按钮，然后选择 I want to install Disqus on my site</li>
-<li>在弹出的Create a new site窗口中，填写你的Website Name， 也就是你的short name，后面会用到，点击create Site</li>
-<li>创建完成后，在新页面点击Install Disqus， Platform选择Universal Code，拉到最下面点击按钮即可</li>
-<li>点击Configure Disqus，将Website Name改为你想要的名称，URL设置为你的Github page地址<code>https://yourname.github.io</code></li>
-</ul>
-<h4 id="配置Hexo"><a href="#配置Hexo" class="headerlink" title="配置Hexo"></a>配置Hexo</h4><ul>
-<li>修改theme下的<code>_config.yml</code>，找到 disqus部分，修改如下：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">disqus:</div><div class="line">  enable: true</div><div class="line">  shortname: &#123;your_website_short_name&#125;</div><div class="line">  count: true</div></pre></td></tr></table></figure>
-<p>short name就是之前你在Disqus中生成的short name</p>
-<ul>
-<li>终端输入：<code>hexo g -d</code></li>
-<li>刷新你的网站，Disqus可见</li>
-</ul>
-<p>Happy posting!</p>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
-<li><a href="http://lixiaolai.com/2016/06/22/makecs-build-a-blog-with-hexo-on-github/#more" target="_blank" rel="external">使用 Hexo 为自己在 Github 上建一个静态 Blog 站点</a></li>
-<li><a href="https://zirho.github.io/2016/06/04/hexo/" target="_blank" rel="external">How to setup a blog on github with Hexo</a></li>
-<li><a href="https://www.ctolib.com/topics-119380.html" target="_blank" rel="external">GithubPages + Hexo + Disqus博客教程</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2631,7 +2583,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
