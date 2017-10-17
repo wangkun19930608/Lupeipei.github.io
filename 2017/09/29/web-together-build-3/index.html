@@ -87,18 +87,18 @@
 
 
 
-<meta name="description" content="这是功能实现的第二篇，扯一扯如何添加分类筛选功能。 完整作品源码及效果，看这里作品网站,   作品源码。 正文：先上效果图：  如何实现？  新建model category 12rails g model category name:stringrake db:migrate  在event中新增category的栏位 12rails g migration add_category_id_to">
+<meta name="description" content="写在前面这是功能实现的第二篇，扯一扯如何添加分类筛选功能。 完整作品源码及效果，看这里作品网站,   作品源码。 目录 给活动添加收藏功能，并使用Ajax进行优化 给活动Events添加分类筛选 添加省市自治区地址, 并实现热门城市筛选 添加时间筛选 添加评论区，并使用ajax优化 实作活动申请 在个人中心实作密码修改  正文先上效果图：  如何实现？  新建model category 12ra">
 <meta name="keywords" content="ROR">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Together网站搭建之踩坑系列3">
 <meta property="og:url" content="http://lupeipei.github.io/2017/09/29/web-together-build-3/index.html">
 <meta property="og:site_name" content="Lucia">
-<meta property="og:description" content="这是功能实现的第二篇，扯一扯如何添加分类筛选功能。 完整作品源码及效果，看这里作品网站,   作品源码。 正文：先上效果图：  如何实现？  新建model category 12rails g model category name:stringrake db:migrate  在event中新增category的栏位 12rails g migration add_category_id_to">
+<meta property="og:description" content="写在前面这是功能实现的第二篇，扯一扯如何添加分类筛选功能。 完整作品源码及效果，看这里作品网站,   作品源码。 目录 给活动添加收藏功能，并使用Ajax进行优化 给活动Events添加分类筛选 添加省市自治区地址, 并实现热门城市筛选 添加时间筛选 添加评论区，并使用ajax优化 实作活动申请 在个人中心实作密码修改  正文先上效果图：  如何实现？  新建model category 12ra">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fjqcf5bajjg30x40i0k2j.gif">
-<meta property="og:updated_time" content="2017-10-15T10:04:33.000Z">
+<meta property="og:updated_time" content="2017-10-17T07:09:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Together网站搭建之踩坑系列3">
-<meta name="twitter:description" content="这是功能实现的第二篇，扯一扯如何添加分类筛选功能。 完整作品源码及效果，看这里作品网站,   作品源码。 正文：先上效果图：  如何实现？  新建model category 12rails g model category name:stringrake db:migrate  在event中新增category的栏位 12rails g migration add_category_id_to">
+<meta name="twitter:description" content="写在前面这是功能实现的第二篇，扯一扯如何添加分类筛选功能。 完整作品源码及效果，看这里作品网站,   作品源码。 目录 给活动添加收藏功能，并使用Ajax进行优化 给活动Events添加分类筛选 添加省市自治区地址, 并实现热门城市筛选 添加时间筛选 添加评论区，并使用ajax优化 实作活动申请 在个人中心实作密码修改  正文先上效果图：  如何实现？  新建model category 12ra">
 <meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fjqcf5bajjg30x40i0k2j.gif">
 
 
@@ -377,9 +377,18 @@
       
 
       
-        <p>这是功能实现的第二篇，扯一扯<strong>如何添加分类筛选功能</strong>。</p>
+        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>这是功能实现的第二篇，扯一扯<strong>如何添加分类筛选功能</strong>。</p>
 <p>完整作品源码及效果，看这里<a href="http://www.togetherisbetter.cn/" target="_blank" rel="external">作品网站</a>,   <a href="https://github.com/Lupeipei/Together" target="_blank" rel="external">作品源码</a>。</p>
-<h4 id="正文："><a href="#正文：" class="headerlink" title="正文："></a>正文：</h4><p>先上效果图：</p>
+<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ul>
+<li><a href="https://lupeipei.github.io/2017/09/28/web-together-build-2/">给活动添加收藏功能，并使用Ajax进行优化</a></li>
+<li>给活动Events添加分类筛选</li>
+<li><a href="https://lupeipei.github.io/2017/09/30/web-together-build-4/">添加省市自治区地址, 并实现热门城市筛选</a></li>
+<li><a href="https://lupeipei.github.io/2017/10/01/web-together-build-5/">添加时间筛选</a></li>
+<li><a href="https://lupeipei.github.io/2017/10/02/web-together-build-6/">添加评论区，并使用ajax优化</a></li>
+<li><a href="https://lupeipei.github.io/2017/10/03/web-together-build-7/">实作活动申请</a></li>
+<li><a href="https://lupeipei.github.io/2017/10/04/web-together-build-8/">在个人中心实作密码修改</a></li>
+</ul>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>先上效果图：</p>
 <p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fjqcf5bajjg30x40i0k2j.gif" alt=""></p>
 <p><strong>如何实现？</strong></p>
 <ul>
@@ -635,7 +644,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#正文："><span class="nav-number">1.</span> <span class="nav-text">正文：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#目录"><span class="nav-number">2.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正文"><span class="nav-number">3.</span> <span class="nav-text">正文</span></a></li></ol></div>
             
 
           </div>
