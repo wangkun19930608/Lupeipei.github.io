@@ -87,17 +87,30 @@
 
 
 
-<meta name="description" content="写在前面使用ROR进行网站开发时，不可避免地需要生成测试数据，常用的方法有两种：  使用seed.rb 使用rake task  下面以 Job这个model为例，看看如何用seed，rake task来批量生成测试数据，并对比两者之间的优劣。 Job所含字段： 12345678string   &amp;quot;title&amp;quot;text     &amp;quot;description&amp;quot;da">
+<meta name="description" content="写在前面刷完了Edx上关于TDD，BDD的课程，也看了《Everyday rails testing with RSpec》, 于是迫不及待想给自己的网站Together也加上RSpec部分，好比刚从师傅那学了几招的小徒弟，立马想找个人试试身手，这中间自然也是免不了各种坑的，一一记录， 避免二次入坑。 PS ： FactoryGirl官方GitHub库已经改名为FactoryBot，实作的时候，请">
 <meta name="keywords" content="ROR">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ROR技能树：批量生成测试数据">
-<meta property="og:url" content="http://lupeipei.github.io/2017/08/10/Build-fake-data-for-Rail/index.html">
+<meta property="og:title" content="TDD with RSpec出错集之单元测试篇">
+<meta property="og:url" content="http://lupeipei.github.io/2017/10/22/TDD-with-RSpec-errors-recording/index.html">
 <meta property="og:site_name" content="Lucia">
-<meta property="og:description" content="写在前面使用ROR进行网站开发时，不可避免地需要生成测试数据，常用的方法有两种：  使用seed.rb 使用rake task  下面以 Job这个model为例，看看如何用seed，rake task来批量生成测试数据，并对比两者之间的优劣。 Job所含字段： 12345678string   &amp;quot;title&amp;quot;text     &amp;quot;description&amp;quot;da">
-<meta property="og:updated_time" content="2017-08-10T12:42:59.000Z">
+<meta property="og:description" content="写在前面刷完了Edx上关于TDD，BDD的课程，也看了《Everyday rails testing with RSpec》, 于是迫不及待想给自己的网站Together也加上RSpec部分，好比刚从师傅那学了几招的小徒弟，立马想找个人试试身手，这中间自然也是免不了各种坑的，一一记录， 避免二次入坑。 PS ： FactoryGirl官方GitHub库已经改名为FactoryBot，实作的时候，请">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fkq88je5s0j30sd04xmyd.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fkq8u4t8xfj30qg07wdh6.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fkqrce6o1ij30pc052wfp.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fkqrjx0s05j30px0jcq67.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fkqsdym52jj30c302hq2y.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fkqtb87yhqj30p903saah.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fkr1glxjegj30ki065q3s.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fkr1lop75jj30o704bgm8.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr1p9w8bgj30u207egna.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr233qjewj30k90g6di4.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr2j2fr38j30ky06kgmq.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fkr2b72qhfj30s60djt92.jpg">
+<meta property="og:updated_time" content="2017-10-22T07:57:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ROR技能树：批量生成测试数据">
-<meta name="twitter:description" content="写在前面使用ROR进行网站开发时，不可避免地需要生成测试数据，常用的方法有两种：  使用seed.rb 使用rake task  下面以 Job这个model为例，看看如何用seed，rake task来批量生成测试数据，并对比两者之间的优劣。 Job所含字段： 12345678string   &amp;quot;title&amp;quot;text     &amp;quot;description&amp;quot;da">
+<meta name="twitter:title" content="TDD with RSpec出错集之单元测试篇">
+<meta name="twitter:description" content="写在前面刷完了Edx上关于TDD，BDD的课程，也看了《Everyday rails testing with RSpec》, 于是迫不及待想给自己的网站Together也加上RSpec部分，好比刚从师傅那学了几招的小徒弟，立马想找个人试试身手，这中间自然也是免不了各种坑的，一一记录， 避免二次入坑。 PS ： FactoryGirl官方GitHub库已经改名为FactoryBot，实作的时候，请">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fkq88je5s0j30sd04xmyd.jpg">
 
 
 
@@ -125,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://lupeipei.github.io/2017/08/10/Build-fake-data-for-Rail/"/>
+  <link rel="canonical" href="http://lupeipei.github.io/2017/10/22/TDD-with-RSpec-errors-recording/"/>
 
 
 
 
 
-  <title> ROR技能树：批量生成测试数据 | Lucia </title>
+  <title> TDD with RSpec出错集之单元测试篇 | Lucia </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +283,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/08/10/Build-fake-data-for-Rail/">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/22/TDD-with-RSpec-errors-recording/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lucia">
@@ -291,7 +304,7 @@
             
             
               
-                ROR技能树：批量生成测试数据
+                TDD with RSpec出错集之单元测试篇
               
             
           </h1>
@@ -306,8 +319,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T20:37:02+08:00">
-                2017-08-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-22T15:52:04+08:00">
+                2017-10-22
               </time>
             
 
@@ -347,9 +360,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/08/10/Build-fake-data-for-Rail/#comments" itemprop="discussionUrl">
+                <a href="/2017/10/22/TDD-with-RSpec-errors-recording/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/10/Build-fake-data-for-Rail/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/10/22/TDD-with-RSpec-errors-recording/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -375,44 +388,63 @@
       
 
       
-        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>使用ROR进行网站开发时，不可避免地需要生成测试数据，常用的方法有两种：</p>
-<ul>
-<li>使用seed.rb</li>
-<li>使用rake task</li>
+        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>刷完了Edx上关于TDD，BDD的课程，也看了《Everyday rails testing with RSpec》, 于是迫不及待想给自己的网站<a href="https://www.togetherisbetter.cn" target="_blank" rel="external">Together</a>也加上RSpec部分，好比刚从师傅那学了几招的小徒弟，立马想找个人试试身手，这中间自然也是免不了各种坑的，一一记录， 避免二次入坑。</p>
+<p>PS ： FactoryGirl官方GitHub库已经改名为FactoryBot，实作的时候，请小心敲键盘……</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><ul>
+<li><p><strong>ArgumentError: Factory not registered</strong></p>
+<p>运行测试文件时，终端报出这样的错误：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkq88je5s0j30sd04xmyd.jpg" alt=""></p>
+<p><strong>怎么破？</strong></p>
+<p>在<code>spec/spec_helper.rb</code>文件中，加入如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">RSpec.configure do |config|</div><div class="line">  config.include FactoryBot::Syntax::Methods</div><div class="line">  .....</div><div class="line">+  config.before do</div><div class="line">+    FactoryBot.find_definitions</div><div class="line">+  end</div><div class="line">end</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>FactoryBot::DuplicateDefinitionError: Factory already registered: event</strong></p>
+<p>运行测试文件时，终端报出这样的错误：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkq8u4t8xfj30qg07wdh6.jpg" alt=""></p>
+<p><strong>怎么破？</strong></p>
+<p>在<code>spec/spec_helper.rb</code>文件中，加入如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">RSpec.configure do |config|</div><div class="line">  config.include FactoryBot::Syntax::Methods</div><div class="line">  .....</div><div class="line">  config.before do</div><div class="line">+   FactoryBot.factories.clear</div><div class="line">    FactoryBot.find_definitions</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Please set Qiniu’s access_key and secret_key before authorize any tokens</strong></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkqrce6o1ij30pc052wfp.jpg" alt=""></p>
+<p>终端运行<code>rspec spec/controllers/events_controller_spec.rb</code>, 为了测试events controller部分，用FactoryBot创建了event，这里有必要说一下，我的event model中有logo部分，而用户上传的logo图片我是用七牛来存储的。抛出异常，查看七牛官方<a href="https://github.com/qiniu/ruby-sdk/blob/master/spec/qiniu/auth_spec.rb" target="_blank" rel="external">GitHub spec部分</a>，找到了这个：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkqrjx0s05j30px0jcq67.jpg" alt=""></p>
+</li>
 </ul>
-<p>下面以 Job这个model为例，看看如何用seed，rake task来批量生成测试数据，并对比两者之间的优劣。</p>
-<p>Job所含字段：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">string   &quot;title&quot;</div><div class="line">text     &quot;description&quot;</div><div class="line">datetime &quot;created_at&quot;,                    </div><div class="line">datetime &quot;updated_at&quot;,                    </div><div class="line">integer  &quot;wage_upper_bound&quot;</div><div class="line">integer  &quot;wage_lower_bound&quot;</div><div class="line">string   &quot;contact_email&quot;</div><div class="line">boolean  &quot;is_hidden</div></pre></td></tr></table></figure>
-<hr>
-<h3 id="测试数据生成"><a href="#测试数据生成" class="headerlink" title="测试数据生成"></a>测试数据生成</h3><h4 id="Seeds-rb"><a href="#Seeds-rb" class="headerlink" title="Seeds.rb"></a>Seeds.rb</h4><p>在seeds.rb中，将不同的字段放在Array中，然后循环调用这些Array，生成测试数据。</p>
-<p>比如下面这种， 将Job的<code>title</code>， <code>description</code> 放在数组jobs_info中，然后循环赋值，具体步骤如下：</p>
-<p>1、将如下代码贴到<code>seed.rb</code>文档中（为增加可读性，此处jobs_info仅放了3个种子）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">jobs_info = [[&quot;Web Application Developer&quot;,&quot;Creates, maintains and implements web-based application systems. Resolves issues and recommends enhancements, when necessary. Has knowledge of HTML, Java and related concepts. Relies on knowledge and professional discretion to plan and accomplish goals. Usually reports to a department head. Significant ingenuity and flexibility is expected. May require a bachelor’s degree in a related area and at least 2-4 years of relevant experience.&quot;</div><div class="line">],[ &quot;Android Developer&quot;,&quot;Designs and builds applications for the Android platform. Works with outside data sources and API’s. Fixes bugs and improves application performance. Collaborates with cross-functional teams to determine and launch new features. Should have knowledge of core web technologies (HTML5, CSS3, JavaScript). Requires a bachelor’s degree in area of specialty and 2 years of relevant experience.&quot;</div><div class="line">],[&quot;iOS Developer&quot;,&quot;Designs and builds applications for the iOS platform. Works with outside data sources and API’s. Fixes bugs and improves application performance. Collaborates with cross-functional teams to determine and launch new features. Should have knowledge of core web technologies (HTML5, CSS3, JavaScript). Requires a bachelor’s degree in area of specialty and 2 years of relevant experience.&quot;</div><div class="line">]]</div><div class="line"></div><div class="line">create_jobs = 10.times to |i|</div><div class="line">	job_test=jobs_info[rand(0..2)]</div><div class="line">	Job.create!([title: job_test[0],description: job_test[1], wage_upper_bound: rand(50..99)*100,wage_lower_bound: rand(10..49)*100, is_hidden:&quot;false&quot;)</div><div class="line">end</div><div class="line"></div><div class="line"></div><div class="line">create_jobs = 10.times to |i|</div><div class="line">	job_test=jobs_info[rand(0..2)]</div><div class="line">	Job.create!([title: job_test[0],description: job_test[1], wage_upper_bound: rand(50..99)*100,wage_lower_bound: rand(10..49)*100, is_hidden:&quot;true&quot;)</div><div class="line">end</div></pre></td></tr></table></figure>
-<p>2、终端运行:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rake db:migrate</div><div class="line">rake db:seed</div></pre></td></tr></table></figure>
-<p>3、重启服务器<code>rails s</code></p>
-<p>大功告成！</p>
-<h4 id="rake-task"><a href="#rake-task" class="headerlink" title="rake task"></a>rake task</h4><p>这里我们需要用到强大的faker。点击，看<a href="https://github.com/stympy/faker" target="_blank" rel="external">faker</a>文档的具体说明。</p>
-<p>此外，类似的gem还有<a href="https://github.com/sevenwire/forgery/tree/master" target="_blank" rel="external">forgery</a> , <a href="https://github.com/tomharris/random_data" target="_blank" rel="external">random_data</a>。</p>
-<p>1、在gemfile中添加faker</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem &apos;faker&apos;</div></pre></td></tr></table></figure>
-<p>终端<code>bundle install</code></p>
-<p>2、建立一个rake task，这里我们建立一个faker_jobs的任务，终端运行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rails g task dev fake_jobs</div></pre></td></tr></table></figure>
-<p>生成lib/tasks/dev.rake文件，内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">namespace :dev do</div><div class="line">  desc &quot;TODO&quot;</div><div class="line">  task fake_jobs: :environment do</div><div class="line">  end</div><div class="line"> end</div></pre></td></tr></table></figure>
-<p>3、根据Job的字段，添加相应的Faker数据。比如下面这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">namespace :dev do</div><div class="line">  desc &quot;TODO&quot;</div><div class="line">  task fake_jobs: :environment do</div><div class="line">    Job.delete_all</div><div class="line"></div><div class="line">    Jobs = []</div><div class="line"></div><div class="line">    100.times do |i|</div><div class="line">      Jobs &lt;&lt; Job.create!(:title =&gt; Faker::Job.title,</div><div class="line">                          :description =&gt; Faker::Job.key_skill,</div><div class="line">                          :wage_upper_bound =&gt; Faker::Number.between(10000,30000),</div><div class="line">                          :wage_lower_bound =&gt; Faker::Number.between(1000,10000),</div><div class="line">                          :contact_email =&gt; Faker::Internet.email,</div><div class="line">                          :is_hidden =&gt; [true, false].sample,</div><div class="line">                          :created_at =&gt; Time.now - rand(10).days - rand(24).hours)</div><div class="line">  end</div><div class="line"> end</div><div class="line">end</div></pre></td></tr></table></figure>
-<p>4、终端运行：<code>rake dev:fake_orders</code></p>
-<p>5、重启服务器<code>rails s</code> , 搞定！</p>
-<h3 id="优劣对比"><a href="#优劣对比" class="headerlink" title="优劣对比"></a>优劣对比</h3><p>两者有何不同？哪个更优？</p>
-<p>【以下纯属个人理解，有不正确之处，非常欢迎指正】</p>
-<p>从个人的使用来看，根据不同的需要去使用相应的方式来生成。</p>
+<p>我擦，看完了<code>spec/qiniu/tokens/auth_spec.rb</code>，除了懵逼外，我不知道怎么走下一步，转念想想我这里并不要测试七牛这块啊，我只想测试controller中的method是不是调用了，so what should I do? bypass it。</p>
+<p>修改<code>app/uploads/</code>下所有的uploader文档，比如avatar_uploader.rb,  修改storage设置：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkqsdym52jj30c302hq2y.jpg" alt=""></p>
+<p><strong>除了生产环境，开发和测试请一律使用file存储</strong>！</p>
+<p>再次测试， 一线飘绿，OK！</p>
 <ul>
-<li>seeds：种子方式的好处是，你已经将model的一个或多个字段的取值固定，这样每次生成的都是固定范围的，特别当model中含有一一对应的变量时，比如你做一个商店网站，商品和商品图片是对应的，用faker来随机生成，那简直就是灾难，只能通过seeds。但seeds不好的地方也很明显，你得先把这些字段的取值放进去，不管是通过copy的方式还是手敲（应该没人手敲吧？：P），如果仅仅是用来做测试，这样就有点废了。</li>
-<li>rake task：优点是代码清爽，简单直接；缺点在于Faker/random_data／forgery的随机生成，会无视各个字段之间的关系。如果字段之间存在一定的关联，那你用这些gem的后果不是清爽，而是很酸爽。</li>
+<li><p><strong>NoMethodError: Undefined method ‘sign_in’</strong></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkqtb87yhqj30p903saah.jpg" alt=""></p>
+<p><strong>怎么破？</strong></p>
+<p>google后，在stack overflow上找到了解答。</p>
+<p>修改<code>spec/support/rails_helper.rb</code>文件，在<code>RSpec.configure do |config|</code>部分添加<code>config.include Devise::TestHelpers, type: :controller</code> :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">RSpec.configure do |config|</div><div class="line">  ......</div><div class="line">+ config.include Devise::TestHelpers, type: :controller</div><div class="line">  ......</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>再次测试, pass!  </p>
+</li>
+<li><p>如果你的model中有图片部分，比如event model中有个event logo，而你用factoryBot生成数据时，是这样的：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkr1glxjegj30ki065q3s.jpg" alt=""></p>
+<p>同时，你在测试案例中要用到build(:event)，那么，先要恭喜你，新坑正在等在你。</p>
+<p>我在做controller的create method测试时，一直报错：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fkr1lop75jj30o704bgm8.jpg" alt=""></p>
+<p>设置断点后，找到了是eventlogo没有赋值成功：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr1p9w8bgj30u207egna.jpg" alt=""></p>
+<p>Google后，你会发现stack overflow上已经有人问过类似的了，但是各执一词，让人有些摸不着头脑，有说用fixture_file_upload的，呃，fixture VS FactoryBot， 我们更爱后者。那<strong>怎么破</strong>？</p>
+<p>看<strong>carrierwave</strong>的GitHub文档找到<a href="https://github.com/carrierwaveuploader/carrierwave/wiki/How-to:-Use-test-factories" target="_blank" rel="external">Use test factories</a>部分:</p>
+<p>重点来了：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr233qjewj30k90g6di4.jpg" alt=""></p>
+<p>原来我用的那种格式，是用于create的，如果用build，只存在内存中，则需要换成上<code>Rack::Test::UploadedFile.new</code>的样式。</p>
+<p>修改<code>spec/factories/events.rb</code>文件，将原eventlogo注释掉：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr2j2fr38j30ky06kgmq.jpg" alt=""></p>
+</li>
 </ul>
-<p>相比seeds，个人其实更喜欢用rake task，毕竟这些数据只是用来测试，而且大部分字段之间并没有很直接的逻辑关系，当然也因为<code>less code less bug</code> （捂脸）。</p>
+<p> 终端再次运行：<code>rspec spec/controllers/events_controller_spec.rb</code>, OK !</p>
+<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p> 按照TDD「Test driven development」的理论，应该测试先行, 像下图酱样子：</p>
+<p>  <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkr2b72qhfj30s60djt92.jpg" alt=""></p>
+<p>  无奈我已经做好了整个网站，决定不按套路出牌，后期加入TDD，来测测前期代码的稳定性 , 在测了一部分功能后，深有感触，测试果然是很有必要的：P。</p>
 
       
     </div>
@@ -455,18 +487,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/08/one-thursday-afternoon-without-coding/" rel="next" title="没有coding的周四下午">
-                <i class="fa fa-chevron-left"></i> 没有coding的周四下午
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/08/User-Story/" rel="prev" title="开发工具之User Story">
-                开发工具之User Story <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/22/how-to-debug-with-RSpec/" rel="prev" title="如何在测试中debug?">
+                如何在测试中debug? <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -632,7 +660,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试数据生成"><span class="nav-number"></span> <span class="nav-text">测试数据生成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Seeds-rb"><span class="nav-number">1.</span> <span class="nav-text">Seeds.rb</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rake-task"><span class="nav-number">2.</span> <span class="nav-text">rake task</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优劣对比"><span class="nav-number"></span> <span class="nav-text">优劣对比</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-End"><span class="nav-number">3.</span> <span class="nav-text">The End</span></a></li></ol></div>
             
 
           </div>
@@ -769,9 +797,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://lupeipei.github.io/2017/08/10/Build-fake-data-for-Rail/';
-          this.page.identifier = '2017/08/10/Build-fake-data-for-Rail/';
-          this.page.title = 'ROR技能树：批量生成测试数据';
+          this.page.url = 'http://lupeipei.github.io/2017/10/22/TDD-with-RSpec-errors-recording/';
+          this.page.identifier = '2017/10/22/TDD-with-RSpec-errors-recording/';
+          this.page.title = 'TDD with RSpec出错集之单元测试篇';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-lupeipei-github-io.disqus.com/embed.js';
