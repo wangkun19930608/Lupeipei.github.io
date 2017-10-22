@@ -106,7 +106,7 @@
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr233qjewj30k90g6di4.jpg">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr2j2fr38j30ky06kgmq.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fkr2b72qhfj30s60djt92.jpg">
-<meta property="og:updated_time" content="2017-10-22T07:57:54.000Z">
+<meta property="og:updated_time" content="2017-10-22T08:08:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TDD with RSpec出错集之单元测试篇">
 <meta name="twitter:description" content="写在前面刷完了Edx上关于TDD，BDD的课程，也看了《Everyday rails testing with RSpec》, 于是迫不及待想给自己的网站Together也加上RSpec部分，好比刚从师傅那学了几招的小徒弟，立马想找个人试试身手，这中间自然也是免不了各种坑的，一一记录， 避免二次入坑。 PS ： FactoryGirl官方GitHub库已经改名为FactoryBot，实作的时候，请">
@@ -409,14 +409,11 @@
 <p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkqrce6o1ij30pc052wfp.jpg" alt=""></p>
 <p>终端运行<code>rspec spec/controllers/events_controller_spec.rb</code>, 为了测试events controller部分，用FactoryBot创建了event，这里有必要说一下，我的event model中有logo部分，而用户上传的logo图片我是用七牛来存储的。抛出异常，查看七牛官方<a href="https://github.com/qiniu/ruby-sdk/blob/master/spec/qiniu/auth_spec.rb" target="_blank" rel="external">GitHub spec部分</a>，找到了这个：</p>
 <p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkqrjx0s05j30px0jcq67.jpg" alt=""></p>
-</li>
-</ul>
 <p>我擦，看完了<code>spec/qiniu/tokens/auth_spec.rb</code>，除了懵逼外，我不知道怎么走下一步，转念想想我这里并不要测试七牛这块啊，我只想测试controller中的method是不是调用了，so what should I do? bypass it。</p>
 <p>修改<code>app/uploads/</code>下所有的uploader文档，比如avatar_uploader.rb,  修改storage设置：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkqsdym52jj30c302hq2y.jpg" alt=""></p>
-<p><strong>除了生产环境，开发和测试请一律使用file存储</strong>！</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkqsdym52jj30c302hq2y.jpg" alt=""><br><strong>除了生产环境，开发和测试请一律使用file存储！</strong></p>
 <p>再次测试， 一线飘绿，OK！</p>
-<ul>
+</li>
 <li><p><strong>NoMethodError: Undefined method ‘sign_in’</strong></p>
 <p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkqtb87yhqj30p903saah.jpg" alt=""></p>
 <p><strong>怎么破？</strong></p>
@@ -436,14 +433,14 @@
 <p>看<strong>carrierwave</strong>的GitHub文档找到<a href="https://github.com/carrierwaveuploader/carrierwave/wiki/How-to:-Use-test-factories" target="_blank" rel="external">Use test factories</a>部分:</p>
 <p>重点来了：</p>
 <p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr233qjewj30k90g6di4.jpg" alt=""></p>
-<p>原来我用的那种格式，是用于create的，如果用build，只存在内存中，则需要换成上<code>Rack::Test::UploadedFile.new</code>的样式。</p>
+<p>原来我用的那种格式，是用于create的，如果用build，只存在内存中，则需要换成<code>Rack::Test::UploadedFile.new</code>的样式。</p>
 <p>修改<code>spec/factories/events.rb</code>文件，将原eventlogo注释掉：</p>
 <p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr2j2fr38j30ky06kgmq.jpg" alt=""></p>
 </li>
 </ul>
-<p> 终端再次运行：<code>rspec spec/controllers/events_controller_spec.rb</code>, OK !</p>
-<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p> 按照TDD「Test driven development」的理论，应该测试先行, 像下图酱样子：</p>
-<p>  <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkr2b72qhfj30s60djt92.jpg" alt=""></p>
+<p>   终端再次运行：<code>rspec spec/controllers/events_controller_spec.rb</code>, OK !</p>
+<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><pre><code>按照TDD「Test driven development」的理论，应该测试先行, 像下图酱样子：
+</code></pre><p>  <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkr2b72qhfj30s60djt92.jpg" alt=""></p>
 <p>  无奈我已经做好了整个网站，决定不按套路出牌，后期加入TDD，来测测前期代码的稳定性 , 在测了一部分功能后，深有感触，测试果然是很有必要的：P。</p>
 
       
