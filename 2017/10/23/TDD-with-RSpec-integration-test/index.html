@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="闲言碎语," />
+  <meta name="keywords" content="ROR," />
 
 
 
@@ -87,17 +87,24 @@
 
 
 
-<meta name="description" content="你清楚应该在某时做某事，但你心里满满的排斥，就是不想去做，你会怎么处理这种情况？ 一个平淡的周四下午，一个不想coding的人，做了什么？ 正文打开电脑后，看了会代码，开始神游，看到页面上一线飘红，满满的bug味，不想继续。 我知道我在逃避，然后我做了什么呢？找纪录片看，看电影，重新刷了一次《手机》。 很佩服冯小刚，拍的挺好，现在来看也是部很有意思的电影。 看完的整个感受是，当一个人不能真诚地对待">
-<meta name="keywords" content="闲言碎语">
+<meta name="description" content="写在前面本场测试的star是 Capybara。 考虑到自己写的method还是挺多的，就没有一一integration test了。 实作了简单的首页测试，用户注册，用户登录，用户退出。 记录下遇到的问题，顺带加入了debug的部分。 正文 Capybara::ElementNotFound: Unable to find visible link or button “ 登出”  做登录，登出">
+<meta name="keywords" content="ROR">
 <meta property="og:type" content="article">
-<meta property="og:title" content="没有coding的周四下午">
-<meta property="og:url" content="http://lupeipei.github.io/2017/09/08/one-thursday-afternoon-without-coding/index.html">
+<meta property="og:title" content="TDD with RSpec出错集之Integration测试篇">
+<meta property="og:url" content="http://lupeipei.github.io/2017/10/23/TDD-with-RSpec-integration-test/index.html">
 <meta property="og:site_name" content="Lucia">
-<meta property="og:description" content="你清楚应该在某时做某事，但你心里满满的排斥，就是不想去做，你会怎么处理这种情况？ 一个平淡的周四下午，一个不想coding的人，做了什么？ 正文打开电脑后，看了会代码，开始神游，看到页面上一线飘红，满满的bug味，不想继续。 我知道我在逃避，然后我做了什么呢？找纪录片看，看电影，重新刷了一次《手机》。 很佩服冯小刚，拍的挺好，现在来看也是部很有意思的电影。 看完的整个感受是，当一个人不能真诚地对待">
-<meta property="og:updated_time" content="2017-09-30T22:51:48.000Z">
+<meta property="og:description" content="写在前面本场测试的star是 Capybara。 考虑到自己写的method还是挺多的，就没有一一integration test了。 实作了简单的首页测试，用户注册，用户登录，用户退出。 记录下遇到的问题，顺带加入了debug的部分。 正文 Capybara::ElementNotFound: Unable to find visible link or button “ 登出”  做登录，登出">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fkrwabt60oj30mn0783z9.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fkrwac5bn8j30en0f440o.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1fkrwhk5kaqj30ds0g176e.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fkrwkc51ljj30ny05z758.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1fkrwltsrhcj30oe0hi40b.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fkrx3y3ul4j30kl06lgms.jpg">
+<meta property="og:updated_time" content="2017-10-23T02:16:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="没有coding的周四下午">
-<meta name="twitter:description" content="你清楚应该在某时做某事，但你心里满满的排斥，就是不想去做，你会怎么处理这种情况？ 一个平淡的周四下午，一个不想coding的人，做了什么？ 正文打开电脑后，看了会代码，开始神游，看到页面上一线飘红，满满的bug味，不想继续。 我知道我在逃避，然后我做了什么呢？找纪录片看，看电影，重新刷了一次《手机》。 很佩服冯小刚，拍的挺好，现在来看也是部很有意思的电影。 看完的整个感受是，当一个人不能真诚地对待">
+<meta name="twitter:title" content="TDD with RSpec出错集之Integration测试篇">
+<meta name="twitter:description" content="写在前面本场测试的star是 Capybara。 考虑到自己写的method还是挺多的，就没有一一integration test了。 实作了简单的首页测试，用户注册，用户登录，用户退出。 记录下遇到的问题，顺带加入了debug的部分。 正文 Capybara::ElementNotFound: Unable to find visible link or button “ 登出”  做登录，登出">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fkrwabt60oj30mn0783z9.jpg">
 
 
 
@@ -125,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://lupeipei.github.io/2017/09/08/one-thursday-afternoon-without-coding/"/>
+  <link rel="canonical" href="http://lupeipei.github.io/2017/10/23/TDD-with-RSpec-integration-test/"/>
 
 
 
 
 
-  <title> 没有coding的周四下午 | Lucia </title>
+  <title> TDD with RSpec出错集之Integration测试篇 | Lucia </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +277,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/09/08/one-thursday-afternoon-without-coding/">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/23/TDD-with-RSpec-integration-test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lucia">
@@ -291,7 +298,7 @@
             
             
               
-                没有coding的周四下午
+                TDD with RSpec出错集之Integration测试篇
               
             
           </h1>
@@ -306,8 +313,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-08T14:28:31+08:00">
-                2017-09-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-23T09:51:06+08:00">
+                2017-10-23
               </time>
             
 
@@ -329,8 +336,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/闲言碎语/" itemprop="url" rel="index">
-                    <span itemprop="name">闲言碎语</span>
+                  <a href="/categories/ROR/" itemprop="url" rel="index">
+                    <span itemprop="name">ROR</span>
                   </a>
                 </span>
 
@@ -347,9 +354,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/08/one-thursday-afternoon-without-coding/#comments" itemprop="discussionUrl">
+                <a href="/2017/10/23/TDD-with-RSpec-integration-test/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/09/08/one-thursday-afternoon-without-coding/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/10/23/TDD-with-RSpec-integration-test/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -375,18 +382,34 @@
       
 
       
-        <p>你清楚应该在某时做某事，但你心里满满的排斥，就是不想去做，你会怎么处理这种情况？</p>
-<p>一个平淡的周四下午，一个不想coding的人，做了什么？</p>
-<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>打开电脑后，看了会代码，开始神游，看到页面上一线飘红，满满的bug味，不想继续。</p>
-<p>我知道我在逃避，然后我做了什么呢？找纪录片看，看电影，重新刷了一次《手机》。</p>
-<p>很佩服冯小刚，拍的挺好，现在来看也是部很有意思的电影。</p>
-<p>看完的整个感受是，当一个人不能真诚地对待他人时，其实反向地，他在跟自己撒谎。诱惑很多，随口一说，再巧妙的掩饰终究有不得不破的一天，我曾经感觉手机让我很分心，一度想要远离它，后来明白，让我分心的不是工具本身，而是渴望得到他人关注，不愿错过信息的心态，或者在寻找kill time的方式？擦，我竟然还有时间来kill？或者更多的是想体验及时反馈的快感。其实，当你真的专注于培养自己的技能，反而内心是愉悦的，踏实的，因为你知道你没有辜负这时光。做完一天的工作，再回头看手机，你会发现，其实并没有什么人会找你，即使有人找，那也不是什么紧要的事。而你却为了这些无谓的事而白白浪费了大量宝贵的注意力，这不是愚蠢是什么？</p>
-<p>回到电影本身，出书的费老有了外遇，名嘴严守一有个长期情人，后来自己的职位反而被情人所取代了。看的过程中，我的感觉是当一个人谎话成章的时候，其实他已经养成了相应的行为模式，这个模式在他之后遇到相似情境的时候，会反复调用，然后这个模式也就会不断加强，如果这个行为模式本身就是错误的，相当于不断犯错，那么这些一个个小小的错误，慢慢积累，其效益最终必然让当事人陷入困境。而如果最开始便是以诚相待，那反而是最舒心的相处方式，当然在有些场合，我们为了照顾别人的感受，不得不说一些慌，我也觉得可以理解。《the road less travelled》里也提到这个话题，真诚，也是需要智慧的。</p>
-<p>人生贵适意啊！</p>
-<p>另一个很搞笑的细节是，当李燕发现费老有了外遇后，哭着说：”上网聊个天你说我堕落，说什么生命短暂，白驹过隙，你呢，你是只争朝夕。“ 有够搞笑的。我们大部分都会犯这个错误吧，对他人高要求，对自己却是低标准。嗯，我们对自己还真是非一般的宠啊！</p>
-<p>不知道为什么，敲完这些字的我，反而有了要做事的冲动了。</p>
-<p>也许有的时候，人在遇到不想去做的事情时总想着逃避，但逃避并不能解决任何问题，只有直面，而这个过程的转变，有些时候需要一些外力？其实道理都懂，但没能及时去制止自己，任情绪牵引，那时候的感觉就是什么也不想做，歌也不想听，代码也不想敲，连电影也不想看，可又觉得必须做点什么，结果看完一部电影，反而静下来了，也是奇怪了。</p>
-<p>下次遇到同样的情境，怎么破？码字吧，写下来，就静下来了。</p>
+        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>本场测试的star是 Capybara。</p>
+<p>考虑到自己写的method还是挺多的，就没有一一integration test了。</p>
+<p>实作了简单的首页测试，用户注册，用户登录，用户退出。</p>
+<p>记录下遇到的问题，顺带加入了debug的部分。</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><ul>
+<li><strong>Capybara::ElementNotFound: Unable to find visible link or button “ 登出”</strong></li>
+</ul>
+<p>做登录，登出的测试时，终端报出如下错误：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fkrwabt60oj30mn0783z9.jpg" alt=""></p>
+<p>报错显示页面找不到“ 登出”这个link 或者button，对应的测试文件长这样：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fkrwac5bn8j30en0f440o.jpg" alt=""></p>
+<p><strong>怎么破？</strong></p>
+<p>第一想法就是查看一下用户登录后，点击”Hi!, #{user.username}”，页面这时候是长啥样，是不是真的没有“ 登出”这个link 或者button。</p>
+<p>怎么做呢？好办，加入<code>save_and_open_page</code>, 注释掉报错的代码，像这样👇：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fkrwhk5kaqj30ds0g176e.jpg" alt=""></p>
+<p>终端再次运行案例，得到这样的一串网址：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fkrwkc51ljj30ny05z758.jpg" alt=""></p>
+<p>终端输入：<code>open tmp/capybara/capybara-201710230848216776109515.html</code>, 浏览器便会打开这个网址了。</p>
+<p>我的是这样子：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fkrwltsrhcj30oe0hi40b.jpg" alt=""></p>
+<p><strong>有登出呢！</strong>为什么显示Unable to find visible link or button ？那只能说明这不是一个link or button？Google后，发现在stackoverflow上有个非常相似的案例：<a href="https://stackoverflow.com/questions/11269724/how-to-use-capybara-in-rspec-to-click-on-a-dropdown-option" target="_blank" rel="external">How to use capybara in rspec to click on a dropdown option</a></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fkrx3y3ul4j30kl06lgms.jpg" alt=""></p>
+<p>试试把<code>click_on&quot; 登出&quot;</code>换成<code>page.find(:xpath, &quot;//a[@href=&#39;/users/sign_out&#39;]&quot;).click</code>, 终端再次运行案例，Pass！！</p>
+<p>but ,xpath是啥？XPath 是一门在 XML 文档中查找信息的语言，用于在 XML 文档中通过元素和属性进行导航。</p>
+<p>了解更多可以看看W3school的教程<a href="http://www.w3school.com.cn/xpath/index.asp" target="_blank" rel="external">xpath</a>。</p>
+<p>在capybara中为什么要这么用？戳这里<a href="https://github.com/teamcapybara/capybara#xpath-css-and-selectors" target="_blank" rel="external">capybara XPath, CSS and selectors</a> .</p>
+<h4 id="The-end"><a href="#The-end" class="headerlink" title="The end"></a>The end</h4><p><strong>capybara</strong> 中，操作页面的方法除了visit，click外，还有很多比如fill_in， check，choose等等，很强大。</p>
+<p>详见：<a href="https://github.com/teamcapybara/capybara" target="_blank" rel="external">capybara</a></p>
 
       
     </div>
@@ -416,7 +439,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/闲言碎语/" rel="tag"># 闲言碎语</a>
+            <a href="/tags/ROR/" rel="tag"># ROR</a>
           
         </div>
       
@@ -429,18 +452,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/27/web-together-build-1/" rel="next" title="Together网站搭建之踩坑系列1">
-                <i class="fa fa-chevron-left"></i> Together网站搭建之踩坑系列1
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/10/Build-fake-data-for-Rail/" rel="prev" title="ROR技能树：批量生成测试数据">
-                ROR技能树：批量生成测试数据 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/22/TDD-with-RSpec-errors-recording/" rel="prev" title="TDD with RSpec出错集之单元测试篇">
+                TDD with RSpec出错集之单元测试篇 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -606,7 +625,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#正文"><span class="nav-number">1.</span> <span class="nav-text">正文</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-end"><span class="nav-number">3.</span> <span class="nav-text">The end</span></a></li></ol></div>
             
 
           </div>
@@ -743,9 +762,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://lupeipei.github.io/2017/09/08/one-thursday-afternoon-without-coding/';
-          this.page.identifier = '2017/09/08/one-thursday-afternoon-without-coding/';
-          this.page.title = '没有coding的周四下午';
+          this.page.url = 'http://lupeipei.github.io/2017/10/23/TDD-with-RSpec-integration-test/';
+          this.page.identifier = '2017/10/23/TDD-with-RSpec-integration-test/';
+          this.page.title = 'TDD with RSpec出错集之Integration测试篇';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-lupeipei-github-io.disqus.com/embed.js';
