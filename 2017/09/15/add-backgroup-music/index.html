@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ROR," />
+  <meta name="keywords" content="Web," />
 
 
 
@@ -87,24 +87,19 @@
 
 
 
-<meta name="description" content="写在前面本场测试的star是 Capybara。 考虑到自己写的method还是挺多的，就没有一一integration test了。 实作了简单的首页测试，用户注册，用户登录，用户退出。 记录下遇到的问题，顺带加入了debug的部分。 正文 Capybara::ElementNotFound: Unable to find visible link or button “ 登出”  做登录，登出">
-<meta name="keywords" content="ROR">
+<meta name="description" content="写在前面之前搭建网站时，做过一个landingpage, 加入了背景音乐，觉得还挺有意思的，记录下操作步骤，以备不时之需。 正文效果图：  通过点击按钮来控制音乐的播放。 怎么做？ 三部曲，html,css, js. 以首页为welcome的index.html.erb为例，简单说明。  step1、在首页index.html.erb中，添加如下代码：  123&amp;lt;a id=&amp;quot;btn">
+<meta name="keywords" content="Web">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TDD with RSpec出错集之Integration测试篇">
-<meta property="og:url" content="http://lupeipei.github.io/2017/10/23/TDD-with-RSpec-integration-test/index.html">
+<meta property="og:title" content="让网站声色俱佳—添加背景音乐">
+<meta property="og:url" content="http://lupeipei.github.io/2017/09/15/add-backgroup-music/index.html">
 <meta property="og:site_name" content="Lucia">
-<meta property="og:description" content="写在前面本场测试的star是 Capybara。 考虑到自己写的method还是挺多的，就没有一一integration test了。 实作了简单的首页测试，用户注册，用户登录，用户退出。 记录下遇到的问题，顺带加入了debug的部分。 正文 Capybara::ElementNotFound: Unable to find visible link or button “ 登出”  做登录，登出">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fkrwabt60oj30mn0783z9.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fkrwac5bn8j30en0f440o.jpg">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1fkrwhk5kaqj30ds0g176e.jpg">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fkrwkc51ljj30ny05z758.jpg">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1fkrwltsrhcj30oe0hi40b.jpg">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fkrx3y3ul4j30kl06lgms.jpg">
-<meta property="og:updated_time" content="2017-10-23T02:16:34.000Z">
+<meta property="og:description" content="写在前面之前搭建网站时，做过一个landingpage, 加入了背景音乐，觉得还挺有意思的，记录下操作步骤，以备不时之需。 正文效果图：  通过点击按钮来控制音乐的播放。 怎么做？ 三部曲，html,css, js. 以首页为welcome的index.html.erb为例，简单说明。  step1、在首页index.html.erb中，添加如下代码：  123&amp;lt;a id=&amp;quot;btn">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fksf8misk7g30zi0j40yp.gif">
+<meta property="og:updated_time" content="2017-10-23T11:56:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TDD with RSpec出错集之Integration测试篇">
-<meta name="twitter:description" content="写在前面本场测试的star是 Capybara。 考虑到自己写的method还是挺多的，就没有一一integration test了。 实作了简单的首页测试，用户注册，用户登录，用户退出。 记录下遇到的问题，顺带加入了debug的部分。 正文 Capybara::ElementNotFound: Unable to find visible link or button “ 登出”  做登录，登出">
-<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fkrwabt60oj30mn0783z9.jpg">
+<meta name="twitter:title" content="让网站声色俱佳—添加背景音乐">
+<meta name="twitter:description" content="写在前面之前搭建网站时，做过一个landingpage, 加入了背景音乐，觉得还挺有意思的，记录下操作步骤，以备不时之需。 正文效果图：  通过点击按钮来控制音乐的播放。 怎么做？ 三部曲，html,css, js. 以首页为welcome的index.html.erb为例，简单说明。  step1、在首页index.html.erb中，添加如下代码：  123&amp;lt;a id=&amp;quot;btn">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fksf8misk7g30zi0j40yp.gif">
 
 
 
@@ -132,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://lupeipei.github.io/2017/10/23/TDD-with-RSpec-integration-test/"/>
+  <link rel="canonical" href="http://lupeipei.github.io/2017/09/15/add-backgroup-music/"/>
 
 
 
 
 
-  <title> TDD with RSpec出错集之Integration测试篇 | Lucia </title>
+  <title> 让网站声色俱佳—添加背景音乐 | Lucia </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -277,7 +272,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/23/TDD-with-RSpec-integration-test/">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/09/15/add-backgroup-music/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lucia">
@@ -298,7 +293,7 @@
             
             
               
-                TDD with RSpec出错集之Integration测试篇
+                让网站声色俱佳—添加背景音乐
               
             
           </h1>
@@ -313,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-23T09:51:06+08:00">
-                2017-10-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-15T19:55:01+08:00">
+                2017-09-15
               </time>
             
 
@@ -336,8 +331,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ROR/" itemprop="url" rel="index">
-                    <span itemprop="name">ROR</span>
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
                   </a>
                 </span>
 
@@ -354,9 +349,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/23/TDD-with-RSpec-integration-test/#comments" itemprop="discussionUrl">
+                <a href="/2017/09/15/add-backgroup-music/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/23/TDD-with-RSpec-integration-test/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/09/15/add-backgroup-music/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -382,34 +377,29 @@
       
 
       
-        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>本场测试的star是 Capybara。</p>
-<p>考虑到自己写的method还是挺多的，就没有一一integration test了。</p>
-<p>实作了简单的首页测试，用户注册，用户登录，用户退出。</p>
-<p>记录下遇到的问题，顺带加入了debug的部分。</p>
-<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><ul>
-<li><strong>Capybara::ElementNotFound: Unable to find visible link or button “ 登出”</strong></li>
+        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>之前搭建网站时，做过一个landingpage, 加入了背景音乐，觉得还挺有意思的，记录下操作步骤，以备不时之需。</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>效果图：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fksf8misk7g30zi0j40yp.gif" alt=""></p>
+<p>通过点击按钮来控制音乐的播放。</p>
+<p>怎么做？</p>
+<p><strong>三部曲，html,css, js.</strong></p>
+<p>以首页为welcome的<code>index.html.erb</code>为例，简单说明。</p>
+<ul>
+<li>step1、在首页<code>index.html.erb</code>中，添加如下代码：</li>
 </ul>
-<p>做登录，登出的测试时，终端报出如下错误：</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fkrwabt60oj30mn0783z9.jpg" alt=""></p>
-<p>报错显示页面找不到“ 登出”这个link 或者button，对应的测试文件长这样：</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fkrwac5bn8j30en0f440o.jpg" alt=""></p>
-<p><strong>怎么破？</strong></p>
-<p>第一想法就是查看一下用户登录后，点击”Hi!, #{user.username}”，页面这时候是长啥样，是不是真的没有“ 登出”这个link 或者button。</p>
-<p>怎么做呢？好办，加入<code>save_and_open_page</code>, 注释掉报错的代码，像这样👇：</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fkrwhk5kaqj30ds0g176e.jpg" alt=""></p>
-<p>终端再次运行案例，得到这样的一串网址：</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fkrwkc51ljj30ny05z758.jpg" alt=""></p>
-<p>终端输入：<code>open tmp/capybara/capybara-201710230848216776109515.html</code>, 浏览器便会打开这个网址了。</p>
-<p>我的是这样子：</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fkrwltsrhcj30oe0hi40b.jpg" alt=""></p>
-<p><strong>有登出呢！</strong>为什么显示Unable to find visible link or button ？那只能说明这不是一个link or button？Google后，发现在stackoverflow上有个非常相似的案例：<a href="https://stackoverflow.com/questions/11269724/how-to-use-capybara-in-rspec-to-click-on-a-dropdown-option" target="_blank" rel="external">How to use capybara in rspec to click on a dropdown option</a></p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fkrx3y3ul4j30kl06lgms.jpg" alt=""></p>
-<p>试试把<code>click_on&quot; 登出&quot;</code>换成<code>page.find(:xpath, &quot;//a[@href=&#39;/users/sign_out&#39;]&quot;).click</code>, 终端再次运行案例，Pass！！</p>
-<p>but ,xpath是啥？XPath 是一门在 XML 文档中查找信息的语言，用于在 XML 文档中通过元素和属性进行导航。</p>
-<p>了解更多可以看看W3school的教程<a href="http://www.w3school.com.cn/xpath/index.asp" target="_blank" rel="external">xpath</a>。</p>
-<p>在capybara中为什么要这么用？戳这里<a href="https://github.com/teamcapybara/capybara#xpath-css-and-selectors" target="_blank" rel="external">capybara XPath, CSS and selectors</a> .</p>
-<h4 id="The-end"><a href="#The-end" class="headerlink" title="The end"></a>The end</h4><p><strong>capybara</strong> 中，操作页面的方法除了visit，click外，还有很多比如fill_in， check，choose等等，很强大。</p>
-<p>详见：<a href="https://github.com/teamcapybara/capybara" target="_blank" rel="external">capybara</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;a id=&quot;btn-music&quot; class=&quot;btn-music&quot;&gt;&lt;/a&gt;</div><div class="line">&lt;audio class=&quot;music&quot; src=&quot;XXX.mp3&quot; autoplay controls loop hidden&gt;</div><div class="line">&lt;/audio&gt;</div></pre></td></tr></table></figure>
+<p>其中，<code>src</code>部分根据个人情况进行修改，如果音乐文件存在本地的public下，直接引用文件名，如果是网路上，直接引用网址，类似这样：<br><code>src=&quot;https://res.cloudinary.com/dfbew47j6/video/upload/v1496754060/lighthouse_s31qoc.m4a&quot;</code></p>
+<ul>
+<li>step2、在你的<code>welcome.scss</code>或者<code>application.scss</code>中添加以下代码：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">.btn-music &#123;</div><div class="line">  position: absolute;</div><div class="line">  top: 1rem;</div><div class="line">  left: 1rem;</div><div class="line">  width: 3rem;</div><div class="line">  height: 3rem;</div><div class="line">  margin-left: 20px;</div><div class="line">  background: url(&apos;https://res.cloudinary.com/elliepooh/image/upload/v1491889929/music_s7aiet.svg&apos;) center center / 100% no-repeat;</div><div class="line">  cursor: pointer;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.music-off &#123;</div><div class="line">  background: url(&apos;https://res.cloudinary.com/elliepooh/image/upload/v1491890054/music-off_nrnsni.svg&apos;) center center / 90% no-repeat;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>step3、在首页<code>index.html.erb</code>最下方，加入如下代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">let playMusic = true;</div><div class="line">document.getElementById(&quot;btn-music&quot;).addEventListener(&quot;click&quot;, function() &#123;</div><div class="line">  playMusic = !playMusic;</div><div class="line">  document.getElementById(&quot;btn-music&quot;).classList.toggle(&apos;music-off&apos;);</div><div class="line">  playMusic ? document.querySelector(&apos;.music&apos;).play() : document.querySelector(&apos;.music&apos;).pause();</div><div class="line">  &#125;);</div><div class="line">  worldMusic.volume = 0.8;//预设音量</div><div class="line">  &lt;/script&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>搞定，可以愉快地听歌啦！！</p>
+<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p>参考资料：</p>
+<p><a href="https://codepen.io/elliepooh/pen/dRPOqM/" target="_blank" rel="external">lighthouse</a><br><a href="http://web.ruby001.cn/css/64065747447400107852.html" target="_blank" rel="external">CSS中id与class共存</a></p>
 
       
     </div>
@@ -439,7 +429,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ROR/" rel="tag"># ROR</a>
+            <a href="/tags/Web/" rel="tag"># Web</a>
           
         </div>
       
@@ -452,8 +442,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/23/passenger-deploy-rails/" rel="next" title="Rails部署报错记录Passenger + Nginx">
-                <i class="fa fa-chevron-left"></i> Rails部署报错记录Passenger + Nginx
+              <a href="/2017/09/27/web-together-build-1/" rel="next" title="Together网站搭建之踩坑系列1">
+                <i class="fa fa-chevron-left"></i> Together网站搭建之踩坑系列1
               </a>
             
           </div>
@@ -462,8 +452,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/22/TDD-with-RSpec-errors-recording/" rel="prev" title="TDD with RSpec出错集之单元测试篇">
-                TDD with RSpec出错集之单元测试篇 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/08/one-thursday-afternoon-without-coding/" rel="prev" title="没有coding的周四下午">
+                没有coding的周四下午 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -629,7 +619,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-end"><span class="nav-number">3.</span> <span class="nav-text">The end</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-End"><span class="nav-number">3.</span> <span class="nav-text">The End</span></a></li></ol></div>
             
 
           </div>
@@ -766,9 +756,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://lupeipei.github.io/2017/10/23/TDD-with-RSpec-integration-test/';
-          this.page.identifier = '2017/10/23/TDD-with-RSpec-integration-test/';
-          this.page.title = 'TDD with RSpec出错集之Integration测试篇';
+          this.page.url = 'http://lupeipei.github.io/2017/09/15/add-backgroup-music/';
+          this.page.identifier = '2017/09/15/add-backgroup-music/';
+          this.page.title = '让网站声色俱佳—添加背景音乐';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-lupeipei-github-io.disqus.com/embed.js';
