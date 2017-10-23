@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ROR," />
+  <meta name="keywords" content="passenger," />
 
 
 
@@ -87,19 +87,23 @@
 
 
 
-<meta name="description" content="写在前面这是功能实现的第二篇，扯一扯如何添加分类筛选功能。 完整作品源码及效果，看这里作品网站,   作品源码。 目录 给活动添加收藏功能，并使用Ajax进行优化 给活动Events添加分类筛选 添加省市自治区地址, 并实现热门城市筛选 添加时间筛选 添加评论区，并使用ajax优化 实作活动申请 在个人中心实作密码修改  正文先上效果图：  如何实现？  新建model category 12ra">
-<meta name="keywords" content="ROR">
+<meta name="description" content="写在前面在部署网站后遇到的一个大坑，长这样：  看到这一行熟悉的we’re sorry, but something went wrong，默默跟这位老朋友打个招呼【捂脸】。 Google后，发现其他用passenger来部署Rails的，也遇到过这种页面无法显示的问题，但是没看到有人提供解决方法或者思路的，决定记录下我的整个解决步骤，给同样入坑的伙伴们作个参考。 正文Google，看了stack">
+<meta name="keywords" content="passenger">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Together网站搭建之踩坑系列3">
-<meta property="og:url" content="http://lupeipei.github.io/2017/09/29/web-together-build-3/index.html">
+<meta property="og:title" content="Rails部署报错记录Passenger + Nginx">
+<meta property="og:url" content="http://lupeipei.github.io/2017/10/23/passenger-deploy-rails/index.html">
 <meta property="og:site_name" content="Lucia">
-<meta property="og:description" content="写在前面这是功能实现的第二篇，扯一扯如何添加分类筛选功能。 完整作品源码及效果，看这里作品网站,   作品源码。 目录 给活动添加收藏功能，并使用Ajax进行优化 给活动Events添加分类筛选 添加省市自治区地址, 并实现热门城市筛选 添加时间筛选 添加评论区，并使用ajax优化 实作活动申请 在个人中心实作密码修改  正文先上效果图：  如何实现？  新建model category 12ra">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fjqcf5bajjg30x40i0k2j.gif">
-<meta property="og:updated_time" content="2017-10-20T11:16:23.000Z">
+<meta property="og:description" content="写在前面在部署网站后遇到的一个大坑，长这样：  看到这一行熟悉的we’re sorry, but something went wrong，默默跟这位老朋友打个招呼【捂脸】。 Google后，发现其他用passenger来部署Rails的，也遇到过这种页面无法显示的问题，但是没看到有人提供解决方法或者思路的，决定记录下我的整个解决步骤，给同样入坑的伙伴们作个参考。 正文Google，看了stack">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fks5pqyvghj30no09u0ti.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1fks5pqt1ywj30l108xt9z.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fks5pqia5ej30tc0ka46y.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1fksdg0z54rj30wv0dftdo.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fksdhtg52aj30et0azdhc.jpg">
+<meta property="og:updated_time" content="2017-10-23T11:18:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Together网站搭建之踩坑系列3">
-<meta name="twitter:description" content="写在前面这是功能实现的第二篇，扯一扯如何添加分类筛选功能。 完整作品源码及效果，看这里作品网站,   作品源码。 目录 给活动添加收藏功能，并使用Ajax进行优化 给活动Events添加分类筛选 添加省市自治区地址, 并实现热门城市筛选 添加时间筛选 添加评论区，并使用ajax优化 实作活动申请 在个人中心实作密码修改  正文先上效果图：  如何实现？  新建model category 12ra">
-<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fjqcf5bajjg30x40i0k2j.gif">
+<meta name="twitter:title" content="Rails部署报错记录Passenger + Nginx">
+<meta name="twitter:description" content="写在前面在部署网站后遇到的一个大坑，长这样：  看到这一行熟悉的we’re sorry, but something went wrong，默默跟这位老朋友打个招呼【捂脸】。 Google后，发现其他用passenger来部署Rails的，也遇到过这种页面无法显示的问题，但是没看到有人提供解决方法或者思路的，决定记录下我的整个解决步骤，给同样入坑的伙伴们作个参考。 正文Google，看了stack">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fks5pqyvghj30no09u0ti.jpg">
 
 
 
@@ -127,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://lupeipei.github.io/2017/09/29/web-together-build-3/"/>
+  <link rel="canonical" href="http://lupeipei.github.io/2017/10/23/passenger-deploy-rails/"/>
 
 
 
 
 
-  <title> Together网站搭建之踩坑系列3 | Lucia </title>
+  <title> Rails部署报错记录Passenger + Nginx | Lucia </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -272,7 +276,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/09/29/web-together-build-3/">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/23/passenger-deploy-rails/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lucia">
@@ -293,7 +297,7 @@
             
             
               
-                Together网站搭建之踩坑系列3
+                Rails部署报错记录Passenger + Nginx
               
             
           </h1>
@@ -308,8 +312,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-29T06:34:34+08:00">
-                2017-09-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-23T19:16:24+08:00">
+                2017-10-23
               </time>
             
 
@@ -331,8 +335,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ROR/" itemprop="url" rel="index">
-                    <span itemprop="name">ROR</span>
+                  <a href="/categories/passenger/" itemprop="url" rel="index">
+                    <span itemprop="name">passenger</span>
                   </a>
                 </span>
 
@@ -349,9 +353,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/29/web-together-build-3/#comments" itemprop="discussionUrl">
+                <a href="/2017/10/23/passenger-deploy-rails/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/09/29/web-together-build-3/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/10/23/passenger-deploy-rails/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -377,54 +381,28 @@
       
 
       
-        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>这是功能实现的第二篇，扯一扯<strong>如何添加分类筛选功能</strong>。</p>
-<p>完整作品源码及效果，看这里<a href="https://www.togetherisbetter.cn/" target="_blank" rel="external">作品网站</a>,   <a href="https://github.com/Lupeipei/Together" target="_blank" rel="external">作品源码</a>。</p>
-<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ul>
-<li><a href="https://lupeipei.github.io/2017/09/28/web-together-build-2/">给活动添加收藏功能，并使用Ajax进行优化</a></li>
-<li>给活动Events添加分类筛选</li>
-<li><a href="https://lupeipei.github.io/2017/09/30/web-together-build-4/">添加省市自治区地址, 并实现热门城市筛选</a></li>
-<li><a href="https://lupeipei.github.io/2017/10/01/web-together-build-5/">添加时间筛选</a></li>
-<li><a href="https://lupeipei.github.io/2017/10/02/web-together-build-6/">添加评论区，并使用ajax优化</a></li>
-<li><a href="https://lupeipei.github.io/2017/10/03/web-together-build-7/">实作活动申请</a></li>
-<li><a href="https://lupeipei.github.io/2017/10/04/web-together-build-8/">在个人中心实作密码修改</a></li>
-</ul>
-<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>先上效果图：</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fjqcf5bajjg30x40i0k2j.gif" alt=""></p>
-<p><strong>如何实现？</strong></p>
-<ul>
-<li><p>新建model category</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rails g model category name:string</div><div class="line">rake db:migrate</div></pre></td></tr></table></figure>
-</li>
-<li><p>在event中新增category的栏位</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rails g migration add_category_id_to_event category_id:integer</div><div class="line">rake db:migrate</div></pre></td></tr></table></figure>
-</li>
-<li><p>建立category和event的关系，在<code>event.rb</code>中添加</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">belongs_to :categroy</div></pre></td></tr></table></figure>
-<p><code>category.rb</code>中添加：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">has_many :events</div></pre></td></tr></table></figure>
-</li>
-<li><p>在event的new ，edit中添加如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;%= select_tag(:category_id, options_for_select(@categories), :prompt =&gt; &quot;类别&quot;) %&gt;</div></pre></td></tr></table></figure>
-<p>如果是simple_form格式，可添加如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;form-group&quot;&gt;</div><div class="line">  &lt;%= f.association :category %&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>在<code>events_controller.rb</code>中，将category_id添加到params白名单中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">def event_params</div><div class="line">  params.require(:event).permit(:title, ......, :category_id)</div><div class="line">end</div></pre></td></tr></table></figure>
-</li>
-<li><p>为方便后续部署到heroku,可在seeds文档中新建category。在seeds.rb中添加如下代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># Category部分</div><div class="line">Category.delete_all</div><div class="line"></div><div class="line">Category.create!(id:1, name: &quot;音乐&quot;)</div><div class="line">Category.create!(id:2, name: &quot;户外&quot;)</div><div class="line">Category.create!(id:3, name: &quot;约厨&quot;)</div><div class="line">Category.create!(id:4, name: &quot;交友&quot;)</div><div class="line">Category.create!(id:5, name: &quot;读书&quot;)</div><div class="line">Category.create!(id:6, name: &quot;游戏&quot;)</div></pre></td></tr></table></figure>
-</li>
-<li><p>在event 的index页面显示分类列表，在event的<code>index.html.erb</code>中添加如下代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;btn-group&quot;&gt;</div><div class="line">	&lt;%= link_to &quot;全部&quot;, events_path, :class =&gt; &quot;btn btn-default btn-group #&#123;(params[:category].blank?)? &quot;active&quot; : &quot;&quot;&#125;&quot;%&gt;</div><div class="line">	&lt;% Category.all.each do |c| %&gt;</div><div class="line">  	&lt;%= link_to c.name, events_path(category: c), :class =&gt; &quot;btn btn-default btn-group #&#123;(params[:category] == c)? &quot;active&quot; : &quot;&quot; &#125;&quot;%&gt;</div><div class="line">	&lt;% end %&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>用上scope，在<code>event.rb</code>中加入以下代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scope :by_category, -&gt;(c)&#123;where( :category_id =&gt; c )&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>修改<code>events_controller.rb</code>，修改index部分：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">def index</div><div class="line">  @events = Event.order(&quot;created_at DESC&quot;)</div><div class="line">  if params[:category].present?</div><div class="line">    @events = @events.by_category(params[:category]).order(&quot;created_at DESC&quot;)</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>大功告成！</p>
+        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>在部署网站后遇到的一个大坑，长这样：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fks5pqyvghj30no09u0ti.jpg" alt=""></p>
+<p>看到这一行熟悉的we’re sorry, but something went wrong，默默跟这位老朋友打个招呼【捂脸】。</p>
+<p>Google后，发现其他用passenger来部署Rails的，也遇到过这种页面无法显示的问题，但是没看到有人提供解决方法或者思路的，决定记录下我的整个解决步骤，给同样入坑的伙伴们作个参考。</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>Google，看了stack overflow上的一些相关内容后，猜测是passenger的问题，于是终端输入<code>sudo passenger-status</code>, 发现passenger根本就没有开这个Rails的进程。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fks5pqt1ywj30l108xt9z.jpg" alt=""></p>
+<p>没开那就手动来开，在app的current目录下，运行<code>bundle exec passenger start</code>, 报错：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fks5pqia5ej30tc0ka46y.jpg" alt=""></p>
+<p>怎么办？按照指示去tmp下找文件，看error log。</p>
+<p>以root身份登录，去tmp目录下，查看出错的log,这里是passenger-error-pxhJuZ.html。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /tmp</div><div class="line">nano passenger-error-pxhJuZ.html</div></pre></td></tr></table></figure>
+<p>打开显示如下：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fksdg0z54rj30wv0dftdo.jpg" alt=""></p>
+<p>OK，那就动动listen 这个gem, google 后，参考stackoverflow上的解答<a href="https://stackoverflow.com/questions/38663706/loaderror-could-not-load-the-listen-gem-rails-5" target="_blank" rel="external">LoadError: Could not load the ‘listen’ gem (Rails 5)</a>， 把listen从development中移除，放在了global中</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fksdhtg52aj30et0azdhc.jpg" alt=""></p>
+<p>本地运行<code>bundle</code>，git commit 和 git push 后，进行部署 <code>cap production deploy</code>,  刷新页面，发现还是老样子。怎么回事？突然想到stack overflow上提到可以登录rails console看看，好，试试。</p>
+<p>用deploy身份登录远端后，执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/Together/current #Together 是你的APP名称</div><div class="line">RAILS_ENV=production bundle exec rake db:seed</div></pre></td></tr></table></figure>
+<p>果然，报错，显示网站有bug，立马回去修bug……</p>
+<p>在本地修复好，git commit 和 git push 后，进行部署 <code>cap production deploy</code>,  刷新页面， OK！！</p>
+<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p>这段爬坑的日子，遇到了不少Google了也不一定能解决的坑，甚至会让你在懵逼的情况下，被别人的解答带得越来越远。只想说解决问题的思路真的太重要了，同时多点耐心，相信坑坑皆有解。</p>
+<p>Be more patient.</p>
 
       
     </div>
@@ -454,7 +432,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ROR/" rel="tag"># ROR</a>
+            <a href="/tags/passenger/" rel="tag"># passenger</a>
           
         </div>
       
@@ -467,18 +445,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/30/web-together-build-4/" rel="next" title="Together网站搭建之踩坑系列4">
-                <i class="fa fa-chevron-left"></i> Together网站搭建之踩坑系列4
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/28/web-together-build-2/" rel="prev" title="Together网站搭建之踩坑系列2">
-                Together网站搭建之踩坑系列2 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/23/TDD-with-RSpec-integration-test/" rel="prev" title="TDD with RSpec出错集之Integration测试篇">
+                TDD with RSpec出错集之Integration测试篇 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -644,7 +618,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#目录"><span class="nav-number">2.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正文"><span class="nav-number">3.</span> <span class="nav-text">正文</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-End"><span class="nav-number">3.</span> <span class="nav-text">The End</span></a></li></ol></div>
             
 
           </div>
@@ -781,9 +755,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://lupeipei.github.io/2017/09/29/web-together-build-3/';
-          this.page.identifier = '2017/09/29/web-together-build-3/';
-          this.page.title = 'Together网站搭建之踩坑系列3';
+          this.page.url = 'http://lupeipei.github.io/2017/10/23/passenger-deploy-rails/';
+          this.page.identifier = '2017/10/23/passenger-deploy-rails/';
+          this.page.title = 'Rails部署报错记录Passenger + Nginx';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-lupeipei-github-io.disqus.com/embed.js';
