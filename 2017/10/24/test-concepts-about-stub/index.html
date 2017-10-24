@@ -87,19 +87,19 @@
 
 
 
-<meta name="description" content="写在前面这是功能实现的第四篇，扯一扯如何添加时间筛选功能。 完整作品源码及效果，看这里作品网站,   作品源码。 目录 给活动添加收藏功能，并使用Ajax进行优化 给活动Events添加分类筛选 添加省市自治区地址, 并实现热门城市筛选 添加时间筛选 添加评论区，并使用ajax优化 实作活动申请 在个人中心实作密码修改  正文：老规矩，上效果图先：  具体步骤： 这里，我用了 bootstrap-">
+<meta name="description" content="写在前面学习测试的时候，一直不懂stub，后来刷多了课程，感觉好像不那么懵逼了。 决定结合自己的学习与思考，说说stub到底是个啥。 BTW，if  you want to be a rocking unit tester, you must know stub and mock.：P 正文先来看一个问题： 你准备测试method A，method A 依赖于method B，比如method A">
 <meta name="keywords" content="ROR">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Together网站搭建之踩坑系列5">
-<meta property="og:url" content="http://lupeipei.github.io/2017/10/01/web-together-build-5/index.html">
+<meta property="og:title" content="test_concepts_about_stub">
+<meta property="og:url" content="http://lupeipei.github.io/2017/10/24/test-concepts-about-stub/index.html">
 <meta property="og:site_name" content="Lucia">
-<meta property="og:description" content="写在前面这是功能实现的第四篇，扯一扯如何添加时间筛选功能。 完整作品源码及效果，看这里作品网站,   作品源码。 目录 给活动添加收藏功能，并使用Ajax进行优化 给活动Events添加分类筛选 添加省市自治区地址, 并实现热门城市筛选 添加时间筛选 添加评论区，并使用ajax优化 实作活动申请 在个人中心实作密码修改  正文：老规矩，上效果图先：  具体步骤： 这里，我用了 bootstrap-">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fjzd6h5bqtg30zh0i2e85.gif">
-<meta property="og:updated_time" content="2017-10-20T11:16:10.000Z">
+<meta property="og:description" content="写在前面学习测试的时候，一直不懂stub，后来刷多了课程，感觉好像不那么懵逼了。 决定结合自己的学习与思考，说说stub到底是个啥。 BTW，if  you want to be a rocking unit tester, you must know stub and mock.：P 正文先来看一个问题： 你准备测试method A，method A 依赖于method B，比如method A">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fktni1u9gaj30df05o3z5.jpg">
+<meta property="og:updated_time" content="2017-10-24T13:49:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Together网站搭建之踩坑系列5">
-<meta name="twitter:description" content="写在前面这是功能实现的第四篇，扯一扯如何添加时间筛选功能。 完整作品源码及效果，看这里作品网站,   作品源码。 目录 给活动添加收藏功能，并使用Ajax进行优化 给活动Events添加分类筛选 添加省市自治区地址, 并实现热门城市筛选 添加时间筛选 添加评论区，并使用ajax优化 实作活动申请 在个人中心实作密码修改  正文：老规矩，上效果图先：  具体步骤： 这里，我用了 bootstrap-">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fjzd6h5bqtg30zh0i2e85.gif">
+<meta name="twitter:title" content="test_concepts_about_stub">
+<meta name="twitter:description" content="写在前面学习测试的时候，一直不懂stub，后来刷多了课程，感觉好像不那么懵逼了。 决定结合自己的学习与思考，说说stub到底是个啥。 BTW，if  you want to be a rocking unit tester, you must know stub and mock.：P 正文先来看一个问题： 你准备测试method A，method A 依赖于method B，比如method A">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fktni1u9gaj30df05o3z5.jpg">
 
 
 
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://lupeipei.github.io/2017/10/01/web-together-build-5/"/>
+  <link rel="canonical" href="http://lupeipei.github.io/2017/10/24/test-concepts-about-stub/"/>
 
 
 
 
 
-  <title> Together网站搭建之踩坑系列5 | Lucia </title>
+  <title> test_concepts_about_stub | Lucia </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -272,7 +272,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/01/web-together-build-5/">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/24/test-concepts-about-stub/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lucia">
@@ -293,7 +293,7 @@
             
             
               
-                Together网站搭建之踩坑系列5
+                test_concepts_about_stub
               
             
           </h1>
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-01T06:26:19+08:00">
-                2017-10-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-24T21:47:23+08:00">
+                2017-10-24
               </time>
             
 
@@ -349,9 +349,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/01/web-together-build-5/#comments" itemprop="discussionUrl">
+                <a href="/2017/10/24/test-concepts-about-stub/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/01/web-together-build-5/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/10/24/test-concepts-about-stub/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -377,49 +377,29 @@
       
 
       
-        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>这是功能实现的第四篇，扯一扯<strong>如何添加时间筛选功能</strong>。</p>
-<p>完整作品源码及效果，看这里<a href="https://www.togetherisbetter.cn/" target="_blank" rel="external">作品网站</a>,   <a href="https://github.com/Lupeipei/Together" target="_blank" rel="external">作品源码</a>。</p>
-<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ul>
-<li><a href="https://lupeipei.github.io/2017/09/28/web-together-build-2/">给活动添加收藏功能，并使用Ajax进行优化</a></li>
-<li><a href="https://lupeipei.github.io/2017/09/29/web-together-build-3/">给活动Events添加分类筛选</a></li>
-<li><a href="https://lupeipei.github.io/2017/09/30/web-together-build-4/">添加省市自治区地址, 并实现热门城市筛选</a></li>
-<li>添加时间筛选</li>
-<li><a href="https://lupeipei.github.io/2017/10/02/web-together-build-6/">添加评论区，并使用ajax优化</a></li>
-<li><a href="https://lupeipei.github.io/2017/10/03/web-together-build-7/">实作活动申请</a></li>
-<li><a href="https://lupeipei.github.io/2017/10/04/web-together-build-8/">在个人中心实作密码修改</a></li>
-</ul>
-<h4 id="正文："><a href="#正文：" class="headerlink" title="正文："></a>正文：</h4><p>老规矩，上效果图先：</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fjzd6h5bqtg30zh0i2e85.gif" alt=""></p>
-<p><strong>具体步骤：</strong></p>
-<p>这里，我用了 bootstrap-datepicker-rails来作为日期筛选，没有用date_field_tag, 既为了美观，也为了避免出现浏览器支援的问题。</p>
-<p>好，开始吧。</p>
-<ul>
-<li><p>安装，在gemfile中加入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem &apos;bootstrap-datepicker-rails&apos;</div></pre></td></tr></table></figure>
-<p>终端运行<code>bundle install</code></p>
-</li>
-<li><p>编辑<code>app/assets/stylesheets/application.scss</code>，加入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@import &quot;bootstrap-datepicker3&quot;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>编辑<code>app/assets/javascripts/application.js</code>，加入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//= require bootstrap-datepicker/core</div><div class="line">//= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN</div></pre></td></tr></table></figure>
-<p>这里，引入了中文版</p>
-</li>
-<li><p>在<code>app/views/events/index.html.erb</code>中，加入日期输入框：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">......</div><div class="line">&lt;div class=&quot;submenu&quot;&gt;</div><div class="line">    &lt;span&gt;&lt;i class=&quot;fa fa-calendar fa-lg&quot;&gt;&lt;/i&gt; 时间: &lt;/span&gt;</div><div class="line">    &lt;div class=&quot;form-group&quot; style=&quot;margin-left: 80px; margin-top: -20px;&quot;&gt;</div><div class="line">    &lt;%= form_tag events_path, :method =&gt; :get do %&gt;</div><div class="line">      &lt;%= text_field_tag :start_on, params[:start_on]%&gt; ~  &lt;%= text_field_tag :end_on, params[:end_on]%&gt;</div><div class="line">      &lt;%= submit_tag &quot;确认&quot;, :class =&gt; &quot;btn btn-default&quot;%&gt;</div><div class="line">    &lt;% end %&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">.....</div></pre></td></tr></table></figure>
-</li>
-<li><p>在<code>app/views/events/index.html.erb</code>中，将script放在最下面。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">  $(&quot;#start_on&quot;).datepicker(&#123;format: &quot;yyyy-mm-dd&quot;&#125;);</div><div class="line">  $(&quot;#end_on&quot;).datepicker(&#123;format: &quot;yyyy-mm-dd&quot;&#125;);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
-<p>这里，<code>start_on</code>, <code>end_on</code> 可以通过查看chrome的inspect，得到id。</p>
-<p>另，如果需要指定多语言，可以修改script成这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">  $(&quot;#start_on&quot;).datepicker(&#123;format: &quot;yyyy-mm-dd&quot;, language: &quot;&lt;%= I18n.locale %&gt;&quot;&#125;);</div><div class="line">  $(&quot;#end_on&quot;).datepicker(&#123;format: &quot;yyyy-mm-dd&quot;, language: &quot;&lt;%= I18n.locale %&gt;&quot;&#125;);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>编辑<code>app/controllers/events_controller.rb</code>, 在index部分，加入如下代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">def index</div><div class="line">  @events = Event.order(&quot;created_at DESC&quot;)</div><div class="line">  ......</div><div class="line">  if params[:start_on].present?</div><div class="line">    @events = @events.where(&quot;start_time &gt;= ?&quot;, Date.parse(params[:start_on]).beginning_of_day)</div><div class="line">  end</div><div class="line"></div><div class="line">  if params[:end_on].present?</div><div class="line">    @events = @events.where(&quot;end_time &lt;= ?&quot;, Date.parse(params[:end_on]).end_of_day)</div><div class="line">  end</div><div class="line">  ......</div><div class="line">end</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>重启<code>rails s</code>, 试一下，可以根据时间筛选啦！</p>
-<p>对啦，如果要部署到heroku， 记得运行<code>bundle exec rake assets: precompile</code>后再deploy。</p>
+        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>学习测试的时候，一直不懂stub，后来刷多了课程，感觉好像不那么懵逼了。</p>
+<p>决定结合自己的学习与思考，说说stub到底是个啥。</p>
+<p>BTW，if  you want to be a rocking unit tester, you must know stub and mock.：P</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>先来看一个问题：</p>
+<p>你准备测试method A，method A 依赖于method B，比如method A要调用远端的API，而你只想测试methodA有没有被正确调用，method B 存在与否，是不是返回了预期的结果，你并不care， 那么要怎么做才能保证测试的独立性？</p>
+<p>这样的测试，就要用到stub。</p>
+<p>下面以一个movie model来说明一下如何使用stub。</p>
+<p>设想一个简单的movie影片查询情景：</p>
+<p>用户在TMDb页面中输入影片名称，点击查询按钮，这时MoviesController 中对应的 search_tmdb method会去调用movie model里面真正执行search行为的method，这个method在数据库中进行搜索匹配，最后返回搜索结果，随后controller的 search_tmdb会render 到这个搜索结果的页面，用户看到view生成的搜索结果，这样整个的搜索动作才算完成。</p>
+<p>现在的情况是，movie model里面没有定义任何执行search 行为的method，而我们只想要确认controller的search_tmdb 调用了model里面执行search的method，不管这个method的存不存在，有没有返回预期结果，我们不care, 我们只想确定controller的search_tmdb做了正确的事，怎么破？</p>
+<p>用stub来打破依赖。用一个伪造的method去替代，确保这个伪造的method被调用即可。</p>
+<p>你的<code>movies_controller.rb</code>中定义了一个search_tmdb,但是里面啥也没有：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">def search_tmdb</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>你的test文件长这样：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fktni1u9gaj30df05o3z5.jpg" alt=""></p>
+<p>这时运行测试文件，会报错，因为你的search_tmdb并没有说让Movie去调用这个find_in_tmdb，如何让测试通过？</p>
+<p>在<code>movies_controller.rb</code>中修改search_tmdb method，使它长这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">def search_tmdb</div><div class="line">+ Movie.find_in_tmdb(params[:search_terms])</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>再次运行测试文件，通过！！</p>
+<p>这里值得注意的是，你的movie model中，<strong>根本就没有find_in_tmdb这个method</strong>，很神奇是不是？</p>
+<p>事实上，为了打破method之间的依赖，保证测试的独立性，这里伪造了一个针对find_in_tmdb的调用，<strong>即使这个find_in_tmdb本身存在model中，也会被忽视，overriding it</strong>。</p>
+<p>这就是Stub了，很特别是不是？反正我第一次接触的时候，觉得很special。</p>
+<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p>记住一句话，有助于理解stub： The code you wish you had。</p>
 
       
     </div>
@@ -462,18 +442,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/02/web-together-build-6/" rel="next" title="Together网站搭建之踩坑系列6">
-                <i class="fa fa-chevron-left"></i> Together网站搭建之踩坑系列6
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/30/web-together-build-4/" rel="prev" title="Together网站搭建之踩坑系列4">
-                Together网站搭建之踩坑系列4 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/23/passenger-deploy-rails/" rel="prev" title="Rails部署报错记录Passenger + Nginx">
+                Rails部署报错记录Passenger + Nginx <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -639,7 +615,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#目录"><span class="nav-number">2.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正文："><span class="nav-number">3.</span> <span class="nav-text">正文：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-End"><span class="nav-number">3.</span> <span class="nav-text">The End</span></a></li></ol></div>
             
 
           </div>
@@ -776,9 +752,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://lupeipei.github.io/2017/10/01/web-together-build-5/';
-          this.page.identifier = '2017/10/01/web-together-build-5/';
-          this.page.title = 'Together网站搭建之踩坑系列5';
+          this.page.url = 'http://lupeipei.github.io/2017/10/24/test-concepts-about-stub/';
+          this.page.identifier = '2017/10/24/test-concepts-about-stub/';
+          this.page.title = 'test_concepts_about_stub';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-lupeipei-github-io.disqus.com/embed.js';
