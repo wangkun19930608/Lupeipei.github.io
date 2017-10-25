@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="读书笔记," />
+  <meta name="keywords" content="ROR," />
 
 
 
@@ -87,19 +87,20 @@
 
 
 
-<meta name="description" content="缘起：在一个暴雨后的夜晚，读一本带着香气的书，真的是一件顶幸福的事儿。 不仅仅是书香沁脾，更重要的是内容很有营养，推荐这本《together is better》. 正文：本书作者Simon  Sinek，在他著名的Ted演讲：how great leaders inspire action 中提到了黄金圈法则：What，How,Why. 去年第一次看了他的演讲时，便觉得观点独特，但是看完后，我的">
-<meta name="keywords" content="读书笔记">
+<meta name="description" content="写在前面接上一篇，这篇说说mock是啥。 呃，看了一些别人写的文章，似乎对于mocks，stubs，doubles没什么特别的限制，随便用的感觉。新手对此表示很懵逼。 以下内容属于小白对mock的理解，如有误人子弟的嫌疑，非常欢迎拍砖：P 正文说mock前，先来说说double。 Double在英文中有替身的含义。当你double一个真实的对象时，相当于给这个对象创建了一个替身。 mocks 和s">
+<meta name="keywords" content="ROR">
 <meta property="og:type" content="article">
-<meta property="og:title" content="读《together is better》">
-<meta property="og:url" content="http://lupeipei.github.io/2017/07/31/notes-of-together-is-better/index.html">
+<meta property="og:title" content="测试概念之mock篇">
+<meta property="og:url" content="http://lupeipei.github.io/2017/10/25/test-concept-about-mock/index.html">
 <meta property="og:site_name" content="Lucia">
-<meta property="og:description" content="缘起：在一个暴雨后的夜晚，读一本带着香气的书，真的是一件顶幸福的事儿。 不仅仅是书香沁脾，更重要的是内容很有营养，推荐这本《together is better》. 正文：本书作者Simon  Sinek，在他著名的Ted演讲：how great leaders inspire action 中提到了黄金圈法则：What，How,Why. 去年第一次看了他的演讲时，便觉得观点独特，但是看完后，我的">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fi32kel7ifj30zk0qotcx.jpg">
-<meta property="og:updated_time" content="2017-07-31T07:01:25.000Z">
+<meta property="og:description" content="写在前面接上一篇，这篇说说mock是啥。 呃，看了一些别人写的文章，似乎对于mocks，stubs，doubles没什么特别的限制，随便用的感觉。新手对此表示很懵逼。 以下内容属于小白对mock的理解，如有误人子弟的嫌疑，非常欢迎拍砖：P 正文说mock前，先来说说double。 Double在英文中有替身的含义。当你double一个真实的对象时，相当于给这个对象创建了一个替身。 mocks 和s">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fkup1kdwg1j30e902pglq.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1fkup4vrh3zj30f309bwg9.jpg">
+<meta property="og:updated_time" content="2017-10-25T11:48:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="读《together is better》">
-<meta name="twitter:description" content="缘起：在一个暴雨后的夜晚，读一本带着香气的书，真的是一件顶幸福的事儿。 不仅仅是书香沁脾，更重要的是内容很有营养，推荐这本《together is better》. 正文：本书作者Simon  Sinek，在他著名的Ted演讲：how great leaders inspire action 中提到了黄金圈法则：What，How,Why. 去年第一次看了他的演讲时，便觉得观点独特，但是看完后，我的">
-<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fi32kel7ifj30zk0qotcx.jpg">
+<meta name="twitter:title" content="测试概念之mock篇">
+<meta name="twitter:description" content="写在前面接上一篇，这篇说说mock是啥。 呃，看了一些别人写的文章，似乎对于mocks，stubs，doubles没什么特别的限制，随便用的感觉。新手对此表示很懵逼。 以下内容属于小白对mock的理解，如有误人子弟的嫌疑，非常欢迎拍砖：P 正文说mock前，先来说说double。 Double在英文中有替身的含义。当你double一个真实的对象时，相当于给这个对象创建了一个替身。 mocks 和s">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fkup1kdwg1j30e902pglq.jpg">
 
 
 
@@ -127,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://lupeipei.github.io/2017/07/31/notes-of-together-is-better/"/>
+  <link rel="canonical" href="http://lupeipei.github.io/2017/10/25/test-concept-about-mock/"/>
 
 
 
 
 
-  <title> 读《together is better》 | Lucia </title>
+  <title> 测试概念之mock篇 | Lucia </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -272,7 +273,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/07/31/notes-of-together-is-better/">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/25/test-concept-about-mock/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lucia">
@@ -293,7 +294,7 @@
             
             
               
-                读《together is better》
+                测试概念之mock篇
               
             
           </h1>
@@ -308,8 +309,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-31T10:02:08+08:00">
-                2017-07-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T19:42:15+08:00">
+                2017-10-25
               </time>
             
 
@@ -331,8 +332,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">读书笔记</span>
+                  <a href="/categories/ROR/" itemprop="url" rel="index">
+                    <span itemprop="name">ROR</span>
                   </a>
                 </span>
 
@@ -349,9 +350,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/07/31/notes-of-together-is-better/#comments" itemprop="discussionUrl">
+                <a href="/2017/10/25/test-concept-about-mock/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/07/31/notes-of-together-is-better/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/10/25/test-concept-about-mock/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -377,51 +378,33 @@
       
 
       
-        <h4 id="缘起："><a href="#缘起：" class="headerlink" title="缘起："></a>缘起：</h4><p>在一个暴雨后的夜晚，读一本带着香气的书，真的是一件顶幸福的事儿。</p>
-<p>不仅仅是书香沁脾，更重要的是内容很有营养，推荐这本《together is better》.</p>
-<h4 id="正文："><a href="#正文：" class="headerlink" title="正文："></a>正文：</h4><p>本书作者Simon  Sinek，在他著名的Ted演讲：<a href="https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action" target="_blank" rel="external">how great leaders inspire action</a> 中提到了黄金圈法则：What，How,Why. 去年第一次看了他的演讲时，便觉得观点独特，但是看完后，我的想法是：“嗯，这很对，很cool，可是离我很遥远，leadership这种东西我应该是用不上的。” 现在想来，当时的想法真的是够愚蠢的。狭隘地理解了领导力，错以为领导力只是在职场中运用，更错到离谱地以为领导力代表着强权与控制欲。呃，貌似跑题了，言归正传。</p>
-<p>Simon Sinek的这本《together is better》主要也是以阐述领导力为主，但是全书通篇以简短的文字加配图相结合的方式，还创造性地为书添加上了香气，读来让人感觉特别舒服。通过三位主角从逃离原有环境，一起去寻找愿景，历经磨难，抵达目的地，成功后选择回到原地，回报他人，最后成长为被他人追随的领导者的过程，将那些简单却深刻的道理娓娓道来，真是个很欢畅的洗脑过程。</p>
-<p>下面就从领导力，领导者属性，团队这三个方面，摘录文中的几个要点，顺便附上个人的一些见解。</p>
-<h5 id="什么是领导力？"><a href="#什么是领导力？" class="headerlink" title="什么是领导力？"></a>什么是领导力？</h5><ul>
-<li><p>It is not about being in charge, it is about taking care of those in your charge.</p>
-</li>
-<li><p>It is not a rank or position to be attained, it is a service to be given.</p>
-</li>
-<li><p>Leadership is an education. And the best leaders think of themselves as the students, not the teachers.</p>
-<blockquote>
-<p>书中提到领导力是可以通过日常的练习习得的一种能力，如何练习？方法是通过考量他人的生活（consider the lives of others），即使损及自身的利益。 个人的理解是和他人一起共同成长，创造双赢的局面，嗯，together is better。</p>
-</blockquote>
-</li>
+        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>接上一篇，这篇说说mock是啥。</p>
+<p>呃，看了一些别人写的文章，似乎对于mocks，stubs，doubles没什么特别的限制，随便用的感觉。新手对此表示很懵逼。</p>
+<p>以下内容属于小白对mock的理解，如有误人子弟的嫌疑，非常欢迎拍砖：P</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>说mock前，先来说说double。</p>
+<p>Double在英文中有替身的含义。当你double一个真实的对象时，相当于给这个对象创建了一个替身。</p>
+<p>mocks 和stubs有时候也被称之为doubles。</p>
+<p>那mocks 和stub有什么区别？</p>
+<p>看到一篇文章<a href="http://www.jianshu.com/p/c5aca7d672c5" target="_blank" rel="external">RSpec, Test Double, Mock, and Stub</a>， 上面提到<strong>Mock是对象层面的</strong>，<strong>Stub是方法层面</strong>，个人觉得挺在理的。</p>
+<p>用实例来说说mock的使用。</p>
+<p>接<a href="https://lupeipei.github.io/2017/10/24/test-concepts-about-stub/">上一篇</a>，测试了两个行为，验证search_tmbd是否调用了find_in_tmdb， 验证最后的结果是否render到了<code>search_tmbd.html.erb</code>这个template。但是还有一个我们没有测试的，就是find_in_tmdb返回的结果是否可用于这个template。</p>
+<p>在<code>movies_controller.rb</code>中，修改search_tmbd这个method，将搜索结果赋值给到@movies：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fkup1kdwg1j30e902pglq.jpg" alt=""></p>
+<p>然后我们的测试代码是这样子的：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fkup4vrh3zj30f309bwg9.jpg" alt=""></p>
+<p>这里用mock(‘Moive’)，创建了一个假的movie对象，并赋值给@fake_results。用stub来调用find_in_tmdb后，返回值是@fake_results。最后<code>except assigns(:movies).to eq(@fake_results)</code> 显示我们预期实例变量movies的赋值结果是等于@fake_results的。</p>
+<p>运行测试，pass。</p>
+<p>说了这么多，我的理解是mock创建了对象的替身，来模拟对象的行为。</p>
+<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p>附上一份RSpec的烹饪教程，来自Edx：</p>
+<p><strong>RSpec Cookery</strong></p>
+<ul>
+<li>Each spec should test just one behavior</li>
+<li>Use seams(stub,mock, double) as needed to isolate that behavior</li>
+<li>Determine what type of expectation will check the behavior</li>
+<li>Write the test and make sure it fails for the right reason</li>
+<li>Add code until test is green</li>
+<li>Look for opportunities to refactor/beautify</li>
 </ul>
-<h5 id="好的领导具有哪些属性？"><a href="#好的领导具有哪些属性？" class="headerlink" title="好的领导具有哪些属性？"></a>好的领导具有哪些属性？</h5><ul>
-<li><p>With good leader, we feel like we work for each other.</p>
-</li>
-<li><p>Leaders give us the chance to try and fail, then give us another chance to try and succeed.</p>
-</li>
-<li><p>Bad leaders care about who’s right, good leaders care about what’s right.</p>
-</li>
-<li><p>A good leader doesn’t only inspire us to have confidence in what they can do, A great leader inspires us to have confidence in what we can do.</p>
-</li>
-<li><p>The true value of a leader is not measured by the work they do, the true value of a leader is measured by the work they inspire others to do.</p>
-</li>
-<li><p>A leader must be inspired by the people before a leader can inspire the people</p>
-<blockquote>
-<p>一句话小结就是：好的领导是给你提供成长的机会，鼓励你突破你的玻璃顶的人。可是问题来了，一是现实中这样的领导实在是太少，二是对于绝大多数的普通人，比如我，遇到这样的领导的概率几乎等于零。那怎么破？我能想到的是，不断提高自身的能力，特别是专业水平，这样才有可能遇到。</p>
-</blockquote>
-</li>
-</ul>
-<h5 id="什么是团队？"><a href="#什么是团队？" class="headerlink" title="什么是团队？"></a>什么是团队？</h5><ul>
-<li>A team is not a group of people who work together, a team is a group of people who trust each other.</li>
-</ul>
-<blockquote>
-<p>单单从相互信任这一点看，大部分的团队其实都是不合格的，现实中更多的是找一群人来做一件事，重要的是把这件事情完成了，至于是否能做到相互信任倒是其次了.</p>
-</blockquote>
-<p>当然文中还有很多金句，不过我个人特别喜欢亚里士多德的这句：</p>
-<blockquote>
-<p>There is only one way to avoid criticism: do nothing, say nothing , and be nothing.</p>
-</blockquote>
-<p>P.S. 这本由台湾远流出版社发行的书，里面的一些翻译用语可能与大陆读者平时的用词不大一样，读来有些别扭，但如果你对繁体字有偏爱，那么读这本书会是个很享受的过程，Enjoy！</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fi32kel7ifj30zk0qotcx.jpg" alt=""></p>
 
       
     </div>
@@ -451,7 +434,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/读书笔记/" rel="tag"># 读书笔记</a>
+            <a href="/tags/ROR/" rel="tag"># ROR</a>
           
         </div>
       
@@ -464,18 +447,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/01/Introduction-to-the-Web/" rel="next" title="网络概论">
-                <i class="fa fa-chevron-left"></i> 网络概论
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/29/build-blog-with-hexo/" rel="prev" title="使用Hexo在GitHub上为自己搭建一个静态Blog站点">
-                使用Hexo在GitHub上为自己搭建一个静态Blog站点 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/24/test-concepts-about-stub/" rel="prev" title="测试概念之stub篇">
+                测试概念之stub篇 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -641,7 +620,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#缘起："><span class="nav-number">1.</span> <span class="nav-text">缘起：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正文："><span class="nav-number">2.</span> <span class="nav-text">正文：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是领导力？"><span class="nav-number">2.1.</span> <span class="nav-text">什么是领导力？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#好的领导具有哪些属性？"><span class="nav-number">2.2.</span> <span class="nav-text">好的领导具有哪些属性？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是团队？"><span class="nav-number">2.3.</span> <span class="nav-text">什么是团队？</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-End"><span class="nav-number">3.</span> <span class="nav-text">The End</span></a></li></ol></div>
             
 
           </div>
@@ -778,9 +757,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://lupeipei.github.io/2017/07/31/notes-of-together-is-better/';
-          this.page.identifier = '2017/07/31/notes-of-together-is-better/';
-          this.page.title = '读《together is better》';
+          this.page.url = 'http://lupeipei.github.io/2017/10/25/test-concept-about-mock/';
+          this.page.identifier = '2017/10/25/test-concept-about-mock/';
+          this.page.title = '测试概念之mock篇';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-lupeipei-github-io.disqus.com/embed.js';
