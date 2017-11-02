@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ROR," />
+  <meta name="keywords" content="Cucumber," />
 
 
 
@@ -87,24 +87,17 @@
 
 
 
-<meta name="description" content="写在前面在给自己的网站加密后，网址从http变成https了，可是我却发现网站成了这样：  预期中的它应该是长这样子👇：  仔细检查了Nginx中的配置文档，没有发现问题，推测不是配置的问题，那么为什么会这样？ 【BTW, 阿里云有免费的SSL证书，可以让网站从HTTP换成HTTPS，戳这里直达阿里云。】 请确保你的Nginx配置是正确的，下面的解决思路是以配置无误为前提的。 正文google后">
-<meta name="keywords" content="ROR">
+<meta name="description" content="简介Cucumber是BDD测试中的明星。 关键字Csucumber中的几个关键字： feature, scenario, given, when, then,  and,  but 简单说说这些关键字的含义。 Feature：你可以把它看作是一个user story scenario用于描述一个简单的场景。 一个feature可以有1个或者多个scenario。 一个scenario可以有3～8">
+<meta name="keywords" content="Cucumber">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网站加密后，没有挂上小绿锁?">
-<meta property="og:url" content="http://lupeipei.github.io/2017/10/18/website-padlock-green-issue/index.html">
+<meta property="og:title" content="对Cucumber的一点理解">
+<meta property="og:url" content="http://lupeipei.github.io/2017/11/02/cucumber-intro-1/index.html">
 <meta property="og:site_name" content="Lucia">
-<meta property="og:description" content="写在前面在给自己的网站加密后，网址从http变成https了，可是我却发现网站成了这样：  预期中的它应该是长这样子👇：  仔细检查了Nginx中的配置文档，没有发现问题，推测不是配置的问题，那么为什么会这样？ 【BTW, 阿里云有免费的SSL证书，可以让网站从HTTP换成HTTPS，戳这里直达阿里云。】 请确保你的Nginx配置是正确的，下面的解决思路是以配置无误为前提的。 正文google后">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fks9mass87j30ey03x0u2.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fks9njubhqj303g00vjr7.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fks9wu7e2lj30q90ixhcb.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fks9sjsqjbj30uc0kz1bn.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fksa0let1rj30so0i7aoa.jpg">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fksa0kw4csj30pr0h0dj6.jpg">
-<meta property="og:updated_time" content="2017-10-23T10:38:54.000Z">
+<meta property="og:description" content="简介Cucumber是BDD测试中的明星。 关键字Csucumber中的几个关键字： feature, scenario, given, when, then,  and,  but 简单说说这些关键字的含义。 Feature：你可以把它看作是一个user story scenario用于描述一个简单的场景。 一个feature可以有1个或者多个scenario。 一个scenario可以有3～8">
+<meta property="og:updated_time" content="2017-11-02T10:29:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="网站加密后，没有挂上小绿锁?">
-<meta name="twitter:description" content="写在前面在给自己的网站加密后，网址从http变成https了，可是我却发现网站成了这样：  预期中的它应该是长这样子👇：  仔细检查了Nginx中的配置文档，没有发现问题，推测不是配置的问题，那么为什么会这样？ 【BTW, 阿里云有免费的SSL证书，可以让网站从HTTP换成HTTPS，戳这里直达阿里云。】 请确保你的Nginx配置是正确的，下面的解决思路是以配置无误为前提的。 正文google后">
-<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fks9mass87j30ey03x0u2.jpg">
+<meta name="twitter:title" content="对Cucumber的一点理解">
+<meta name="twitter:description" content="简介Cucumber是BDD测试中的明星。 关键字Csucumber中的几个关键字： feature, scenario, given, when, then,  and,  but 简单说说这些关键字的含义。 Feature：你可以把它看作是一个user story scenario用于描述一个简单的场景。 一个feature可以有1个或者多个scenario。 一个scenario可以有3～8">
 
 
 
@@ -132,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://lupeipei.github.io/2017/10/18/website-padlock-green-issue/"/>
+  <link rel="canonical" href="http://lupeipei.github.io/2017/11/02/cucumber-intro-1/"/>
 
 
 
 
 
-  <title> 网站加密后，没有挂上小绿锁? | Lucia </title>
+  <title> 对Cucumber的一点理解 | Lucia </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -277,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/18/website-padlock-green-issue/">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/11/02/cucumber-intro-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lucia">
@@ -298,7 +291,7 @@
             
             
               
-                网站加密后，没有挂上小绿锁?
+                对Cucumber的一点理解
               
             
           </h1>
@@ -313,8 +306,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-18T18:25:04+08:00">
-                2017-10-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-02T18:28:12+08:00">
+                2017-11-02
               </time>
             
 
@@ -336,8 +329,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ROR/" itemprop="url" rel="index">
-                    <span itemprop="name">ROR</span>
+                  <a href="/categories/Cucumber/" itemprop="url" rel="index">
+                    <span itemprop="name">Cucumber</span>
                   </a>
                 </span>
 
@@ -354,9 +347,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/18/website-padlock-green-issue/#comments" itemprop="discussionUrl">
+                <a href="/2017/11/02/cucumber-intro-1/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/18/website-padlock-green-issue/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/11/02/cucumber-intro-1/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -382,27 +375,44 @@
       
 
       
-        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>在给自己的网站加密后，网址从http变成https了，可是我却发现网站成了这样：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fks9mass87j30ey03x0u2.jpg" alt=""></p>
-<p>预期中的它应该是长这样子👇：</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fks9njubhqj303g00vjr7.jpg" alt=""></p>
-<p>仔细检查了Nginx中的配置文档，没有发现问题，推测不是配置的问题，那么为什么会这样？</p>
-<p>【BTW, 阿里云有免费的SSL证书，可以让网站从HTTP换成HTTPS，戳这里直达<a href="https://common-buy.aliyun.com/?spm=5176.2020520163.cas.1.2arDtO&amp;commodityCode=cas#/buy" target="_blank" rel="external">阿里云</a>。】</p>
-<p>请确保你的Nginx配置是正确的，下面的解决思路是以配置无误为前提的。</p>
-<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>google后找到了这篇文章：【Google，大神】</p>
-<p><a href="https://support.comodo.com/index.php?/Knowledgebase/Article/View/1057/0/why-isnt-my-sites-padlock-green-or-doesnt-have-green-address-bar" target="_blank" rel="external">Why isn’t my Site’s padlock green or doesn’t have green address bar ?</a></p>
-<p>按照文章的提示，解决了问题，以chrome为例，具体步骤如下：</p>
-<p>打开网站，右击，选择检查（inspect），</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fks9wu7e2lj30q90ixhcb.jpg" alt=""></p>
-<p>然后选择security安全，可以看到这样的页面：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fks9sjsqjbj30uc0kz1bn.jpg" alt=""></p>
-<p>在mixed content中，提示让你重新加载页面，OK，我们reload一下。</p>
-<p>这时，可以发现mixed content中出现这样的链接：<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fksa0let1rj30so0i7aoa.jpg" alt=""></p>
-<p>点击，查看：</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fksa0kw4csj30pr0h0dj6.jpg" alt=""></p>
-<p>OK，问题找到了，是图片链接用了http导致的。</p>
-<p>原来因为网站用了七牛云存储，图片的链接为http，解决的办法是去七牛买个加速域名，换成https……</p>
-<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p>每个人遇到的情况不一样，这里我只是贴出我是如何找到解决方法的，希望对遇到了同样问题的小伙伴有所帮助。<br>Happy coding!</p>
+        <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p><a href="https://cucumber.io/" target="_blank" rel="external">Cucumber</a>是BDD测试中的明星。</p>
+<h4 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h4><p>Csucumber中的几个关键字：</p>
+<p><strong>feature, scenario, given, when, then,  and,  but</strong></p>
+<p>简单说说这些关键字的含义。</p>
+<p>Feature：你可以把它看作是一个user story</p>
+<p>scenario用于描述一个简单的场景。</p>
+<p>一个feature可以有1个或者多个scenario。</p>
+<p>一个scenario可以有3～8个steps。</p>
+<p>其中，steps的定义类似于Ruby中method的定义。</p>
+<p>step中的5个关键字：</p>
+<ul>
+<li>Given : 表示事件发生之前的状态， preconditions。</li>
+<li>When： 表示事件本身，比如用户push 了一个button</li>
+<li>Then：表示事件发生后的预期结果，比如push了一个button，要跳转到某个特定的页面</li>
+<li>And &amp; But：用来延续之前的steps</li>
+</ul>
+<h4 id="用例"><a href="#用例" class="headerlink" title="用例"></a>用例</h4><p>看个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Feature: user can manually add movie</div><div class="line"></div><div class="line">Scenario: Add a movie</div><div class="line">	Given I am on the RottenPotatoes home page</div><div class="line">	When I follow &quot;Add new movie&quot;</div><div class="line">	Then I should be on the Create New Movie page</div><div class="line">	when I fill in &quot;Title&quot; with &quot;Men In Black&quot;</div><div class="line">	And I select &quot;PG-13&quot; from &quot;Rating&quot;</div><div class="line">	And I press &quot;Save changes&quot;</div><div class="line">	Then I shoud be on the RottenPotatoes home page</div><div class="line">	And I should see &quot;Men in Black&quot;</div></pre></td></tr></table></figure>
+<p>这里测试一个feature，用户可以手动添加电影，添加的电影会在首页显示，表明添加成功。</p>
+<p>具体的steps是这样的：</p>
+<p>Given：用户在烂番茄主页，<strong>这是precondition</strong></p>
+<p>When：用户点击新增电影，<strong>这是事件本身</strong></p>
+<p>Then：用户应该会跳转到新建电影的页面，<strong>这是事件发生后的预期结果</strong></p>
+<p>When：电影有title字段，用户将“Men in Black” 填入到title中，<strong>这是事件本身</strong></p>
+<p>And：用户在星级中选择了“PG-13”，<strong>这是上一步的延续</strong></p>
+<p>And：用户按下“保存”，<strong>继续延续上一步</strong></p>
+<p>Then：用户应该跳转回烂番茄首页，<strong>这是事件发生后的预期结果</strong></p>
+<p>And：用户应该看到“Men in Black”，<strong>这是上一步结果的延续</strong></p>
+<p>此外，用cucumber去测试的一个好处是，它会提示你如何做可以让测试通过。</p>
+<p>再看一个实例，看看如何DRY：P。</p>
+<p>用户在TMDb首页搜索movie，可能出现的两种结果: 搜索到该影片(happy path)，没有搜索到(bad path)</p>
+<p>测试文件长这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">Feature: User can add movie by searching in The Movie</div><div class="line">	Database(TMDb)</div><div class="line">	As a movie fan</div><div class="line">	so that I can add new movies without manual tedium</div><div class="line">	I want to add movies by looking up their details in TMDb</div><div class="line">Scenario: Try to add nonexistent movie(sad path)</div><div class="line">	Given I am on the RottenPotatoes home page</div><div class="line">	Then I should see &quot;Search TMDb for a movie&quot;</div><div class="line">	When I fill in &quot;Search Terms&quot; with &quot;Movie that Does Not Exist&quot;</div><div class="line">	And I press &quot;Search TMDb&quot;</div><div class="line">	Then I should be on the RottenPotatoes home page</div><div class="line">	And I should see &quot;Movie That Does Not Exist&quot; was not found in TMDb</div><div class="line">Scenario: Try to add nonexistent movie(happy path)</div><div class="line">	Given I am on the RottenPotatoes home page</div><div class="line">	Then I should see &quot;Search TMDb for a movie&quot;</div><div class="line">	When I fill in &quot;Search Terms&quot; with &quot;Inception&quot;</div><div class="line">	And I press &quot;Search TMDb&quot;</div><div class="line">	Then I should be on the RottenPotatoes home page</div><div class="line">	And I should see &quot;Inception&quot;</div></pre></td></tr></table></figure>
+<p>其中，sad path ，happy path都有6个 steps，两者的前两个steps是一样的，how to DRY it?</p>
+<p>这里用到<strong>background</strong>，我的理解是background类似于RSpec中的before。</p>
+<p>我们重构一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">Feature: User can add movie by searching in The Movie</div><div class="line">	Database(TMDb)</div><div class="line">	As a movie fan</div><div class="line">	so that I can add new movies without manual tedium</div><div class="line">	I want to add movies by looking up their details in TMDb</div><div class="line">Background: Start from the Search form on the home page</div><div class="line">			Given I am on the RottenPotatoes home page</div><div class="line">			Then I should see &quot;Search TMDb for a movie&quot;</div><div class="line">Scenario: Try to add nonexistent movie(sad path)</div><div class="line">	When I fill in &quot;Search Terms&quot; with &quot;Movie that Does Not Exist&quot;</div><div class="line">	And I press &quot;Search TMDb&quot;</div><div class="line">	Then I should be on the RottenPotatoes home page</div><div class="line">	And I should see &quot;Movie That Does Not Exist&quot; was not found in TMDb</div><div class="line">Scenario: Try to add nonexistent movie(happy path)</div><div class="line">	When I fill in &quot;Search Terms&quot; with &quot;Inception&quot;</div><div class="line">	And I press &quot;Search TMDb&quot;</div><div class="line">	Then I should be on the RottenPotatoes home page</div><div class="line">	And I should see &quot;Inception&quot;</div></pre></td></tr></table></figure>
+<p>OK，大功告成。</p>
 
       
     </div>
@@ -432,7 +442,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ROR/" rel="tag"># ROR</a>
+            <a href="/tags/Cucumber/" rel="tag"># Cucumber</a>
           
         </div>
       
@@ -445,18 +455,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/20/how-to-debug-with-RSpec/" rel="next" title="如何在测试中debug?">
-                <i class="fa fa-chevron-left"></i> 如何在测试中debug?
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/15/deploy-with-qiniu/" rel="prev" title="七牛云端部署，想说爱你不容易">
-                七牛云端部署，想说爱你不容易 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/25/test-concept-about-mock/" rel="prev" title="测试概念之mock篇">
+                测试概念之mock篇 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -622,7 +628,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-End"><span class="nav-number">3.</span> <span class="nav-text">The End</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关键字"><span class="nav-number">2.</span> <span class="nav-text">关键字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用例"><span class="nav-number">3.</span> <span class="nav-text">用例</span></a></li></ol></div>
             
 
           </div>
@@ -759,9 +765,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://lupeipei.github.io/2017/10/18/website-padlock-green-issue/';
-          this.page.identifier = '2017/10/18/website-padlock-green-issue/';
-          this.page.title = '网站加密后，没有挂上小绿锁?';
+          this.page.url = 'http://lupeipei.github.io/2017/11/02/cucumber-intro-1/';
+          this.page.identifier = '2017/11/02/cucumber-intro-1/';
+          this.page.title = '对Cucumber的一点理解';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-lupeipei-github-io.disqus.com/embed.js';
