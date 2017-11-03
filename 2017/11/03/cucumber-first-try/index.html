@@ -1,0 +1,864 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Cucumber," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="写在前面使用cucumber 实作了个小小的例子，来感受一下小黄瓜的魅力：P。 正文做了一个用于计算的专案，名为calculator。 calculator会做这样的事情： 1234567如果你输入了：2+2那么它会输出4如果你输入了：3*3那么它会输出9…… 其实就是一个简单的计算器。 好，我们开始吧。 终端运行: 12rails new calculatorcd calculator 建立专案">
+<meta name="keywords" content="Cucumber">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初尝Cucumber">
+<meta property="og:url" content="http://lupeipei.github.io/2017/11/03/cucumber-first-try/index.html">
+<meta property="og:site_name" content="Lucia">
+<meta property="og:description" content="写在前面使用cucumber 实作了个小小的例子，来感受一下小黄瓜的魅力：P。 正文做了一个用于计算的专案，名为calculator。 calculator会做这样的事情： 1234567如果你输入了：2+2那么它会输出4如果你输入了：3*3那么它会输出9…… 其实就是一个简单的计算器。 好，我们开始吧。 终端运行: 12rails new calculatorcd calculator 建立专案">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fl533xnblyj30fm037t90.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fl53d5jnsaj30oq06ota5.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fl53j79w13j30st072gng.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fl54cns0dnj30fx04aaab.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fl54f04mr0j30zk0k9tdg.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fl54onlhmaj30g605rmy1.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fl54qokbosj30j807kjse.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fl54vc0mf4j30kk07g3zj.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fl56z0meapj30ma07jq43.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fl5763tsrqj30mg084jsm.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fl579bi1l5j30mf04r3yx.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fl57tq18wej30av03474i.jpg">
+<meta property="og:updated_time" content="2017-11-03T13:34:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初尝Cucumber">
+<meta name="twitter:description" content="写在前面使用cucumber 实作了个小小的例子，来感受一下小黄瓜的魅力：P。 正文做了一个用于计算的专案，名为calculator。 calculator会做这样的事情： 1234567如果你输入了：2+2那么它会输出4如果你输入了：3*3那么它会输出9…… 其实就是一个简单的计算器。 好，我们开始吧。 终端运行: 12rails new calculatorcd calculator 建立专案">
+<meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fl533xnblyj30fm037t90.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lupeipei.github.io/2017/11/03/cucumber-first-try/"/>
+
+
+
+
+
+  <title> 初尝Cucumber | Lucia </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lucia</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/11/03/cucumber-first-try/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/source/images/avtar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lucia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                初尝Cucumber
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-03T21:33:56+08:00">
+                2017-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cucumber/" itemprop="url" rel="index">
+                    <span itemprop="name">Cucumber</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/03/cucumber-first-try/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/03/cucumber-first-try/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>使用cucumber 实作了个小小的例子，来感受一下小黄瓜的魅力：P。</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>做了一个用于计算的专案，名为calculator。</p>
+<p>calculator会做这样的事情：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">如果你输入了：</div><div class="line">2+2</div><div class="line">那么它会输出4</div><div class="line">如果你输入了：</div><div class="line">3*3</div><div class="line">那么它会输出9</div><div class="line">……</div></pre></td></tr></table></figure>
+<p>其实就是一个简单的计算器。</p>
+<p>好，我们开始吧。</p>
+<p>终端运行:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rails new calculator</div><div class="line">cd calculator</div></pre></td></tr></table></figure>
+<p>建立专案calculator, 安装cucumber。参考：<a href="https://github.com/cucumber/cucumber-rails/blob/master/README.md" target="_blank" rel="external">Cucumber-Rails</a></p>
+<p>在gemfile文件中添加 cucumber-rails：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fl533xnblyj30fm037t90.jpg" alt=""></p>
+<p>database_cleaner这个gem是用来清理测试数据的，可加可不加，不过建议添加。</p>
+<p>终端运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">bundle install</div><div class="line">rails g cucumber:install</div></pre></td></tr></table></figure>
+<p>会自动生成一些文件：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fl53d5jnsaj30oq06ota5.jpg" alt=""></p>
+<p>它帮我们生成好了features文件夹， 还有step_definitions.</p>
+<p>让我们删除rails自带的test:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rm -rf test</div></pre></td></tr></table></figure>
+<p>终端输入cucumber试试：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fl53j79w13j30st072gng.jpg" alt=""></p>
+<p>显示Deprecated了，针对这个问题我 Google了一下，你可以在cucumber-rails的<a href="https://github.com/cucumber/cucumber-rails/issues/346" target="_blank" rel="external">issues346</a>中看到, 但是没有找到解答，如果你留意，你会发现config文件下的<code>cucumber.yml</code>里面确实有<code>~@wip</code>, 如果你尝试着把所有的<code>~@wip</code> 替换成<code>not @tag</code> 会出现报错，鉴于它并不影响测试，所以你可以选择无视这些Deprecated：P</p>
+<p>好，我们继续添加测试文件吧！新增<code>adding.feature</code>文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">touch features/adding.feature</div></pre></td></tr></table></figure>
+<p><code>adding.feature</code>文件的内容如下：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fl54cns0dnj30fx04aaab.jpg" alt=""></p>
+<p>终端运行cucumber，显示如下：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fl54f04mr0j30zk0k9tdg.jpg" alt=""></p>
+<p>会发现报错了，我们并没有定义step_definitions来告诉cucumber如何将这些直白的英文转换成专案中具体的action。但是，你也会发现小黄瓜贴心的地方，它告诉你step definitions里面要加一些snippets。</p>
+<p>新建<code>features/step_definitions/calculator_steps.rb</code> 文件，文件内容如下：</p>
+<p>【其实就是复制了它告诉我们的代码：P】</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fl54onlhmaj30g605rmy1.jpg" alt=""></p>
+<p>再次运行cucumber试试：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fl54qokbosj30j807kjse.jpg" alt=""></p>
+<p>显示一个pending，2个skipped了，我们来修改一下<code>calculator_steps.rb</code>，让第一个step可以pass。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Given(&quot;the input &#123;string&#125;&quot;) do |string|</div><div class="line">  @input = string</div><div class="line">end</div><div class="line"></div><div class="line">When(&quot;the calculator is run&quot;) do</div><div class="line">  pending # Write code here that turns the phrase above into concrete actions</div><div class="line">end</div><div class="line"></div><div class="line">Then(&quot;the output should be &#123;string&#125;&quot;) do |string|</div><div class="line">  pending # Write code here that turns the phrase above into concrete actions</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>运行cucumber，step1 pass.</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fl54vc0mf4j30kk07g3zj.jpg" alt=""></p>
+<p>第二个step pending，Oops，我们继续。</p>
+<p>这里可以梳理一下，第一步是input，最后是output，所以第二步应当是调用了method进行计算。好，我们添加一个ruby文件: calc.rb, 修改<code>calculator_steps.rb</code>，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Given(&quot;the input &#123;string&#125;&quot;) do |string|</div><div class="line">  @input = string</div><div class="line">end</div><div class="line"></div><div class="line">When(&quot;the calculator is run&quot;) do</div><div class="line">  @output = `ruby calc.rb #&#123;@input&#125;`</div><div class="line">end</div><div class="line"></div><div class="line">Then(&quot;the output should be &#123;string&#125;&quot;) do |string|</div><div class="line">  pending # Write code here that turns the phrase above into concrete actions</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>运行cucumber，step2 pass.</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fl56z0meapj30ma07jq43.jpg" alt=""></p>
+<p>注意到这里<code>calc.rb</code>还只是一个空文件，而且需要注意<code>calc.rb</code>是在根目录下。</p>
+<p>继续修改<code>calculator_steps.rb</code>, 让第三个step pass：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Given(&quot;the input &#123;string&#125;&quot;) do |string|</div><div class="line">  @input = string</div><div class="line">end</div><div class="line"></div><div class="line">When(&quot;the calculator is run&quot;) do</div><div class="line">  @output = `ruby calc.rb #&#123;@input&#125;`</div><div class="line">end</div><div class="line"></div><div class="line">Then(&quot;the output should be &#123;string&#125;&quot;) do |string|</div><div class="line">  expect(@output).to eq string</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>在<code>calc.rb</code>中加入一行，使得output等于预期:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print eval (ARGV[0])</div></pre></td></tr></table></figure>
+<p>不了解eval的用法？👉戳这里<a href="https://ruby-hacking-guide.github.io/anyeval.html" target="_blank" rel="external">Dynamic evaluation</a></p>
+<p>简单来说，这里input是”2 + 2”，那么eval(input)就是会4.</p>
+<p>这时继续运行cucumber，出现这样的报错：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fl5763tsrqj30mg084jsm.jpg" alt=""></p>
+<p>显示except是undefined method，那是由于没有安装RSpec，在gemfile中加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem &apos;rspec-rails&apos;</div></pre></td></tr></table></figure>
+<p>然后<code>bundle install</code>，再次运行<code>cucumber</code>，Pass！</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fl579bi1l5j30mf04r3yx.jpg" alt=""></p>
+<p>整个流程算是走完了。</p>
+<p>以上就是一个cucumber测试的基本流程了。</p>
+<p>cucumber的整个语法结构有个名字叫做<a href="https://github.com/cucumber/cucumber/wiki/Gherkin" target="_blank" rel="external">Gherkin</a>，例子中我们的<code>add.feature</code>就是遵守着Gherkin的语法。</p>
+<p>Gherkin的大致结构类似这样：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fl57tq18wej30av03474i.jpg" alt=""></p>
+<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p>实作的时候还是踩了些坑的，看报错却又找不到哪里出问题，看stack overflow也是一脸懵逼，这里略去一万字的吐糟……</p>
+<p>推荐：</p>
+<p><a href="https://forums.pragprog.com/forums/166" target="_blank" rel="external">the cucumber book‘s forums</a></p>
+<p><a href="https://book.douban.com/subject/24843412/" target="_blank" rel="external">Cucumber：行为驱动开发指南</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cucumber/" rel="tag"># Cucumber</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/02/cucumber-intro-1/" rel="prev" title="对Cucumber的一点理解">
+                对Cucumber的一点理解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/source/images/avtar.jpg"
+               alt="Lucia" />
+          <p class="site-author-name" itemprop="name">Lucia</p>
+           
+              <p class="site-description motion-element" itemprop="description">Learning is doing</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="Link" target="_blank" title="LinkLabel">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  LinkLabel
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Lupeipei" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/Luciapeipei" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-End"><span class="nav-number">3.</span> <span class="nav-text">The End</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lucia</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://https-lupeipei-github-io.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://lupeipei.github.io/2017/11/03/cucumber-first-try/';
+          this.page.identifier = '2017/11/03/cucumber-first-try/';
+          this.page.title = '初尝Cucumber';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-lupeipei-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

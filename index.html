@@ -270,6 +270,224 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/11/03/cucumber-first-try/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/source/images/avtar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lucia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/03/cucumber-first-try/" itemprop="url">
+                  初尝Cucumber
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-03T21:33:56+08:00">
+                2017-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cucumber/" itemprop="url" rel="index">
+                    <span itemprop="name">Cucumber</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/03/cucumber-first-try/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/03/cucumber-first-try/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>使用cucumber 实作了个小小的例子，来感受一下小黄瓜的魅力：P。</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>做了一个用于计算的专案，名为calculator。</p>
+<p>calculator会做这样的事情：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">如果你输入了：</div><div class="line">2+2</div><div class="line">那么它会输出4</div><div class="line">如果你输入了：</div><div class="line">3*3</div><div class="line">那么它会输出9</div><div class="line">……</div></pre></td></tr></table></figure>
+<p>其实就是一个简单的计算器。</p>
+<p>好，我们开始吧。</p>
+<p>终端运行:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rails new calculator</div><div class="line">cd calculator</div></pre></td></tr></table></figure>
+<p>建立专案calculator, 安装cucumber。参考：<a href="https://github.com/cucumber/cucumber-rails/blob/master/README.md" target="_blank" rel="external">Cucumber-Rails</a></p>
+<p>在gemfile文件中添加 cucumber-rails：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fl533xnblyj30fm037t90.jpg" alt=""></p>
+<p>database_cleaner这个gem是用来清理测试数据的，可加可不加，不过建议添加。</p>
+<p>终端运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">bundle install</div><div class="line">rails g cucumber:install</div></pre></td></tr></table></figure>
+<p>会自动生成一些文件：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fl53d5jnsaj30oq06ota5.jpg" alt=""></p>
+<p>它帮我们生成好了features文件夹， 还有step_definitions.</p>
+<p>让我们删除rails自带的test:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rm -rf test</div></pre></td></tr></table></figure>
+<p>终端输入cucumber试试：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fl53j79w13j30st072gng.jpg" alt=""></p>
+<p>显示Deprecated了，针对这个问题我 Google了一下，你可以在cucumber-rails的<a href="https://github.com/cucumber/cucumber-rails/issues/346" target="_blank" rel="external">issues346</a>中看到, 但是没有找到解答，如果你留意，你会发现config文件下的<code>cucumber.yml</code>里面确实有<code>~@wip</code>, 如果你尝试着把所有的<code>~@wip</code> 替换成<code>not @tag</code> 会出现报错，鉴于它并不影响测试，所以你可以选择无视这些Deprecated：P</p>
+<p>好，我们继续添加测试文件吧！新增<code>adding.feature</code>文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">touch features/adding.feature</div></pre></td></tr></table></figure>
+<p><code>adding.feature</code>文件的内容如下：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fl54cns0dnj30fx04aaab.jpg" alt=""></p>
+<p>终端运行cucumber，显示如下：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fl54f04mr0j30zk0k9tdg.jpg" alt=""></p>
+<p>会发现报错了，我们并没有定义step_definitions来告诉cucumber如何将这些直白的英文转换成专案中具体的action。但是，你也会发现小黄瓜贴心的地方，它告诉你step definitions里面要加一些snippets。</p>
+<p>新建<code>features/step_definitions/calculator_steps.rb</code> 文件，文件内容如下：</p>
+<p>【其实就是复制了它告诉我们的代码：P】</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fl54onlhmaj30g605rmy1.jpg" alt=""></p>
+<p>再次运行cucumber试试：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fl54qokbosj30j807kjse.jpg" alt=""></p>
+<p>显示一个pending，2个skipped了，我们来修改一下<code>calculator_steps.rb</code>，让第一个step可以pass。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Given(&quot;the input &#123;string&#125;&quot;) do |string|</div><div class="line">  @input = string</div><div class="line">end</div><div class="line"></div><div class="line">When(&quot;the calculator is run&quot;) do</div><div class="line">  pending # Write code here that turns the phrase above into concrete actions</div><div class="line">end</div><div class="line"></div><div class="line">Then(&quot;the output should be &#123;string&#125;&quot;) do |string|</div><div class="line">  pending # Write code here that turns the phrase above into concrete actions</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>运行cucumber，step1 pass.</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fl54vc0mf4j30kk07g3zj.jpg" alt=""></p>
+<p>第二个step pending，Oops，我们继续。</p>
+<p>这里可以梳理一下，第一步是input，最后是output，所以第二步应当是调用了method进行计算。好，我们添加一个ruby文件: calc.rb, 修改<code>calculator_steps.rb</code>，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Given(&quot;the input &#123;string&#125;&quot;) do |string|</div><div class="line">  @input = string</div><div class="line">end</div><div class="line"></div><div class="line">When(&quot;the calculator is run&quot;) do</div><div class="line">  @output = `ruby calc.rb #&#123;@input&#125;`</div><div class="line">end</div><div class="line"></div><div class="line">Then(&quot;the output should be &#123;string&#125;&quot;) do |string|</div><div class="line">  pending # Write code here that turns the phrase above into concrete actions</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>运行cucumber，step2 pass.</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fl56z0meapj30ma07jq43.jpg" alt=""></p>
+<p>注意到这里<code>calc.rb</code>还只是一个空文件，而且需要注意<code>calc.rb</code>是在根目录下。</p>
+<p>继续修改<code>calculator_steps.rb</code>, 让第三个step pass：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Given(&quot;the input &#123;string&#125;&quot;) do |string|</div><div class="line">  @input = string</div><div class="line">end</div><div class="line"></div><div class="line">When(&quot;the calculator is run&quot;) do</div><div class="line">  @output = `ruby calc.rb #&#123;@input&#125;`</div><div class="line">end</div><div class="line"></div><div class="line">Then(&quot;the output should be &#123;string&#125;&quot;) do |string|</div><div class="line">  expect(@output).to eq string</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>在<code>calc.rb</code>中加入一行，使得output等于预期:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print eval (ARGV[0])</div></pre></td></tr></table></figure>
+<p>不了解eval的用法？👉戳这里<a href="https://ruby-hacking-guide.github.io/anyeval.html" target="_blank" rel="external">Dynamic evaluation</a></p>
+<p>简单来说，这里input是”2 + 2”，那么eval(input)就是会4.</p>
+<p>这时继续运行cucumber，出现这样的报错：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fl5763tsrqj30mg084jsm.jpg" alt=""></p>
+<p>显示except是undefined method，那是由于没有安装RSpec，在gemfile中加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem &apos;rspec-rails&apos;</div></pre></td></tr></table></figure>
+<p>然后<code>bundle install</code>，再次运行<code>cucumber</code>，Pass！</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fl579bi1l5j30mf04r3yx.jpg" alt=""></p>
+<p>整个流程算是走完了。</p>
+<p>以上就是一个cucumber测试的基本流程了。</p>
+<p>cucumber的整个语法结构有个名字叫做<a href="https://github.com/cucumber/cucumber/wiki/Gherkin" target="_blank" rel="external">Gherkin</a>，例子中我们的<code>add.feature</code>就是遵守着Gherkin的语法。</p>
+<p>Gherkin的大致结构类似这样：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fl57tq18wej30av03474i.jpg" alt=""></p>
+<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p>实作的时候还是踩了些坑的，看报错却又找不到哪里出问题，看stack overflow也是一脸懵逼，这里略去一万字的吐糟……</p>
+<p>推荐：</p>
+<p><a href="https://forums.pragprog.com/forums/166" target="_blank" rel="external">the cucumber book‘s forums</a></p>
+<p><a href="https://book.douban.com/subject/24843412/" target="_blank" rel="external">Cucumber：行为驱动开发指南</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/11/02/cucumber-intro-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1926,197 +2144,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/10/login-server-without-password/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/source/images/avtar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lucia">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/10/login-server-without-password/" itemprop="url">
-                  SSH免密码登录远端服务器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T08:24:21+08:00">
-                2017-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/10/login-server-without-password/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/10/login-server-without-password/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="吐个糟先"><a href="#吐个糟先" class="headerlink" title="吐个糟先"></a>吐个糟先</h4><p>前段时间开始学习Linux云服务器部署运维，在免密码登录那块卡了很久，一直没找到原因，删除实例，重新生成SSH key，折腾了几次，每次都以为这次没问题了，结果登录的时候，擦，还是要求输入密码，你说糟心不？索性先搁浅了起来，前几天又来找虐，试了两次，竟然成功登录了，小激动啊！</p>
-<p>记录下免密码登录的整个操作流程，庆祝下，也给没踩坑的参考下。</p>
-<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>远端登入如果每次都要输入密码，还是挺麻烦的，不过，别担心，聪明的前辈们早就想到解决办法啦！用非对称加密的方式来实现免密码登录。那，具体怎么玩？</p>
-<p><strong>步骤：</strong></p>
-<p>机器A： 本地的Mac</p>
-<p>机器B： 远端Linux服务器</p>
-<p>Step1、在<strong>本地机器A</strong>检查是否已经生成id_rsa.pub</p>
-<ul>
-<li><p>终端运行<code>cat ~/.ssh/id_rsa.pub</code></p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fk9qp21kn2j30lt021gmk.jpg" alt=""></p>
-<ul>
-<li><p>如果存在该文件，终端运行：<code>ssh-keygen -p</code>, 将passphrase重新设置为空，直接按Enter即可，这一步很重要，不然的话，即使你设置了免密码登录，还是要每次都输入passphrase才可以登录到远端服务器。</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fk9qp2mmr8j30gz02t3yy.jpg" alt=""></p>
-</li>
-<li><p>如果不存在该文件，需要先生成，终端运行：<code>ssh-keygen -t rsa</code>,  就会生成公钥 <code>~/.ssh/id_rsa.pub</code> 以及密钥 <code>~/.ssh/id_rsa</code>啦。同样的，一直按Enter，不要设置passphrase。</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>Step2、在<strong>机器B</strong>添上本地的公钥</p>
-<ul>
-<li><p>登录远端服务器后，新建authorized_keys</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir ~/.ssh</div><div class="line">touch ~/.ssh/authorized_keys</div></pre></td></tr></table></figure>
-</li>
-<li><p>将公钥贴进远端服务器的authorized_keys中</p>
-<p>在A上运行：<code>cat ~/.ssh/id_rsa.pub</code>， 复制本机的公钥</p>
-<p>回到B上，运行：<code>nano ~/.ssh/authorized_keys</code>, 把公钥贴进去</p>
-</li>
-<li><p>设置机器B上的文件权限</p>
-<p>运行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod 700 ~/.ssh</div><div class="line">chmod 644 ~/.ssh/authorized_keys</div></pre></td></tr></table></figure>
-<p>有的参考文档要求设置成600，试了下，644，600，保证owner是可读写可执行，而其他用户和群组的最大权限是可读即可。</p>
-</li>
-</ul>
-<p>可以了！很简单是不是？试试看，退出重新登录下，不用敲密码啦！</p>
-<h4 id="The-end"><a href="#The-end" class="headerlink" title="The end"></a>The end</h4><p> BTW，我之前的问题是passphrase没有设置为空，另外SSH文件复制时也出错，后面重新生成才解决的。</p>
-<p>看了一些有关SSH免登录的操作说明，有一篇挺干货的。推荐：</p>
-<p><a href="https://my.oschina.net/magicalSam/blog/1466144" target="_blank" rel="external">Mac、Linux 上实现SSH免密码登陆到Linux服务器</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2166,7 +2193,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
