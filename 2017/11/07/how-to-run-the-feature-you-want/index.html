@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://lupeipei.github.io/2017/11/07/how-to-run-the-feature-you-want/index.html">
 <meta property="og:site_name" content="Lucia">
 <meta property="og:description" content="正文只运行指定的feature时，有两种方法。  可以类似RSpec那样，指定文件位置 ，比如 cucumber features/your_feature.feature 可以添加tag  比如： 1234567@approved @car_buy　　Feature: Car Buy        　　@wip        　　Scenario: Buy a car in store 　　一个">
-<meta property="og:updated_time" content="2017-11-07T14:58:48.000Z">
+<meta property="og:updated_time" content="2017-11-08T09:34:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何在cucumber中运行指定的feature？">
 <meta name="twitter:description" content="正文只运行指定的feature时，有两种方法。  可以类似RSpec那样，指定文件位置 ，比如 cucumber features/your_feature.feature 可以添加tag  比如： 1234567@approved @car_buy　　Feature: Car Buy        　　@wip        　　Scenario: Buy a car in store 　　一个">
@@ -389,7 +389,7 @@
 <p>使用tag的好处是可以细化到scenario。比如上例， 就可以使用命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cucumber –tags @wip</div></pre></td></tr></table></figure>
 <p>来运行你想要的那部分Scenario.</p>
-<p>插一句：cucumber默认加载<code>features/support/env.rb</code>.</p>
+<p>插一句：cucumber默认加载<code>features/support/.</code>. 即support下的所有文件。</p>
 <h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="http://www.cnblogs.com/puresoul/archive/2011/12/28/2305160.html" target="_blank" rel="external">cucumber 入门之Gherkin</a></p>
 
       
