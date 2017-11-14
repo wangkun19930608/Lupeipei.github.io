@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Web," />
+  <meta name="keywords" content="Hexo," />
 
 
 
@@ -87,19 +87,24 @@
 
 
 
-<meta name="description" content="写在前面之前搭建网站时，做过一个landingpage, 加入了背景音乐，觉得还挺有意思的，记录下操作步骤，以备不时之需。 正文效果图：  通过点击按钮来控制音乐的播放。 怎么做？ 三部曲，html,css, js. 以首页为welcome的index.html.erb为例，简单说明。  step1、在首页index.html.erb中，添加如下代码：  123&amp;lt;a id=&amp;quot;btn">
-<meta name="keywords" content="Web">
+<meta name="description" content="写在前面这两天给自己的blog加上了阅读量统计，记录下整个的实现过程，给需要的小伙伴一个参考。 以下过程是针对NexT主题的blog，使用了第三方服务leancloud。 正文一、配置leancloud  进入leancloud主页，完成登陆注册。  创建一个应用，应用的名字可以随喜好来定，后面也可以在设置中进行修改。 这里我创建了一个名为counter的应用，   创建好应用后，选择 存储 -">
+<meta name="keywords" content="Hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="让网站声色俱佳—添加背景音乐">
-<meta property="og:url" content="http://lupeipei.github.io/2017/09/15/add-backgroup-music/index.html">
+<meta property="og:title" content="如何为你的blog添加文章阅读量统计？">
+<meta property="og:url" content="http://lupeipei.github.io/2017/11/14/how-to-add-page-views-for-your-blog/index.html">
 <meta property="og:site_name" content="Lucia">
-<meta property="og:description" content="写在前面之前搭建网站时，做过一个landingpage, 加入了背景音乐，觉得还挺有意思的，记录下操作步骤，以备不时之需。 正文效果图：  通过点击按钮来控制音乐的播放。 怎么做？ 三部曲，html,css, js. 以首页为welcome的index.html.erb为例，简单说明。  step1、在首页index.html.erb中，添加如下代码：  123&amp;lt;a id=&amp;quot;btn">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fksf8misk7g30zi0j40yp.gif">
-<meta property="og:updated_time" content="2017-10-23T11:56:38.000Z">
+<meta property="og:description" content="写在前面这两天给自己的blog加上了阅读量统计，记录下整个的实现过程，给需要的小伙伴一个参考。 以下过程是针对NexT主题的blog，使用了第三方服务leancloud。 正文一、配置leancloud  进入leancloud主页，完成登陆注册。  创建一个应用，应用的名字可以随喜好来定，后面也可以在设置中进行修改。 这里我创建了一个名为counter的应用，   创建好应用后，选择 存储 -">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1flhx4wu9pcj30sx0dzjth.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1flhx4xk523j30sy0kf77v.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1flhx4xa9klj30vr0d141n.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1flhx4x1bk8j30re06jgmx.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1flhx4wjyduj30yh0gv7cv.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1flhx4vwevbj30v20i6gow.jpg">
+<meta property="og:updated_time" content="2017-11-14T15:02:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="让网站声色俱佳—添加背景音乐">
-<meta name="twitter:description" content="写在前面之前搭建网站时，做过一个landingpage, 加入了背景音乐，觉得还挺有意思的，记录下操作步骤，以备不时之需。 正文效果图：  通过点击按钮来控制音乐的播放。 怎么做？ 三部曲，html,css, js. 以首页为welcome的index.html.erb为例，简单说明。  step1、在首页index.html.erb中，添加如下代码：  123&amp;lt;a id=&amp;quot;btn">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fksf8misk7g30zi0j40yp.gif">
+<meta name="twitter:title" content="如何为你的blog添加文章阅读量统计？">
+<meta name="twitter:description" content="写在前面这两天给自己的blog加上了阅读量统计，记录下整个的实现过程，给需要的小伙伴一个参考。 以下过程是针对NexT主题的blog，使用了第三方服务leancloud。 正文一、配置leancloud  进入leancloud主页，完成登陆注册。  创建一个应用，应用的名字可以随喜好来定，后面也可以在设置中进行修改。 这里我创建了一个名为counter的应用，   创建好应用后，选择 存储 -">
+<meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1flhx4wu9pcj30sx0dzjth.jpg">
 
 
 
@@ -127,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://lupeipei.github.io/2017/09/15/add-backgroup-music/"/>
+  <link rel="canonical" href="http://lupeipei.github.io/2017/11/14/how-to-add-page-views-for-your-blog/"/>
 
 
 
 
 
-  <title> 让网站声色俱佳—添加背景音乐 | Lucia </title>
+  <title> 如何为你的blog添加文章阅读量统计？ | Lucia </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -272,7 +277,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/09/15/add-backgroup-music/">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/11/14/how-to-add-page-views-for-your-blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lucia">
@@ -293,7 +298,7 @@
             
             
               
-                让网站声色俱佳—添加背景音乐
+                如何为你的blog添加文章阅读量统计？
               
             
           </h1>
@@ -308,8 +313,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-15T19:55:01+08:00">
-                2017-09-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-14T20:36:56+08:00">
+                2017-11-14
               </time>
             
 
@@ -331,8 +336,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index">
-                    <span itemprop="name">Web</span>
+                  <a href="/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
                   </a>
                 </span>
 
@@ -349,9 +354,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/15/add-backgroup-music/#comments" itemprop="discussionUrl">
+                <a href="/2017/11/14/how-to-add-page-views-for-your-blog/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/09/15/add-backgroup-music/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/11/14/how-to-add-page-views-for-your-blog/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -359,7 +364,7 @@
 
           
           
-             <span id="/2017/09/15/add-backgroup-music/" class="leancloud_visitors" data-flag-title="让网站声色俱佳—添加背景音乐">
+             <span id="/2017/11/14/how-to-add-page-views-for-your-blog/" class="leancloud_visitors" data-flag-title="如何为你的blog添加文章阅读量统计？">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -388,29 +393,44 @@
       
 
       
-        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>之前搭建网站时，做过一个landingpage, 加入了背景音乐，觉得还挺有意思的，记录下操作步骤，以备不时之需。</p>
-<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>效果图：</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fksf8misk7g30zi0j40yp.gif" alt=""></p>
-<p>通过点击按钮来控制音乐的播放。</p>
-<p>怎么做？</p>
-<p><strong>三部曲，html,css, js.</strong></p>
-<p>以首页为welcome的<code>index.html.erb</code>为例，简单说明。</p>
+        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>这两天给自己的blog加上了阅读量统计，记录下整个的实现过程，给需要的小伙伴一个参考。</p>
+<p>以下过程是针对NexT主题的blog，使用了第三方服务<a href="https://leancloud.cn/" target="_blank" rel="external">leancloud</a>。</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>一、配置<a href="https://leancloud.cn/" target="_blank" rel="external">leancloud</a></p>
 <ul>
-<li>step1、在首页<code>index.html.erb</code>中，添加如下代码：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;a id=&quot;btn-music&quot; class=&quot;btn-music&quot;&gt;&lt;/a&gt;</div><div class="line">&lt;audio class=&quot;music&quot; src=&quot;XXX.mp3&quot; autoplay controls loop hidden&gt;</div><div class="line">&lt;/audio&gt;</div></pre></td></tr></table></figure>
-<p>其中，<code>src</code>部分根据个人情况进行修改，如果音乐文件存在本地的public下，直接引用文件名，如果是网路上，直接引用网址，类似这样：<br><code>src=&quot;https://res.cloudinary.com/dfbew47j6/video/upload/v1496754060/lighthouse_s31qoc.m4a&quot;</code></p>
-<ul>
-<li>step2、在你的<code>welcome.scss</code>或者<code>application.scss</code>中添加以下代码：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">.btn-music &#123;</div><div class="line">  position: absolute;</div><div class="line">  top: 1rem;</div><div class="line">  left: 1rem;</div><div class="line">  width: 3rem;</div><div class="line">  height: 3rem;</div><div class="line">  margin-left: 20px;</div><div class="line">  background: url(&apos;https://res.cloudinary.com/elliepooh/image/upload/v1491889929/music_s7aiet.svg&apos;) center center / 100% no-repeat;</div><div class="line">  cursor: pointer;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.music-off &#123;</div><div class="line">  background: url(&apos;https://res.cloudinary.com/elliepooh/image/upload/v1491890054/music-off_nrnsni.svg&apos;) center center / 90% no-repeat;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>step3、在首页<code>index.html.erb</code>最下方，加入如下代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">let playMusic = true;</div><div class="line">document.getElementById(&quot;btn-music&quot;).addEventListener(&quot;click&quot;, function() &#123;</div><div class="line">  playMusic = !playMusic;</div><div class="line">  document.getElementById(&quot;btn-music&quot;).classList.toggle(&apos;music-off&apos;);</div><div class="line">  playMusic ? document.querySelector(&apos;.music&apos;).play() : document.querySelector(&apos;.music&apos;).pause();</div><div class="line">  &#125;);</div><div class="line">  worldMusic.volume = 0.8;//预设音量</div><div class="line">  &lt;/script&gt;</div></pre></td></tr></table></figure>
+<li><p>进入<a href="https://leancloud.cn/" target="_blank" rel="external">leancloud</a>主页，完成登陆注册。</p>
+</li>
+<li><p>创建一个应用，应用的名字可以随喜好来定，后面也可以在设置中进行修改。</p>
+<p>这里我创建了一个名为counter的应用，</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1flhx4wu9pcj30sx0dzjth.jpg" alt=""></p>
+</li>
+<li><p>创建好应用后，选择 <strong>存储</strong> -  <strong>创建 class</strong>， 写入class的名称，这里为了保证对NexT主题的修改兼容，请一定命名为<strong>Counter</strong>，权限建议选择<strong>无限制</strong>，或者<strong>限制写入</strong>也OK的。</p>
+<p>【你可以把Counter看做是用来存储你的文章浏览情况的，呃，貌似它就是这样的。】</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1flhx4xk523j30sy0kf77v.jpg" alt=""></p>
+<p>​</p>
+</li>
+<li><p>选择<strong>设置</strong> - <strong>应用Key</strong>, 我们拿到App ID  ,App Key, 这两个关键参数是要写入你NexT主题的配置文件的。【吐糟下，这两个参数目前（2017.11）是不能复制的，只能手敲进config文件。】</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1flhx4xa9klj30vr0d141n.jpg" alt=""></p>
 </li>
 </ul>
-<p>搞定，可以愉快地听歌啦！！</p>
-<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p>参考资料：</p>
-<p><a href="https://codepen.io/elliepooh/pen/dRPOqM/" target="_blank" rel="external">lighthouse</a><br><a href="http://web.ruby001.cn/css/64065747447400107852.html" target="_blank" rel="external">CSS中id与class共存</a></p>
+<p>二、设置NexT主题</p>
+<ul>
+<li>在NexT主题的<code>_config.yml</code>文件中，加入App ID和key。</li>
+</ul>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1flhx4x1bk8j30re06jgmx.jpg" alt=""></p>
+<ul>
+<li><p>终端输入,重新部署hexo ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo g -d</div></pre></td></tr></table></figure>
+<p>应该就可以正常使用阅读量统计的功能了。</p>
+<p>这时候，文章的初始阅读量显示为0，点击后会生成记录，这些数据会记录在先前创建的Counter表中。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1flhx4wjyduj30yh0gv7cv.jpg" alt=""></p>
+</li>
+</ul>
+<p>三、安全性</p>
+<p>​    因为App ID和Key都是暴露在外的，为了保证安全性，建议开启Web安全。选择<strong>设置</strong> - <strong>安全中心</strong>，填写上你的blog域名。</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1flhx4vwevbj30v20i6gow.jpg" alt=""></p>
+<p>OK，大功告成。</p>
+<p>Enjoy  : P</p>
+<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p>参考：<a href="https://notes.wanghao.work/2015-10-21-%E4%B8%BANexT%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB%E9%87%8F%E7%BB%9F%E8%AE%A1%E5%8A%9F%E8%83%BD.html#%E9%85%8D%E7%BD%AELeanCloud" target="_blank" rel="external">为NexT主题添加文章阅读量统计功能</a></p>
 
       
     </div>
@@ -440,7 +460,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Web/" rel="tag"># Web</a>
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
           
         </div>
       
@@ -453,18 +473,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/20/living-by-changjiang-river/" rel="next" title="家住长江边">
-                <i class="fa fa-chevron-left"></i> 家住长江边
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/08/one-thursday-afternoon-without-coding/" rel="prev" title="没有coding的周四下午">
-                没有coding的周四下午 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/11/09/usage-of-restclient/" rel="prev" title="RestClient的用法及封装">
+                RestClient的用法及封装 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -767,9 +783,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://lupeipei.github.io/2017/09/15/add-backgroup-music/';
-          this.page.identifier = '2017/09/15/add-backgroup-music/';
-          this.page.title = '让网站声色俱佳—添加背景音乐';
+          this.page.url = 'http://lupeipei.github.io/2017/11/14/how-to-add-page-views-for-your-blog/';
+          this.page.identifier = '2017/11/14/how-to-add-page-views-for-your-blog/';
+          this.page.title = '如何为你的blog添加文章阅读量统计？';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-lupeipei-github-io.disqus.com/embed.js';
