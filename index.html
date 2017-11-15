@@ -270,6 +270,190 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/11/15/how-to-pass-array-in-examples/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/source/images/avtar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lucia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/15/how-to-pass-array-in-examples/" itemprop="url">
+                  如何在cucumber 的example中传递Array
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-15T22:22:52+08:00">
+                2017-11-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/BDD/" itemprop="url" rel="index">
+                    <span itemprop="name">BDD</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/15/how-to-pass-array-in-examples/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/15/how-to-pass-array-in-examples/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/11/15/how-to-pass-array-in-examples/" class="leancloud_visitors" data-flag-title="如何在cucumber 的example中传递Array">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>实际上，还是传递字符……</p>
+<p>看下面的例子👇</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>当你想要在examples中传递一个Array时，要怎么做？直接传递？我们试试。</p>
+<p>背景如下：</p>
+<p>在文件<code>search.feature</code>中，search_terms的数据是一个数组[ ‘chocolate’ , ‘Nigella Lawson’]：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt; Scenario Outline:</div><div class="line">&gt;&gt; When I search for &quot;&lt;search_terms&gt;&quot;</div><div class="line">&gt;&gt; Then I should get a list of &quot;&lt;recipe_title&gt;&quot;</div><div class="line">&gt;&gt;</div><div class="line">&gt;&gt; Examples:</div><div class="line">&gt;&gt;         | search_terms | recipe_title |</div><div class="line">&gt;&gt;         | [ &apos;chocolate&apos; , &apos;Nigella Lawson&apos;] | White chocolate and mintmousse |</div></pre></td></tr></table></figure>
+<p>对应的step文件，如<code>search_step.rb</code>，内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">When(/^I search for &quot;([^&quot;]*)&quot;$/) do |terms|</div><div class="line">  search_terms = terms</div><div class="line">  ......</div><div class="line">end</div><div class="line"></div><div class="line">Then(/^I should get a list of &quot;([^&quot;]*)&quot;$/) do |recipe_title|</div><div class="line">  ......</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>这时如果直接在终端运行cucumber会报错，因为你的search_terms传递的是一个array。</p>
+<p>在 <a href="http://thread.gmane.org/gmane.comp.programming.tools.cucumber/9315" target="_blank" rel="external">Cucumber:10316 -  Passing arrays in tables</a>中有位mswinson提到了这个问题，然后有位叫Andy的回复了他。【蛮好玩的，有兴趣的可以看看。】</p>
+<p>解决方法就是<strong>避开Array，传递String，用“，”来区分各个element，然后在step definitions中用<code>split(/, /)</code>将其转换为Array</strong>。</p>
+<p>比如上面的这个例子，可以这么来：</p>
+<p>修改文件<code>search.feature</code>内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt; Scenario Outline:</div><div class="line">&gt;&gt; When I search for &quot;&lt;search_terms&gt;&quot;</div><div class="line">&gt;&gt; Then I should get a list of &quot;&lt;recipe_title&gt;&quot;</div><div class="line">&gt;&gt;</div><div class="line">&gt;&gt; Examples:</div><div class="line">&gt;&gt;         | search_terms | recipe_title |</div><div class="line">&gt;&gt;         | chocolate , Nigella Lawson| White chocolate and mintmousse |</div></pre></td></tr></table></figure>
+<p>在对应的step文件中， 使用<code>search_terms = terms.split(/, /)</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">When(/^I search for &quot;([^&quot;]*)&quot;$/) do |terms|</div><div class="line">  search_terms = terms.split(/, /) ## 这时search_terms就是一个array了</div><div class="line">  ......</div><div class="line">end</div><div class="line"></div><div class="line">Then(/^I should get a list of &quot;([^&quot;]*)&quot;$/) do |recipe_title|</div><div class="line">  ......</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>OK，完成。</p>
+<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p>嗯，就这么简单，可我还是想把它写出来，硬生生整出了一篇文章来……</p>
+<p>参考： <a href="http://thread.gmane.org/gmane.comp.programming.tools.cucumber/9315" target="_blank" rel="external">Cucumber:10316 -  Passing arrays in tables</a></p>
+<p>enjoy ：D</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/11/14/how-to-add-page-views-for-your-blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2039,224 +2223,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/22/TDD-with-RSpec-errors-recording/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/source/images/avtar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lucia">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/22/TDD-with-RSpec-errors-recording/" itemprop="url">
-                  TDD with RSpec出错集之单元测试篇
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-22T15:52:04+08:00">
-                2017-10-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ROR/" itemprop="url" rel="index">
-                    <span itemprop="name">ROR</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/22/TDD-with-RSpec-errors-recording/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/22/TDD-with-RSpec-errors-recording/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/10/22/TDD-with-RSpec-errors-recording/" class="leancloud_visitors" data-flag-title="TDD with RSpec出错集之单元测试篇">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>刷完了Edx上关于TDD，BDD的课程，也看了《Everyday rails testing with RSpec》, 于是迫不及待想给自己的网站<a href="https://www.togetherisbetter.cn" target="_blank" rel="external">Together</a>也加上RSpec部分，好比刚从师傅那学了几招的小徒弟，立马想找个人试试身手，这中间自然也是免不了各种坑的，一一记录， 避免二次入坑。</p>
-<p>PS ： FactoryGirl官方GitHub库已经改名为FactoryBot，实作的时候，请小心敲键盘……</p>
-<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><ul>
-<li><p><strong>ArgumentError: Factory not registered</strong></p>
-<p>运行测试文件时，终端报出这样的错误：</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkq88je5s0j30sd04xmyd.jpg" alt=""></p>
-<p><strong>怎么破？</strong></p>
-<p>在<code>spec/spec_helper.rb</code>文件中，加入如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">RSpec.configure do |config|</div><div class="line">  config.include FactoryBot::Syntax::Methods</div><div class="line">  .....</div><div class="line">+  config.before do</div><div class="line">+    FactoryBot.find_definitions</div><div class="line">+  end</div><div class="line">end</div></pre></td></tr></table></figure>
-</li>
-<li><p><strong>FactoryBot::DuplicateDefinitionError: Factory already registered: event</strong></p>
-<p>运行测试文件时，终端报出这样的错误：</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkq8u4t8xfj30qg07wdh6.jpg" alt=""></p>
-<p><strong>怎么破？</strong></p>
-<p>在<code>spec/spec_helper.rb</code>文件中，加入如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">RSpec.configure do |config|</div><div class="line">  config.include FactoryBot::Syntax::Methods</div><div class="line">  .....</div><div class="line">  config.before do</div><div class="line">+   FactoryBot.factories.clear</div><div class="line">    FactoryBot.find_definitions</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure>
-</li>
-<li><p><strong>Please set Qiniu’s access_key and secret_key before authorize any tokens</strong></p>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkqrce6o1ij30pc052wfp.jpg" alt=""></p>
-<p>终端运行<code>rspec spec/controllers/events_controller_spec.rb</code>, 为了测试events controller部分，用FactoryBot创建了event，这里有必要说一下，我的event model中有logo部分，而用户上传的logo图片我是用七牛来存储的。抛出异常，查看七牛官方<a href="https://github.com/qiniu/ruby-sdk/blob/master/spec/qiniu/auth_spec.rb" target="_blank" rel="external">GitHub spec部分</a>，找到了这个：</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkqrjx0s05j30px0jcq67.jpg" alt=""></p>
-<p>我擦，看完了<code>spec/qiniu/tokens/auth_spec.rb</code>，除了懵逼外，我不知道怎么走下一步，转念想想我这里并不要测试七牛这块啊，我只想测试controller中的method是不是调用了，so what should I do? bypass it。</p>
-<p>修改<code>app/uploads/</code>下所有的uploader文档，比如avatar_uploader.rb,  修改storage设置：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkqsdym52jj30c302hq2y.jpg" alt=""><br><strong>除了生产环境，开发和测试请一律使用file存储！</strong></p>
-<p>再次测试， 一线飘绿，OK！</p>
-</li>
-<li><p><strong>NoMethodError: Undefined method ‘sign_in’</strong></p>
-<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkqtb87yhqj30p903saah.jpg" alt=""></p>
-<p><strong>怎么破？</strong></p>
-<p>google后，在stack overflow上找到了解答。</p>
-<p>修改<code>spec/support/rails_helper.rb</code>文件，在<code>RSpec.configure do |config|</code>部分添加<code>config.include Devise::TestHelpers, type: :controller</code> :</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">RSpec.configure do |config|</div><div class="line">  ......</div><div class="line">+ config.include Devise::TestHelpers, type: :controller</div><div class="line">  ......</div><div class="line">end</div></pre></td></tr></table></figure>
-<p>再次测试, pass!  </p>
-</li>
-<li><p>如果你的model中有图片部分，比如event model中有个event logo，而你用factoryBot生成数据时，是这样的：</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkr1glxjegj30ki065q3s.jpg" alt=""></p>
-<p>同时，你在测试案例中要用到build(:event)，那么，先要恭喜你，新坑正在等在你。</p>
-<p>我在做controller的create method测试时，一直报错：</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fkr1lop75jj30o704bgm8.jpg" alt=""></p>
-<p>设置断点后，找到了是eventlogo没有赋值成功：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr1p9w8bgj30u207egna.jpg" alt=""></p>
-<p>Google后，你会发现stack overflow上已经有人问过类似的了，但是各执一词，让人有些摸不着头脑，有说用fixture_file_upload的，呃，fixture VS FactoryBot， 我们更爱后者。那<strong>怎么破</strong>？</p>
-<p>看<strong>carrierwave</strong>的GitHub文档找到<a href="https://github.com/carrierwaveuploader/carrierwave/wiki/How-to:-Use-test-factories" target="_blank" rel="external">Use test factories</a>部分:</p>
-<p>重点来了：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr233qjewj30k90g6di4.jpg" alt=""></p>
-<p>原来我用的那种格式，是用于create的，如果用build，只存在内存中，则需要换成<code>Rack::Test::UploadedFile.new</code>的样式。</p>
-<p>修改<code>spec/factories/events.rb</code>文件，将原eventlogo注释掉：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr2j2fr38j30ky06kgmq.jpg" alt=""></p>
-</li>
-</ul>
-<p>   终端再次运行：<code>rspec spec/controllers/events_controller_spec.rb</code>, OK !</p>
-<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><pre><code>按照TDD「Test driven development」的理论，应该测试先行, 像下图酱样子：
-</code></pre><p>  <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkr2b72qhfj30s60djt92.jpg" alt=""></p>
-<p>  无奈我已经做好了整个网站，决定不按套路出牌，后期加入TDD，来测测前期代码的稳定性 , 在测了一部分功能后，深有感触，测试果然是很有必要的：P。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2306,7 +2272,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
