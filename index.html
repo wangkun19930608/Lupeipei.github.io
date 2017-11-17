@@ -360,17 +360,6 @@
 
           
           
-             <span id="/2017/11/15/how-to-pass-array-in-examples/" class="leancloud_visitors" data-flag-title="如何在cucumber 的example中传递Array">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -411,208 +400,6 @@
 <h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p>嗯，就这么简单，可我还是想把它写出来，硬生生整出了一篇文章来……</p>
 <p>参考： <a href="http://thread.gmane.org/gmane.comp.programming.tools.cucumber/9315" target="_blank" rel="external">Cucumber:10316 -  Passing arrays in tables</a></p>
 <p>enjoy ：D</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/11/14/how-to-add-page-views-for-your-blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/source/images/avtar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lucia">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/14/how-to-add-page-views-for-your-blog/" itemprop="url">
-                  如何为你的blog添加文章阅读量统计？
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-14T20:36:56+08:00">
-                2017-11-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/14/how-to-add-page-views-for-your-blog/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/14/how-to-add-page-views-for-your-blog/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/11/14/how-to-add-page-views-for-your-blog/" class="leancloud_visitors" data-flag-title="如何为你的blog添加文章阅读量统计？">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>这两天给自己的blog加上了阅读量统计，记录下整个的实现过程，给需要的小伙伴一个参考。</p>
-<p>以下过程是针对NexT主题的blog，使用了第三方服务<a href="https://leancloud.cn/" target="_blank" rel="external">leancloud</a>。</p>
-<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>一、配置<a href="https://leancloud.cn/" target="_blank" rel="external">leancloud</a></p>
-<ul>
-<li><p>进入<a href="https://leancloud.cn/" target="_blank" rel="external">leancloud</a>主页，完成登陆注册。</p>
-</li>
-<li><p>创建一个应用，应用的名字可以随喜好来定，后面也可以在设置中进行修改。</p>
-<p>这里我创建了一个名为counter的应用，</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1flhx4wu9pcj30sx0dzjth.jpg" alt=""></p>
-</li>
-<li><p>创建好应用后，选择 <strong>存储</strong> -  <strong>创建 class</strong>， 写入class的名称，这里为了保证对NexT主题的修改兼容，请一定命名为<strong>Counter</strong>，权限建议选择<strong>无限制</strong>，或者<strong>限制写入</strong>也OK的。</p>
-<p>【你可以把Counter看做是用来存储你的文章浏览情况的，呃，貌似它就是这样的。】</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1flhx4xk523j30sy0kf77v.jpg" alt=""></p>
-<p>​</p>
-</li>
-<li><p>选择<strong>设置</strong> - <strong>应用Key</strong>, 我们拿到App ID  ,App Key, 这两个关键参数是要写入你NexT主题的配置文件的。【吐糟下，这两个参数目前（2017.11）是不能复制的，只能手敲进config文件。】</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1flhx4xa9klj30vr0d141n.jpg" alt=""></p>
-</li>
-</ul>
-<p>二、设置NexT主题</p>
-<ul>
-<li>在NexT主题的<code>_config.yml</code>文件中，加入App ID和key。</li>
-</ul>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1flhx4x1bk8j30re06jgmx.jpg" alt=""></p>
-<ul>
-<li><p>终端输入,重新部署hexo ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo g -d</div></pre></td></tr></table></figure>
-<p>应该就可以正常使用阅读量统计的功能了。</p>
-<p>这时候，文章的初始阅读量显示为0，点击后会生成记录，这些数据会记录在先前创建的Counter表中。</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1flhx4wjyduj30yh0gv7cv.jpg" alt=""></p>
-</li>
-</ul>
-<p>三、安全性</p>
-<p>​    因为App ID和Key都是暴露在外的，为了保证安全性，建议开启Web安全。选择<strong>设置</strong> - <strong>安全中心</strong>，填写上你的blog域名。</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1flhx4vwevbj30v20i6gow.jpg" alt=""></p>
-<p>OK，大功告成。</p>
-<p>Enjoy  : P</p>
-<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p>参考：<a href="https://notes.wanghao.work/2015-10-21-%E4%B8%BANexT%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB%E9%87%8F%E7%BB%9F%E8%AE%A1%E5%8A%9F%E8%83%BD.html#%E9%85%8D%E7%BD%AELeanCloud" target="_blank" rel="external">为NexT主题添加文章阅读量统计功能</a></p>
 
           
         
@@ -745,17 +532,6 @@
           
 
           
-          
-             <span id="/2017/11/09/usage-of-restclient/" class="leancloud_visitors" data-flag-title="RestClient的用法及封装">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
           
 
           
@@ -947,17 +723,6 @@
 
           
           
-             <span id="/2017/11/07/how-to-run-the-feature-you-want/" class="leancloud_visitors" data-flag-title="如何在cucumber中运行指定的feature？">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1126,17 +891,6 @@
           
 
           
-          
-             <span id="/2017/11/03/cucumber-first-try/" class="leancloud_visitors" data-flag-title="初尝Cucumber">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
           
 
           
@@ -1356,17 +1110,6 @@
 
           
           
-             <span id="/2017/11/02/cucumber-intro-1/" class="leancloud_visitors" data-flag-title="对Cucumber的一点理解">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1558,17 +1301,6 @@
 
           
           
-             <span id="/2017/10/25/test-concept-about-mock/" class="leancloud_visitors" data-flag-title="测试概念之mock篇">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1748,17 +1480,6 @@
           
 
           
-          
-             <span id="/2017/10/24/test-concepts-about-stub/" class="leancloud_visitors" data-flag-title="测试概念之stub篇">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
           
 
           
@@ -1944,17 +1665,6 @@
 
           
           
-             <span id="/2017/10/23/passenger-deploy-rails/" class="leancloud_visitors" data-flag-title="Rails部署报错记录Passenger + Nginx">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -2130,17 +1840,6 @@
 
           
           
-             <span id="/2017/10/23/TDD-with-RSpec-integration-test/" class="leancloud_visitors" data-flag-title="TDD with RSpec出错集之Integration测试篇">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -2189,6 +1888,213 @@
 <p>在capybara中为什么要这么用？戳这里<a href="https://github.com/teamcapybara/capybara#xpath-css-and-selectors" target="_blank" rel="external">capybara XPath, CSS and selectors</a> .</p>
 <h4 id="The-end"><a href="#The-end" class="headerlink" title="The end"></a>The end</h4><p><strong>capybara</strong> 中，操作页面的方法除了visit，click外，还有很多比如fill_in， check，choose等等，很强大。</p>
 <p>详见：<a href="https://github.com/teamcapybara/capybara" target="_blank" rel="external">capybara</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/22/TDD-with-RSpec-errors-recording/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/source/images/avtar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lucia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/10/22/TDD-with-RSpec-errors-recording/" itemprop="url">
+                  TDD with RSpec出错集之单元测试篇
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-22T15:52:04+08:00">
+                2017-10-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ROR/" itemprop="url" rel="index">
+                    <span itemprop="name">ROR</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/22/TDD-with-RSpec-errors-recording/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/22/TDD-with-RSpec-errors-recording/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>刷完了Edx上关于TDD，BDD的课程，也看了《Everyday rails testing with RSpec》, 于是迫不及待想给自己的网站<a href="https://www.togetherisbetter.cn" target="_blank" rel="external">Together</a>也加上RSpec部分，好比刚从师傅那学了几招的小徒弟，立马想找个人试试身手，这中间自然也是免不了各种坑的，一一记录， 避免二次入坑。</p>
+<p>PS ： FactoryGirl官方GitHub库已经改名为FactoryBot，实作的时候，请小心敲键盘……</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><ul>
+<li><p><strong>ArgumentError: Factory not registered</strong></p>
+<p>运行测试文件时，终端报出这样的错误：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkq88je5s0j30sd04xmyd.jpg" alt=""></p>
+<p><strong>怎么破？</strong></p>
+<p>在<code>spec/spec_helper.rb</code>文件中，加入如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">RSpec.configure do |config|</div><div class="line">  config.include FactoryBot::Syntax::Methods</div><div class="line">  .....</div><div class="line">+  config.before do</div><div class="line">+    FactoryBot.find_definitions</div><div class="line">+  end</div><div class="line">end</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>FactoryBot::DuplicateDefinitionError: Factory already registered: event</strong></p>
+<p>运行测试文件时，终端报出这样的错误：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkq8u4t8xfj30qg07wdh6.jpg" alt=""></p>
+<p><strong>怎么破？</strong></p>
+<p>在<code>spec/spec_helper.rb</code>文件中，加入如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">RSpec.configure do |config|</div><div class="line">  config.include FactoryBot::Syntax::Methods</div><div class="line">  .....</div><div class="line">  config.before do</div><div class="line">+   FactoryBot.factories.clear</div><div class="line">    FactoryBot.find_definitions</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Please set Qiniu’s access_key and secret_key before authorize any tokens</strong></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkqrce6o1ij30pc052wfp.jpg" alt=""></p>
+<p>终端运行<code>rspec spec/controllers/events_controller_spec.rb</code>, 为了测试events controller部分，用FactoryBot创建了event，这里有必要说一下，我的event model中有logo部分，而用户上传的logo图片我是用七牛来存储的。抛出异常，查看七牛官方<a href="https://github.com/qiniu/ruby-sdk/blob/master/spec/qiniu/auth_spec.rb" target="_blank" rel="external">GitHub spec部分</a>，找到了这个：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkqrjx0s05j30px0jcq67.jpg" alt=""></p>
+<p>我擦，看完了<code>spec/qiniu/tokens/auth_spec.rb</code>，除了懵逼外，我不知道怎么走下一步，转念想想我这里并不要测试七牛这块啊，我只想测试controller中的method是不是调用了，so what should I do? bypass it。</p>
+<p>修改<code>app/uploads/</code>下所有的uploader文档，比如avatar_uploader.rb,  修改storage设置：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkqsdym52jj30c302hq2y.jpg" alt=""><br><strong>除了生产环境，开发和测试请一律使用file存储！</strong></p>
+<p>再次测试， 一线飘绿，OK！</p>
+</li>
+<li><p><strong>NoMethodError: Undefined method ‘sign_in’</strong></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkqtb87yhqj30p903saah.jpg" alt=""></p>
+<p><strong>怎么破？</strong></p>
+<p>google后，在stack overflow上找到了解答。</p>
+<p>修改<code>spec/support/rails_helper.rb</code>文件，在<code>RSpec.configure do |config|</code>部分添加<code>config.include Devise::TestHelpers, type: :controller</code> :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">RSpec.configure do |config|</div><div class="line">  ......</div><div class="line">+ config.include Devise::TestHelpers, type: :controller</div><div class="line">  ......</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>再次测试, pass!  </p>
+</li>
+<li><p>如果你的model中有图片部分，比如event model中有个event logo，而你用factoryBot生成数据时，是这样的：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkr1glxjegj30ki065q3s.jpg" alt=""></p>
+<p>同时，你在测试案例中要用到build(:event)，那么，先要恭喜你，新坑正在等在你。</p>
+<p>我在做controller的create method测试时，一直报错：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fkr1lop75jj30o704bgm8.jpg" alt=""></p>
+<p>设置断点后，找到了是eventlogo没有赋值成功：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr1p9w8bgj30u207egna.jpg" alt=""></p>
+<p>Google后，你会发现stack overflow上已经有人问过类似的了，但是各执一词，让人有些摸不着头脑，有说用fixture_file_upload的，呃，fixture VS FactoryBot， 我们更爱后者。那<strong>怎么破</strong>？</p>
+<p>看<strong>carrierwave</strong>的GitHub文档找到<a href="https://github.com/carrierwaveuploader/carrierwave/wiki/How-to:-Use-test-factories" target="_blank" rel="external">Use test factories</a>部分:</p>
+<p>重点来了：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr233qjewj30k90g6di4.jpg" alt=""></p>
+<p>原来我用的那种格式，是用于create的，如果用build，只存在内存中，则需要换成<code>Rack::Test::UploadedFile.new</code>的样式。</p>
+<p>修改<code>spec/factories/events.rb</code>文件，将原eventlogo注释掉：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr2j2fr38j30ky06kgmq.jpg" alt=""></p>
+</li>
+</ul>
+<p>   终端再次运行：<code>rspec spec/controllers/events_controller_spec.rb</code>, OK !</p>
+<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><pre><code>按照TDD「Test driven development」的理论，应该测试先行, 像下图酱样子：
+</code></pre><p>  <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkr2b72qhfj30s60djt92.jpg" alt=""></p>
+<p>  无奈我已经做好了整个网站，决定不按套路出牌，后期加入TDD，来测测前期代码的稳定性 , 在测了一部分功能后，深有感触，测试果然是很有必要的：P。</p>
 
           
         
@@ -2272,7 +2178,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2511,113 +2417,6 @@
 
 
   
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("UYmGyQ3S1ohxUWhyyLP2bMYy-gzGzoHsz", "hMBpf1vdAcqxKjlrhkbtKJPB");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
 
   
 
