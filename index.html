@@ -406,18 +406,18 @@
 <p>Page Object Model是一个自动化测试模版，创建用于测试的用户界面的抽象实体。可以将网站的每个page看作是一个类，然后通过调用这些类的实例来进行测试，而每个页面的元素可以看作是一个page的method，通过调用这些method来对该页面的元素进行调用。</p>
 <p>这样，page就很好理解了。</p>
 <p>Page是用于描述真实页面的类，比如在<code>web/pages</code>目录下，建立主页的文件，可以这样写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt; class Homepage &lt; Howitzer::Web::Page</div><div class="line">&gt; path &apos;/&apos;</div><div class="line">&gt; end</div><div class="line">&gt; HomePage.open #打开主页</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; class Homepage &lt; Howitzer::Web::Page</div><div class="line">&gt; path &apos;/&apos;</div><div class="line">&gt; end</div><div class="line">&gt; HomePage.open #打开主页</div></pre></td></tr></table></figure>
 </blockquote>
 <p>&gt;</p>
 <blockquote>
 <p>当然，这里的前提是你在<code>config/default.yml</code>中已经设置好了app_host</p>
 <p>再比如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt; class ProductPage &lt; Howitzer::Web::Page</div><div class="line">&gt;   path &apos;/products&#123;/id&#125;&apos;</div><div class="line">&gt; end</div><div class="line">&gt; ProductPage.open(id: 1) #=&gt; 访问 /products/1</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; class ProductPage &lt; Howitzer::Web::Page</div><div class="line">&gt;   path &apos;/products&#123;/id&#125;&apos;</div><div class="line">&gt; end</div><div class="line">&gt; ProductPage.open(id: 1) #=&gt; 访问 /products/1</div></pre></td></tr></table></figure>
 </blockquote>
 <p>&gt;</p>
 <blockquote>
 <p>如果要指定特定的host，可以这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt; class AuthPage &lt; Howitzer::Web::Page</div><div class="line">&gt; 	site &apos;https://example.com&apos;</div><div class="line">&gt; 	path &apos;/auth&apos;</div><div class="line">&gt; end</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; class AuthPage &lt; Howitzer::Web::Page</div><div class="line">&gt; 	site &apos;https://example.com&apos;</div><div class="line">&gt; 	path &apos;/auth&apos;</div><div class="line">&gt; end</div></pre></td></tr></table></figure>
 </blockquote>
 <p>&gt;</p>
 <blockquote>
@@ -425,13 +425,13 @@
 <p>其实就是用于区分每个page的anchor，有三种不同的类型：</p>
 <p><strong>URL，title，element</strong></p>
 <p>比如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt; class HomePage &lt; Howitzer::Web::Page</div><div class="line">&gt;   path &apos;/&apos;</div><div class="line">&gt;   validate :url, /\A(?:.*?:\/\/)?[^\/]*\/?\z/</div><div class="line">&gt; end</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; class HomePage &lt; Howitzer::Web::Page</div><div class="line">&gt;   path &apos;/&apos;</div><div class="line">&gt;   validate :url, /\A(?:.*?:\/\/)?[^\/]*\/?\z/</div><div class="line">&gt; end</div></pre></td></tr></table></figure>
 </blockquote>
 <p>&gt;</p>
 <blockquote>
 <p>使用<code>.displayed?</code>可以去判断一个页面的所有验证是否都通过。</p>
 <p>用这个可以检查特定的页面成功打开，比如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; class AccountPage &lt; Howitzer::Web::Page</div><div class="line">&gt;   path &apos;/accounts/&#123;id&#125;&apos;</div><div class="line">&gt;  end</div><div class="line">&gt;  AccountPage.open(id: 22)</div><div class="line">&gt;  expect(AccountPage).to be_displayed</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt; class AccountPage &lt; Howitzer::Web::Page</div><div class="line">&gt;   path &apos;/accounts/&#123;id&#125;&apos;</div><div class="line">&gt;  end</div><div class="line">&gt;  AccountPage.open(id: 22)</div><div class="line">&gt;  expect(AccountPage).to be_displayed</div></pre></td></tr></table></figure>
 </blockquote>
 </li>
 <li><p>Elements</p>
