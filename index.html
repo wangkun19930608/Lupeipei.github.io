@@ -270,6 +270,209 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2018/01/02/upload-capybara-screenshot-to-aliyun-oss/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/source/images/avtar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lucia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/01/02/upload-capybara-screenshot-to-aliyun-oss/" itemprop="url">
+                  将Capybara的screenshot上传至阿里云的OSS
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-02T21:43:27+08:00">
+                2018-01-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/aliyun/" itemprop="url" rel="index">
+                    <span itemprop="name">aliyun</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/aliyun/Howitzer/" itemprop="url" rel="index">
+                    <span itemprop="name">Howitzer</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/02/upload-capybara-screenshot-to-aliyun-oss/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/01/02/upload-capybara-screenshot-to-aliyun-oss/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>网页测试中，有一个很棒的gem叫<a href="https://github.com/mattheworiordan/capybara-screenshot" target="_blank" rel="external">capybara-screenshot</a> ，当你的scenario失败时，会自动将网页进行截图。</p>
+<p>当然，你也可以手动截图。比如我想看看在step A中，我停留的网页长什么样子，直接用<code>Capybara::Screenshot.screenshot_and_open_image</code>, 终端运行cucumber或者rspec时，就可以看到网页的模样。</p>
+<p>截图下来的图片，如果保存在本地，随着scenario的增多，自然会吃不消的，使用云存储是个好选择，比如放在阿里云上，还能通过生成的URL来将截图呈现在网页上，非常棒。</p>
+<p>【当然你也可以在capybara中设置<code>Capybara::Screenshot.prune_strategy</code>的值，只保存最后的XX个或者最后一次运行的截图，这样截图就不会很多，但这里不讨论这种情况】</p>
+<p>下面，简单来走一走如何将截图上传至阿里云的OSS。</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>以howitzer_cucumber的一个登陆测试为例，来看看如何将截图传至阿里云。</p>
+<ul>
+<li><p>开通阿里云的OSS服务【点击，按照指示下单购买即可】</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fn2kck0bc0j30sa06hwfl.jpg" alt=""></p>
+</li>
+<li><p>新建存储空间bucket，获取你的aliyun_access_key， aliyun_secret_key，host【存储空间概览下面的endpoint】</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fn2kfi4tsvj30wa03ldgq.jpg" alt=""></p>
+</li>
+</ul>
+<ul>
+<li><p>在gemfile中添加<code>gem &#39;aliyun-oss-sdk&#39;</code>, 终端运行<code>bundle install</code></p>
+</li>
+<li><p>在 <code>features/support</code>中新建文件<code>aliyun.rb</code>，试试上传一张图片：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">require &apos;aliyun/oss&apos;</div><div class="line">aliyun_access_key = &quot;你的access_key&quot;</div><div class="line">aliyun_secret_key = &quot;你的secret_key&quot;</div><div class="line">host = &apos;你的host&apos;</div><div class="line">bucket = &apos;你的bucket&apos;</div><div class="line">client = Aliyun::Oss::Client.new(aliyun_access_key, aliyun_secret_key, host: host, bucket: bucket)</div><div class="line">client.bucket_create_object(&apos;images/image.png&apos;, File.new(/Users/xxx/xxx/image.png), &#123;&apos;Content-Type&apos; =&gt; &apos;image/png&apos; &#125;)</div></pre></td></tr></table></figure>
+<p>这里File.new中的参数，是你想要上传的本地图片的文件路径。</p>
+<p>终端运行该脚本，在你刚刚新建的bucket中，查看“文件管理”，你会发现已经上传成功，很赞有没有？</p>
+</li>
+<li><p>接着我们上传截图，比如登陆测试的scenario长这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Scenario: 用户输入正确的邮箱和密码完成登录</div><div class="line">  Given 我是已经注册的用户&quot;管理员张三&quot;</div><div class="line">  And  我在登录页面</div><div class="line">  When 我在登录页面的表格中输入邮箱:&quot;admin@123.com&quot;和密码:&quot;Password123456&quot;</div><div class="line">  And 我点击登录按钮，提交表单</div><div class="line">  Then 我可以看到我已经进入了个人的主页</div></pre></td></tr></table></figure>
+<p>现在我要截图一下登陆页面，可以这么来， 在对应的step的定义中，添加代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">And(/^我在登录页面$/) do</div><div class="line">  LoginPage.open</div><div class="line"> + LoginPage.on do</div><div class="line"> +   file = Capybara::Screenshot.screen_shot_and_save_page</div><div class="line"> + end</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>到这里你自然会想到，需要将上传这一步进行封装调用，我们先封装一下图片上传。</p>
+<p>考虑到<code>Capybara::Screenshot.screen_shot_and_save_page</code>得到的是一个hash，而我们想要的其实是截图的文件路径，所以用<code>Dir.pwd + file[:image].sub(&#39;.&#39;,&#39;&#39;)</code> 来获取截图路径。</p>
+<p>修改<code>aliyun.rb</code>文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">require &apos;aliyun/oss&apos;</div><div class="line"></div><div class="line">aliyun_access_key = &quot;你的access_key&quot;</div><div class="line">aliyun_secret_key = &quot;你的secret_key&quot;</div><div class="line">host = &apos;你的host&apos;</div><div class="line">bucket = &apos;你的bucket&apos;</div><div class="line">$client = Aliyun::Oss::Client.new(aliyun_access_key, aliyun_secret_key, host: host, bucket: bucket)</div><div class="line"></div><div class="line">module AliyunClient</div><div class="line">  module Client</div><div class="line">    def upload_image(filename, file)</div><div class="line">      image_file = Dir.pwd + file[:image].sub(&apos;.&apos;,&apos;&apos;)</div><div class="line">      $client.bucket_create_object(filename, File.new(image_file), &#123;&apos;Content-Type&apos; =&gt; &apos;image/png&apos; &#125;)</div><div class="line">    end</div><div class="line">  end</div><div class="line">end</div><div class="line"></div><div class="line">class Object</div><div class="line">  include AliyunClient::Client</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>封装好了，直接调用我们的upload_image吧！</p>
+<p>在刚刚的step的定义中，添加代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">And(/^我在登录页面$/) do</div><div class="line">  LoginPage.open</div><div class="line">  LoginPage.on do</div><div class="line">    file = Capybara::Screenshot.screen_shot_and_save_page</div><div class="line"> +   upload(&apos;images/image.png&apos;, file)</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>OK!!</p>
+<p>这里，我是上传到images文件夹下，文件名为image.png 。当然具体上传的目标文件及文件夹都是可以自定义的，也是需要自定义的，特别是多次上传，你肯定不希望图片都被覆盖掉了，具体可以查看<a href="https://github.com/aliyun-beta/aliyun-oss-ruby-sdk" target="_blank" rel="external">aliyun-oss-ruby-sdk</a>。</p>
+</li>
+</ul>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://github.com/aliyun-beta/aliyun-oss-ruby-sdk" target="_blank" rel="external">aliyun-oss-ruby-sdk</a></p>
+<p><a href="https://github.com/mattheworiordan/capybara-screenshot" target="_blank" rel="external">capybara-screenshot</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/12/31/web-api-practice/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -404,7 +607,7 @@
 <h5 id="二、建event-model，实作CRUD接口"><a href="#二、建event-model，实作CRUD接口" class="headerlink" title="二、建event model，实作CRUD接口"></a>二、建event model，实作CRUD接口</h5><ul>
 <li><p>建event model,  终端输入：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git checkout -b event # 切换分支，做烂了可以再开个</div><div class="line">rails g model event title:string description:text uuid:string</div><div class="line">rake db:migrate</div></pre></td></tr></table></figure>
-<p>「为了安全性，event 的model都会带有一个uuid的字段」</p>
+<p>「为了安全性，给event加上一个uuid的字段」</p>
 <p>在<code>app/models/event.rb</code>中，给title加上有效性验证，并在创建时自动生成uuid：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">class Event &lt; ApplicationRecord</div><div class="line">  validates_presence_of :title</div><div class="line">  before_validation :generate_uuid, :only =&gt; :create</div><div class="line">  def to_param</div><div class="line">  	self.uuid</div><div class="line">  end</div><div class="line"></div><div class="line">  protected</div><div class="line"></div><div class="line">  def generate_uuid</div><div class="line">    self.uuid = SecureRandom.uuid</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure>
 </li>
@@ -2151,180 +2354,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/11/22/custom-exceptions-in-ruby/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/source/images/avtar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lucia">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/22/custom-exceptions-in-ruby/" itemprop="url">
-                  如何在ruby中的定制你的exception？
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-22T20:31:02+08:00">
-                2017-11-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Ruby/" itemprop="url" rel="index">
-                    <span itemprop="name">Ruby</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/22/custom-exceptions-in-ruby/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/22/custom-exceptions-in-ruby/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>在ruby中抛出异常时，除了输出程序本身的exception之外，你可能还希望它输出一些其他信息，例如指出是哪个文件，对应的id是什么等，以便后期查找。</p>
-<p>这时，可以通过定制ruby的exception来解决。</p>
-<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p><strong>看个场景：</strong></p>
-<p>以接口测试的一个情况为例，说明一下怎么玩。</p>
-<p>用户A在做接口测试时，使用restclient的get, put, post, delete发出请求，出错，这时，用户A除了希望获取到rest client本身的Exception外，还希望可以输出reponse.headers中的traceid， 类似这样：</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1flr4wg5vwhj30pp015gll.jpg" alt=""></p>
-<p>那么如何将traceid加入到exception的message内容中去呢？</p>
-<p><strong>重新定义一个class，继承自ruby的StandardError， 将需要输出的信息作为变量传递给该class即可。</strong></p>
-<p>具体这么来：</p>
-<p>新建一个class ： MyError</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1flr4v3whjkj30kp0423yq.jpg" alt=""></p>
-<p>在使用restclient时，raise 异常即可。具体代码类似这样👇：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1flr4ju0i95j30k305f0tb.jpg" alt=""></p>
-<p>简单说明一下：</p>
-<p>我们去获取网站example.com首页的内容，用rescue来捕捉异常，并将restclient的异常信息<code>e. message</code> 和<code>e.response.headers[:traceid]</code>合并起来作为参数传递，生成MyError的一个实例 <code>my_error</code> ，并针对response的code做判断，如果code不在200～206， 则抛出<code>my_error</code>.</p>
-<p>这里，其实是将标准的出错信息加了个定制的尾巴，父对象StandardError接受到新的message，在出错时抛出。</p>
-<p>OK啦。</p>
-<p>很简单是不是？得空可以试试定制化你的exceptions：P</p>
-<h4 id="The-end"><a href="#The-end" class="headerlink" title="The end"></a>The end</h4><p>参考：</p>
-<p><a href="http://blog.honeybadger.io/ruby-custom-exceptions/" target="_blank" rel="external">Custom exceptions in Ruby</a></p>
-<p><a href="http://blog.honeybadger.io/ruby-exception-vs-standarderror-whats-the-difference/" target="_blank" rel="external">Ruby’s Exception vs StandardError: What’s the difference?</a>Â</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2374,7 +2403,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2385,7 +2414,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2396,7 +2425,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -2467,7 +2496,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
