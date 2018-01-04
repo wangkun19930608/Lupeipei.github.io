@@ -389,10 +389,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Before do |scenario|</div><div class="line">  # do something before scenario</div><div class="line">end</div><div class="line"></div><div class="line">AfterStep do |scenario|</div><div class="line">	puts scenario.methods</div><div class="line">	puts scenario.class</div><div class="line">  # Do something after each step.</div><div class="line">end</div></pre></td></tr></table></figure>
 <p>终端运行<code>cucumber</code>的时候，你会发现AfterStep中根本不是scenario，得到的是这样的结果：</p>
 <p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fn4lejzw3uj30pt06un03.jpg" alt=""></p>
-<p>这里可以看到它的class是<code>Cucumber::Core::Test::Result::Passed</code>， method里面也没有任何name,text之类。那么，每次afterstep后，返回的<code>Cucumber::Core::Test::Result::Passed</code>， 是个什么鬼？是个step？</p>
+<p>这里可以看到它的class是<code>Cucumber::Core::Test::Result::Passed</code>， method里面也没有任何name,text之类。那么，每次afterstep后，返回的<code>Cucumber::Core::Test::Result::Passed</code>是个什么鬼？是个step？</p>
 <p>看源码：<a href="http://www.rubydoc.info/github/cucumber/cucumber-ruby-core/Cucumber/Core/Test/Result/Passed" target="_blank" rel="external">Class: Cucumber::Core::Test::Result::Passed</a>,  cucumber中每个step运行后，其实有7种情况：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[:failed, :flaky, :skipped, :undefined, :pending, :passed, :unknown]</div></pre></td></tr></table></figure>
-<p>而passed只是其中的一个type，它不是一个step。看cucumber的doc，可以找到<a href="http://www.rubydoc.info/github/cucumber/cucumber-ruby-core/Cucumber/Core/Test/Step" target="_blank" rel="external">step</a>， 里面是text这个字段，这正是我们想要的：</p>
+<p>而passed只是其中的一个type，它不是一个step。看cucumber的doc，可以找到<a href="http://www.rubydoc.info/github/cucumber/cucumber-ruby-core/Cucumber/Core/Test/Step" target="_blank" rel="external">step</a>， 里面的text字段，这正是我们想要的：</p>
 <p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fn4lu77docj30qx0hzack.jpg" alt=""></p>
 <p>可是如何获取到step呢？</p>
 <p>你Google后会发现有一些可能”有用”的解决方法，列出几个我觉得特别的：</p>
@@ -2448,6 +2448,14 @@
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
+</div>
+
+<div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<i class='fa fa-eye'>总访问量</i><span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+<i class='fa fa-user'>访客数</i><span id="busuanzi_value_site_uv"></span>人次
+
 </div>
 
 
