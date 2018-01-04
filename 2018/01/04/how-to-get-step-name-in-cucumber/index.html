@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ROR," />
+  <meta name="keywords" content="Cucumber,BDD," />
 
 
 
@@ -87,30 +87,22 @@
 
 
 
-<meta name="description" content="写在前面刷完了Edx上关于TDD，BDD的课程，也看了《Everyday rails testing with RSpec》, 于是迫不及待想给自己的网站Together也加上RSpec部分，好比刚从师傅那学了几招的小徒弟，立马想找个人试试身手，这中间自然也是免不了各种坑的，一一记录， 避免二次入坑。 PS ： FactoryGirl官方GitHub库已经改名为FactoryBot，实作的时候，请">
-<meta name="keywords" content="ROR">
+<meta name="description" content="写在前面用cucumber测试时，有一个需求，就是提取每个step的name，以及对应的scenario和feature的name。 Google了不少，也试过几个前人提供的方法， 屡屡败北，在坑里挣扎了两天， 发现这方面的资料其实还是挺少的，特别是ruby这块，记录下这趟比较揪心的求解过程，给需要的提供个参考。「我揪心就好了，大伙就别再揪心了。」 正文cucumber hooks 中提到了多个h">
+<meta name="keywords" content="Cucumber,BDD">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TDD with RSpec出错集之单元测试篇">
-<meta property="og:url" content="http://lupeipei.github.io/2017/10/22/TDD-with-RSpec-errors-recording/index.html">
+<meta property="og:title" content="how_to_get_step_name_in_cucumber">
+<meta property="og:url" content="http://lupeipei.github.io/2018/01/04/how-to-get-step-name-in-cucumber/index.html">
 <meta property="og:site_name" content="Lucia">
-<meta property="og:description" content="写在前面刷完了Edx上关于TDD，BDD的课程，也看了《Everyday rails testing with RSpec》, 于是迫不及待想给自己的网站Together也加上RSpec部分，好比刚从师傅那学了几招的小徒弟，立马想找个人试试身手，这中间自然也是免不了各种坑的，一一记录， 避免二次入坑。 PS ： FactoryGirl官方GitHub库已经改名为FactoryBot，实作的时候，请">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fkq88je5s0j30sd04xmyd.jpg">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fkq8u4t8xfj30qg07wdh6.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fkqrce6o1ij30pc052wfp.jpg">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fkqrjx0s05j30px0jcq67.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fkqsdym52jj30c302hq2y.jpg">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fkqtb87yhqj30p903saah.jpg">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fkr1glxjegj30ki065q3s.jpg">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fkr1lop75jj30o704bgm8.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr1p9w8bgj30u207egna.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr233qjewj30k90g6di4.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr2j2fr38j30ky06kgmq.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fkr2b72qhfj30s60djt92.jpg">
-<meta property="og:updated_time" content="2017-10-22T08:08:29.000Z">
+<meta property="og:description" content="写在前面用cucumber测试时，有一个需求，就是提取每个step的name，以及对应的scenario和feature的name。 Google了不少，也试过几个前人提供的方法， 屡屡败北，在坑里挣扎了两天， 发现这方面的资料其实还是挺少的，特别是ruby这块，记录下这趟比较揪心的求解过程，给需要的提供个参考。「我揪心就好了，大伙就别再揪心了。」 正文cucumber hooks 中提到了多个h">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fn4lejzw3uj30pt06un03.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fn4lu77docj30qx0hzack.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fn4mmez9oej30j008jjsl.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fn4n9a82sbj30ey044aaj.jpg">
+<meta property="og:updated_time" content="2018-01-04T08:42:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TDD with RSpec出错集之单元测试篇">
-<meta name="twitter:description" content="写在前面刷完了Edx上关于TDD，BDD的课程，也看了《Everyday rails testing with RSpec》, 于是迫不及待想给自己的网站Together也加上RSpec部分，好比刚从师傅那学了几招的小徒弟，立马想找个人试试身手，这中间自然也是免不了各种坑的，一一记录， 避免二次入坑。 PS ： FactoryGirl官方GitHub库已经改名为FactoryBot，实作的时候，请">
-<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fkq88je5s0j30sd04xmyd.jpg">
+<meta name="twitter:title" content="how_to_get_step_name_in_cucumber">
+<meta name="twitter:description" content="写在前面用cucumber测试时，有一个需求，就是提取每个step的name，以及对应的scenario和feature的name。 Google了不少，也试过几个前人提供的方法， 屡屡败北，在坑里挣扎了两天， 发现这方面的资料其实还是挺少的，特别是ruby这块，记录下这趟比较揪心的求解过程，给需要的提供个参考。「我揪心就好了，大伙就别再揪心了。」 正文cucumber hooks 中提到了多个h">
+<meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fn4lejzw3uj30pt06un03.jpg">
 
 
 
@@ -138,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://lupeipei.github.io/2017/10/22/TDD-with-RSpec-errors-recording/"/>
+  <link rel="canonical" href="http://lupeipei.github.io/2018/01/04/how-to-get-step-name-in-cucumber/"/>
 
 
 
 
 
-  <title> TDD with RSpec出错集之单元测试篇 | Lucia </title>
+  <title> how_to_get_step_name_in_cucumber | Lucia </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -283,7 +275,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/22/TDD-with-RSpec-errors-recording/">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2018/01/04/how-to-get-step-name-in-cucumber/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lucia">
@@ -304,7 +296,7 @@
             
             
               
-                TDD with RSpec出错集之单元测试篇
+                how_to_get_step_name_in_cucumber
               
             
           </h1>
@@ -319,8 +311,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-22T15:52:04+08:00">
-                2017-10-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-04T16:26:32+08:00">
+                2018-01-04
               </time>
             
 
@@ -342,8 +334,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ROR/" itemprop="url" rel="index">
-                    <span itemprop="name">ROR</span>
+                  <a href="/categories/Cucumber/" itemprop="url" rel="index">
+                    <span itemprop="name">Cucumber</span>
                   </a>
                 </span>
 
@@ -360,9 +352,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/22/TDD-with-RSpec-errors-recording/#comments" itemprop="discussionUrl">
+                <a href="/2018/01/04/how-to-get-step-name-in-cucumber/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/22/TDD-with-RSpec-errors-recording/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/01/04/how-to-get-step-name-in-cucumber/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -388,60 +380,52 @@
       
 
       
-        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>刷完了Edx上关于TDD，BDD的课程，也看了《Everyday rails testing with RSpec》, 于是迫不及待想给自己的网站<a href="https://www.togetherisbetter.cn" target="_blank" rel="external">Together</a>也加上RSpec部分，好比刚从师傅那学了几招的小徒弟，立马想找个人试试身手，这中间自然也是免不了各种坑的，一一记录， 避免二次入坑。</p>
-<p>PS ： FactoryGirl官方GitHub库已经改名为FactoryBot，实作的时候，请小心敲键盘……</p>
-<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><ul>
-<li><p><strong>ArgumentError: Factory not registered</strong></p>
-<p>运行测试文件时，终端报出这样的错误：</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkq88je5s0j30sd04xmyd.jpg" alt=""></p>
-<p><strong>怎么破？</strong></p>
-<p>在<code>spec/spec_helper.rb</code>文件中，加入如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">RSpec.configure do |config|</div><div class="line">  config.include FactoryBot::Syntax::Methods</div><div class="line">  .....</div><div class="line">+  config.before do</div><div class="line">+    FactoryBot.find_definitions</div><div class="line">+  end</div><div class="line">end</div></pre></td></tr></table></figure>
+        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>用cucumber测试时，有一个需求，就是提取每个step的name，以及对应的scenario和feature的name。</p>
+<p>Google了不少，也试过几个前人提供的方法， 屡屡败北，在坑里挣扎了两天， 发现这方面的资料其实还是挺少的，特别是ruby这块，记录下这趟比较揪心的求解过程，给需要的提供个参考。「我揪心就好了，大伙就别再揪心了。」</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p><a href="https://github.com/cucumber/cucumber/wiki/Hooks" target="_blank" rel="external">cucumber hooks</a> 中提到了多个hook，包括before，after，但是对于step hooks，只有一个AfterStep， 看AfterStep 的用法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">AfterStep do |scenario|</div><div class="line">  # Do something after each step.</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>官方文档是这么写的，可是你会发现根本不是那么回事。「吐槽下：文档没有及时更新让人很是心塞啊」</p>
+<p>在你的<code>feature/support</code>目录下，新建一个文件<code>hooks.rb</code>,  添加如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Before do |scenario|</div><div class="line">  # do something before scenario</div><div class="line">end</div><div class="line"></div><div class="line">AfterStep do |scenario|</div><div class="line">	puts scenario.methods</div><div class="line">	puts scenario.class</div><div class="line">  # Do something after each step.</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>终端运行<code>cucumber</code>的时候，你会发现AfterStep中根本不是scenario，得到的是这样的结果：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fn4lejzw3uj30pt06un03.jpg" alt=""></p>
+<p>这里可以看到它的class是<code>Cucumber::Core::Test::Result::Passed</code>， method里面也没有任何name,text之类。那么，每次afterstep后，返回的<code>Cucumber::Core::Test::Result::Passed</code>， 是个什么鬼？是个step？</p>
+<p>看源码：<a href="http://www.rubydoc.info/github/cucumber/cucumber-ruby-core/Cucumber/Core/Test/Result/Passed" target="_blank" rel="external">Class: Cucumber::Core::Test::Result::Passed</a>,  cucumber中每个step运行后，其实有7种情况：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[:failed, :flaky, :skipped, :undefined, :pending, :passed, :unknown]</div></pre></td></tr></table></figure>
+<p>而passed只是其中的一个type，它不是一个step。看cucumber的doc，可以找到<a href="http://www.rubydoc.info/github/cucumber/cucumber-ruby-core/Cucumber/Core/Test/Step" target="_blank" rel="external">step</a>， 里面是text这个字段，这正是我们想要的：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fn4lu77docj30qx0hzack.jpg" alt=""></p>
+<p>可是如何获取到step呢？</p>
+<p>你Google后会发现有一些可能”有用”的解决方法，列出几个我觉得特别的：</p>
+<ul>
+<li>最奇葩的解答：<a href="https://stackoverflow.com/questions/29952911/how-can-i-access-a-cucumber-step-name-in-the-step-definition" target="_blank" rel="external">How can I access a Cucumber step name in the step definition?</a></li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fn4mmez9oej30j008jjsl.jpg" alt=""></p>
+<p>​    「竟然直接在step definition里面添加argument，然后在每个step里面添加一行代码 ‘puts step_name ‘, 且            不说这种方法能不能正常运行，你这样每个step都加，成千上万的steps，手都要断吧？」</p>
+<ul>
+<li><p>有坑的解答：<a href="https://groups.google.com/forum/#!topic/cukes/TQLcKQqLsjw" target="_blank" rel="external">Get current step within step</a></p>
+<p><a href="https://groups.google.com/forum/#!topic/cukes/TQLcKQqLsjw" target="_blank" rel="external">Cukes</a> 上，一个叫Marc Divins的人也遇到这个问题，未解决，身为cucumber backers之一的Matt Wynneg给出了custom formatter的解决建议,  这方法已试过，failed。</p>
 </li>
-<li><p><strong>FactoryBot::DuplicateDefinitionError: Factory already registered: event</strong></p>
-<p>运行测试文件时，终端报出这样的错误：</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkq8u4t8xfj30qg07wdh6.jpg" alt=""></p>
-<p><strong>怎么破？</strong></p>
-<p>在<code>spec/spec_helper.rb</code>文件中，加入如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">RSpec.configure do |config|</div><div class="line">  config.include FactoryBot::Syntax::Methods</div><div class="line">  .....</div><div class="line">  config.before do</div><div class="line">+   FactoryBot.factories.clear</div><div class="line">    FactoryBot.find_definitions</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure>
-</li>
-<li><p><strong>Please set Qiniu’s access_key and secret_key before authorize any tokens</strong></p>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkqrce6o1ij30pc052wfp.jpg" alt=""></p>
-<p>终端运行<code>rspec spec/controllers/events_controller_spec.rb</code>, 为了测试events controller部分，用FactoryBot创建了event，这里有必要说一下，我的event model中有logo部分，而用户上传的logo图片我是用七牛来存储的。抛出异常，查看七牛官方<a href="https://github.com/qiniu/ruby-sdk/blob/master/spec/qiniu/auth_spec.rb" target="_blank" rel="external">GitHub spec部分</a>，找到了这个：</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkqrjx0s05j30px0jcq67.jpg" alt=""></p>
-<p>我擦，看完了<code>spec/qiniu/tokens/auth_spec.rb</code>，除了懵逼外，我不知道怎么走下一步，转念想想我这里并不要测试七牛这块啊，我只想测试controller中的method是不是调用了，so what should I do? bypass it。</p>
-<p>修改<code>app/uploads/</code>下所有的uploader文档，比如avatar_uploader.rb,  修改storage设置：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkqsdym52jj30c302hq2y.jpg" alt=""><br><strong>除了生产环境，开发和测试请一律使用file存储！</strong></p>
-<p>再次测试， 一线飘绿，OK！</p>
-</li>
-<li><p><strong>NoMethodError: Undefined method ‘sign_in’</strong></p>
-<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkqtb87yhqj30p903saah.jpg" alt=""></p>
-<p><strong>怎么破？</strong></p>
-<p>google后，在stack overflow上找到了解答。</p>
-<p>修改<code>spec/support/rails_helper.rb</code>文件，在<code>RSpec.configure do |config|</code>部分添加<code>config.include Devise::TestHelpers, type: :controller</code> :</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">RSpec.configure do |config|</div><div class="line">  ......</div><div class="line">+ config.include Devise::TestHelpers, type: :controller</div><div class="line">  ......</div><div class="line">end</div></pre></td></tr></table></figure>
-<p>再次测试, pass!  </p>
-</li>
-<li><p>如果你的model中有图片部分，比如event model中有个event logo，而你用factoryBot生成数据时，是这样的：</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkr1glxjegj30ki065q3s.jpg" alt=""></p>
-<p>同时，你在测试案例中要用到build(:event)，那么，先要恭喜你，新坑正在等在你。</p>
-<p>我在做controller的create method测试时，一直报错：</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fkr1lop75jj30o704bgm8.jpg" alt=""></p>
-<p>设置断点后，找到了是eventlogo没有赋值成功：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr1p9w8bgj30u207egna.jpg" alt=""></p>
-<p>Google后，你会发现stack overflow上已经有人问过类似的了，但是各执一词，让人有些摸不着头脑，有说用fixture_file_upload的，呃，fixture VS FactoryBot， 我们更爱后者。那<strong>怎么破</strong>？</p>
-<p>看<strong>carrierwave</strong>的GitHub文档找到<a href="https://github.com/carrierwaveuploader/carrierwave/wiki/How-to:-Use-test-factories" target="_blank" rel="external">Use test factories</a>部分:</p>
-<p>重点来了：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr233qjewj30k90g6di4.jpg" alt=""></p>
-<p>原来我用的那种格式，是用于create的，如果用build，只存在内存中，则需要换成<code>Rack::Test::UploadedFile.new</code>的样式。</p>
-<p>修改<code>spec/factories/events.rb</code>文件，将原eventlogo注释掉：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr2j2fr38j30ky06kgmq.jpg" alt=""></p>
+<li><p>版本问题的坑：<a href="https://asyoulook.com/computers%20&amp;%20internet/ruby-get-current-step-form-scenario-outline/1394372" target="_blank" rel="external">get current step from scenario outline</a></p>
+<p>这里面用到了Cucumber::Ast::Scenario， 这个在cucumber3.0下运行会报错，无法识别，这是其一，其二是在AfterStep中调用的scenario并没有定义，会报错。</p>
 </li>
 </ul>
-<p>   终端再次运行：<code>rspec spec/controllers/events_controller_spec.rb</code>, OK !</p>
-<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><pre><code>按照TDD「Test driven development」的理论，应该测试先行, 像下图酱样子：
-</code></pre><p>  <img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkr2b72qhfj30s60djt92.jpg" alt=""></p>
-<p>  无奈我已经做好了整个网站，决定不按套路出牌，后期加入TDD，来测测前期代码的稳定性 , 在测了一部分功能后，深有感触，测试果然是很有必要的：P。</p>
+<p>OK，不废话了，直接上解答：</p>
+<p>在新建好的<code>features/support/hooks.rb</code> 中，添加如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Before do |scenario|</div><div class="line">  $step_index = 0</div><div class="line">  $stop_count = scenario.test_steps.count</div><div class="line">  @scenario = scenario</div><div class="line">end</div><div class="line"></div><div class="line">AfterStep do |step|</div><div class="line">  if $step_index &lt; $stop_count</div><div class="line">    puts &quot;steps: #&#123;@scenario.test_steps[$step_index].text&#125;\n&quot;</div><div class="line">  end</div><div class="line">  $step_index += 2</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>运行一个feature试试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cucumber features/xxxx.feature</div></pre></td></tr></table></figure>
+<p>每个step之后，都会输出了AfterStep中定义的<code>&quot;steps: #{@scenario.test_steps[$step_index].text}\n&quot;</code></p>
+<p>类似这样：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fn4n9a82sbj30ey044aaj.jpg" alt=""></p>
+<p>说明：</p>
+<p>代码上的<code>$step_index += 2</code>， 给step_index累加了2，而不是1， 是因为每输出一个step，后面会跟一个<code>aferstep hook</code>，为了不输出<code>aferstep hook</code>字段，所以累加2。</p>
+<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p>参考阅读：</p>
+<p><a href="https://github.com/cucumber/cucumber-ruby/issues/450" target="_blank" rel="external">add step to AfterStep</a></p>
+<p><a href="https://zsoltfabok.com/blog/2012/09/cucumber-jvm-hooks/" target="_blank" rel="external">cucumber JVM:Hooks</a></p>
+<p>P.S.</p>
+<p>这次的求解过程，更深刻地感受到一句话的正确性：<strong>不要盯着锁找答案，钥匙在别处</strong>。</p>
+<p>P.P.S</p>
+<p>Happy coding  and bye bug  : )</p>
 
       
     </div>
@@ -471,7 +455,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ROR/" rel="tag"># ROR</a>
+            <a href="/tags/Cucumber/" rel="tag"># Cucumber</a>
+          
+            <a href="/tags/BDD/" rel="tag"># BDD</a>
           
         </div>
       
@@ -484,18 +470,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/23/TDD-with-RSpec-integration-test/" rel="next" title="TDD with RSpec出错集之Integration测试篇">
-                <i class="fa fa-chevron-left"></i> TDD with RSpec出错集之Integration测试篇
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/20/how-to-debug-with-RSpec/" rel="prev" title="如何在测试中debug?">
-                如何在测试中debug? <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/02/upload-capybara-screenshot-to-aliyun-oss/" rel="prev" title="将Capybara的screenshot上传至阿里云的OSS">
+                将Capybara的screenshot上传至阿里云的OSS <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -798,9 +780,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://lupeipei.github.io/2017/10/22/TDD-with-RSpec-errors-recording/';
-          this.page.identifier = '2017/10/22/TDD-with-RSpec-errors-recording/';
-          this.page.title = 'TDD with RSpec出错集之单元测试篇';
+          this.page.url = 'http://lupeipei.github.io/2018/01/04/how-to-get-step-name-in-cucumber/';
+          this.page.identifier = '2018/01/04/how-to-get-step-name-in-cucumber/';
+          this.page.title = 'how_to_get_step_name_in_cucumber';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-lupeipei-github-io.disqus.com/embed.js';
