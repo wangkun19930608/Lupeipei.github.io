@@ -87,24 +87,19 @@
 
 
 
-<meta name="description" content="写在前面在给自己的网站加密后，网址从http变成https了，可是我却发现网站成了这样：  预期中的它应该是长这样子👇：  仔细检查了Nginx中的配置文档，没有发现问题，推测不是配置的问题，那么为什么会这样？ 【BTW, 阿里云有免费的SSL证书，可以让网站从HTTP换成HTTPS，戳这里直达阿里云。】 请确保你的Nginx配置是正确的，下面的解决思路是以配置无误为前提的。 正文google后">
+<meta name="description" content="写在前面base58 ,wikipedia上面的定义是这样的：  Base58 is a group of binary-to-text encoding schemes used to represent large integers  as alphanumeric text.  我的理解是它是一种将二进制转化为文本的编码方式，用于将大的整数表示成字母和数字的文本组合，其优势在于避免混淆。之前">
 <meta name="keywords" content="ROR">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网站加密后，没有挂上小绿锁?">
-<meta property="og:url" content="http://lupeipei.github.io/2017/10/18/website-padlock-green-issue/index.html">
+<meta property="og:title" content="Rails：使用base58压缩uuid">
+<meta property="og:url" content="http://lupeipei.github.io/2018/01/05/encode-uuid-as-base58/index.html">
 <meta property="og:site_name" content="Lucia">
-<meta property="og:description" content="写在前面在给自己的网站加密后，网址从http变成https了，可是我却发现网站成了这样：  预期中的它应该是长这样子👇：  仔细检查了Nginx中的配置文档，没有发现问题，推测不是配置的问题，那么为什么会这样？ 【BTW, 阿里云有免费的SSL证书，可以让网站从HTTP换成HTTPS，戳这里直达阿里云。】 请确保你的Nginx配置是正确的，下面的解决思路是以配置无误为前提的。 正文google后">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fks9mass87j30ey03x0u2.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fks9njubhqj303g00vjr7.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fks9wu7e2lj30q90ixhcb.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fks9sjsqjbj30uc0kz1bn.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fksa0let1rj30so0i7aoa.jpg">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fksa0kw4csj30pr0h0dj6.jpg">
-<meta property="og:updated_time" content="2017-10-23T10:38:54.000Z">
+<meta property="og:description" content="写在前面base58 ,wikipedia上面的定义是这样的：  Base58 is a group of binary-to-text encoding schemes used to represent large integers  as alphanumeric text.  我的理解是它是一种将二进制转化为文本的编码方式，用于将大的整数表示成字母和数字的文本组合，其优势在于避免混淆。之前">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1fn5xh10wkvj30hz01f0sr.jpg">
+<meta property="og:updated_time" content="2018-01-05T11:09:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="网站加密后，没有挂上小绿锁?">
-<meta name="twitter:description" content="写在前面在给自己的网站加密后，网址从http变成https了，可是我却发现网站成了这样：  预期中的它应该是长这样子👇：  仔细检查了Nginx中的配置文档，没有发现问题，推测不是配置的问题，那么为什么会这样？ 【BTW, 阿里云有免费的SSL证书，可以让网站从HTTP换成HTTPS，戳这里直达阿里云。】 请确保你的Nginx配置是正确的，下面的解决思路是以配置无误为前提的。 正文google后">
-<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fks9mass87j30ey03x0u2.jpg">
+<meta name="twitter:title" content="Rails：使用base58压缩uuid">
+<meta name="twitter:description" content="写在前面base58 ,wikipedia上面的定义是这样的：  Base58 is a group of binary-to-text encoding schemes used to represent large integers  as alphanumeric text.  我的理解是它是一种将二进制转化为文本的编码方式，用于将大的整数表示成字母和数字的文本组合，其优势在于避免混淆。之前">
+<meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1fn5xh10wkvj30hz01f0sr.jpg">
 
 
 
@@ -132,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://lupeipei.github.io/2017/10/18/website-padlock-green-issue/"/>
+  <link rel="canonical" href="http://lupeipei.github.io/2018/01/05/encode-uuid-as-base58/"/>
 
 
 
 
 
-  <title> 网站加密后，没有挂上小绿锁? | Lucia </title>
+  <title> Rails：使用base58压缩uuid | Lucia </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -277,7 +272,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/18/website-padlock-green-issue/">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2018/01/05/encode-uuid-as-base58/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lucia">
@@ -298,7 +293,7 @@
             
             
               
-                网站加密后，没有挂上小绿锁?
+                Rails：使用base58压缩uuid
               
             
           </h1>
@@ -313,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-18T18:25:04+08:00">
-                2017-10-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-05T19:08:13+08:00">
+                2018-01-05
               </time>
             
 
@@ -354,9 +349,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/18/website-padlock-green-issue/#comments" itemprop="discussionUrl">
+                <a href="/2018/01/05/encode-uuid-as-base58/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/18/website-padlock-green-issue/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/01/05/encode-uuid-as-base58/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -387,27 +382,38 @@
       
 
       
-        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>在给自己的网站加密后，网址从http变成https了，可是我却发现网站成了这样：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fks9mass87j30ey03x0u2.jpg" alt=""></p>
-<p>预期中的它应该是长这样子👇：</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fks9njubhqj303g00vjr7.jpg" alt=""></p>
-<p>仔细检查了Nginx中的配置文档，没有发现问题，推测不是配置的问题，那么为什么会这样？</p>
-<p>【BTW, 阿里云有免费的SSL证书，可以让网站从HTTP换成HTTPS，戳这里直达<a href="https://common-buy.aliyun.com/?spm=5176.2020520163.cas.1.2arDtO&amp;commodityCode=cas#/buy" target="_blank" rel="external">阿里云</a>。】</p>
-<p>请确保你的Nginx配置是正确的，下面的解决思路是以配置无误为前提的。</p>
-<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>google后找到了这篇文章：【Google，大神】</p>
-<p><a href="https://support.comodo.com/index.php?/Knowledgebase/Article/View/1057/0/why-isnt-my-sites-padlock-green-or-doesnt-have-green-address-bar" target="_blank" rel="external">Why isn’t my Site’s padlock green or doesn’t have green address bar ?</a></p>
-<p>按照文章的提示，解决了问题，以chrome为例，具体步骤如下：</p>
-<p>打开网站，右击，选择检查（inspect），</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fks9wu7e2lj30q90ixhcb.jpg" alt=""></p>
-<p>然后选择security安全，可以看到这样的页面：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fks9sjsqjbj30uc0kz1bn.jpg" alt=""></p>
-<p>在mixed content中，提示让你重新加载页面，OK，我们reload一下。</p>
-<p>这时，可以发现mixed content中出现这样的链接：<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fksa0let1rj30so0i7aoa.jpg" alt=""></p>
-<p>点击，查看：</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fksa0kw4csj30pr0h0dj6.jpg" alt=""></p>
-<p>OK，问题找到了，是图片链接用了http导致的。</p>
-<p>原来因为网站用了七牛云存储，图片的链接为http，解决的办法是去七牛买个加速域名，换成https……</p>
-<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p>每个人遇到的情况不一样，这里我只是贴出我是如何找到解决方法的，希望对遇到了同样问题的小伙伴有所帮助。<br>Happy coding!</p>
+        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p><strong>base58</strong> ,wikipedia上面的定义是这样的：</p>
+<blockquote>
+<p><strong>Base58</strong> is a group of binary-to-text encoding schemes used to represent large integers  as alphanumeric text.</p>
+</blockquote>
+<p>我的理解是它是一种将二进制转化为文本的编码方式，用于将大的整数表示成字母和数字的文本组合，其优势在于避免混淆。之前大热的bitcoin，它的address，钱包地址，用的就是base58编码方式。</p>
+<p>在Rails中，通常会给model加上uuid作为唯一标示，生成的uuid通常比较长，而且带有’-‘符号，使用base58进行编码会显得更好一些。下面实作一下，如何在Rails中将uuid编码成base58格式。</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>以一个project的model为例，该model含有字段：uuid，title，description</p>
+<p><code>project.rb</code>的文件内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class Project &lt; ApplicationRecord</div><div class="line">  validates :title, presence: true</div><div class="line">  before_validation :generate_uuid, :on =&gt; :create</div><div class="line"></div><div class="line">  def to_param</div><div class="line">    self.uuid</div><div class="line">  end</div><div class="line"></div><div class="line">  protected</div><div class="line">  def generate_uuid</div><div class="line">    self.uuid ||= SecureRandom.uuid</div><div class="line">  end</div><div class="line"></div><div class="line">end</div></pre></td></tr></table></figure>
+<p>这里，uuid是由SecureRandom.uuid来生成的。</p>
+<p>我们定义一下用base58压缩uuid的method，为了能在所有model中都使用这个method，我们用module来包起这个method。具体如下：</p>
+<ul>
+<li><p>在lib目录下新建<code>my_base.rb</code>文件：</p>
+</li>
+<li><p>在<code>my_base.rb</code>中添加如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">module MyBase</div><div class="line">  module Base</div><div class="line">    ALPHABET = &quot;123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ&quot;.chars</div><div class="line">    BASE = ALPHABET.size</div><div class="line">    def uuid_as_base58(uuid)</div><div class="line">      int_val = uuid.gsub(&apos;-&apos;,&apos;&apos;).to_i(16)</div><div class="line">      &apos;&apos;.tap do |base58_val|</div><div class="line">        while int_val &gt; 0</div><div class="line">          int_val, mod = int_val.divmod(BASE)</div><div class="line">          base58_val.prepend ALPHABET[mod]</div><div class="line">        end</div><div class="line">      end</div><div class="line">    end</div><div class="line">  end</div><div class="line">end</div><div class="line"></div><div class="line">class Object</div><div class="line">  include MyBase::Base</div><div class="line">end</div></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>config/application.rb</code>文件中，加入如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">config.autoload_paths += Dir[&quot;#&#123;config.root&#125;/lib/**&quot;]</div></pre></td></tr></table></figure>
+<p>运行时，会自动加载lib下的文件。</p>
+</li>
+<li><p>修改<code>project.rb</code>的文件中有关uuid的赋值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">class Project &lt; ApplicationRecord</div><div class="line">......</div><div class="line">  def generate_uuid</div><div class="line">    self.uuid ||= uuid_as_base58(SecureRandom.uuid)</div><div class="line">  end</div><div class="line">......</div><div class="line">end</div></pre></td></tr></table></figure>
+</li>
+<li><p>新建一个project看看，会发现已经变成了base58的编码格式</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fn5xh10wkvj30hz01f0sr.jpg" alt=""></p>
+</li>
+</ul>
+<p>大功告成！</p>
+<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p>参考：</p>
+<p><a href="https://en.wikipedia.org/wiki/Base58" target="_blank" rel="external">base 58</a></p>
+<p><a href="https://gist.github.com/jrunning/62cf199822a25ce441d1" target="_blank" rel="external">uuid to base58 in ruby</a></p>
 
       
     </div>
@@ -450,18 +456,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/20/how-to-debug-with-RSpec/" rel="next" title="如何在测试中debug?">
-                <i class="fa fa-chevron-left"></i> 如何在测试中debug?
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/15/deploy-with-qiniu/" rel="prev" title="七牛云端部署，想说爱你不容易">
-                七牛云端部署，想说爱你不容易 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/04/how-to-get-step-name-in-cucumber/" rel="prev" title="如何获取cucumber中step的name？">
+                如何获取cucumber中step的name？ <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -775,9 +777,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://lupeipei.github.io/2017/10/18/website-padlock-green-issue/';
-          this.page.identifier = '2017/10/18/website-padlock-green-issue/';
-          this.page.title = '网站加密后，没有挂上小绿锁?';
+          this.page.url = 'http://lupeipei.github.io/2018/01/05/encode-uuid-as-base58/';
+          this.page.identifier = '2018/01/05/encode-uuid-as-base58/';
+          this.page.title = 'Rails：使用base58压缩uuid';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-lupeipei-github-io.disqus.com/embed.js';
