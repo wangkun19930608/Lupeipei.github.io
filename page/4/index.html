@@ -270,6 +270,303 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/09/introduction-to-jquery-module3-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lucia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/10/09/introduction-to-jquery-module3-2/" itemprop="url">
+                  Introduction to jQuery_5
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T12:16:09+08:00">
+                2017-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index">
+                    <span itemprop="name">Web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/09/introduction-to-jquery-module3-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/09/introduction-to-jquery-module3-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="Before-Start"><a href="#Before-Start" class="headerlink" title="Before Start"></a>Before Start</h4><p>The following contents are the notes I took when learning  jQuery on Edx.</p>
+<p>Mainly for  front-End Web developers, check <a href="https://courses.edx.org/courses/course-v1:Microsoft+DEV208x+4T2017/course/" target="_blank" rel="external">here</a> to get more details.</p>
+<h4 id="CONTENTS"><a href="#CONTENTS" class="headerlink" title="CONTENTS"></a>CONTENTS</h4><p>Three parts:</p>
+<ul>
+<li><a href="https://lupeipei.github.io/2017/10/05/introduction-to-jQuery-module1/">Adding jQuery to web pages</a></li>
+<li><a href="https://lupeipei.github.io/2017/10/06/introduction-to-jquery-module2-1/">Managing content, events and effects</a></li>
+<li>Asynchronous operations and Ajax calls</li>
+</ul>
+<h4 id="Module3-Asynchronous-programming-and-Ajax"><a href="#Module3-Asynchronous-programming-and-Ajax" class="headerlink" title="Module3 : Asynchronous programming and Ajax"></a>Module3 : Asynchronous programming and Ajax</h4><p>Module3 includes five parts:</p>
+<ul>
+<li>Using promises</li>
+<li>Web workers</li>
+<li>Using deferred</li>
+<li>JavaScript Object Notation</li>
+<li>Calling the server</li>
+</ul>
+<p>Let’s get to know something about JSON and Ajax.</p>
+<ul>
+<li><p>JavaScript Object Notation</p>
+<ul>
+<li><p>JSON syntax</p>
+<p>A JSON object uses a notation that’s similar to that of a JavaScript object.</p>
+<p>Example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//create a JavaScript object</div><div class="line">var person = &#123;</div><div class="line">    firstName: &apos;Christopher&apos;,</div><div class="line">    lastName: &apos;Harrison&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//create a JSON object</div><div class="line">var person = &#123;</div><div class="line">    &apos;firstName&apos;: &apos;Christopher&apos;,</div><div class="line">    &apos;lastName&apos;: &apos;Harrison&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Create a more complex object:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var person = &#123;</div><div class="line">    &apos;firstName&apos;: &apos;Christopher&apos;,</div><div class="line">    &apos;lastName&apos;: &apos;Harrison&apos;,</div><div class="line">    &apos;email&apos;: &#123;</div><div class="line">        &apos;address&apos;: &apos;charrison@adventure-works.com&apos;,</div><div class="line">        &apos;type&apos;: &apos;business&apos;</div><div class="line">    &#125;    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Create a object with array:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">var person = &#123;</div><div class="line">    &apos;firstName&apos;: &apos;Christopher&apos;,</div><div class="line">    &apos;lastName&apos;: &apos;Harrison&apos;,</div><div class="line">    &apos;emailAddresses&apos;: [</div><div class="line">        &#123;</div><div class="line">            &apos;address&apos;: &apos;charrison@adventure-works.com&apos;,</div><div class="line">            &apos;type&apos;: &apos;business&apos;</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            &apos;address&apos;: &apos;charrison@fineartschool.net&apos;,</div><div class="line">            &apos;type&apos;: &apos;home&apos;</div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Serializing objects</p>
+<p>JavaScript provides a native utility for <strong>converting objects to JSON</strong> (serializing), and <strong>converting JSON strings to objects</strong> (deserializing).</p>
+<ul>
+<li><p>Serializing an object:<code>JSON.stringify</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// Create an instance of Object, a basic JavaScript object</div><div class="line">var person = new Object();</div><div class="line"></div><div class="line">// add properties</div><div class="line">person.firstName = &apos;Christopher&apos;;</div><div class="line">person.lastName = &apos;Harrison&apos;;</div><div class="line"></div><div class="line">// serialize</div><div class="line">var jsonString = JSON.stringify(person);</div></pre></td></tr></table></figure>
+</li>
+<li><p>Deserializing JSON: <code>JSON.parse</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// Deserialize a JSON string</div><div class="line">var newPerson = JSON.parse(jsonString);</div><div class="line"></div><div class="line">// access properties as normal</div><div class="line">$(&apos;#first-name-display&apos;).text(newPerson.firstName);</div><div class="line">$(&apos;#last-name-display&apos;).text(newPerson.lastName);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Calling the server</p>
+<ul>
+<li><p>Introducing Ajax</p>
+<p>Typically, when we make a call to the server, we need to refresh the entire page.</p>
+<p>as developers, we’d like to be able to incorporate server-side resources into our pages, allowing us to <strong>update individual portions of the page with new data, rather than updating the entire page</strong>.</p>
+<ul>
+<li><p>Asynchronous JavaScript and XML (Ajax)</p>
+<p>Ajax is a set of technologies that act together to make it easier for developers to make calls to server resources from JavaScript.</p>
+</li>
+<li><p>Basic data retrieval</p>
+<p><code>get</code> : The most basic Ajax operation we can perform using jQuery.</p>
+<p> <code>get</code> contacts the <strong>URL</strong> we provide, and passes the string the server returns into the parameter we’ll use for our event handler.</p>
+<p>Example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$.get(</div><div class="line">    &apos;some-url&apos;, // The URL to call</div><div class="line">    function(data) &#123; // Success event handler</div><div class="line">        // The data parameter contains the string</div><div class="line">        $(&apos;#output&apos;).text(data);</div><div class="line">    &#125;</div><div class="line">);</div></pre></td></tr></table></figure>
+</li>
+<li><p>jQuery Ajax and promises</p>
+<p>All jQuery Ajax calls return a jQuery <strong>promise</strong>.</p>
+<p> So, you can use <code>done</code> for your success event handler, and <code>fail</code> to catch any errors. The two code samples perform the same operations.</p>
+<p>Example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// Option one (pass the success function as a parameter)</div><div class="line">$.get(&apos;some-url&apos;, function(data) &#123; $(&apos;#output&apos;).text(data); &#125;);</div><div class="line"></div><div class="line">// Option two (use the done function of the promise)</div><div class="line">$.get(&apos;some-url&apos;).done(function(data) &#123; $(&apos;#output&apos;).text(data); &#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Retrieving JSON objects</p>
+<ul>
+<li><p><code>getJSON</code></p>
+<p>To retrieve a JSON object, you can use <code>getJSON</code>.</p>
+<p><code>getJSON</code> accepts several parameters, but the most common two that you’ll provide are the URL you need to call, and an event handler for success.</p>
+<p>Because getJSON is expecting JSON data, it automatically deserializes the object, meaning you do not need to call JSON.parse.</p>
+<p>Example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$.getJSON(&apos;/api/Demo&apos;, function (person) &#123;</div><div class="line">	$(&apos;#first-name&apos;).val(person.firstName);</div><div class="line">	$(&apos;#last-name&apos;).val(person.lastName);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Making server calls</p>
+<p>If you’re new to making server calls through JavaScript or other technologies, you might have a few questions about <strong>how you’re supposed to know where the data is, what URLs you should use</strong>, etc.</p>
+<ul>
+<li><p>Finding the right URL</p>
+<p>Most commonly you’ll be calling your own server and accessing your own organization’s data.</p>
+<p>Then the answer becomes even easier:</p>
+<p>talk to the developer who created the server side code that you need to call. They can provide all of the information you need.</p>
+</li>
+<li><p>Verbs</p>
+<p>HTTP offers several “verbs”, with the two most common being GET and POST.</p>
+<p>GET and POST in HTTP terms are about how to <strong>send data</strong> to the server, not a determination of the server sending you data.</p>
+<p>GET limits us to <strong>sending data in the URL only</strong>.</p>
+<p>POST on the other hand allows us to <strong>send data</strong> <strong>both in the URL, but also in what’s known as the header</strong>.The header is information that’s sent behind the scenes from the client to the server, and can be used to send almost any type of data, including binary data.</p>
+</li>
+<li><p>HTTP and REST APIs</p>
+<p> HTTP provides several verbs, including GET, POST, PUT and DELETE.</p>
+<p>GET will retrieve objects,</p>
+<p>POST will create a new object,</p>
+<p>PUT will update an existing object,</p>
+<p>DELETE will delete an object.</p>
+<p>Building upon those common operations, the W3C has established a specification called <a href="https://en.wikipedia.org/wiki/Representational_state_transfer" target="_blank" rel="external">REST</a>. REST provides for various standards to provide even more consistency when making server calls.</p>
+</li>
+</ul>
+</li>
+<li><p>Posting data</p>
+<p>If the service you’re using follows standard REST practices, you’ll notice that you can create a new object by calling POST.</p>
+<p>Or, if you’re trying to upload a binary object, such as an image, you’re forced to use POST, as GET won’t allow that type of data to be uploaded.</p>
+<ul>
+<li><p><code>post</code></p>
+<p>Like getJSON, it also passes the JSON object returned by the server into the parameter for the event handler. And, just like all of the Ajax calls we’ve seen, <code>post</code> also returns a promise.</p>
+<p>Example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// get the data we need to send</div><div class="line">var person = &#123; firstName: &apos;Christopher&apos;, lastName: &apos;Harrison&apos; &#125;;</div><div class="line"></div><div class="line">// Call POST</div><div class="line"></div><div class="line">$.post(&apos;URL&apos;, // Pass in the URL you need to access</div><div class="line">    person, // Pass in the data to send via POST</div><div class="line">    function(data) &#123;</div><div class="line">        // success event handler</div><div class="line">        // parameter contains value returned by server</div><div class="line">    &#125;</div><div class="line">);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Ajax events</p>
+<ul>
+<li><p>Start events</p>
+<p>The two starting events are <code>ajaxStart</code> and <code>ajaxSend</code>.</p>
+<p><code>ajaxStart</code> is raised when the <strong>first</strong> Ajax call is being made.</p>
+<p><code>ajaxSend</code> is raised <strong>each time</strong> an Ajax call is made.</p>
+</li>
+<li><p>Completion events</p>
+<p>jQuery Ajax offers two main events when each Ajax call is finished, <code>ajaxSuccess</code>, which is raised when a call succeeds,</p>
+<p><code>ajaxError</code>, which is raised when a call fails.</p>
+<p><code>ajaxComplete</code> is raised when <strong>each</strong> Ajax call completes, regardless of success or failure.</p>
+<p> <code>ajaxStop</code> is raised when <strong>all</strong> calls are completed.</p>
+<p>Example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$(document).ajaxSend(function () &#123;</div><div class="line">	// raised when a call starts</div><div class="line">	$(&apos;#status&apos;).append(&apos;&lt;div&gt;Call started&lt;/div&gt;&apos;);</div><div class="line">&#125;).ajaxComplete(function () &#123;</div><div class="line">	// raised when a call completes</div><div class="line">	$(&apos;#status&apos;).append(&apos;&lt;div&gt;Call completed&lt;/div&gt;&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Dynamically loading data</p>
+<ul>
+<li><p>Loading HTML</p>
+<p><code>load</code> will call the URL provided, obtain the HTML, and place it in the targeted item.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&apos;#target&apos;).load(&apos;some-url.html&apos;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>Loading and executing JavaScript</p>
+<p><code>getScript</code>  downloads <strong>and executes</strong> the script when it’s called.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.getScript(&apos;some-url.js&apos;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>This is  Module3 all about. More <a href="https://courses.edx.org/courses/course-v1:Microsoft+DEV208x+4T2017/course/" target="_blank" rel="external">details</a>.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/08/introduction-to-jquery-module3-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2591,207 +2888,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/09/29/web-together-build-3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lucia">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/09/29/web-together-build-3/" itemprop="url">
-                  Together网站搭建之踩坑系列3
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-29T06:34:34+08:00">
-                2017-09-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ROR/" itemprop="url" rel="index">
-                    <span itemprop="name">ROR</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/29/web-together-build-3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/09/29/web-together-build-3/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>这是功能实现的第二篇，扯一扯<strong>如何添加分类筛选功能</strong>。</p>
-<p>完整作品源码及效果，看这里<a href="https://togetherisbetter.cn/" target="_blank" rel="external">作品网站</a>,   <a href="https://github.com/Lupeipei/Together" target="_blank" rel="external">作品源码</a>。</p>
-<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ul>
-<li><a href="https://lupeipei.github.io/2017/09/28/web-together-build-2/">给活动添加收藏功能，并使用Ajax进行优化</a></li>
-<li>给活动Events添加分类筛选</li>
-<li><a href="https://lupeipei.github.io/2017/09/30/web-together-build-4/">添加省市自治区地址, 并实现热门城市筛选</a></li>
-<li><a href="https://lupeipei.github.io/2017/10/01/web-together-build-5/">添加时间筛选</a></li>
-<li><a href="https://lupeipei.github.io/2017/10/02/web-together-build-6/">添加评论区，并使用ajax优化</a></li>
-<li><a href="https://lupeipei.github.io/2017/10/03/web-together-build-7/">实作活动申请</a></li>
-<li><a href="https://lupeipei.github.io/2017/10/04/web-together-build-8/">在个人中心实作密码修改</a></li>
-</ul>
-<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>先上效果图：</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fjqcf5bajjg30x40i0k2j.gif" alt=""></p>
-<p><strong>如何实现？</strong></p>
-<ul>
-<li><p>新建model category</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rails g model category name:string</div><div class="line">rake db:migrate</div></pre></td></tr></table></figure>
-</li>
-<li><p>在event中新增category的栏位</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rails g migration add_category_id_to_event category_id:integer</div><div class="line">rake db:migrate</div></pre></td></tr></table></figure>
-</li>
-<li><p>建立category和event的关系，在<code>event.rb</code>中添加</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">belongs_to :categroy</div></pre></td></tr></table></figure>
-<p><code>category.rb</code>中添加：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">has_many :events</div></pre></td></tr></table></figure>
-</li>
-<li><p>在event的new ，edit中添加如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;%= select_tag(:category_id, options_for_select(@categories), :prompt =&gt; &quot;类别&quot;) %&gt;</div></pre></td></tr></table></figure>
-<p>如果是simple_form格式，可添加如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;form-group&quot;&gt;</div><div class="line">  &lt;%= f.association :category %&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>在<code>events_controller.rb</code>中，将category_id添加到params白名单中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">def event_params</div><div class="line">  params.require(:event).permit(:title, ......, :category_id)</div><div class="line">end</div></pre></td></tr></table></figure>
-</li>
-<li><p>为方便后续部署到heroku,可在seeds文档中新建category。在seeds.rb中添加如下代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># Category部分</div><div class="line">Category.delete_all</div><div class="line"></div><div class="line">Category.create!(id:1, name: &quot;音乐&quot;)</div><div class="line">Category.create!(id:2, name: &quot;户外&quot;)</div><div class="line">Category.create!(id:3, name: &quot;约厨&quot;)</div><div class="line">Category.create!(id:4, name: &quot;交友&quot;)</div><div class="line">Category.create!(id:5, name: &quot;读书&quot;)</div><div class="line">Category.create!(id:6, name: &quot;游戏&quot;)</div></pre></td></tr></table></figure>
-</li>
-<li><p>在event 的index页面显示分类列表，在event的<code>index.html.erb</code>中添加如下代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;btn-group&quot;&gt;</div><div class="line">	&lt;%= link_to &quot;全部&quot;, events_path, :class =&gt; &quot;btn btn-default btn-group #&#123;(params[:category].blank?)? &quot;active&quot; : &quot;&quot;&#125;&quot;%&gt;</div><div class="line">	&lt;% Category.all.each do |c| %&gt;</div><div class="line">  	&lt;%= link_to c.name, events_path(category: c), :class =&gt; &quot;btn btn-default btn-group #&#123;(params[:category] == c)? &quot;active&quot; : &quot;&quot; &#125;&quot;%&gt;</div><div class="line">	&lt;% end %&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>用上scope，在<code>event.rb</code>中加入以下代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scope :by_category, -&gt;(c)&#123;where( :category_id =&gt; c )&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>修改<code>events_controller.rb</code>，修改index部分：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">def index</div><div class="line">  @events = Event.order(&quot;created_at DESC&quot;)</div><div class="line">  if params[:category].present?</div><div class="line">    @events = @events.by_category(params[:category]).order(&quot;created_at DESC&quot;)</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>大功告成！</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2841,7 +2937,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-count">54</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
