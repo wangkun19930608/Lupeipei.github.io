@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ROR," />
+  <meta name="keywords" content="Cucumber," />
 
 
 
@@ -87,24 +87,20 @@
 
 
 
-<meta name="description" content="写在前面在给自己的网站加密后，网址从http变成https了，可是我却发现网站成了这样：  预期中的它应该是长这样子👇：  仔细检查了Nginx中的配置文档，没有发现问题，推测不是配置的问题，那么为什么会这样？ 【BTW, 阿里云有免费的SSL证书，可以让网站从HTTP换成HTTPS，戳这里直达阿里云。】 请确保你的Nginx配置是正确的，下面的解决思路是以配置无误为前提的。 正文google后">
-<meta name="keywords" content="ROR">
+<meta name="description" content="背景此文承接上一个cucumber does not go to afterstep when the step failed中提到的，不管step的result是什么，都执行某个操作，那么，如果想要输出每个step的logger信息，怎么办？  你可能会问，cucumber执行时，会输出每一步的执行情况，为什么还要获取这些logger？应用的场景其实还是有的，比如你需要将每一步的logger保存">
+<meta name="keywords" content="Cucumber">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网站加密后，没有挂上小绿锁?">
-<meta property="og:url" content="http://lupeipei.github.io/2017/10/18/website-padlock-green-issue/index.html">
+<meta property="og:title" content="获取cucumber中每一个step的logger信息">
+<meta property="og:url" content="http://lupeipei.github.io/2018/01/12/how-to-get-logger-info-of-every-step-in-cucumber/index.html">
 <meta property="og:site_name" content="Lucia">
-<meta property="og:description" content="写在前面在给自己的网站加密后，网址从http变成https了，可是我却发现网站成了这样：  预期中的它应该是长这样子👇：  仔细检查了Nginx中的配置文档，没有发现问题，推测不是配置的问题，那么为什么会这样？ 【BTW, 阿里云有免费的SSL证书，可以让网站从HTTP换成HTTPS，戳这里直达阿里云。】 请确保你的Nginx配置是正确的，下面的解决思路是以配置无误为前提的。 正文google后">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fks9mass87j30ey03x0u2.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fks9njubhqj303g00vjr7.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fks9wu7e2lj30q90ixhcb.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fks9sjsqjbj30uc0kz1bn.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fksa0let1rj30so0i7aoa.jpg">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fksa0kw4csj30pr0h0dj6.jpg">
-<meta property="og:updated_time" content="2017-10-23T10:38:54.000Z">
+<meta property="og:description" content="背景此文承接上一个cucumber does not go to afterstep when the step failed中提到的，不管step的result是什么，都执行某个操作，那么，如果想要输出每个step的logger信息，怎么办？  你可能会问，cucumber执行时，会输出每一步的执行情况，为什么还要获取这些logger？应用的场景其实还是有的，比如你需要将每一步的logger保存">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fncl1wcxojj30q706qtah.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fnclx8jwzaj30ni0bymyp.jpg">
+<meta property="og:updated_time" content="2018-01-12T07:11:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="网站加密后，没有挂上小绿锁?">
-<meta name="twitter:description" content="写在前面在给自己的网站加密后，网址从http变成https了，可是我却发现网站成了这样：  预期中的它应该是长这样子👇：  仔细检查了Nginx中的配置文档，没有发现问题，推测不是配置的问题，那么为什么会这样？ 【BTW, 阿里云有免费的SSL证书，可以让网站从HTTP换成HTTPS，戳这里直达阿里云。】 请确保你的Nginx配置是正确的，下面的解决思路是以配置无误为前提的。 正文google后">
-<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fks9mass87j30ey03x0u2.jpg">
+<meta name="twitter:title" content="获取cucumber中每一个step的logger信息">
+<meta name="twitter:description" content="背景此文承接上一个cucumber does not go to afterstep when the step failed中提到的，不管step的result是什么，都执行某个操作，那么，如果想要输出每个step的logger信息，怎么办？  你可能会问，cucumber执行时，会输出每一步的执行情况，为什么还要获取这些logger？应用的场景其实还是有的，比如你需要将每一步的logger保存">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fncl1wcxojj30q706qtah.jpg">
 
 
 
@@ -132,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://lupeipei.github.io/2017/10/18/website-padlock-green-issue/"/>
+  <link rel="canonical" href="http://lupeipei.github.io/2018/01/12/how-to-get-logger-info-of-every-step-in-cucumber/"/>
 
 
 
 
 
-  <title> 网站加密后，没有挂上小绿锁? | Lucia </title>
+  <title> 获取cucumber中每一个step的logger信息 | Lucia </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -277,7 +273,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/18/website-padlock-green-issue/">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2018/01/12/how-to-get-logger-info-of-every-step-in-cucumber/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lucia">
@@ -298,7 +294,7 @@
             
             
               
-                网站加密后，没有挂上小绿锁?
+                获取cucumber中每一个step的logger信息
               
             
           </h1>
@@ -313,8 +309,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-18T18:25:04+08:00">
-                2017-10-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T15:08:48+08:00">
+                2018-01-12
               </time>
             
 
@@ -336,8 +332,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ROR/" itemprop="url" rel="index">
-                    <span itemprop="name">ROR</span>
+                  <a href="/categories/Cucumber/" itemprop="url" rel="index">
+                    <span itemprop="name">Cucumber</span>
                   </a>
                 </span>
 
@@ -354,9 +350,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/18/website-padlock-green-issue/#comments" itemprop="discussionUrl">
+                <a href="/2018/01/12/how-to-get-logger-info-of-every-step-in-cucumber/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/18/website-padlock-green-issue/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/01/12/how-to-get-logger-info-of-every-step-in-cucumber/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -387,27 +383,37 @@
       
 
       
-        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>在给自己的网站加密后，网址从http变成https了，可是我却发现网站成了这样：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fks9mass87j30ey03x0u2.jpg" alt=""></p>
-<p>预期中的它应该是长这样子👇：</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fks9njubhqj303g00vjr7.jpg" alt=""></p>
-<p>仔细检查了Nginx中的配置文档，没有发现问题，推测不是配置的问题，那么为什么会这样？</p>
-<p>【BTW, 阿里云有免费的SSL证书，可以让网站从HTTP换成HTTPS，戳这里直达<a href="https://common-buy.aliyun.com/?spm=5176.2020520163.cas.1.2arDtO&amp;commodityCode=cas#/buy" target="_blank" rel="external">阿里云</a>。】</p>
-<p>请确保你的Nginx配置是正确的，下面的解决思路是以配置无误为前提的。</p>
-<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>google后找到了这篇文章：【Google，大神】</p>
-<p><a href="https://support.comodo.com/index.php?/Knowledgebase/Article/View/1057/0/why-isnt-my-sites-padlock-green-or-doesnt-have-green-address-bar" target="_blank" rel="external">Why isn’t my Site’s padlock green or doesn’t have green address bar ?</a></p>
-<p>按照文章的提示，解决了问题，以chrome为例，具体步骤如下：</p>
-<p>打开网站，右击，选择检查（inspect），</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fks9wu7e2lj30q90ixhcb.jpg" alt=""></p>
-<p>然后选择security安全，可以看到这样的页面：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fks9sjsqjbj30uc0kz1bn.jpg" alt=""></p>
-<p>在mixed content中，提示让你重新加载页面，OK，我们reload一下。</p>
-<p>这时，可以发现mixed content中出现这样的链接：<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fksa0let1rj30so0i7aoa.jpg" alt=""></p>
-<p>点击，查看：</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fksa0kw4csj30pr0h0dj6.jpg" alt=""></p>
-<p>OK，问题找到了，是图片链接用了http导致的。</p>
-<p>原来因为网站用了七牛云存储，图片的链接为http，解决的办法是去七牛买个加速域名，换成https……</p>
-<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p>每个人遇到的情况不一样，这里我只是贴出我是如何找到解决方法的，希望对遇到了同样问题的小伙伴有所帮助。<br>Happy coding!</p>
+        <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>此文承接上一个<a href="https://lupeipei.github.io/2018/01/10/cucumber-does-not-go-to-afterstep-when-step-failed/">cucumber does not go to afterstep when the step failed</a>中提到的，不管step的result是什么，都执行某个操作，那么，如果想要输出每个step的logger信息，怎么办？</p>
+<blockquote>
+<p>你可能会问，cucumber执行时，会输出每一步的执行情况，为什么还要获取这些logger？应用的场景其实还是有的，比如你需要将每一步的logger保存到指定文件然后进行汇总统计，又或者调用这些logger信息新建实例等等。</p>
+</blockquote>
+<p>具体实现方面，我用了一个比较笨的方法，拼接了各种信息，最终的效果是这样子的：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fncl1wcxojj30q706qtah.jpg" alt=""></p>
+<blockquote>
+<ul>
+<li><p>当step通过时，输出step的name，含关键字：Given/When/Then；</p>
+</li>
+<li><p>当step未通过时，输出提示信息；</p>
+<p>你可以看到我输出的logger info，与cucumber自带的输出内容是一样的。</p>
+</li>
+</ul>
+</blockquote>
+<p>当然，我相信这个问题一定有更好的解决方法，但目前全网搜索，没找到特别惊喜的解答。</p>
+<p>先附上我小白式的破解方法。</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>依然采用了test step finished event。</p>
+<p>在<code>features/support</code>下新建<code>event.rb</code>文件，放入以下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">require &apos;logger&apos;</div><div class="line">$logger = Logger.new(STDOUT)</div><div class="line"></div><div class="line">AfterConfiguration do |config|</div><div class="line">  config.on_event :test_step_finished do |event|</div><div class="line">    name = event.test_step.text</div><div class="line">    if name != &quot;AfterStep hook&quot; &amp;&amp; name != &quot;Before hook&quot; &amp;&amp; name != &quot;After hook&quot;</div><div class="line">      keyword = event.test_step.source.last.keyword</div><div class="line">      status = event.result.to_sym.to_s</div><div class="line">      step = keyword + name</div><div class="line"></div><div class="line">      # logger info</div><div class="line">      if status == &quot;passed&quot;</div><div class="line">        $logger.info(&quot;\n&quot; +  step + &quot;\n&quot;)</div><div class="line">      else</div><div class="line">        exception_message = event.attributes.last.exception.message</div><div class="line">        exception_class =  event.attributes.last.exception.class</div><div class="line">        file_line = event.attributes.last.exception.backtrace[-2]</div><div class="line">        # 用sub将出错的文件地址转化为相对地址</div><div class="line">        file_line.sub! Dir.pwd, &quot;.&quot;</div><div class="line">        step_line = event.attributes.last.exception.backtrace.last</div><div class="line">        message =  step + &quot;\n&quot; + exception_message + &quot;(&quot; + exception_class.to_s + &quot;)\n&quot; +  file_line + &quot;\n&quot; + step_line</div><div class="line">        $logger.info(&quot;\n&quot; + message + &quot;\n&quot; )</div><div class="line">      end</div><div class="line">    end</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fnclx8jwzaj30ni0bymyp.jpg" alt=""></p>
+<p>这里，分步走。</p>
+<ul>
+<li>先获取step的name，根据name筛选出我们需要的step，比如点击登陆选项，输入邮箱密码等，然后获取关键字keyword【Given/When/Then】，组成完整的一个step描述。同时获取step的状态，也就是result。</li>
+<li>根据step的status来确定logger的内容，passed则输出keyword + name即可，不是passed，则获取出错的信息message，出错的类型class，出错的文件地址，出错的step 地址，然后输出信息即可。</li>
+</ul>
+<p>【这里，我给$logger.info传递了换行符”\n”，仅仅是为了输出的时候好看点而已，可以忽略。】</p>
+<p>OK,很简单是不是？但是整个的求解过程还是比较纠结的，主要这方面的资料并不多，戳这里可以了解下cucumber 的<a href="http://www.rubydoc.info/gems/cucumber/1.3.19/Cucumber/Ast/Step#exception-instance_method" target="_blank" rel="external">step exception</a>。</p>
+<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p>stack overflow上只找到了<a href="https://stackoverflow.com/questions/29146107/how-can-i-have-ruby-logger-log-for-each-line-of-execution" target="_blank" rel="external">How can I have ruby logger log for each line of execution?</a></p>
+<p>提问者接受了这个答案，抱歉，我是真的没看懂通过这个答案要怎么去解决那个问题。</p>
+<p>如果有看懂解答的，请吱个声，下方留言或<a href="&#39;mailto:[luciacachn@gmail.com](javascript:">email</a>‘)。</p>
 
       
     </div>
@@ -437,7 +443,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ROR/" rel="tag"># ROR</a>
+            <a href="/tags/Cucumber/" rel="tag"># Cucumber</a>
           
         </div>
       
@@ -450,18 +456,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/20/how-to-debug-with-RSpec/" rel="next" title="如何在测试中debug?">
-                <i class="fa fa-chevron-left"></i> 如何在测试中debug?
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/15/deploy-with-qiniu/" rel="prev" title="七牛云端部署，想说爱你不容易">
-                七牛云端部署，想说爱你不容易 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/10/cucumber-does-not-go-to-afterstep-when-step-failed/" rel="prev" title="cucumber does not go to afterstep when the step failed">
+                cucumber does not go to afterstep when the step failed <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -618,7 +620,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-End"><span class="nav-number">3.</span> <span class="nav-text">The End</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-End"><span class="nav-number">3.</span> <span class="nav-text">The End</span></a></li></ol></div>
             
 
           </div>
@@ -775,9 +777,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://lupeipei.github.io/2017/10/18/website-padlock-green-issue/';
-          this.page.identifier = '2017/10/18/website-padlock-green-issue/';
-          this.page.title = '网站加密后，没有挂上小绿锁?';
+          this.page.url = 'http://lupeipei.github.io/2018/01/12/how-to-get-logger-info-of-every-step-in-cucumber/';
+          this.page.identifier = '2018/01/12/how-to-get-logger-info-of-every-step-in-cucumber/';
+          this.page.title = '获取cucumber中每一个step的logger信息';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-lupeipei-github-io.disqus.com/embed.js';
