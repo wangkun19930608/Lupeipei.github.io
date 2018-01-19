@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Web," />
+  <meta name="keywords" content="Vagrant," />
 
 
 
@@ -87,19 +87,25 @@
 
 
 
-<meta name="description" content="写在前面之前搭建网站时，做过一个landingpage, 加入了背景音乐，觉得还挺有意思的，记录下操作步骤，以备不时之需。 正文效果图：  通过点击按钮来控制音乐的播放。 怎么做？ 三部曲，html,css, js. 以首页为welcome的index.html.erb为例，简单说明。  step1、在首页index.html.erb中，添加如下代码：  123&amp;lt;a id=&amp;quot;btn">
-<meta name="keywords" content="Web">
+<meta name="description" content="背景最近做部署的时候，老大推荐了一个特别好用的工具Vagrant，一个用于配置和管理虚拟软件开发环境的开源软件， 官方GitHub库vagrant。 试了下，很赞，来认识一下vagrant。 「以下均以OS X为例，Window类似。」 准备vagrant需要依赖于虚拟机，虚拟机常见的有virtual box 和 VMWare，官网上推出了vagrant + vmware 付费版，但其默认是vir">
+<meta name="keywords" content="Vagrant">
 <meta property="og:type" content="article">
-<meta property="og:title" content="让网站声色俱佳—添加背景音乐">
-<meta property="og:url" content="http://lupeipei.github.io/2017/09/15/add-backgroup-music/index.html">
+<meta property="og:title" content="来认识下大名鼎鼎的vagrant">
+<meta property="og:url" content="http://lupeipei.github.io/2018/01/19/usage-of-vagrant/index.html">
 <meta property="og:site_name" content="Lucia">
-<meta property="og:description" content="写在前面之前搭建网站时，做过一个landingpage, 加入了背景音乐，觉得还挺有意思的，记录下操作步骤，以备不时之需。 正文效果图：  通过点击按钮来控制音乐的播放。 怎么做？ 三部曲，html,css, js. 以首页为welcome的index.html.erb为例，简单说明。  step1、在首页index.html.erb中，添加如下代码：  123&amp;lt;a id=&amp;quot;btn">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fksf8misk7g30zi0j40yp.gif">
-<meta property="og:updated_time" content="2017-10-23T11:56:38.000Z">
+<meta property="og:description" content="背景最近做部署的时候，老大推荐了一个特别好用的工具Vagrant，一个用于配置和管理虚拟软件开发环境的开源软件， 官方GitHub库vagrant。 试了下，很赞，来认识一下vagrant。 「以下均以OS X为例，Window类似。」 准备vagrant需要依赖于虚拟机，虚拟机常见的有virtual box 和 VMWare，官网上推出了vagrant + vmware 付费版，但其默认是vir">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1fnjmua2dguj30m7056gmi.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fnjmye7sl5j30kw0gdabd.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1fnjnwdwz6bj30q209vtah.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fnjo73znhsj30pw07875q.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fnjphz7zsvj30g804cmx7.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fnjq0y7qboj30nd03ft97.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fnjqdt327pj30jl02xq3f.jpg">
+<meta property="og:updated_time" content="2018-01-19T15:14:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="让网站声色俱佳—添加背景音乐">
-<meta name="twitter:description" content="写在前面之前搭建网站时，做过一个landingpage, 加入了背景音乐，觉得还挺有意思的，记录下操作步骤，以备不时之需。 正文效果图：  通过点击按钮来控制音乐的播放。 怎么做？ 三部曲，html,css, js. 以首页为welcome的index.html.erb为例，简单说明。  step1、在首页index.html.erb中，添加如下代码：  123&amp;lt;a id=&amp;quot;btn">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fksf8misk7g30zi0j40yp.gif">
+<meta name="twitter:title" content="来认识下大名鼎鼎的vagrant">
+<meta name="twitter:description" content="背景最近做部署的时候，老大推荐了一个特别好用的工具Vagrant，一个用于配置和管理虚拟软件开发环境的开源软件， 官方GitHub库vagrant。 试了下，很赞，来认识一下vagrant。 「以下均以OS X为例，Window类似。」 准备vagrant需要依赖于虚拟机，虚拟机常见的有virtual box 和 VMWare，官网上推出了vagrant + vmware 付费版，但其默认是vir">
+<meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1fnjmua2dguj30m7056gmi.jpg">
 
 
 
@@ -127,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://lupeipei.github.io/2017/09/15/add-backgroup-music/"/>
+  <link rel="canonical" href="http://lupeipei.github.io/2018/01/19/usage-of-vagrant/"/>
 
 
 
 
 
-  <title> 让网站声色俱佳—添加背景音乐 | Lucia </title>
+  <title> 来认识下大名鼎鼎的vagrant | Lucia </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -272,7 +278,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/09/15/add-backgroup-music/">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2018/01/19/usage-of-vagrant/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lucia">
@@ -293,7 +299,7 @@
             
             
               
-                让网站声色俱佳—添加背景音乐
+                来认识下大名鼎鼎的vagrant
               
             
           </h1>
@@ -308,8 +314,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-15T19:55:01+08:00">
-                2017-09-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-19T23:13:02+08:00">
+                2018-01-19
               </time>
             
 
@@ -319,28 +325,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index">
-                    <span itemprop="name">Web</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -349,9 +333,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/15/add-backgroup-music/#comments" itemprop="discussionUrl">
+                <a href="/2018/01/19/usage-of-vagrant/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/09/15/add-backgroup-music/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/01/19/usage-of-vagrant/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -382,29 +366,72 @@
       
 
       
-        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>之前搭建网站时，做过一个landingpage, 加入了背景音乐，觉得还挺有意思的，记录下操作步骤，以备不时之需。</p>
-<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>效果图：</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fksf8misk7g30zi0j40yp.gif" alt=""></p>
-<p>通过点击按钮来控制音乐的播放。</p>
-<p>怎么做？</p>
-<p><strong>三部曲，html,css, js.</strong></p>
-<p>以首页为welcome的<code>index.html.erb</code>为例，简单说明。</p>
+        <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>最近做部署的时候，老大推荐了一个特别好用的工具<a href="https://www.vagrantup.com/" target="_blank" rel="external">Vagrant</a>，一个用于配置和管理虚拟软件开发环境的开源软件， 官方GitHub库<a href="https://github.com/hashicorp/vagrant" target="_blank" rel="external">vagrant</a>。</p>
+<p>试了下，很赞，来认识一下vagrant。</p>
+<p>「以下均以OS X为例，Window类似。」</p>
+<h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><p>vagrant需要依赖于虚拟机，虚拟机常见的有virtual box 和 VMWare，官网上推出了<a href="https://www.vagrantup.com/vmware/index.html" target="_blank" rel="external">vagrant + vmware 付费版</a>，但其默认是virtual box，所以我们选择virtual box : P</p>
 <ul>
-<li>step1、在首页<code>index.html.erb</code>中，添加如下代码：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;a id=&quot;btn-music&quot; class=&quot;btn-music&quot;&gt;&lt;/a&gt;</div><div class="line">&lt;audio class=&quot;music&quot; src=&quot;XXX.mp3&quot; autoplay controls loop hidden&gt;</div><div class="line">&lt;/audio&gt;</div></pre></td></tr></table></figure>
-<p>其中，<code>src</code>部分根据个人情况进行修改，如果音乐文件存在本地的public下，直接引用文件名，如果是网路上，直接引用网址，类似这样：<br><code>src=&quot;https://res.cloudinary.com/dfbew47j6/video/upload/v1496754060/lighthouse_s31qoc.m4a&quot;</code></p>
-<ul>
-<li>step2、在你的<code>welcome.scss</code>或者<code>application.scss</code>中添加以下代码：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">.btn-music &#123;</div><div class="line">  position: absolute;</div><div class="line">  top: 1rem;</div><div class="line">  left: 1rem;</div><div class="line">  width: 3rem;</div><div class="line">  height: 3rem;</div><div class="line">  margin-left: 20px;</div><div class="line">  background: url(&apos;https://res.cloudinary.com/elliepooh/image/upload/v1491889929/music_s7aiet.svg&apos;) center center / 100% no-repeat;</div><div class="line">  cursor: pointer;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.music-off &#123;</div><div class="line">  background: url(&apos;https://res.cloudinary.com/elliepooh/image/upload/v1491890054/music-off_nrnsni.svg&apos;) center center / 90% no-repeat;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>step3、在首页<code>index.html.erb</code>最下方，加入如下代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">let playMusic = true;</div><div class="line">document.getElementById(&quot;btn-music&quot;).addEventListener(&quot;click&quot;, function() &#123;</div><div class="line">  playMusic = !playMusic;</div><div class="line">  document.getElementById(&quot;btn-music&quot;).classList.toggle(&apos;music-off&apos;);</div><div class="line">  playMusic ? document.querySelector(&apos;.music&apos;).play() : document.querySelector(&apos;.music&apos;).pause();</div><div class="line">  &#125;);</div><div class="line">  worldMusic.volume = 0.8;//预设音量</div><div class="line">  &lt;/script&gt;</div></pre></td></tr></table></figure>
+<li><p>装virtual box</p>
+<p>去<a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="external">官网</a>, 选择对应的安装包，点击下载：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fnjmua2dguj30m7056gmi.jpg" alt=""></p>
+<p>下载好后，安装即可。</p>
+</li>
+<li><p>装Vagrant</p>
+<p>戳这里<a href="https://www.vagrantup.com/downloads.html" target="_blank" rel="external">download vagrant</a>，下载对应的安装包：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fnjmye7sl5j30kw0gdabd.jpg" alt=""></p>
+<p>下载好后，安装即可。</p>
 </li>
 </ul>
-<p>搞定，可以愉快地听歌啦！！</p>
-<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p>参考资料：</p>
-<p><a href="https://codepen.io/elliepooh/pen/dRPOqM/" target="_blank" rel="external">lighthouse</a><br><a href="http://web.ruby001.cn/css/64065747447400107852.html" target="_blank" rel="external">CSS中id与class共存</a></p>
+<h4 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h4><ul>
+<li><p><strong>创建<code>Vagrantfile</code> 文件</strong></p>
+<p>终端输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir vagrant_started</div><div class="line">cd vagrant_started</div><div class="line">vagrant init</div></pre></td></tr></table></figure>
+<p>在vagrant_started目录下，会生成一个Vagrantfile文件，<code>vi Vagrantfile</code>打开看一下：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fnjnwdwz6bj30q209vtah.jpg" alt=""></p>
+<p>可以看到里面的box，你可以理解成是镜像，是”base”。</p>
+</li>
+<li><p><strong>添加box</strong></p>
+<p>终端输入<code>vagrant box add box&#39;name</code>来添加box，比如添加ubuntu/trusty64：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vagrant box add ubuntu/trusty64</div></pre></td></tr></table></figure>
+<p><a href="https://vagrantcloud.com/boxes/search" target="_blank" rel="external">HashiCorp’s Vagrant Cloud box catalog</a> 列出了很多box，随取随用，很方便。</p>
+<p>添加box会有点慢，静等它添加完成，然后修改一下Vagrantfile， 把<code>base</code>改成<code>ubuntu/trusty64</code>：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fnjo73znhsj30pw07875q.jpg" alt=""></p>
+</li>
+</ul>
+<p>​     也可以指定版本，使用<code>config.vm.box_version = &quot;X.X.X&quot;</code> ， 其中x.x.x是版本号。</p>
+<p>​    <strong>当然上面的这两步【创建<code>Vagrantfile</code> 文件，添加box 】也可以合并成一步：</strong></p>
+<pre><code>**终端输入：`vagrant init ubuntu/trusty64` 。** 【不要问为什么不早说，多敲点代码就当运动了……】
+</code></pre><ul>
+<li><p>开始启用吧</p>
+<p>终端输入<code>vagrant up</code>,  启用ubuntu，再次输入<code>vagrant ssh</code>, 进入ubuntu虚拟环境，然后就可以好好玩了！退出使用<code>exit</code>。</p>
+</li>
+<li><p>文件同步【这个最酷啦！】</p>
+<p>如果你按照官方文档的说明去做文件同步，是这样的：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fnjphz7zsvj30g804cmx7.jpg" alt=""></p>
+<p>但是这里有个问题，输入<code>ls /vagrant</code>时，显示没有这个文件目录，那就新建个<code>mkdir vagrant</code>，当然里面是空的，终端输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir vagrant &amp;&amp; cd vagrant</div><div class="line">vim foo</div><div class="line">exit</div></pre></td></tr></table></figure>
+<p>退出后，在主机输入：<code>ls</code>， 并没有发现刚刚新建的foo文件，so , where is synced file?</p>
+<p>这里有一步设置没有完成，详见：<a href="https://github.com/hashicorp/vagrant/issues/7157" target="_blank" rel="external">default virtualbox synced folder doesn’t mount</a></p>
+<p>解决方法也很简单：</p>
+<p>在Vagrantfile中，找到config.vm.synced_folder：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fnjq0y7qboj30nd03ft97.jpg" alt=""></p>
+<p>修改成： config.vm.synced_folder “.”, “/vagrant”, type: “virtualbox”</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fnjqdt327pj30jl02xq3f.jpg" alt=""></p>
+<p>再试一下，会发现文件同步成功！</p>
+</li>
+<li><p>删除VM</p>
+<p>想要删除VM时，使用<code>vagrant destroy</code>即可。</p>
+</li>
+</ul>
+<p>​    OK，That‘s all.</p>
+<p>​    有关provision， network等部分的玩法，可查阅vagrant的<a href="https://www.vagrantup.com/intro/getting-started/up.html" target="_blank" rel="external">getting up</a>。</p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://www.vagrantup.com/intro/index.html" target="_blank" rel="external">Introduction to Vagrant</a></p>
+<h4 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h4><p>Google下“Vagrant的使用”，就会看到很多人写过Vagrant方面的文章，可以参考。</p>
+<ul>
+<li><a href="https://imququ.com/post/vagrantup.html" target="_blank" rel="external">开始使用 Vagrant</a></li>
+<li><a href="http://blog.csdn.net/hel12he/article/details/51069269" target="_blank" rel="external">vagrant的安装与初识</a></li>
+</ul>
+<p>不过纸上得来终觉浅，自己动手去做会觉得很赞的，enjoy ：P</p>
 
       
     </div>
@@ -434,7 +461,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Web/" rel="tag"># Web</a>
+            <a href="/tags/Vagrant/" rel="tag"># Vagrant</a>
           
         </div>
       
@@ -447,18 +474,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/20/living-by-changjiang-river/" rel="next" title="家住长江边">
-                <i class="fa fa-chevron-left"></i> 家住长江边
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/08/one-thursday-afternoon-without-coding/" rel="prev" title="没有coding的周四下午">
-                没有coding的周四下午 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/17/update-nodejs-in-ubuntu/" rel="prev" title="Ubuntu下更新nodejs">
+                Ubuntu下更新nodejs <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -615,7 +638,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-End"><span class="nav-number">3.</span> <span class="nav-text">The End</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#准备"><span class="nav-number">2.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开始"><span class="nav-number">3.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结语"><span class="nav-number">5.</span> <span class="nav-text">结语</span></a></li></ol></div>
             
 
           </div>
@@ -772,9 +795,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://lupeipei.github.io/2017/09/15/add-backgroup-music/';
-          this.page.identifier = '2017/09/15/add-backgroup-music/';
-          this.page.title = '让网站声色俱佳—添加背景音乐';
+          this.page.url = 'http://lupeipei.github.io/2018/01/19/usage-of-vagrant/';
+          this.page.identifier = '2018/01/19/usage-of-vagrant/';
+          this.page.title = '来认识下大名鼎鼎的vagrant';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-lupeipei-github-io.disqus.com/embed.js';

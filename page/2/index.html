@@ -87,15 +87,15 @@
 
 
 
-<meta name="description" content="Learning is doing">
+<meta name="description" content="曲肱而枕">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Lucia">
 <meta property="og:url" content="http://lupeipei.github.io/page/2/index.html">
 <meta property="og:site_name" content="Lucia">
-<meta property="og:description" content="Learning is doing">
+<meta property="og:description" content="曲肱而枕">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lucia">
-<meta name="twitter:description" content="Learning is doing">
+<meta name="twitter:description" content="曲肱而枕">
 
 
 
@@ -260,6 +260,181 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/12/29/pass-auth-token-through-header-rails-api/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lucia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/12/29/pass-auth-token-through-header-rails-api/" itemprop="url">
+                  Rails API：如何将auth token放入headers进行传递？
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-29T15:14:34+08:00">
+                2017-12-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ROR/" itemprop="url" rel="index">
+                    <span itemprop="name">ROR</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/29/pass-auth-token-through-header-rails-api/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/12/29/pass-auth-token-through-header-rails-api/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>最近在做Rails API，遇到一个问题：</p>
+<blockquote>
+<p> 加入用户登录验证后，每次新建一个project时，发出post请求，都要将auth_token放在body中进行传递，如果是get，则将auth_token作为参数放在URL的后面，因为get是没有body的。</p>
+</blockquote>
+<p>这么做有什么不好呢？</p>
+<blockquote>
+<p>这导致URL特别长，看着很不清爽，每次用postman发出get请求，都觉得这种做法真的是太太小白了，想着要把auth_token放在headers中才好。</p>
+</blockquote>
+<p>Google了下，问题解决，附上解决方法。</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>以project为例，在postman中，你的请求如下：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fmxm7liq7rj30u80iztbe.jpg" alt=""></p>
+<p> 这时，如果你将auth_token放在headers中进行传递，发出get请求后，会出现error，如下：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fmxnlzbshrj30ub0etdh6.jpg" alt=""></p>
+<p><strong>怎么破？</strong></p>
+<p>原先对于user 的auth_token的传递，在<code>api_controller.rb</code>中的定义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">class ApiController &lt; ActionController::Base</div><div class="line">  before_action :authenticate_user_from_token!</div><div class="line"></div><div class="line">  def authenticate_user_from_token!</div><div class="line">    if params[:auth_token].present?</div><div class="line">      user = User.find_by_authentication_token(params[:auth_token])</div><div class="line">      sign_in(user, store: false) if user</div><div class="line">    end</div><div class="line">  end</div><div class="line">  ......</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>这里，可以看到接收的是<code>params[:auth_token]</code>, 我们稍稍修改下，用<code>request.headers[&#39;auth_token&#39;]</code>来代替<code>params[:auth_token]</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">class ApiController &lt; ActionController::Base</div><div class="line">  before_action :authenticate_user_from_token!</div><div class="line"></div><div class="line">  def authenticate_user_from_token!</div><div class="line">    if request.headers[&apos;auth_token&apos;]</div><div class="line">      user = User.find_by_authentication_token(request.headers[&apos;auth_token&apos;])</div><div class="line">      sign_in(user, store: false) if user</div><div class="line">    end</div><div class="line">  end</div><div class="line">  ......</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>这时，再看看postman, OK !</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fmxncwu45bj30t90hv0vb.jpg" alt=""></p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://www.reddit.com/r/rails/comments/4l3hwv/how_to_send_auth_token_in_header_to_rails_api/" target="_blank" rel="external">How to send auth token in header to Rails API?</a></p>
+<p><a href="https://stackoverflow.com/questions/17081499/pass-authenticity-token-through-http-header" target="_blank" rel="external">Pass Authenticity token through http header</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -2052,179 +2227,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/11/15/how-to-pass-array-in-examples/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lucia">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/15/how-to-pass-array-in-examples/" itemprop="url">
-                  如何在cucumber 的example中传递Array
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-15T22:22:52+08:00">
-                2017-11-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Cucumber/" itemprop="url" rel="index">
-                    <span itemprop="name">Cucumber</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/15/how-to-pass-array-in-examples/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/15/how-to-pass-array-in-examples/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>实际上，还是传递字符……</p>
-<p>看下面的例子👇</p>
-<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>当你想要在examples中传递一个Array时，要怎么做？直接传递？我们试试。</p>
-<p>背景如下：</p>
-<p>在文件<code>search.feature</code>中，search_terms的数据是一个数组[ ‘chocolate’ , ‘Nigella Lawson’]：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt; Scenario Outline:</div><div class="line">&gt;&gt; When I search for &quot;&lt;search_terms&gt;&quot;</div><div class="line">&gt;&gt; Then I should get a list of &quot;&lt;recipe_title&gt;&quot;</div><div class="line">&gt;&gt;</div><div class="line">&gt;&gt; Examples:</div><div class="line">&gt;&gt;         | search_terms | recipe_title |</div><div class="line">&gt;&gt;         | [ &apos;chocolate&apos; , &apos;Nigella Lawson&apos;] | White chocolate and mintmousse |</div></pre></td></tr></table></figure>
-<p>对应的step文件，如<code>search_step.rb</code>，内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">When(/^I search for &quot;([^&quot;]*)&quot;$/) do |terms|</div><div class="line">  search_terms = terms</div><div class="line">  ......</div><div class="line">end</div><div class="line"></div><div class="line">Then(/^I should get a list of &quot;([^&quot;]*)&quot;$/) do |recipe_title|</div><div class="line">  ......</div><div class="line">end</div></pre></td></tr></table></figure>
-<p>这时如果直接在终端运行cucumber会报错，因为你的search_terms传递的是一个array。</p>
-<p>在 <a href="http://thread.gmane.org/gmane.comp.programming.tools.cucumber/9315" target="_blank" rel="external">Cucumber:10316 -  Passing arrays in tables</a>中有位mswinson提到了这个问题，然后有位叫Andy的回复了他。【蛮好玩的，有兴趣的可以看看。】</p>
-<p>解决方法就是<strong>避开Array，传递String，用“，”来区分各个element，然后在step definitions中用<code>split(/, /)</code>将其转换为Array</strong>。</p>
-<p>比如上面的这个例子，可以这么来：</p>
-<p>修改文件<code>search.feature</code>内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt; Scenario Outline:</div><div class="line">&gt;&gt; When I search for &quot;&lt;search_terms&gt;&quot;</div><div class="line">&gt;&gt; Then I should get a list of &quot;&lt;recipe_title&gt;&quot;</div><div class="line">&gt;&gt;</div><div class="line">&gt;&gt; Examples:</div><div class="line">&gt;&gt;         | search_terms | recipe_title |</div><div class="line">&gt;&gt;         | chocolate , Nigella Lawson| White chocolate and mintmousse |</div></pre></td></tr></table></figure>
-<p>在对应的step文件中， 使用<code>search_terms = terms.split(/, /)</code>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">When(/^I search for &quot;([^&quot;]*)&quot;$/) do |terms|</div><div class="line">  search_terms = terms.split(/, /) ## 这时search_terms就是一个array了</div><div class="line">  ......</div><div class="line">end</div><div class="line"></div><div class="line">Then(/^I should get a list of &quot;([^&quot;]*)&quot;$/) do |recipe_title|</div><div class="line">  ......</div><div class="line">end</div></pre></td></tr></table></figure>
-<p>OK，完成。</p>
-<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p>嗯，就这么简单，可我还是想把它写出来，硬生生整出了一篇文章来……</p>
-<p>参考： <a href="http://thread.gmane.org/gmane.comp.programming.tools.cucumber/9315" target="_blank" rel="external">Cucumber:10316 -  Passing arrays in tables</a></p>
-<p>enjoy ：D</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2266,7 +2268,7 @@
                alt="Lucia" />
           <p class="site-author-name" itemprop="name">Lucia</p>
            
-              <p class="site-description motion-element" itemprop="description">Learning is doing</p>
+              <p class="site-description motion-element" itemprop="description">曲肱而枕</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -2274,7 +2276,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-count">58</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2296,7 +2298,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
