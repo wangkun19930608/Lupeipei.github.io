@@ -417,90 +417,57 @@
 <p>在Selenium webdriver中，主要有以下几类：</p>
 <ul>
 <li><p><strong>ID</strong></p>
-<blockquote>
 <p>通过ID来定位元素，ID是唯一的，通常较少变动，所以可以很准确地定位到指定元素。</p>
 <p>比如：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; element = driver.find_element(<span class="symbol">:id</span>, <span class="string">"username"</span>)</div><div class="line">&gt; element.send_keys(<span class="string">"admin"</span>)</div><div class="line">&gt; driver.find_element(<span class="symbol">:id</span>, <span class="string">"submit"</span>).click</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">element = driver.find_element(<span class="symbol">:id</span>, <span class="string">"username"</span>)</div><div class="line">element.send_keys(<span class="string">"admin"</span>)</div><div class="line">driver.find_element(<span class="symbol">:id</span>, <span class="string">"submit"</span>).click</div></pre></td></tr></table></figure>
 </li>
 <li><p><strong>Name</strong></p>
-<blockquote>
 <p>Name也是比较常用的定位方式</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; element = driver.find_element(<span class="symbol">:name</span>, <span class="string">"username"</span>)</div><div class="line">&gt; driver.find_element(<span class="symbol">:name</span>, <span class="string">"comment"</span>).send_keys(<span class="string">"my comments"</span>)</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">element = driver.find_element(<span class="symbol">:name</span>, <span class="string">"username"</span>)</div><div class="line">driver.find_element(<span class="symbol">:name</span>, <span class="string">"comment"</span>).send_keys(<span class="string">"my comments"</span>)</div></pre></td></tr></table></figure>
 </li>
 <li><p><strong>Link Text</strong></p>
-<blockquote>
 <p>只用于超链接元素的定位</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; driver.find_element(<span class="symbol">:link_text</span>, <span class="string">"Cancel"</span>).click</div><div class="line">&gt; driver.find_element(<span class="symbol">:link</span>, <span class="string">"Login"</span>)</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">driver.find_element(<span class="symbol">:link_text</span>, <span class="string">"Cancel"</span>).click</div><div class="line">driver.find_element(<span class="symbol">:link</span>, <span class="string">"Login"</span>)</div></pre></td></tr></table></figure>
 </li>
 <li><p><strong>Partial Link Text</strong></p>
-<blockquote>
 <p>selenium 允许通过一部分的超链接文本来定位某个超链接，比如:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="comment"># 点击到“cancel” 或者“Cancel”链接</span></div><div class="line">&gt; driver.find_element(<span class="symbol">:partial_link_text</span>, <span class="string">"ancel"</span>).click</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 点击到“cancel” 或者“Cancel”链接</span></div><div class="line">driver.find_element(<span class="symbol">:partial_link_text</span>, <span class="string">"ancel"</span>).click</div></pre></td></tr></table></figure>
 </li>
 <li><p><strong>XPath</strong></p>
-<blockquote>
 <p>Xpath 几乎可以定位到页面上的任何一个元素。XPath是XML path的简称，它有两种用法：</p>
 <ul>
 <li>绝对路径,  用”/“, 例如：<code>/html/body/table[1]</code></li>
 <li>相对路径，用”//“</li>
 </ul>
 <p>例如：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; driver.find_element(<span class="symbol">:xpath</span>, <span class="string">"//*[@id='div2']/input[@type='checkbox']"</span>).click</div><div class="line">&gt; driver.find_element(<span class="symbol">:xpath</span>,<span class="string">"//input[@value='Sign in']"</span>)</div><div class="line">&gt; driver.find_element(<span class="symbol">:xpath</span>, <span class="string">"//a[@href='/logout']"</span>).click</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
-<p>&gt;</p>
-<blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">driver.find_element(<span class="symbol">:xpath</span>, <span class="string">"//*[@id='div2']/input[@type='checkbox']"</span>).click</div><div class="line">driver.find_element(<span class="symbol">:xpath</span>,<span class="string">"//input[@value='Sign in']"</span>)</div><div class="line">driver.find_element(<span class="symbol">:xpath</span>, <span class="string">"//a[@href='/logout']"</span>).click</div></pre></td></tr></table></figure>
 <p>一般不推荐用绝对路径，因为一旦页面结构发生变化，该路径随之失效。</p>
-</blockquote>
 </li>
 <li><p><strong>Tag Name</strong></p>
-<blockquote>
 <p>通过元素的标签名称来查找元素,不过这种方法找到的元素通常不止一个。</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; driver.find_element(<span class="symbol">:tag_name</span>, <span class="string">"body"</span>)</div><div class="line">&gt; driver.find_element(<span class="symbol">:tag_name</span>, <span class="string">"body"</span>).text</div><div class="line">&gt; <span class="comment"># 查看button的个数</span></div><div class="line">&gt; button_elems = driver.find_elements(<span class="symbol">:tag_name</span>, <span class="string">"button"</span>)</div><div class="line">&gt; button_elems.count</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">driver.find_element(<span class="symbol">:tag_name</span>, <span class="string">"body"</span>)</div><div class="line">driver.find_element(<span class="symbol">:tag_name</span>, <span class="string">"body"</span>).text</div><div class="line"><span class="comment"># 查看button的个数</span></div><div class="line">button_elems = driver.find_elements(<span class="symbol">:tag_name</span>, <span class="string">"button"</span>)</div><div class="line">button_elems.count</div></pre></td></tr></table></figure>
 </li>
 <li><p><strong>Class Name</strong></p>
-<blockquote>
 <p>这是利用元素的css样式表所引用的类名称来进行查找，不过当某个元素含有多个类时，不可以使用多个类来查找。</p>
 <p>例如如下的HTML：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"back.html"</span> <span class="attr">class</span>=<span class="string">"btn btn-default"</span>&gt;</span>Cancel<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">&gt; <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">class</span>=<span class="string">"btn btn-deault btn-primary"</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">input</span>&gt;</span></div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
-<p>&gt;</p>
-<blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"back.html"</span> <span class="attr">class</span>=<span class="string">"btn btn-default"</span>&gt;</span>Cancel<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">class</span>=<span class="string">"btn btn-deault btn-primary"</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">input</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>对应的元素定位：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; driver.find_element(<span class="symbol">:class</span>, <span class="string">"btn-primary"</span>).click <span class="comment"># Submit button</span></div><div class="line">&gt; driver.find_element(<span class="symbol">:class</span>, <span class="string">"btn"</span>).click <span class="comment"># Cancel link</span></div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
-<p>&gt;</p>
-<blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">driver.find_element(<span class="symbol">:class</span>, <span class="string">"btn-primary"</span>).click <span class="comment"># Submit button</span></div><div class="line">driver.find_element(<span class="symbol">:class</span>, <span class="string">"btn"</span>).click <span class="comment"># Cancel link</span></div></pre></td></tr></table></figure>
 <p>这里Cancel和Submit都有”btn”这个class，find_element会返回匹配到的第一个元素，所以<code>driver.find_element(:class, &quot;btn&quot;).click</code> 点击的是cancel这个button。</p>
 <p>但是不允许指定多个class，下面这样的用法是错误的：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; driver.find_element(<span class="symbol">:class</span>, <span class="string">"btn btn-deault btn-primary"</span>).click</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
-<p>&gt;</p>
-<blockquote>
-<p>如果想要定位带有多个class的元素，怎么办？可以使用Css Selector。</p>
-</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">driver.find_element(<span class="symbol">:class</span>, <span class="string">"btn btn-deault btn-primary"</span>).click</div></pre></td></tr></table></figure>
+<p>如果想要定位带有多个class的元素，怎么办？可以使用CSS Selector。</p>
 </li>
 <li><p><strong>CSS Selector</strong></p>
-<blockquote>
 <p>定位ID为login的元素下面的text，可以这么写：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; driver.find_element(<span class="symbol">:css</span>, <span class="string">"#login &gt; input[type='text']"</span>).click</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
-<p>&gt;</p>
-<blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">driver.find_element(<span class="symbol">:css</span>, <span class="string">"#login &gt; input[type='text']"</span>).click</div></pre></td></tr></table></figure>
 <p>当需要指定多个属性值时，可以逐一加在后面，比如：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; driver.find_element(<span class="symbol">:css</span>, <span class="string">"#login &gt; input[type='text'][name = 'username']"</span>)</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
-<p>&gt;</p>
-<blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">driver.find_element(<span class="symbol">:css</span>, <span class="string">"#login &gt; input[type='text'][name = 'username']"</span>)</div></pre></td></tr></table></figure>
 <p>而上面多个class的情况，可以这么写：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; driver.find_element(<span class="symbol">:css</span>, <span class="string">"input.btn.btn-deault.btn-primary"</span>).click</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">driver.find_element(<span class="symbol">:css</span>, <span class="string">"input.btn.btn-deault.btn-primary"</span>).click</div></pre></td></tr></table></figure>
 </li>
 </ul>
+<p><strong>小结：</strong></p>
 <p>看过一些前辈写的相关文章，里面提到定位的一些原则，比如：Xpath很强大，但是非常费时，需要扫描整个网页来定位，尽量少用。Css selector与xpath比较类似，但是执行速度要更快，有ID的尽量用ID，别浪费。</p>
 <h4 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h4><p><a href="https://www.protechtraining.com/content/selenium_tutorial-locators" target="_blank" rel="external">Selenium Tutorial: Locators</a></p>
 <p><a href="http://docs.seleniumhq.org/docs/" target="_blank" rel="external">Selenium Documentation</a></p>
