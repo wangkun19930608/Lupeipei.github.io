@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="写在前面我们在使用rest-client去发出请求时，result code是200 固然很好，但有时候我们也希望能读取到Exceptions， 例如读取result code是400bad request的response内容，怎么做？ 看个例子。 正文场景：用户A想要通过接口获取到个人信息，代码如下： 12respoonse = RestClient.get &amp;apos;http://exam">
+<meta name="description" content="写在前面我们在使用rest-client去发出请求时，result code是200 固然很好，但有时候我们也希望能读取到Exceptions， 例如读取result code是400bad request的response内容，怎么做？ 看个例子。 正文场景：用户A想要通过接口获取到个人信息，代码如下： 12respoonse = RestClient.get &apos;http://example.c">
 <meta name="keywords" content="Ruby,BDD">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用ruby的异常处理来读取rest client中的bad request">
 <meta property="og:url" content="http://lupeipei.github.io/2017/11/21/read-the-body-of-400-response-with-ruby-exception-handling/index.html">
 <meta property="og:site_name" content="Lucia">
-<meta property="og:description" content="写在前面我们在使用rest-client去发出请求时，result code是200 固然很好，但有时候我们也希望能读取到Exceptions， 例如读取result code是400bad request的response内容，怎么做？ 看个例子。 正文场景：用户A想要通过接口获取到个人信息，代码如下： 12respoonse = RestClient.get &amp;apos;http://exam">
-<meta property="og:updated_time" content="2017-11-21T12:40:38.000Z">
+<meta property="og:description" content="写在前面我们在使用rest-client去发出请求时，result code是200 固然很好，但有时候我们也希望能读取到Exceptions， 例如读取result code是400bad request的response内容，怎么做？ 看个例子。 正文场景：用户A想要通过接口获取到个人信息，代码如下： 12respoonse = RestClient.get &apos;http://example.c">
+<meta property="og:updated_time" content="2018-02-01T09:55:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用ruby的异常处理来读取rest client中的bad request">
-<meta name="twitter:description" content="写在前面我们在使用rest-client去发出请求时，result code是200 固然很好，但有时候我们也希望能读取到Exceptions， 例如读取result code是400bad request的response内容，怎么做？ 看个例子。 正文场景：用户A想要通过接口获取到个人信息，代码如下： 12respoonse = RestClient.get &amp;apos;http://exam">
+<meta name="twitter:description" content="写在前面我们在使用rest-client去发出请求时，result code是200 固然很好，但有时候我们也希望能读取到Exceptions， 例如读取result code是400bad request的response内容，怎么做？ 看个例子。 正文场景：用户A想要通过接口获取到个人信息，代码如下： 12respoonse = RestClient.get &apos;http://example.c">
 
 
 
@@ -383,17 +383,17 @@
         <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>我们在使用rest-client去发出请求时，result code是200 固然很好，但有时候我们也希望能读取到Exceptions， 例如读取result code是400bad request的response内容，怎么做？</p>
 <p>看个例子。</p>
 <h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>场景：用户A想要通过接口获取到个人信息，代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">respoonse = RestClient.get &apos;http://example.com/myprofile?access_token=#&#123;access_token&#125;&apos;</div><div class="line">profile_response = JSON.parse(respoonse.body)</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">respoonse = RestClient.get 'http://example.com/myprofile?access_token=#&#123;access_token&#125;'</div><div class="line">profile_response = JSON.parse(respoonse.body)</div></pre></td></tr></table></figure>
 <p>其中，如果<code>access_token</code>过期或者无效，用户希望得到这样的结果：</p>
 <ul>
 <li>返回 400 Bad Request</li>
 <li>返回一个JSON格式的reponse body ，内容像这样：</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;	      </div><div class="line">   &quot;code&quot;: 400,</div><div class="line">   &quot;error&quot;: &#123;</div><div class="line">      &quot;message&quot;: &quot;The access token could not be decrypted&quot;,</div><div class="line">      &quot;type&quot;: &quot;OAuthException&quot;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;	      </div><div class="line">   <span class="attr">"code"</span>: <span class="number">400</span>,</div><div class="line">   <span class="attr">"error"</span>: &#123;</div><div class="line">      <span class="attr">"message"</span>: <span class="string">"The access token could not be decrypted"</span>,</div><div class="line">      <span class="attr">"type"</span>: <span class="string">"OAuthException"</span></div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这时，如果你的<code>access_token</code>是过期或者无效的，终端运行的时候，会报错400 Bad Request ，但是却没有返回对应的response。</p>
 <p>如何解决？</p>
 <p>其实，如果你熟悉ruby的异常处理，就会发现很简单，把上述的代码改成如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">body = begin</div><div class="line">  respoonse = RestClient.get &apos;http://example.com/myprofile?access_token=#&#123;access_token&#125;&apos;</div><div class="line">  response.body</div><div class="line">rescue RestClient::ExceptionWithResponse  =&gt; e</div><div class="line">  e.response.body</div><div class="line">end</div><div class="line"></div><div class="line">profile_response = JSON.parse(body)</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">body = begin</div><div class="line">  respoonse = RestClient.get 'http://example.com/myprofile?access_token=#&#123;access_token&#125;'</div><div class="line">  response.body</div><div class="line">rescue RestClient::ExceptionWithResponse  =&gt; e</div><div class="line">  e.response.body</div><div class="line">end</div><div class="line"></div><div class="line">profile_response = JSON.parse(body)</div></pre></td></tr></table></figure>
 <p>这里，使用了<code>rescue RestClient::ExceptionWithResponse  =&gt; e</code> 获取异常对象，并赋给了变量e，通过<code>e.response.body</code>来回传需要的error信息。</p>
 <p>大功告成。</p>
 <p>其实，看到这里，你就明白，不仅仅是 400bad request的response内容可以读取，其他如403 Forbidden，404 not found 等的response内容也是可以依葫芦画瓢来做的。：P</p>

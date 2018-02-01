@@ -96,7 +96,7 @@
 <meta property="og:description" content="写在前面学习测试的时候，一直不大懂stub，后来刷多了课程，感觉好像不那么懵逼了。 决定结合自己的学习与思考，说说stub到底是个啥。 BTW，if  you want to be a rocking unit tester, you must know stub and mock.：P 正文先来看一个问题： 你准备测试method A，method A 依赖于method B，比如method">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fktni1u9gaj30df05o3z5.jpg">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1fkuj2c03kjj30h606qgmv.jpg">
-<meta property="og:updated_time" content="2017-10-25T07:53:06.000Z">
+<meta property="og:updated_time" content="2018-02-01T09:56:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="测试概念之stub篇">
 <meta name="twitter:description" content="写在前面学习测试的时候，一直不大懂stub，后来刷多了课程，感觉好像不那么懵逼了。 决定结合自己的学习与思考，说说stub到底是个啥。 BTW，if  you want to be a rocking unit tester, you must know stub and mock.：P 正文先来看一个问题： 你准备测试method A，method A 依赖于method B，比如method">
@@ -395,12 +395,12 @@
 <p>现在的情况是，movie model里面没有定义任何执行search 行为的method，而我们只想要验证controller的search_tmdb 调用了model里面执行search的method，不管这个method的存不存在，有没有返回预期结果，我们不care, 我们只想确定controller的search_tmdb做了正确的事，怎么破？</p>
 <p>用stub来打破依赖。用一个伪造的method去替代，确保这个伪造的method被调用即可。</p>
 <p>你的<code>movies_controller.rb</code>中定义了一个search_tmdb,但是里面啥也没有：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">def search_tmdb</div><div class="line">end</div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">search_tmdb</span></span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 <p>你的test文件长这样：</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fktni1u9gaj30df05o3z5.jpg" alt=""></p>
 <p>这时运行测试文件，会报错，因为你的search_tmdb并没有说让Movie去调用这个find_in_tmdb，如何让测试通过？</p>
 <p>在<code>movies_controller.rb</code>中修改search_tmdb method，使它长这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">def search_tmdb</div><div class="line">+ Movie.find_in_tmdb(params[:search_terms])</div><div class="line">end</div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">search_tmdb</span></span></div><div class="line">+ Movie.find_in_tmdb(params[<span class="symbol">:search_terms</span>])</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 <p>再次运行测试文件，通过！！</p>
 <p>这里值得注意的是，你的movie model中，<strong>根本就没有find_in_tmdb这个method</strong>，很神奇是不是？</p>
 <p>事实上，为了打破method之间的依赖，保证测试的独立性，这里伪造了一个针对find_in_tmdb的调用，<strong>即使这个find_in_tmdb本身存在model中，也会被忽视，overriding it</strong>。</p>

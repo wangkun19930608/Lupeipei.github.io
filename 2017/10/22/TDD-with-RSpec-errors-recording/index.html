@@ -106,7 +106,7 @@
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr233qjewj30k90g6di4.jpg">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr2j2fr38j30ky06kgmq.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fkr2b72qhfj30s60djt92.jpg">
-<meta property="og:updated_time" content="2018-01-08T13:30:39.000Z">
+<meta property="og:updated_time" content="2018-02-01T09:56:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TDD with RSpec出错集之单元测试篇">
 <meta name="twitter:description" content="写在前面刷完了Edx上关于TDD，BDD的课程，也看了《Everyday rails testing with RSpec》, 于是迫不及待想给自己的网站Together也加上RSpec部分，好比刚从师傅那学了几招的小徒弟，立马想找个人试试身手，这中间自然也是免不了各种坑的，一一记录， 避免二次入坑。 PS ： FactoryGirl官方GitHub库已经改名为FactoryBot，实作的时候，请">
@@ -401,14 +401,14 @@
 <p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkq88je5s0j30sd04xmyd.jpg" alt=""></p>
 <p><strong>怎么破？</strong></p>
 <p>在<code>spec/spec_helper.rb</code>文件中，加入如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">RSpec.configure do |config|</div><div class="line">  config.include FactoryBot::Syntax::Methods</div><div class="line">  .....</div><div class="line">+  config.before do</div><div class="line">+    FactoryBot.find_definitions</div><div class="line">+  end</div><div class="line">end</div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">RSpec.configure <span class="keyword">do</span> <span class="params">|config|</span></div><div class="line">  config.<span class="keyword">include</span> FactoryBot::Syntax::Methods</div><div class="line">  .....</div><div class="line">+  config.before <span class="keyword">do</span></div><div class="line">+    FactoryBot.find_definitions</div><div class="line">+  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 </li>
 <li><p><strong>FactoryBot::DuplicateDefinitionError: Factory already registered: event</strong></p>
 <p>运行测试文件时，终端报出这样的错误：</p>
 <p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fkq8u4t8xfj30qg07wdh6.jpg" alt=""></p>
 <p><strong>怎么破？</strong></p>
 <p>在<code>spec/spec_helper.rb</code>文件中，加入如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">RSpec.configure do |config|</div><div class="line">  config.include FactoryBot::Syntax::Methods</div><div class="line">  .....</div><div class="line">  config.before do</div><div class="line">+   FactoryBot.factories.clear</div><div class="line">    FactoryBot.find_definitions</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">RSpec.configure <span class="keyword">do</span> <span class="params">|config|</span></div><div class="line">  config.<span class="keyword">include</span> FactoryBot::Syntax::Methods</div><div class="line">  .....</div><div class="line">  config.before <span class="keyword">do</span></div><div class="line">+   FactoryBot.factories.clear</div><div class="line">    FactoryBot.find_definitions</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 </li>
 <li><p><strong>Please set Qiniu’s access_key and secret_key before authorize any tokens</strong></p>
 <p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkqrce6o1ij30pc052wfp.jpg" alt=""></p>
@@ -424,7 +424,7 @@
 <p><strong>怎么破？</strong></p>
 <p>google后，在stack overflow上找到了解答。</p>
 <p>修改<code>spec/support/rails_helper.rb</code>文件，在<code>RSpec.configure do |config|</code>部分添加<code>config.include Devise::TestHelpers, type: :controller</code> :</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">RSpec.configure do |config|</div><div class="line">  ......</div><div class="line">+ config.include Devise::TestHelpers, type: :controller</div><div class="line">  ......</div><div class="line">end</div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">RSpec.configure <span class="keyword">do</span> <span class="params">|config|</span></div><div class="line">  ......</div><div class="line">+ config.<span class="keyword">include</span> Devise::TestHelpers, <span class="symbol">type:</span> <span class="symbol">:controller</span></div><div class="line">  ......</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 <p>再次测试, pass!  </p>
 </li>
 <li><p>如果你的model中有图片部分，比如event model中有个event logo，而你用factoryBot生成数据时，是这样的：</p>

@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://lupeipei.github.io/2017/07/16/Introduction-to-Ruby/index.html">
 <meta property="og:site_name" content="Lucia">
 <meta property="og:description" content="引子刷了codecademy的ruby基础，简单做了笔记。 记住两句话： Almost Everything in Ruby is an Object. [except block] Every operation in Ruby is  a method call. 正文基础概念 data Types: Numbers, Strings, Booleans Puts and print: Pri">
-<meta property="og:updated_time" content="2017-10-24T01:43:56.000Z">
+<meta property="og:updated_time" content="2018-02-01T09:52:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ruby学习笔记">
 <meta name="twitter:description" content="引子刷了codecademy的ruby基础，简单做了笔记。 记住两句话： Almost Everything in Ruby is an Object. [except block] Every operation in Ruby is  a method call. 正文基础概念 data Types: Numbers, Strings, Booleans Puts and print: Pri">
@@ -418,19 +418,14 @@
 <h5 id="Loops-amp-Iterators"><a href="#Loops-amp-Iterators" class="headerlink" title="Loops &amp; Iterators"></a>Loops &amp; Iterators</h5><ul>
 <li>while ,until, for</li>
 <li>for中，当有三个.时，比如for num in 1…10， 循环9次，不包括10，当有两个.时，比如for num in 1..10，循环10次，包括10</li>
-<li>break退出循环，例如：<pre><code>i = 20
-loop do
-  i -= 1
-  print &quot;#{i}&quot;
-  break if i &lt;= 0
-end
-</code></pre></li>
-<li>Next! 用于跳过一些步骤，例如：<pre><code>for i in 1..5
-    next if i % 2 == 0
-    print i
-end
-</code></pre></li>
-<li>.each iterator</li>
+<li><p>break退出循环，例如：</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">i = <span class="number">20</span></div><div class="line">loop <span class="keyword">do</span></div><div class="line">  i -= <span class="number">1</span></div><div class="line">  print <span class="string">"<span class="subst">#&#123;i&#125;</span>"</span></div><div class="line">  <span class="keyword">break</span> <span class="keyword">if</span> i &lt;= <span class="number">0</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>Next! 用于跳过一些步骤，例如：</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>..<span class="number">5</span></div><div class="line">	<span class="keyword">next</span> <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span></div><div class="line">	print i</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>.each iterator</p>
+</li>
 <li>.times iterator</li>
 </ul>
 <h5 id="Data-Structure-Array-and-Hashes"><a href="#Data-Structure-Array-and-Hashes" class="headerlink" title="Data Structure: Array and Hashes"></a>Data Structure: Array and Hashes</h5><ul>
@@ -452,7 +447,7 @@ puts h[&quot;kitty&quot;]
 # nothing
 </code></pre></li>
 <li><p>遍历hash，使用.each：</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">pets = &#123;</div><div class="line"></div><div class="line">  &quot;dog&quot; =&gt; 12</div><div class="line"></div><div class="line">  &quot;cat&quot; =&gt; 12</div><div class="line"></div><div class="line">  &quot;mouse&quot; =&gt; 3</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">pets.each &#123;|pet, age| puts &quot;#&#123;pet&#125; : #&#123;age&#125;&quot;&#125;</div></pre></td></tr></table></figure>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">pets = &#123;</div><div class="line"></div><div class="line">  <span class="string">"dog"</span> =&gt; <span class="number">12</span></div><div class="line"></div><div class="line">  <span class="string">"cat"</span> =&gt; <span class="number">12</span></div><div class="line"></div><div class="line">  <span class="string">"mouse"</span> =&gt; <span class="number">3</span></div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">pets.each &#123;<span class="params">|pet, age|</span> puts <span class="string">"<span class="subst">#&#123;pet&#125;</span> : <span class="subst">#&#123;age&#125;</span>"</span>&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -460,18 +455,16 @@ puts h[&quot;kitty&quot;]
 <h5 id="Methods-and-Sorting"><a href="#Methods-and-Sorting" class="headerlink" title="Methods and Sorting"></a>Methods and Sorting</h5><ul>
 <li><p>method</p>
 <ul>
-<li>当不清楚需要传递的参数有多少个的时候，用*， 即splat arguments。如: name可以是一个string，也可以是一组字符串数组<pre><code>def friend(*name)
-    puts &quot;my friend(s) &quot; + name
-end
+<li>当不清楚需要传递的参数有多少个的时候，用*， 即splat arguments。如: name可以是一个string，也可以是一组字符串数组<pre><code><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">friend</span><span class="params">(*name)</span></span></div><div class="line">	puts <span class="string">"my friend(s) "</span> + name</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 </code></pre></li>
 </ul>
 </li>
 <li><p>sort</p>
 <ul>
-<li>.sort!, 也可以自定义排序,默认是升序，例如：<pre><code>books.sort! do |firstbook, secondbook|
-    firstbook &lt;=&gt; secondbook
-end
-</code></pre>&lt;=&gt;是比较符号，例如：a&lt;=&gt;b，如果a &gt; b, 1 ; a == b ,0 ; a &lt; b, -1.</li>
+<li><p>.sort!, 也可以自定义排序,默认是升序，例如：</p>
+<pre><code><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">books.sort! <span class="keyword">do</span> <span class="params">|firstbook, secondbook|</span></div><div class="line">	firstbook &lt;=&gt; secondbook</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+</code></pre><p>&lt;=&gt;是比较符号，例如：a&lt;=&gt;b，如果a &gt; b, 1 ; a == b ,0 ; a &lt; b, -1.</p>
+</li>
 </ul>
 </li>
 </ul>
@@ -487,18 +480,7 @@ end
 </li>
 <li>symbol 与string可以相互转化：<code>.to_s</code> and <code>.to_sym</code> or <code>.intern</code></li>
 <li><p>用<code>.select</code>来对hash进行筛选。如：</p>
-<pre><code>grades = {
-  alice: 100,
-  bob: 92,
-  chris: 95,
-  dave: 97
-}
-
-grades.select {|name, grade| grade &gt; 97}
-# ==&gt; {:alice =&gt; 100}
-
-grades.select {|k,v| k == :chris}
-# ==&gt; {:chris =&gt; 95}
+<pre><code><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">grades = &#123;</div><div class="line">  <span class="symbol">alice:</span> <span class="number">100</span>,</div><div class="line">  <span class="symbol">bob:</span> <span class="number">92</span>,</div><div class="line">  <span class="symbol">chris:</span> <span class="number">95</span>,</div><div class="line">  <span class="symbol">dave:</span> <span class="number">97</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">grades.select &#123;<span class="params">|name, grade|</span> grade &gt; <span class="number">97</span>&#125;</div><div class="line"><span class="comment"># ==&gt; &#123;:alice =&gt; 100&#125;</span></div><div class="line"></div><div class="line">grades.select &#123;<span class="params">|k,v|</span> k == <span class="symbol">:chris</span>&#125;</div><div class="line"><span class="comment"># ==&gt; &#123;:chris =&gt; 95&#125;</span></div></pre></td></tr></table></figure>
 </code></pre></li>
 <li><p><code>.each_key</code> ,<code>.each_value</code> , 可以单独访问hash的key 和value</p>
 </li>
@@ -518,12 +500,8 @@ end
 <li>conditional assignment: ||=</li>
 <li>return in ruby: 在ruby中，如果没有指明return，它的methods会默认return最后一个有值的表达式。</li>
 <li><strong>only false and nil are false value in Ruby</strong>.</li>
-<li><code>.upto</code>,<code>.downto</code> methods. for example:<pre><code>&quot;L&quot;.upto(&quot;P&quot;) {|word| puts word}
-# L
-# M
-# N
-# O
-# P
+<li><p><code>.upto</code>,<code>.downto</code> methods. for example:</p>
+<pre><code><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="string">"L"</span>.upto(<span class="string">"P"</span>) &#123;<span class="params">|word|</span> puts word&#125;</div><div class="line"><span class="comment"># L</span></div><div class="line"><span class="comment"># M</span></div><div class="line"><span class="comment"># N</span></div><div class="line"><span class="comment"># O</span></div><div class="line"><span class="comment"># P</span></div></pre></td></tr></table></figure>
 </code></pre></li>
 <li><p><code>.respond_to? : takes a symbol</code> and return true if an object can receive that method and false otherwise.</p>
 <pre><code>[1,2,3].respond_to?(:push)
@@ -538,26 +516,13 @@ end
 <li><p>Blocks : it is not a object. this is one of the very few exceptions to the “everything is an object” rule in Ruby.</p>
 <ul>
 <li><p>block can be combined with methods like <code>.each</code> and <code>.times</code> to execute an instruction for each element in a collection (like a hash or array).</p>
-<p>  <code>5.times {puts &quot;I&#39;m a block!&quot;}</code></p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">5</span>.times &#123;puts <span class="string">"I'm a block!"</span>&#125;</div></pre></td></tr></table></figure>
 </li>
-<li><code>.collect</code> can also use to take a block:<br><code>.collect</code> returns a copy of my_nums, but doesn’t change (or mutate) the original my_numsarray. use <code>.collect!</code>  to change the array.<pre><code>my_nums = [1,2,3]
-my_nums.collect { |num| num**2 }
-my_nums
-# ==&gt; [1,2,3]
-my_nums.collect! { |num| num**2 }
-my_nums
-# ==&gt; [1,4,9]
+<li><p><code>.collect</code> can also use to take a block:<br><code>.collect</code> returns a copy of my_nums, but doesn’t change (or mutate) the original my_numsarray. use <code>.collect!</code>  to change the array.</p>
+<pre><code><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">my_nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line">my_nums.collect &#123; <span class="params">|num|</span> num**<span class="number">2</span> &#125;</div><div class="line">my_nums</div><div class="line"><span class="comment"># ==&gt; [1,2,3]</span></div><div class="line">my_nums.collect! &#123; <span class="params">|num|</span> num**<span class="number">2</span> &#125;</div><div class="line">my_nums</div><div class="line"><span class="comment"># ==&gt; [1,4,9]</span></div></pre></td></tr></table></figure>
 </code></pre></li>
 <li><p><code>yield</code> , methods accept blocks using the yieldkeyword.  for example:</p>
-<pre><code>def yield_name(name)
-  puts &quot;In the method! Let&apos;s yield.&quot;
-  yield(&quot;Kim&quot;)
-  puts &quot;In between the yields!&quot;
-  yield(name)
-  puts &quot;Block complete! Back in the method.&quot;
-end
-
-yield_name(&quot;Eric&quot;) { |n| puts &quot;My name is #{n}.&quot; }
+<pre><code><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">yield_name</span><span class="params">(name)</span></span></div><div class="line">  puts <span class="string">"In the method! Let's yield."</span></div><div class="line">  <span class="keyword">yield</span>(<span class="string">"Kim"</span>)</div><div class="line">  puts <span class="string">"In between the yields!"</span></div><div class="line">  <span class="keyword">yield</span>(name)</div><div class="line">  puts <span class="string">"Block complete! Back in the method."</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">yield_name(<span class="string">"Eric"</span>) &#123; <span class="params">|n|</span> puts <span class="string">"My name is <span class="subst">#&#123;n&#125;</span>."</span> &#125;</div></pre></td></tr></table></figure>
 
 输出结果：
 In the method! Let&apos;s yield.
@@ -566,12 +531,7 @@ In between the yields!
 My name is Eric.
 Block complete! Back in the method.
 </code></pre></li>
-<li><p>定义一个double函数，使用yield + block 的方式(不在函数里面定义，而是用block的方式去定义)</p>
-<pre><code>def double(number)
-    yield(number)
-end
-
-double(2){|n| n*2}
+<li>定义一个double函数，使用yield + block 的方式(不在函数里面定义，而是用block的方式去定义)<pre><code><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">double</span><span class="params">(number)</span></span></div><div class="line">    <span class="keyword">yield</span>(number)</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">double(<span class="number">2</span>)&#123;<span class="params">|n|</span> n*<span class="number">2</span>&#125;</div></pre></td></tr></table></figure>
 </code></pre></li>
 </ul>
 </li>
@@ -587,23 +547,21 @@ double(2){|n| n*2}
 <li>反复使用：Unlike blocks, procs can be called over and over without rewriting them.</li>
 </ul>
 </li>
-<li><code>.call</code>可以直接call procs .<pre><code>test = Proc.new {puts &quot;hello&quot;}
-test.call
-# ==&gt; hello
+<li><p><code>.call</code>可以直接call procs .</p>
+<pre><code><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">test = Proc.new &#123;puts <span class="string">"hello"</span>&#125;</div><div class="line">test.call</div><div class="line"><span class="comment"># ==&gt; hello</span></div></pre></td></tr></table></figure>
 </code></pre></li>
-<li>Symbol, meet proc<pre><code>string = [&quot;1&quot;,&quot;2&quot;,&quot;3&quot;]
-nums = strings.map(&amp;:to_i)
-# ==&gt; [1,2,3]
-# By mapping &amp;:to_i over every element of strings, we turned each string into an integer
+<li><p>Symbol, meet proc</p>
+<pre><code><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">string = [<span class="string">"1"</span>,<span class="string">"2"</span>,<span class="string">"3"</span>]</div><div class="line">nums = strings.map(&amp;<span class="symbol">:to_i</span>)</div><div class="line"><span class="comment"># ==&gt; [1,2,3]</span></div><div class="line"><span class="comment"># By mapping &amp;:to_i over every element of strings, we turned each string into an integer</span></div></pre></td></tr></table></figure>
 </code></pre></li>
 </ul>
 </li>
-<li>Lambda<ul>
+<li><p>Lambda</p>
+<ul>
 <li>Syntax :<pre><code>lambda {|param| block }
 </code></pre></li>
 <li>Lambda VS Proc (super similar)<ul>
 <li><strong>a lambda checks the number of arguments passed to it, while a proc does no</strong>t. This means that a lambda will throw an error if you pass it the wrong number of arguments, whereas a proc will ignore unexpected arguments and assign nil to any that are missing.</li>
-<li>when a lambda returns, it passes control back to the calling method; when a proc returns, it does so immediately, without going back to the calling method.</li>
+<li>when a lambda returns, it passes control back to the calling method; when a proc returns, it does so immediately, without going back to the calling method.**</li>
 </ul>
 </li>
 </ul>
@@ -616,36 +574,17 @@ nums = strings.map(&amp;:to_i)
 <li>Scope : The scope of a variable is the context in which it’s visible to the program.</li>
 <li>@@var : an class variable, belongs to the class itself.</li>
 <li>$var : global variable</li>
-<li>Inheritance Syntax :<pre><code>class DerivedClass &lt; BaseClass
-    # some stuff
-end
+<li><p>Inheritance Syntax :</p>
+<pre><code><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DerivedClass</span> &lt; BaseClass</span></div><div class="line">	<span class="comment"># some stuff</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 </code></pre></li>
-<li>Override: 在子对象中定义了与父对象一样的方法时，会自动覆盖掉父对象的方法</li>
+<li><p>Override: 在子对象中定义了与父对象一样的方法时，会自动覆盖掉父对象的方法</p>
+</li>
 <li><p>super， 当需要在子对象调用被覆盖的父对象方法时，用super，例如：</p>
-<pre><code>class Creature
-  def fight
-    return &quot;Punch to the chops!&quot;
-  end
-end
-
-class Dragon &lt; Creature
-    def fight
-        puts  &quot;Instead of breathing fire...&quot;
-        super
-    end
-end
+<pre><code><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Creature</span></span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">fight</span></span></div><div class="line">    <span class="keyword">return</span> <span class="string">"Punch to the chops!"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dragon</span> &lt; Creature</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fight</span></span></div><div class="line">        puts  <span class="string">"Instead of breathing fire..."</span></div><div class="line">        <span class="keyword">super</span></div><div class="line">    <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 </code></pre></li>
-<li><strong>只能继承一个父类 ：Only One！</strong></li>
-<li><p>attr_reader, attr_writer: you can read and update a particular variable. or just use attr_accessor to make a variable readable and writeable in one fell swoop.</p>
-<pre><code>class Person
-  attr_reader :name
-  attr_accessor :job
-
-  def initialize(name, job)
-    @name = name
-    @job = job
-  end
-end
+<li><p><strong>只能继承一个父类 ：Only One！</strong></p>
+</li>
+<li>attr_reader, attr_writer: you can read and update a particular variable. or just use attr_accessor to make a variable readable and writeable in one fell swoop.<pre><code><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></div><div class="line">  <span class="keyword">attr_reader</span> <span class="symbol">:name</span></div><div class="line">  <span class="keyword">attr_accessor</span> <span class="symbol">:job</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(name, job)</span></span></div><div class="line">    @name = name</div><div class="line">    @job = job</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 </code></pre></li>
 </ul>
 </li>
