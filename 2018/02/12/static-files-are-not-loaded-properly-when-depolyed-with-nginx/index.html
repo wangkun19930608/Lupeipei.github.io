@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ROR," />
+  <meta name="keywords" content="ROR,Nginx," />
 
 
 
@@ -87,20 +87,26 @@
 
 
 
-<meta name="description" content="问题描述场景是这样的： 有model project，要求project的show页面可以切换不同的主题，比如主题1，主题2。 类似这样：  貌似很简单，切换页面而已。不过rails中，project 的show页面只有一个show.html.erb， 你可能想到替换部分的页面，加上ajax特效来实现，如果你这么想，那先恭喜你！你已成功入坑！你要给按钮的点击行为添加method，点击时，将需要切换">
-<meta name="keywords" content="ROR">
+<meta name="description" content="背景鉴于我部署这块踩的坑不少，近来一位小伙伴在部署Rails的时候，就帮忙debug了下，中间遇到了一个问题：网站部署到Nginx后，页面加载不正常，所有的格式都没有加载进来。最后Google到了解决方法，觉得有必要记录一下，以备忘。 问题描述本地运行的页面是这样的：👇  部署到Nginx后，浏览器打开的页面是这样的：👇  可以看出部署中，样式没有加载进来。 解决方法起先我以为可以通过asse">
+<meta name="keywords" content="ROR,Nginx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何在Rails中切换不同主题的show页面？">
-<meta property="og:url" content="http://lupeipei.github.io/2018/02/08/render-different-show-pages-in-ruby-on-rails/index.html">
+<meta property="og:title" content="Rails部署到Nginx后静态文件加载不正常">
+<meta property="og:url" content="http://lupeipei.github.io/2018/02/12/static-files-are-not-loaded-properly-when-depolyed-with-nginx/index.html">
 <meta property="og:site_name" content="Lucia">
-<meta property="og:description" content="问题描述场景是这样的： 有model project，要求project的show页面可以切换不同的主题，比如主题1，主题2。 类似这样：  貌似很简单，切换页面而已。不过rails中，project 的show页面只有一个show.html.erb， 你可能想到替换部分的页面，加上ajax特效来实现，如果你这么想，那先恭喜你！你已成功入坑！你要给按钮的点击行为添加method，点击时，将需要切换">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fo70rntbj5g30sa07wt9s.gif">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fo70blzaw1j30kq0aswfp.jpg">
-<meta property="og:updated_time" content="2018-02-08T00:13:39.000Z">
+<meta property="og:description" content="背景鉴于我部署这块踩的坑不少，近来一位小伙伴在部署Rails的时候，就帮忙debug了下，中间遇到了一个问题：网站部署到Nginx后，页面加载不正常，所有的格式都没有加载进来。最后Google到了解决方法，觉得有必要记录一下，以备忘。 问题描述本地运行的页面是这样的：👇  部署到Nginx后，浏览器打开的页面是这样的：👇  可以看出部署中，样式没有加载进来。 解决方法起先我以为可以通过asse">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1foccuxti6uj31kw0riqdl.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1foccunilaij30ui0exq3o.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1focd5l1xrnj30ex02374o.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1focdkrt9erj30li06w0uj.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1focdpcmtmcj30ck07q3ys.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1focdpxd603j30d9027jrd.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1focdue52fzj30m002qwew.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1foceevsozwj30pd01wwex.jpg">
+<meta property="og:updated_time" content="2018-02-12T01:27:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何在Rails中切换不同主题的show页面？">
-<meta name="twitter:description" content="问题描述场景是这样的： 有model project，要求project的show页面可以切换不同的主题，比如主题1，主题2。 类似这样：  貌似很简单，切换页面而已。不过rails中，project 的show页面只有一个show.html.erb， 你可能想到替换部分的页面，加上ajax特效来实现，如果你这么想，那先恭喜你！你已成功入坑！你要给按钮的点击行为添加method，点击时，将需要切换">
-<meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fo70rntbj5g30sa07wt9s.gif">
+<meta name="twitter:title" content="Rails部署到Nginx后静态文件加载不正常">
+<meta name="twitter:description" content="背景鉴于我部署这块踩的坑不少，近来一位小伙伴在部署Rails的时候，就帮忙debug了下，中间遇到了一个问题：网站部署到Nginx后，页面加载不正常，所有的格式都没有加载进来。最后Google到了解决方法，觉得有必要记录一下，以备忘。 问题描述本地运行的页面是这样的：👇  部署到Nginx后，浏览器打开的页面是这样的：👇  可以看出部署中，样式没有加载进来。 解决方法起先我以为可以通过asse">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1foccuxti6uj31kw0riqdl.jpg">
 
 
 
@@ -128,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://lupeipei.github.io/2018/02/08/render-different-show-pages-in-ruby-on-rails/"/>
+  <link rel="canonical" href="http://lupeipei.github.io/2018/02/12/static-files-are-not-loaded-properly-when-depolyed-with-nginx/"/>
 
 
 
 
 
-  <title> 如何在Rails中切换不同主题的show页面？ | Lucia </title>
+  <title> Rails部署到Nginx后静态文件加载不正常 | Lucia </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -273,7 +279,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2018/02/08/render-different-show-pages-in-ruby-on-rails/">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2018/02/12/static-files-are-not-loaded-properly-when-depolyed-with-nginx/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lucia">
@@ -294,7 +300,7 @@
             
             
               
-                如何在Rails中切换不同主题的show页面？
+                Rails部署到Nginx后静态文件加载不正常
               
             
           </h1>
@@ -309,8 +315,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-08T08:11:55+08:00">
-                2018-02-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-12T09:24:41+08:00">
+                2018-02-12
               </time>
             
 
@@ -350,9 +356,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/02/08/render-different-show-pages-in-ruby-on-rails/#comments" itemprop="discussionUrl">
+                <a href="/2018/02/12/static-files-are-not-loaded-properly-when-depolyed-with-nginx/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/08/render-different-show-pages-in-ruby-on-rails/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/02/12/static-files-are-not-loaded-properly-when-depolyed-with-nginx/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -383,29 +389,35 @@
       
 
       
-        <h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>场景是这样的：</p>
-<p>有model project，要求project的show页面可以切换不同的主题，比如主题1，主题2。</p>
-<p>类似这样：</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fo70rntbj5g30sa07wt9s.gif" alt=""></p>
-<p>貌似很简单，切换页面而已。不过rails中，project 的show页面只有一个<code>show.html.erb</code>， 你可能想到替换部分的页面，加上ajax特效来实现，如果你这么想，那先恭喜你！你已成功入坑！你要给按钮的点击行为添加method，点击时，将需要切换的主题参数传递给controller，然后controller根据这个来决定替换哪个主题页面。</p>
-<p>为了不刷新页面就完成切换，你需要用上ajax，而对于保存页面主题这块， 你可能会想到给project添加个字段theme啥的，用来判断该切换到哪一部分……好吧，其实不用这么复杂。「这些我踩过的坑就不要再踩了， 整个过程会让你想多灌自己两听可乐……」</p>
-<h4 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h4><p>其实，仔细想想，就是render到不同的show页面，动两处就好了。</p>
-<p>我们假定在app/views/projects下， 两个主题对应的页面分别是<code>theme1.html.erb</code>，  <code>theme2.html.erb</code>。</p>
-<p>两步走。</p>
-<p>一、project 的controller中show部分：</p>
-<p>在<code>projects_controller.rb</code>文件中，在show部分，添加如下内容：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProjectsController</span> &lt; ApplicationController</span></div><div class="line">  .......</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">show</span></span></div><div class="line">    .......</div><div class="line">    theme = params[<span class="symbol">:theme</span>]</div><div class="line">    <span class="keyword">if</span> theme == <span class="string">"theme2"</span></div><div class="line">      render <span class="string">'theme2'</span></div><div class="line">    <span class="keyword">else</span></div><div class="line">      render <span class="string">'theme1'</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">....</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p>二、 <strong>所有跳转到project show页面的按钮，都添加一个参数：theme</strong>。比如在<code>theme1.html.erb</code>中的button部分：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.....</div><div class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"btn btn-info pull-right"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("切换到主题<span class="attr">2</span>", <span class="attr">project_path</span>(@<span class="attr">project</span>, <span class="attr">theme:</span> "<span class="attr">theme2</span>")) %&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">......</div></pre></td></tr></table></figure>
-<p> <code>theme2.html.erb</code>的button部分与之类似：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.....</div><div class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"btn btn-info pull-right"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("切换到主题<span class="attr">1</span>", <span class="attr">project_path</span>(@<span class="attr">project</span>, <span class="attr">theme:</span> "<span class="attr">theme1</span>")) %&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">......</div></pre></td></tr></table></figure>
-<p>其他需要跳转到show 页面的link都做这样的处理，至于theme的值，如果你的默认主题是theme1， 则取默认主题即可。</p>
-<p>超级简单有没有？！</p>
-<p>你可能会问，为什么会想到这个解决方法？</p>
-<p>启发来自这里：👇</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fo70blzaw1j30kq0aswfp.jpg" alt=""></p>
-<p>虽然只有一个vote，但是不妨碍它好用啊！点赞Ankit Pandey.</p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://stackoverflow.com/questions/43558477/render-different-show-pages-with-category-in-ruby-on-rails" target="_blank" rel="external">render different show pages with category in ruby on rails</a></p>
+        <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>鉴于我部署这块踩的坑不少，近来一位小伙伴在部署Rails的时候，就帮忙debug了下，中间遇到了一个问题：<strong>网站部署到Nginx后，页面加载不正常，所有的格式都没有加载进来</strong>。最后Google到了解决方法，觉得有必要记录一下，以备忘。</p>
+<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>本地运行的页面是这样的：👇</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1foccuxti6uj31kw0riqdl.jpg" alt=""></p>
+<p>部署到Nginx后，浏览器打开的页面是这样的：👇</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1foccunilaij30ui0exq3o.jpg" alt=""></p>
+<p>可以看出部署中，样式没有加载进来。</p>
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>起先我以为可以通过assets:precompile来解决，但尝试后发现并不能。</p>
+<p>点击右键，看chrome的console，报错如下：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1focd5l1xrnj30ex02374o.jpg" alt=""></p>
+<p>报错显示是transferred with MIME type text/plain了，查看MIME <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types" target="_blank" rel="external">官网</a>, 可以看到它的定义及应用：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1focdkrt9erj30li06w0uj.jpg" alt=""></p>
+<p>看它的Discrete types列表：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1focdpcmtmcj30ck07q3ys.jpg" alt=""></p>
+<p>它的multipart types：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1focdpxd603j30d9027jrd.jpg" alt=""></p>
+<p>鉴于文件没有被拆分成多个部分，应该属于是discrete types， 再看console的报错，文件应该是默认用text/plain的方式处理了，看它的语法，你会发现：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1focdue52fzj30m002qwew.jpg" alt=""></p>
+<p>二进制的docs都是用<strong>application/octet-stream</strong>的方式处理的，貌似找到钥匙了。可是，这要在哪里修改呢？我还是一头雾水。</p>
+<p>Google后，在这一篇<a href="http://blog.csdn.net/m0_37904728/article/details/78745243" target="_blank" rel="external"> Web部署到Nginx后静态文件加载不正常</a>里找到了解答，不废话了，直接上解答：</p>
+<p>编辑<code>/etc/nginx/nginx.conf</code>文件，在http{}中，添加：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">include</span> /etc/nginx/mime.types;</div><div class="line"><span class="attribute">default_type</span> application/octet-stream;</div></pre></td></tr></table></figure>
+<p>然后再重启Nginx：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo service nginx restart</div></pre></td></tr></table></figure>
+<p>再次刷新网站，OK。</p>
+<p>另，其实我也不大懂MIME，看定义知道是一种多用途互联网邮件扩展的规范，如果你好奇的话，打开你的任意一封email，选择<strong>查看原始邮件</strong>，会发现MIME的影子，有助加深理解。比如我gmail中的一份邮件：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1foceevsozwj30pd01wwex.jpg" alt=""></p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types" target="_blank" rel="external">MIME types</a></p>
+<p><a href="http://blog.csdn.net/m0_37904728/article/details/78745243" target="_blank" rel="external"> Web部署到Nginx后静态文件加载不正常</a></p>
+<p>BTW,  Google的时候，发现了阮一峰老师的这篇<a href="http://www.ruanyifeng.com/blog/2008/06/mime.html" target="_blank" rel="external">MIME笔记</a></p>
 
       
     </div>
@@ -437,6 +449,8 @@
           
             <a href="/tags/ROR/" rel="tag"># ROR</a>
           
+            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
+          
         </div>
       
 
@@ -448,18 +462,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/09/how-add-jquery-plugin-magnify-on-rails/" rel="next" title="一款超好用的图片预览插件Magnify">
-                <i class="fa fa-chevron-left"></i> 一款超好用的图片预览插件Magnify
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/06/how-to-drop-a-table-on-rails/" rel="prev" title="Rails中如何删除数据表？">
-                Rails中如何删除数据表？ <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/10/notes-of-waiting-for-godot/" rel="prev" title="读《等待戈多》">
+                读《等待戈多》 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -616,7 +626,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解答"><span class="nav-number">2.</span> <span class="nav-text">解答</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题描述"><span class="nav-number">2.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方法"><span class="nav-number">3.</span> <span class="nav-text">解决方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -773,9 +783,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://lupeipei.github.io/2018/02/08/render-different-show-pages-in-ruby-on-rails/';
-          this.page.identifier = '2018/02/08/render-different-show-pages-in-ruby-on-rails/';
-          this.page.title = '如何在Rails中切换不同主题的show页面？';
+          this.page.url = 'http://lupeipei.github.io/2018/02/12/static-files-are-not-loaded-properly-when-depolyed-with-nginx/';
+          this.page.identifier = '2018/02/12/static-files-are-not-loaded-properly-when-depolyed-with-nginx/';
+          this.page.title = 'Rails部署到Nginx后静态文件加载不正常';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-lupeipei-github-io.disqus.com/embed.js';
