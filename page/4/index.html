@@ -270,6 +270,179 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/11/15/how-to-pass-array-in-examples/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lucia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/15/how-to-pass-array-in-examples/" itemprop="url">
+                  如何在cucumber 的example中传递Array
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-15T22:22:52+08:00">
+                2017-11-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cucumber/" itemprop="url" rel="index">
+                    <span itemprop="name">Cucumber</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/15/how-to-pass-array-in-examples/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/15/how-to-pass-array-in-examples/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>实际上，还是传递字符……</p>
+<p>看下面的例子👇</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>当你想要在examples中传递一个Array时，要怎么做？直接传递？我们试试。</p>
+<p>背景如下：</p>
+<p>在文件<code>search.feature</code>中，search_terms的数据是一个数组[ ‘chocolate’ , ‘Nigella Lawson’]：</p>
+ <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Scenario <span class="symbol">Outline:</span></div><div class="line">When I search <span class="keyword">for</span> <span class="string">"&lt;search_terms&gt;"</span></div><div class="line">Then I should get a list of <span class="string">"&lt;recipe_title&gt;"</span></div><div class="line"><span class="symbol">Examples:</span></div><div class="line">        <span class="params">| search_terms |</span> recipe_title <span class="params">|</span></div><div class="line">        | [ <span class="string">'chocolate'</span> , <span class="string">'Nigella Lawson'</span>] <span class="params">| White chocolate <span class="keyword">and</span> mintmousse |</span></div></pre></td></tr></table></figure>
+<p>对应的step文件，如<code>search_step.rb</code>，内容：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">When(<span class="regexp">/^I search for "([^"]*)"$/</span>) <span class="keyword">do</span> <span class="params">|terms|</span></div><div class="line">  search_terms = terms</div><div class="line">  ......</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">Then(<span class="regexp">/^I should get a list of "([^"]*)"$/</span>) <span class="keyword">do</span> <span class="params">|recipe_title|</span></div><div class="line">  ......</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>这时如果直接在终端运行cucumber会报错，因为你的search_terms传递的是一个array。</p>
+<p>在 <a href="http://thread.gmane.org/gmane.comp.programming.tools.cucumber/9315" target="_blank" rel="external">Cucumber:10316 -  Passing arrays in tables</a>中有位mswinson提到了这个问题，然后有位叫Andy的回复了他。【蛮好玩的，有兴趣的可以看看。】</p>
+<p>解决方法就是<strong>避开Array，传递String，用“，”来区分各个element，然后在step definitions中用<code>split(/, /)</code>将其转换为Array</strong>。</p>
+<p>比如上面的这个例子，可以这么来：</p>
+<p>修改文件<code>search.feature</code>内容：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Scenario <span class="symbol">Outline:</span></div><div class="line">When I search <span class="keyword">for</span> <span class="string">"&lt;search_terms&gt;"</span></div><div class="line">Then I should get a list of <span class="string">"&lt;recipe_title&gt;"</span></div><div class="line"></div><div class="line"><span class="symbol">Examples:</span></div><div class="line">        <span class="params">| search_terms |</span> recipe_title <span class="params">|</span></div><div class="line">        | chocolate , Nigella Lawson<span class="params">| White chocolate <span class="keyword">and</span> mintmousse |</span></div></pre></td></tr></table></figure>
+<p>在对应的step文件中， 使用<code>search_terms = terms.split(/, /)</code>。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">When(<span class="regexp">/^I search for "([^"]*)"$/</span>) <span class="keyword">do</span> <span class="params">|terms|</span></div><div class="line">  search_terms = terms.split(<span class="regexp">/, /</span>) <span class="comment">## 这时search_terms就是一个array了</span></div><div class="line">  ......</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">Then(<span class="regexp">/^I should get a list of "([^"]*)"$/</span>) <span class="keyword">do</span> <span class="params">|recipe_title|</span></div><div class="line">  ......</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>OK，完成。</p>
+<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p>嗯，就这么简单，可我还是想把它写出来，硬生生整出了一篇文章来……</p>
+<p>参考： <a href="http://thread.gmane.org/gmane.comp.programming.tools.cucumber/9315" target="_blank" rel="external">Cucumber:10316 -  Passing arrays in tables</a></p>
+<p>enjoy ：D</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/11/09/usage-of-restclient/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1956,186 +2129,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/20/how-to-debug-with-RSpec/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lucia">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/20/how-to-debug-with-RSpec/" itemprop="url">
-                  如何在测试中debug?
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-20T14:38:45+08:00">
-                2017-10-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RSpec/" itemprop="url" rel="index">
-                    <span itemprop="name">RSpec</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/20/how-to-debug-with-RSpec/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/20/how-to-debug-with-RSpec/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>做测试的时候，案例未通过，满屏飘红是常有的事，所以在测试中debug就显得很有必要，为便于阐述，以我自己做的一个events_controller 的测试为例，看看如何debug。</p>
-<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>一个测试报错了，而提示又不足以让你立马get到点，比如在做controller的单位测试时，验证create这个method，出错：</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkqyujzh4nj30o704bgm8.jpg" alt=""></p>
-<p>很显然，event没有成功写入数据库，如何debug？</p>
-<p>首先，你可能想单独跑这一个案例，其他的注释掉。</p>
-<p>比较粗暴的方法是注解掉其他的测试案例，只留下你要纠正的那个，另一个方法是用<code>:focus =&gt; true</code>。</p>
-<p>两步走：</p>
-<ul>
-<li><p>编辑<code>spec/rails_helper.rb</code>， 加入两行设定：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">  RSpec.configure <span class="keyword">do</span> <span class="params">|config|</span></div><div class="line">  ......</div><div class="line"></div><div class="line">+  config.filter_run <span class="symbol">:focus</span> =&gt; <span class="literal">true</span></div><div class="line">+  config.run_all_when_everything_filtered = <span class="literal">true</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>修改你的test文件，比如针对上面的报错，我的文件是<code>spec/controllers/events_controller_spec.rb</code>, 在未通过的案例中，加入了<code>:focus =&gt; true</code></p>
-<p>​</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkqz77tr3uj30eh076jsg.jpg" alt=""></p>
-</li>
-</ul>
-<p>终端运行<code>rspec spec/controllers/events_controller_spec.rb</code>, 将会只运行这一个实例。</p>
-<p>「需要注意的是，测试通过后，记得把<code>:focus =&gt; true</code> 移除。」</p>
-<p>确认只有这个案例运行后，接下来，我们用byebug下断点，检查下为什么event没有存入数据库。</p>
-<p>在<code>app/controllers/events_controller.rb</code>中，create部分，加入byebug：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkqzl4lewgj30i505p0tc.jpg" alt=""></p>
-<p>终端再次运行<code>rspec spec/controllers/events_controller_spec.rb</code>， 会发现程序停在那里了:</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fkqzmdxoxdj30u6093q4v.jpg" alt=""></p>
-<p>这时就可以检查变量了。比如我输入@event查看各个字段的赋值情况，发现eventlogo没有赋值成功，fix it。</p>
-<p>最后输入<code>continue</code>, 程序就会继续执行下去。</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkr0525em2j30u60ab0uv.jpg" alt=""></p>
-<h4 id="the-End"><a href="#the-End" class="headerlink" title="the End"></a>the End</h4><p>Happy debugging! ：P</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2185,7 +2178,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">67</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
