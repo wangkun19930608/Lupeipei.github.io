@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ROR," />
+  <meta name="keywords" content="ROR,layer," />
 
 
 
@@ -87,24 +87,20 @@
 
 
 
-<meta name="description" content="写在前面在给自己的网站加密后，网址从http变成https了，可是我却发现网站成了这样：  预期中的它应该是长这样子👇：  仔细检查了Nginx中的配置文档，没有发现问题，推测不是配置的问题，那么为什么会这样？ 【BTW, 阿里云有免费的SSL证书，可以让网站从HTTP换成HTTPS，戳这里直达阿里云。】 请确保你的Nginx配置是正确的，下面的解决思路是以配置无误为前提的。 正文google后">
-<meta name="keywords" content="ROR">
+<meta name="description" content="layer是什么？layer, 一款 web弹窗组件，你可以将它看作bootstrap中的modal， 详情可见：官网,  GitHub。 layer是layui的一个内置模块，而layui则是一个前端UI框架，具体可见其官网。 怎么用？由于layer是layui的弹窗组件，所以使用时既可以单独使用，也可以通过layui模块化使用，这里单独使用layer。 layer的单独使用在其快速上手里面有相">
+<meta name="keywords" content="ROR,layer">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网站加密后，没有挂上小绿锁?">
-<meta property="og:url" content="http://lupeipei.github.io/2017/10/18/website-padlock-green-issue/index.html">
+<meta property="og:title" content="Rails中使用layer弹窗组件">
+<meta property="og:url" content="http://lupeipei.github.io/2018/02/24/using-layer-on-Rails/index.html">
 <meta property="og:site_name" content="Lucia">
-<meta property="og:description" content="写在前面在给自己的网站加密后，网址从http变成https了，可是我却发现网站成了这样：  预期中的它应该是长这样子👇：  仔细检查了Nginx中的配置文档，没有发现问题，推测不是配置的问题，那么为什么会这样？ 【BTW, 阿里云有免费的SSL证书，可以让网站从HTTP换成HTTPS，戳这里直达阿里云。】 请确保你的Nginx配置是正确的，下面的解决思路是以配置无误为前提的。 正文google后">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fks9mass87j30ey03x0u2.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fks9njubhqj303g00vjr7.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fks9wu7e2lj30q90ixhcb.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fks9sjsqjbj30uc0kz1bn.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fksa0let1rj30so0i7aoa.jpg">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fksa0kw4csj30pr0h0dj6.jpg">
-<meta property="og:updated_time" content="2017-10-23T10:38:54.000Z">
+<meta property="og:description" content="layer是什么？layer, 一款 web弹窗组件，你可以将它看作bootstrap中的modal， 详情可见：官网,  GitHub。 layer是layui的一个内置模块，而layui则是一个前端UI框架，具体可见其官网。 怎么用？由于layer是layui的弹窗组件，所以使用时既可以单独使用，也可以通过layui模块化使用，这里单独使用layer。 layer的单独使用在其快速上手里面有相">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1forbutw4b2j30uf03574z.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1forbxearurj308g03nmx4.jpg">
+<meta property="og:updated_time" content="2018-02-24T13:16:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="网站加密后，没有挂上小绿锁?">
-<meta name="twitter:description" content="写在前面在给自己的网站加密后，网址从http变成https了，可是我却发现网站成了这样：  预期中的它应该是长这样子👇：  仔细检查了Nginx中的配置文档，没有发现问题，推测不是配置的问题，那么为什么会这样？ 【BTW, 阿里云有免费的SSL证书，可以让网站从HTTP换成HTTPS，戳这里直达阿里云。】 请确保你的Nginx配置是正确的，下面的解决思路是以配置无误为前提的。 正文google后">
-<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fks9mass87j30ey03x0u2.jpg">
+<meta name="twitter:title" content="Rails中使用layer弹窗组件">
+<meta name="twitter:description" content="layer是什么？layer, 一款 web弹窗组件，你可以将它看作bootstrap中的modal， 详情可见：官网,  GitHub。 layer是layui的一个内置模块，而layui则是一个前端UI框架，具体可见其官网。 怎么用？由于layer是layui的弹窗组件，所以使用时既可以单独使用，也可以通过layui模块化使用，这里单独使用layer。 layer的单独使用在其快速上手里面有相">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1forbutw4b2j30uf03574z.jpg">
 
 
 
@@ -132,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://lupeipei.github.io/2017/10/18/website-padlock-green-issue/"/>
+  <link rel="canonical" href="http://lupeipei.github.io/2018/02/24/using-layer-on-Rails/"/>
 
 
 
 
 
-  <title> 网站加密后，没有挂上小绿锁? | Lucia </title>
+  <title> Rails中使用layer弹窗组件 | Lucia </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -277,7 +273,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/10/18/website-padlock-green-issue/">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2018/02/24/using-layer-on-Rails/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lucia">
@@ -298,7 +294,7 @@
             
             
               
-                网站加密后，没有挂上小绿锁?
+                Rails中使用layer弹窗组件
               
             
           </h1>
@@ -313,8 +309,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-18T18:25:04+08:00">
-                2017-10-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-24T21:15:25+08:00">
+                2018-02-24
               </time>
             
 
@@ -354,9 +350,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/18/website-padlock-green-issue/#comments" itemprop="discussionUrl">
+                <a href="/2018/02/24/using-layer-on-Rails/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/18/website-padlock-green-issue/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/02/24/using-layer-on-Rails/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -387,27 +383,36 @@
       
 
       
-        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>在给自己的网站加密后，网址从http变成https了，可是我却发现网站成了这样：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fks9mass87j30ey03x0u2.jpg" alt=""></p>
-<p>预期中的它应该是长这样子👇：</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fks9njubhqj303g00vjr7.jpg" alt=""></p>
-<p>仔细检查了Nginx中的配置文档，没有发现问题，推测不是配置的问题，那么为什么会这样？</p>
-<p>【BTW, 阿里云有免费的SSL证书，可以让网站从HTTP换成HTTPS，戳这里直达<a href="https://common-buy.aliyun.com/?spm=5176.2020520163.cas.1.2arDtO&amp;commodityCode=cas#/buy" target="_blank" rel="external">阿里云</a>。】</p>
-<p>请确保你的Nginx配置是正确的，下面的解决思路是以配置无误为前提的。</p>
-<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>google后找到了这篇文章：【Google，大神】</p>
-<p><a href="https://support.comodo.com/index.php?/Knowledgebase/Article/View/1057/0/why-isnt-my-sites-padlock-green-or-doesnt-have-green-address-bar" target="_blank" rel="external">Why isn’t my Site’s padlock green or doesn’t have green address bar ?</a></p>
-<p>按照文章的提示，解决了问题，以chrome为例，具体步骤如下：</p>
-<p>打开网站，右击，选择检查（inspect），</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fks9wu7e2lj30q90ixhcb.jpg" alt=""></p>
-<p>然后选择security安全，可以看到这样的页面：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fks9sjsqjbj30uc0kz1bn.jpg" alt=""></p>
-<p>在mixed content中，提示让你重新加载页面，OK，我们reload一下。</p>
-<p>这时，可以发现mixed content中出现这样的链接：<br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fksa0let1rj30so0i7aoa.jpg" alt=""></p>
-<p>点击，查看：</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fksa0kw4csj30pr0h0dj6.jpg" alt=""></p>
-<p>OK，问题找到了，是图片链接用了http导致的。</p>
-<p>原来因为网站用了七牛云存储，图片的链接为http，解决的办法是去七牛买个加速域名，换成https……</p>
-<h4 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h4><p>每个人遇到的情况不一样，这里我只是贴出我是如何找到解决方法的，希望对遇到了同样问题的小伙伴有所帮助。<br>Happy coding!</p>
+        <h4 id="layer是什么？"><a href="#layer是什么？" class="headerlink" title="layer是什么？"></a>layer是什么？</h4><p>layer, 一款 web弹窗组件，你可以将它看作bootstrap中的modal， 详情可见：<a href="http://layer.layui.com/" target="_blank" rel="external">官网</a>,  <a href="https://github.com/sentsin/layer" target="_blank" rel="external">GitHub</a>。</p>
+<p>layer是layui的一个内置模块，而layui则是一个前端UI框架，具体可见其<a href="http://www.layui.com/" target="_blank" rel="external">官网</a>。</p>
+<h4 id="怎么用？"><a href="#怎么用？" class="headerlink" title="怎么用？"></a>怎么用？</h4><p>由于layer是layui的弹窗组件，所以使用时既可以单独使用，也可以通过layui模块化使用，这里单独使用layer。</p>
+<p>layer的单独使用在其<a href="http://layer.layui.com/hello.html" target="_blank" rel="external">快速上手</a>里面有相关说明，这里记录下如何在Rails中使用layer。</p>
+<ul>
+<li><p>下载layer文件包</p>
+<p>layer<a href="http://layer.layui.com/" target="_blank" rel="external">官网</a>首页，点击<strong>绿色下载layer</strong>，或者去<a href="https://github.com/sentsin/layer" target="_blank" rel="external">GitHub</a>上下载，下载后解压。</p>
+<p>目前的版本是3.1.1：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1forbutw4b2j30uf03574z.jpg" alt=""></p>
+</li>
+<li><p>将文件放入项目的public目录下</p>
+<p>将解压后的layer文件包，放入项目的public目录下</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1forbxearurj308g03nmx4.jpg" alt=""></p>
+<p>​</p>
+</li>
+<li><p>使用</p>
+<p>引入layer前，需要引入jQuery， 鉴于rails默认引入了jQuery，这里直接引入layer即可。</p>
+<p>在需要使用弹窗的页面对应的layout中，比如<code>application.html.erb</code>，添加：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">......</div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">......</div><div class="line"><span class="tag">&lt;<span class="name">%=</span> <span class="attr">javascript_include_tag</span> '<span class="attr">application</span>' %&gt;</span></div><div class="line">+ <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/layer/layer.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>请务必将<code>&lt;script src=&quot;/layer/layer.js&quot;&gt;&lt;/script&gt;</code>置于<code>&lt;%= javascript_include_tag &#39;application&#39; %&gt;</code>之后。</strong></p>
+<p>测试一下是否可以正常使用。在任何一个页面最后，比如landing page着陆页，添加：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">......</div><div class="line">&lt;div id="for_test" class="btn btn-lg btn-danger"&gt;test&lt;/div&gt;</div><div class="line">&lt;script&gt;</div><div class="line">  $('#for_test').on('click', function()&#123;</div><div class="line">      layer.msg('hello world');</div><div class="line">  &#125;);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>此时点击该页面的test按钮，会弹出一个含有“hello world”的弹窗，说明可以正常使用了。</p>
+<p>它的弹窗使用有多种，可以在官网<a href="http://layer.layui.com/" target="_blank" rel="external">首页</a>玩一下，还是蛮酷的，此外，文档写的也蛮有趣的，可以读读。</p>
+<p>另：如果你使用layer.photos(options) - 相册层时，使用了JSON传入的方式【layer的photos有两种实现方式：JSON传入和直接读取页面图片】，不想肉眼检查自己的JSON文件格式是否正确，推荐使用这个在线json解析和格式验证的网站： <a href="https://www.json.cn/" target="_blank" rel="external">JSON.cn</a>。</p>
+</li>
+</ul>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="http://layer.layui.com/" target="_blank" rel="external">layer官网</a></p>
+<p><a href="http://www.layui.com/doc/modules/layer.html" target="_blank" rel="external">弹出层 layer</a></p>
+<p><a href="http://fly.layui.com/" target="_blank" rel="external">FLY 社区</a></p>
 
       
     </div>
@@ -439,6 +444,8 @@
           
             <a href="/tags/ROR/" rel="tag"># ROR</a>
           
+            <a href="/tags/layer/" rel="tag"># layer</a>
+          
         </div>
       
 
@@ -450,18 +457,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/20/how-to-debug-with-RSpec/" rel="next" title="如何在测试中debug?">
-                <i class="fa fa-chevron-left"></i> 如何在测试中debug?
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/15/deploy-with-qiniu/" rel="prev" title="七牛云端部署，想说爱你不容易">
-                七牛云端部署，想说爱你不容易 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/17/why-I-choose-to-be-a-programmer/" rel="prev" title="为什么要编程？">
+                为什么要编程？ <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -618,7 +621,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-End"><span class="nav-number">3.</span> <span class="nav-text">The End</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#layer是什么？"><span class="nav-number">1.</span> <span class="nav-text">layer是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#怎么用？"><span class="nav-number">2.</span> <span class="nav-text">怎么用？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -775,9 +778,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://lupeipei.github.io/2017/10/18/website-padlock-green-issue/';
-          this.page.identifier = '2017/10/18/website-padlock-green-issue/';
-          this.page.title = '网站加密后，没有挂上小绿锁?';
+          this.page.url = 'http://lupeipei.github.io/2018/02/24/using-layer-on-Rails/';
+          this.page.identifier = '2018/02/24/using-layer-on-Rails/';
+          this.page.title = 'Rails中使用layer弹窗组件';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-lupeipei-github-io.disqus.com/embed.js';
