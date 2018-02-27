@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Git," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -87,20 +87,19 @@
 
 
 
-<meta name="description" content="写在前面当你需要clone的repos中，含有submodules时，我们会用到git clone —recursive这个命令，我今个也遇到了，然后很不幸地掉坑了，一直无法成功clone，Google后，搞定！现附上解答细节。 正文先来认识下git中的子模块submodule。 A submodule in a git repository is like a sub-directory whi">
-<meta name="keywords" content="Git">
+<meta name="description" content="写在前面今天才知道原来javascript是可以通过href 或者onclick来调用的，还能传递参数，用过后，删掉之前那堆无用的Ajax代码和文件，瞬间觉得这个方法真的好cool，好好用啊， 好比那路痴绕了一个大圈子到达目的地后，发现原来已有一条踩好的捷径。【请无视小白的激动】 记录下使用href 或者onclick来调用javascript的用法，加深理解。 正文分无参和有参：  无参 以一个">
+<meta name="keywords">
 <meta property="og:type" content="article">
-<meta property="og:title" content="clone git repos with submodules">
-<meta property="og:url" content="http://lupeipei.github.io/2017/12/26/git-clone-repos-with-submodules/index.html">
+<meta property="og:title" content="使用href或onclick来调用javascript">
+<meta property="og:url" content="http://lupeipei.github.io/2018/02/27/how-to-call-javascript-through-href-or-onclick/index.html">
 <meta property="og:site_name" content="Lucia">
-<meta property="og:description" content="写在前面当你需要clone的repos中，含有submodules时，我们会用到git clone —recursive这个命令，我今个也遇到了，然后很不幸地掉坑了，一直无法成功clone，Google后，搞定！现附上解答细节。 正文先来认识下git中的子模块submodule。 A submodule in a git repository is like a sub-directory whi">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fmue1wst1nj306i0dat95.jpg">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fmuf22enbcj30s303s74w.jpg">
-<meta property="og:updated_time" content="2017-12-26T12:04:20.000Z">
+<meta property="og:description" content="写在前面今天才知道原来javascript是可以通过href 或者onclick来调用的，还能传递参数，用过后，删掉之前那堆无用的Ajax代码和文件，瞬间觉得这个方法真的好cool，好好用啊， 好比那路痴绕了一个大圈子到达目的地后，发现原来已有一条踩好的捷径。【请无视小白的激动】 记录下使用href 或者onclick来调用javascript的用法，加深理解。 正文分无参和有参：  无参 以一个">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1fouoief80vj30j9060gn2.jpg">
+<meta property="og:updated_time" content="2018-02-27T00:19:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="clone git repos with submodules">
-<meta name="twitter:description" content="写在前面当你需要clone的repos中，含有submodules时，我们会用到git clone —recursive这个命令，我今个也遇到了，然后很不幸地掉坑了，一直无法成功clone，Google后，搞定！现附上解答细节。 正文先来认识下git中的子模块submodule。 A submodule in a git repository is like a sub-directory whi">
-<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fmue1wst1nj306i0dat95.jpg">
+<meta name="twitter:title" content="使用href或onclick来调用javascript">
+<meta name="twitter:description" content="写在前面今天才知道原来javascript是可以通过href 或者onclick来调用的，还能传递参数，用过后，删掉之前那堆无用的Ajax代码和文件，瞬间觉得这个方法真的好cool，好好用啊， 好比那路痴绕了一个大圈子到达目的地后，发现原来已有一条踩好的捷径。【请无视小白的激动】 记录下使用href 或者onclick来调用javascript的用法，加深理解。 正文分无参和有参：  无参 以一个">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNc79ly1fouoief80vj30j9060gn2.jpg">
 
 
 
@@ -128,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://lupeipei.github.io/2017/12/26/git-clone-repos-with-submodules/"/>
+  <link rel="canonical" href="http://lupeipei.github.io/2018/02/27/how-to-call-javascript-through-href-or-onclick/"/>
 
 
 
 
 
-  <title> clone git repos with submodules | Lucia </title>
+  <title> 使用href或onclick来调用javascript | Lucia </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -273,7 +272,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/12/26/git-clone-repos-with-submodules/">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2018/02/27/how-to-call-javascript-through-href-or-onclick/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lucia">
@@ -294,7 +293,7 @@
             
             
               
-                clone git repos with submodules
+                使用href或onclick来调用javascript
               
             
           </h1>
@@ -309,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-26T20:01:49+08:00">
-                2017-12-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-27T08:12:54+08:00">
+                2018-02-27
               </time>
             
 
@@ -320,28 +319,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -350,9 +327,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/12/26/git-clone-repos-with-submodules/#comments" itemprop="discussionUrl">
+                <a href="/2018/02/27/how-to-call-javascript-through-href-or-onclick/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/12/26/git-clone-repos-with-submodules/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/02/27/how-to-call-javascript-through-href-or-onclick/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -383,33 +360,43 @@
       
 
       
-        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>当你需要clone的repos中，含有submodules时，我们会用到<code>git clone —recursive</code>这个命令，我今个也遇到了，然后很不幸地掉坑了，一直无法成功clone，Google后，搞定！现附上解答细节。</p>
-<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>先来认识下git中的子模块submodule。</p>
-<p>A <strong>submodule</strong> in a git repository is like a sub-directory which is really a separate git repository in its own right. This is a useful feature when you have a project in git which depends on a particular versions of other projects。</p>
-<p>我的理解是当你的repos需要依赖于第三方的repos时，可以用submodule的方式，把这些repos作为你的子模块引入进来使用，而这些repos本身仍是独立的。</p>
-<p>「添加submodule可以使用命令：<code>git submodule add</code> 后面加上URL即可。」</p>
-<p>以clone<a href="https://github.com/strongqa/howitzer_example_cucumber" target="_blank" rel="external">howitzer_example_cucumber</a>为例。可以看到有四个文件长得不大一样，这些其实就是submodule。</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fmue1wst1nj306i0dat95.jpg" alt=""></p>
-<p>如果你直接clone, 使用命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone git@github.com:strongqa/howitzer_example_cucumber.git</div></pre></td></tr></table></figure>
-<p>你会发现clone到本地后，那些submodule的文件存在，但里面没有任何文件。</p>
-<p>这时就需要添加<code>`--recursive</code> `这个选项，<a href="https://github.com/strongqa/howitzer_example_cucumber" target="_blank" rel="external">howitzer_example_cucumber</a>文档下也列出了命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone --recursive git@github.com:strongqa/howitzer_example_cucumber.git</div></pre></td></tr></table></figure>
-<p>终端输入后，报错：</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fmuf22enbcj30s303s74w.jpg" alt=""></p>
-<p>没有clone成功，显示<code>Permission denied (publickey)</code></p>
-<p>google了一下，大部分人都是说修改你的ssh, 可我发现clone其他的repos没问题啊，说明我的ssh没毛病，clone带有submodule的却出问题，被拒绝，肯定跟submodule有关， 应该有其他方法。在stack overflow: <a href="https://stackoverflow.com/questions/39286354/git-clone-recursive-fails/47977557#47977557" target="_blank" rel="external">git clone –recursive fails</a>上找到了最方便的解答。</p>
-<p><strong>非常直接：使用https格式</strong></p>
-<p>终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone --recursive https://github.com/strongqa/howitzer_example_cucumber</div></pre></td></tr></table></figure>
-<p>搞定！</p>
-<p>PS. 看了其他文档，发现<strong>还有个方法</strong>，使用<code>git submodule init</code> , <code>git submodule update</code>.</p>
-<p> 亲测有效，一并附上：</p>
-<p>还是clone上面的repos，终端输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/strongqa/howitzer_example_cucumber</div><div class="line">cd howitzer_example_cucumber</div><div class="line">git submodule init</div><div class="line">git submodule update</div></pre></td></tr></table></figure>
-<p>OK  !!</p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97" target="_blank" rel="external">Git 工具 - 子模块</a></p>
-<p><a href="https://stackoverflow.com/questions/39286354/git-clone-recursive-fails/47977557#47977557" target="_blank" rel="external">git clone –recursive fails</a></p>
+        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>今天才知道原来javascript是可以通过href 或者onclick来调用的，还能传递参数，用过后，删掉之前那堆无用的Ajax代码和文件，瞬间觉得这个方法真的好cool，好好用啊， 好比那路痴绕了一个大圈子到达目的地后，发现原来已有一条踩好的捷径。【请无视小白的激动】</p>
+<p>记录下使用href 或者onclick来调用javascript的用法，加深理解。</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>分无参和有参：</p>
+<ul>
+<li><p>无参</p>
+<p>以一个简单的alert为例，可以这么写【href】：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'javascript: dosomething();'</span>&gt;</span>click me<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">    function dosomething()&#123;</div><div class="line">        alert("hello, world!");</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>上面的代码还可以这么写【onclick】：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'#'</span> <span class="attr">onclick</span>=<span class="string">"javascript: dosomething()"</span>&gt;</span>click me<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">    function dosomething()&#123;</div><div class="line">        alert("hello, world!");</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>或者这样：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'#'</span> <span class="attr">onclick</span>=<span class="string">"dosomething()"</span>&gt;</span>click me<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">    function dosomething()&#123;</div><div class="line">        alert("hello, world!");</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这样也行：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'#'</span> <span class="attr">onclick</span>=<span class="string">"javascript: while (true) &#123; alert("</span><span class="attr">hello</span>, <span class="attr">world</span>!"); <span class="attr">break</span> <span class="attr">javascript</span>; &#125;"&gt;</span>click me<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>也可以这样：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'#'</span> <span class="attr">onclick</span>=<span class="string">"foo: while (true) &#123; alert("</span><span class="attr">hello</span>, <span class="attr">world</span>!"); <span class="attr">break</span> <span class="attr">foo</span>; &#125;"&gt;</span>click me<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>还能这样：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'#'</span> <span class="attr">onclick</span>=<span class="string">"foo: while (true) &#123; alert("</span><span class="attr">hello</span>, <span class="attr">world</span>!"); <span class="attr">break</span> <span class="attr">foo</span>; &#125;"&gt;</span>click me<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>使用onclick时，tag也可以是span，button等，比如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">onclick</span>=<span class="string">"foo: while (true) &#123; alert("</span><span class="attr">hello</span>, <span class="attr">world</span>!"); <span class="attr">break</span> <span class="attr">foo</span>; &#125;"&gt;</span>click me<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这里提一下，在搜索相关用法的时候，发现对于onclick， javascript:其实是可以不用添加的，它的作用只是一个label的作用，而且在IE下，使用<code>onclick=&quot;javascript: JsFunc()&quot;</code>还会报错，参见这篇文章<a href="https://crisp.tweakblogs.net/blog/the-useless-javascript-pseudo-protocol.html" target="_blank" rel="external">The useless javascript: pseudo-protocol</a>。</p>
+<p>此外，逛stack overflow时，还人提到onclick这种调用JS的方式”is a bad practice”.</p>
+<p>参见<a href="https://stackoverflow.com/questions/134845/which-href-value-should-i-use-for-javascript-links-or-javascriptvoid0" target="_blank" rel="external">Which “href” value should I use for JavaScript links, “#” or “javascript:void(0)”?</a></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1fouoief80vj30j9060gn2.jpg" alt=""></p>
+<p>有一种刚刚挖到宝，然后别人告知你这是一堆废铁的赶脚……</p>
+</li>
+<li><p>有参</p>
+<p>有参和无参的函数调用基本一样，只是多了参数。</p>
+<p>看例子方便理解 ，比如传递了一个user的name[rails]：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;a href='javascript: dosomething('&lt;%= @user.name %&gt;');'&gt;click me&lt;/a&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">    function dosomething(username)&#123;</div><div class="line">        alert("hello, " + username );</div><div class="line">    &#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>onclick的方式来调用也一样：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;a href='#' onclick='dosomething('&lt;%= @user.name %&gt;');'&gt;click me&lt;/a&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">    function dosomething(username)&#123;</div><div class="line">        alert("hello, " + username );</div><div class="line">    &#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>一点感想：</p>
+<p>我觉得这种调用JS的方式，最好的地方是传递参数，当你用Ajax只是为了将参数传递给JS时，这真的是很方便的一种解决方法。我之前苦恼怎么传递参数给JS，Ajax是用来在不刷新页面的情况下，更新页面的某一部分，但它也可以用来传递参数，通过用Ajax，好比绕了个弯，去逛了一趟controller，在controller里面把那些需要的参数都整出来，再将它们回传给到 js.erb文件，在js.erb中写JS来实现需求。事后反思为什么我第一时间想到Ajax而不是href 或 onclick的方式，因为我根本不知道这种用法【怪自己太小白】，而Ajax是我用过的，熟悉的，继而想到人们在处理问题的时候，总是偏向于用以往的经验去解决，那些过往的经验就好比你的工具，当你的工具库很小的时候，这样做的弊端就是避开了寻找更好的方法去更高效地解决问题的机会，同时也意味着你失去了扩充工具库的机会。</p>
+</li>
+</ul>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://crisp.tweakblogs.net/blog/the-useless-javascript-pseudo-protocol.html" target="_blank" rel="external">The useless javascript: pseudo-protocol</a></p>
+<p><a href="https://stackoverflow.com/questions/1070760/javascript-function-in-href-vs-onclick/11348403#11348403" target="_blank" rel="external">JavaScript function in href vs. onclick</a></p>
 
       
     </div>
@@ -437,12 +424,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Git/" rel="tag"># Git</a>
-          
-        </div>
-      
 
       
         
@@ -452,18 +433,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/27/Elizabeth-quotations/" rel="next" title="伊丽莎白语录">
-                <i class="fa fa-chevron-left"></i> 伊丽莎白语录
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/25/concepts-in-howitzer/" rel="prev" title="有关Howitzer中的几个概念">
-                有关Howitzer中的几个概念 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/24/using-layer-on-Rails/" rel="prev" title="Rails中使用layer弹窗组件">
+                Rails中使用layer弹窗组件 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -777,9 +754,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://lupeipei.github.io/2017/12/26/git-clone-repos-with-submodules/';
-          this.page.identifier = '2017/12/26/git-clone-repos-with-submodules/';
-          this.page.title = 'clone git repos with submodules';
+          this.page.url = 'http://lupeipei.github.io/2018/02/27/how-to-call-javascript-through-href-or-onclick/';
+          this.page.identifier = '2018/02/27/how-to-call-javascript-through-href-or-onclick/';
+          this.page.title = '使用href或onclick来调用javascript';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-lupeipei-github-io.disqus.com/embed.js';
