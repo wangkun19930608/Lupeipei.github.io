@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Ruby," />
+  <meta name="keywords" content="ROR,API," />
 
 
 
@@ -87,21 +87,17 @@
 
 
 
-<meta name="description" content="写在前面在ruby中抛出异常时，除了输出程序本身的exception之外，你可能还希望它输出一些其他信息，例如指出是哪个文件，对应的id是什么等，以便后期查找。 这时，可以通过定制ruby的exception来解决。 正文看个场景： 以接口测试的一个情况为例，说明一下怎么玩。 用户A在做接口测试时，使用restclient的get, put, post, delete发出请求，出错，这时，用户A除">
-<meta name="keywords" content="Ruby">
+<meta name="description" content="写在前面做接口的时候，遇到了筛选的问题，不知如何去处理，Google了下，发现了个很简单的解法，实测有效，附上。 问题描述现有model product，category,  schema中信息如下： 1234567891011Table name productsid          :integertitle       :stringdescription :stringprice">
+<meta name="keywords" content="ROR,API">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何在ruby中的定制你的exception？">
-<meta property="og:url" content="http://lupeipei.github.io/2017/11/22/custom-exceptions-in-ruby/index.html">
+<meta property="og:title" content="用has_scope实现Rails API筛选">
+<meta property="og:url" content="http://lupeipei.github.io/2018/03/03/implement-Rails-API-filtering/index.html">
 <meta property="og:site_name" content="Lucia">
-<meta property="og:description" content="写在前面在ruby中抛出异常时，除了输出程序本身的exception之外，你可能还希望它输出一些其他信息，例如指出是哪个文件，对应的id是什么等，以便后期查找。 这时，可以通过定制ruby的exception来解决。 正文看个场景： 以接口测试的一个情况为例，说明一下怎么玩。 用户A在做接口测试时，使用restclient的get, put, post, delete发出请求，出错，这时，用户A除">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1flr4wg5vwhj30pp015gll.jpg">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1flr4v3whjkj30kp0423yq.jpg">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1flr4ju0i95j30k305f0tb.jpg">
-<meta property="og:updated_time" content="2017-11-22T12:34:26.000Z">
+<meta property="og:description" content="写在前面做接口的时候，遇到了筛选的问题，不知如何去处理，Google了下，发现了个很简单的解法，实测有效，附上。 问题描述现有model product，category,  schema中信息如下： 1234567891011Table name productsid          :integertitle       :stringdescription :stringprice">
+<meta property="og:updated_time" content="2018-03-03T03:18:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何在ruby中的定制你的exception？">
-<meta name="twitter:description" content="写在前面在ruby中抛出异常时，除了输出程序本身的exception之外，你可能还希望它输出一些其他信息，例如指出是哪个文件，对应的id是什么等，以便后期查找。 这时，可以通过定制ruby的exception来解决。 正文看个场景： 以接口测试的一个情况为例，说明一下怎么玩。 用户A在做接口测试时，使用restclient的get, put, post, delete发出请求，出错，这时，用户A除">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1flr4wg5vwhj30pp015gll.jpg">
+<meta name="twitter:title" content="用has_scope实现Rails API筛选">
+<meta name="twitter:description" content="写在前面做接口的时候，遇到了筛选的问题，不知如何去处理，Google了下，发现了个很简单的解法，实测有效，附上。 问题描述现有model product，category,  schema中信息如下： 1234567891011Table name productsid          :integertitle       :stringdescription :stringprice">
 
 
 
@@ -129,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://lupeipei.github.io/2017/11/22/custom-exceptions-in-ruby/"/>
+  <link rel="canonical" href="http://lupeipei.github.io/2018/03/03/implement-Rails-API-filtering/"/>
 
 
 
 
 
-  <title> 如何在ruby中的定制你的exception？ | Lucia </title>
+  <title> 用has_scope实现Rails API筛选 | Lucia </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -274,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2017/11/22/custom-exceptions-in-ruby/">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2018/03/03/implement-Rails-API-filtering/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lucia">
@@ -295,7 +291,7 @@
             
             
               
-                如何在ruby中的定制你的exception？
+                用has_scope实现Rails API筛选
               
             
           </h1>
@@ -310,8 +306,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-22T20:31:02+08:00">
-                2017-11-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-03T11:16:45+08:00">
+                2018-03-03
               </time>
             
 
@@ -333,8 +329,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Ruby/" itemprop="url" rel="index">
-                    <span itemprop="name">Ruby</span>
+                  <a href="/categories/ROR/" itemprop="url" rel="index">
+                    <span itemprop="name">ROR</span>
                   </a>
                 </span>
 
@@ -351,9 +347,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/22/custom-exceptions-in-ruby/#comments" itemprop="discussionUrl">
+                <a href="/2018/03/03/implement-Rails-API-filtering/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/22/custom-exceptions-in-ruby/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/03/03/implement-Rails-API-filtering/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -384,27 +380,37 @@
       
 
       
-        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>在ruby中抛出异常时，除了输出程序本身的exception之外，你可能还希望它输出一些其他信息，例如指出是哪个文件，对应的id是什么等，以便后期查找。</p>
-<p>这时，可以通过定制ruby的exception来解决。</p>
-<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p><strong>看个场景：</strong></p>
-<p>以接口测试的一个情况为例，说明一下怎么玩。</p>
-<p>用户A在做接口测试时，使用restclient的get, put, post, delete发出请求，出错，这时，用户A除了希望获取到rest client本身的Exception外，还希望可以输出reponse.headers中的traceid， 类似这样：</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1flr4wg5vwhj30pp015gll.jpg" alt=""></p>
-<p>那么如何将traceid加入到exception的message内容中去呢？</p>
-<p><strong>重新定义一个class，继承自ruby的StandardError， 将需要输出的信息作为变量传递给该class即可。</strong></p>
-<p>具体这么来：</p>
-<p>新建一个class ： MyError</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1flr4v3whjkj30kp0423yq.jpg" alt=""></p>
-<p>在使用restclient时，raise 异常即可。具体代码类似这样👇：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1flr4ju0i95j30k305f0tb.jpg" alt=""></p>
-<p>简单说明一下：</p>
-<p>我们去获取网站example.com首页的内容，用rescue来捕捉异常，并将restclient的异常信息<code>e. message</code> 和<code>e.response.headers[:traceid]</code>合并起来作为参数传递，生成MyError的一个实例 <code>my_error</code> ，并针对response的code做判断，如果code不在200～206， 则抛出<code>my_error</code>.</p>
-<p>这里，其实是将标准的出错信息加了个定制的尾巴，父对象StandardError接受到新的message，在出错时抛出。</p>
-<p>OK啦。</p>
-<p>很简单是不是？得空可以试试定制化你的exceptions：P</p>
-<h4 id="The-end"><a href="#The-end" class="headerlink" title="The end"></a>The end</h4><p>参考：</p>
-<p><a href="http://blog.honeybadger.io/ruby-custom-exceptions/" target="_blank" rel="external">Custom exceptions in Ruby</a></p>
-<p><a href="http://blog.honeybadger.io/ruby-exception-vs-standarderror-whats-the-difference/" target="_blank" rel="external">Ruby’s Exception vs StandardError: What’s the difference?</a>Â</p>
+        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>做接口的时候，遇到了筛选的问题，不知如何去处理，Google了下，发现了个很简单的解法，实测有效，附上。</p>
+<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>现有model product，category,  schema中信息如下：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Table name products</div><div class="line"></div><div class="line">id          <span class="symbol">:integer</span></div><div class="line">title       <span class="symbol">:string</span></div><div class="line">description <span class="symbol">:string</span></div><div class="line">price       <span class="symbol">:float</span></div><div class="line">category_id <span class="symbol">:integer</span></div><div class="line"></div><div class="line">Table name  categories</div><div class="line">id          <span class="symbol">:integer</span></div><div class="line">title       <span class="symbol">:string</span></div></pre></td></tr></table></figure>
+<p><code>app/models/product.rb</code>中：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Product</span> &lt; ActiveRecord::Base</span></div><div class="line">  belongs_to <span class="symbol">:category</span></div><div class="line">  ......</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p><code>app/models/category.rb</code>中：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Category</span> &lt; ActiveRecord::Base</span></div><div class="line">  has_many <span class="symbol">:products</span></div><div class="line">  ......</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p><code>app/controllers/api/v1/products_controller.rb</code>中：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Api::V1::ExperiencesController</span> &lt; Api::V1::<span class="title">BaseController</span></span></div><div class="line"><span class="comment"># GET /api/v1/products</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">index</span></span></div><div class="line">    @products = Product.all</div><div class="line">    render <span class="symbol">json:</span> @products</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>现在需要得到指定category的products，类似这样：<code>/api/v1/products?category=1</code>，得到category是1的所有products。以及给定价格区间的products，类似这样：<code>/api/v1/products?price[from]=100&amp;price[to]=999</code></p>
+<p>如何实现？</p>
+<p>试试<a href="https://github.com/plataformatec/has_scope" target="_blank" rel="external">has_scope</a></p>
+<h4 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h4><p>三步走</p>
+<ul>
+<li><p>安装<a href="https://github.com/plataformatec/has_scope" target="_blank" rel="external">has_scope</a> gem</p>
+<p>gemfile中添加：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem <span class="string">'has_scope'</span></div></pre></td></tr></table></figure>
+<p>终端bundle，服务器重启。</p>
+</li>
+<li><p>在model中添加scope</p>
+<p>修改<code>app/models/product.rb</code>：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Product</span> &lt; ActiveRecord::Base</span></div><div class="line">  belongs_to <span class="symbol">:category</span></div><div class="line"></div><div class="line"> + scope <span class="symbol">:category</span>, -&gt; (category_id) &#123; where(<span class="symbol">category_id:</span> category_id) &#125;</div><div class="line"> + scope <span class="symbol">:price</span>, -&gt; (from, to) &#123; where(<span class="string">"price &gt;= ? AND price &lt;= ?"</span>, from, to) &#125;</div><div class="line">  ......</div><div class="line"></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在controller中添加has_scope</p>
+<p>修改<code>app/controllers/api/v1/products_controller.rb</code>：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Api::V1::ExperiencesController</span> &lt; Api::V1::<span class="title">BaseController</span></span></div><div class="line">  + has_scope <span class="symbol">:category</span>, <span class="symbol">only:</span> <span class="symbol">:index</span></div><div class="line">  + has_scope <span class="symbol">:price</span>, <span class="symbol">using:</span> [<span class="symbol">:from</span>, <span class="symbol">:to</span>], <span class="symbol">only:</span> <span class="symbol">:index</span></div><div class="line"></div><div class="line"><span class="comment"># GET /api/v1/products</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">index</span></span></div><div class="line">  -  @products = Product.all</div><div class="line">  +  @products = apply_scopes(Product).includes(<span class="symbol">:category</span>).all</div><div class="line">      <span class="comment"># using includes(:category), fix N+1 query problem</span></div><div class="line">    render <span class="symbol">json:</span> @products</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>好，大功告成，用postman测试下，确认正常，cool！</p>
+</li>
+</ul>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://gist.github.com/mamantoha/9c0aec7958c7636cebef" target="_blank" rel="external">Rails API Filtering and Sorting</a></p>
+<p><a href="https://github.com/plataformatec/has_scope" target="_blank" rel="external">has_scope</a></p>
 
       
     </div>
@@ -434,7 +440,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Ruby/" rel="tag"># Ruby</a>
+            <a href="/tags/ROR/" rel="tag"># ROR</a>
+          
+            <a href="/tags/API/" rel="tag"># API</a>
           
         </div>
       
@@ -447,18 +455,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/01/deal-with-special-character-when-using-restclient-url/" rel="next" title="RestClient：URL中特殊字符的处理">
-                <i class="fa fa-chevron-left"></i> RestClient：URL中特殊字符的处理
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/21/read-the-body-of-400-response-with-ruby-exception-handling/" rel="prev" title="使用ruby的异常处理来读取rest client中的bad request">
-                使用ruby的异常处理来读取rest client中的bad request <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/01/skinny-controller-with-jbuilder/" rel="prev" title="Web API中，使用Jbuilder来给你的controller瘦个身">
+                Web API中，使用Jbuilder来给你的controller瘦个身 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -615,7 +619,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-end"><span class="nav-number">3.</span> <span class="nav-text">The end</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题描述"><span class="nav-number">2.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解答"><span class="nav-number">3.</span> <span class="nav-text">解答</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -772,9 +776,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://lupeipei.github.io/2017/11/22/custom-exceptions-in-ruby/';
-          this.page.identifier = '2017/11/22/custom-exceptions-in-ruby/';
-          this.page.title = '如何在ruby中的定制你的exception？';
+          this.page.url = 'http://lupeipei.github.io/2018/03/03/implement-Rails-API-filtering/';
+          this.page.identifier = '2018/03/03/implement-Rails-API-filtering/';
+          this.page.title = '用has_scope实现Rails API筛选';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-lupeipei-github-io.disqus.com/embed.js';
