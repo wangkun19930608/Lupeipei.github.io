@@ -270,6 +270,196 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2018/03/06/using-layer-photos-in-rails/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lucia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/03/06/using-layer-photos-in-rails/" itemprop="url">
+                  Rails中使用layer.photos来预览图片
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-06T09:00:28+08:00">
+                2018-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ROR/" itemprop="url" rel="index">
+                    <span itemprop="name">ROR</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/06/using-layer-photos-in-rails/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/06/using-layer-photos-in-rails/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>之前写了篇学习笔记<a href="http://luciaca.cn/2018/02/24/using-layer-on-Rails/" target="_blank" rel="external">Rails中使用layer弹窗组件</a>， 这篇写写如何在Rails中使用layer的photos来实作图片预览。</p>
+<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>在其文档的<a href="http://www.layui.com/doc/modules/layer.html#layer.photos" target="_blank" rel="external">layer.photos</a>中，有用法的详细说明。两种方式：</p>
+<ul>
+<li>直接读取页面图片</li>
+<li>传入json</li>
+</ul>
+<p>来看一下每种方式的具体使用。</p>
+<h5 id="直接读取页面图片："><a href="#直接读取页面图片：" class="headerlink" title="直接读取页面图片："></a>直接读取页面图片：</h5><p>官方给到的示例如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//HTML示例</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"layer-photos-demo"</span> <span class="attr">class</span>=<span class="string">"layer-photos-demo"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">layer-pid</span>=<span class="string">"图片id，可以不写"</span> <span class="attr">layer-src</span>=<span class="string">"大图地址"</span> <span class="attr">src</span>=<span class="string">"缩略图"</span> <span class="attr">alt</span>=<span class="string">"图片名"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">layer-pid</span>=<span class="string">"图片id，可以不写"</span> <span class="attr">layer-src</span>=<span class="string">"大图地址"</span> <span class="attr">src</span>=<span class="string">"缩略图"</span> <span class="attr">alt</span>=<span class="string">"图片名"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="comment">//调用示例</span></div><div class="line">layer.photos(&#123;</div><div class="line">  <span class="attr">photos</span>: <span class="string">'#layer-photos-demo'</span></div><div class="line">  ,<span class="attr">anim</span>: <span class="number">5</span> <span class="comment">//0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）</span></div><div class="line">&#125;);</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这里要说一下，如果一个页面里面，你需要多个弹窗时，如何处理？</p>
+<p>假定现在有一系列产品，每个产品对应有多张图片。类似这样：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fp1rwiwdzlj30js0azglk.jpg" alt=""></p>
+<p>需要的效果是：这时，点击product1的某张图片，弹出的是product1的图片预览层，点击product2，弹出的是product2的图片预览层。</p>
+<p>解决方法也很简单，套上一个动态的ID，需要用上JS，示例的代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">//HTML示例</div><div class="line"><span class="tag">&lt;<span class="name">%</span> @<span class="attr">products.each</span> <span class="attr">do</span> |<span class="attr">product</span>| %&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"product-&lt;%= product.id %&gt;"</span> <span class="attr">class</span>=<span class="string">"layer-photos-demo"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">%</span> <span class="attr">product.images.each</span> <span class="attr">do</span> |<span class="attr">image</span> |%&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">img</span>  <span class="attr">onclick</span>= <span class="string">"getImage('&lt;%= product.id %&gt;');"</span> <span class="attr">layer-src</span>=<span class="string">"&lt;%= image.src %&gt;"</span> <span class="attr">src</span>=<span class="string">"&lt;%= image.thumb %&gt;"</span> <span class="attr">alt</span>=<span class="string">"图片名"</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span>   </div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getImage</span>(<span class="params">productId</span>)</span>&#123;</div><div class="line">        layer.photos(&#123;</div><div class="line">            <span class="attr">photos</span>: <span class="string">'#product-'</span> + productId,</div><div class="line">            <span class="attr">anim</span>:<span class="number">5</span></div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h5 id="JSON文件传入"><a href="#JSON文件传入" class="headerlink" title="JSON文件传入"></a>JSON文件传入</h5><p>官方文档示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$.getJSON(<span class="string">'/jquery/layer/test/photos.json'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</div><div class="line">  layer.photos(&#123;</div><div class="line">    <span class="attr">photos</span>: json</div><div class="line">    ,<span class="attr">anim</span>: <span class="number">5</span> <span class="comment">//0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）</span></div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>返回的JSON需严格按照如下格式：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  "title": "", //相册标题</div><div class="line">  "id": 123, //相册id</div><div class="line">  "start": 0, //初始显示的图片序号，默认0</div><div class="line">  "data": [   //相册包含的图片，数组格式</div><div class="line">    &#123;</div><div class="line">      "alt": "图片名",</div><div class="line">      "pid": 666, //图片id</div><div class="line">      "src": "", //原图地址</div><div class="line">      "thumb": "" //缩略图地址</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在使用的时候，你可能会想是不是要生成一个JSON文件才能用这种方式? 其实并不需要。在Rails中可以用一个action的render，指定返回JSON格式的数据即可。</p>
+<p>还是以product为例， 三步走：</p>
+<ul>
+<li><p>给它添加一个preview的action， 在routes中声明</p>
+<p>在<code>routes.rb</code>中添加：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">resources <span class="symbol">:products</span> <span class="keyword">do</span></div><div class="line">  member <span class="keyword">do</span></div><div class="line">    get <span class="symbol">:preview</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"> <span class="keyword">end</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>products_controller.rb</code>中，定义preview的内容，返回JSON内容：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">preview</span></span></div><div class="line">  @product = Product.find(params[<span class="symbol">:id</span>])</div><div class="line">  @images = @product.images.all</div><div class="line">  @photo = &#123;</div><div class="line">      <span class="symbol">title:</span> @product.title,</div><div class="line">      <span class="symbol">id:</span> @product.id,</div><div class="line">      <span class="symbol">start:</span> <span class="number">0</span>,</div><div class="line">      <span class="symbol">data:</span> @images.map <span class="keyword">do</span> <span class="params">|image|</span></div><div class="line">        &#123;</div><div class="line">            <span class="symbol">alt:</span> image.title,</div><div class="line">            <span class="symbol">pid:</span> image.id,</div><div class="line">            <span class="symbol">src:</span> image.src,</div><div class="line">            <span class="symbol">thumb:</span> image.thumb</div><div class="line">        &#125;</div><div class="line">      <span class="keyword">end</span></div><div class="line">  &#125;</div><div class="line">  render <span class="symbol">json:</span> @photo</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>返回的JSON内容，格式需要严格按照指定的格式去写。</p>
+</li>
+<li><p>在对应的html中，比如product的index页面， 添加如下内容：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">%</span> @<span class="attr">products.each</span> <span class="attr">do</span> |<span class="attr">product</span>| %&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"product-&lt;%= product.id %&gt;"</span> <span class="attr">class</span>=<span class="string">"layer-photos-demo"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:getImageJson('&lt;%= product.id %&gt;');"</span>&gt;</span></div><div class="line">      查看产品图片<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getImageJson</span>(<span class="params">productId</span>) </span>&#123;</div><div class="line">        $.getJSON(<span class="string">'/products/'</span> + productId + <span class="string">'/preview'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</div><div class="line">            layer.photos(&#123;</div><div class="line">                <span class="attr">photos</span>: json,</div><div class="line">                <span class="attr">anim</span>: <span class="number">5</span></div><div class="line">            &#125;);</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>刷新页面确认是否正常。</p>
+<p>OK， 大功告成。</p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="http://www.layui.com/doc/modules/layer.html" target="_blank" rel="external">弹层组件文档 - layui.layer</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2018/03/04/upload-images-to-rails-API/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1882,182 +2072,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2018/02/08/render-different-show-pages-in-ruby-on-rails/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lucia">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/02/08/render-different-show-pages-in-ruby-on-rails/" itemprop="url">
-                  如何在Rails中切换不同主题的show页面？
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-08T08:11:55+08:00">
-                2018-02-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ROR/" itemprop="url" rel="index">
-                    <span itemprop="name">ROR</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/08/render-different-show-pages-in-ruby-on-rails/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/08/render-different-show-pages-in-ruby-on-rails/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>场景是这样的：</p>
-<p>有model project，要求project的show页面可以切换不同的主题，比如主题1，主题2。</p>
-<p>类似这样：</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fo70rntbj5g30sa07wt9s.gif" alt=""></p>
-<p>貌似很简单，切换页面而已。不过rails中，project 的show页面只有一个<code>show.html.erb</code>， 你可能想到替换部分的页面，加上ajax特效来实现，如果你这么想，那先恭喜你！你已成功入坑！你要给按钮的点击行为添加method，点击时，将需要切换的主题参数传递给controller，然后controller根据这个来决定替换哪个主题页面。</p>
-<p>为了不刷新页面就完成切换，你需要用上ajax，而对于保存页面主题这块， 你可能会想到给project添加个字段theme啥的，用来判断该切换到哪一部分……好吧，其实不用这么复杂。「这些我踩过的坑就不要再踩了， 整个过程会让你想多灌自己两听可乐……」</p>
-<h4 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h4><p>其实，仔细想想，就是render到不同的show页面，动两处就好了。</p>
-<p>我们假定在app/views/projects下， 两个主题对应的页面分别是<code>theme1.html.erb</code>，  <code>theme2.html.erb</code>。</p>
-<p>两步走。</p>
-<p>一、project 的controller中show部分：</p>
-<p>在<code>projects_controller.rb</code>文件中，在show部分，添加如下内容：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProjectsController</span> &lt; ApplicationController</span></div><div class="line">  .......</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">show</span></span></div><div class="line">    .......</div><div class="line">    theme = params[<span class="symbol">:theme</span>]</div><div class="line">    <span class="keyword">if</span> theme == <span class="string">"theme2"</span></div><div class="line">      render <span class="string">'theme2'</span></div><div class="line">    <span class="keyword">else</span></div><div class="line">      render <span class="string">'theme1'</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">....</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p>二、 <strong>所有跳转到project show页面的按钮，都添加一个参数：theme</strong>。比如在<code>theme1.html.erb</code>中的button部分：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.....</div><div class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"btn btn-info pull-right"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("切换到主题<span class="attr">2</span>", <span class="attr">project_path</span>(@<span class="attr">project</span>, <span class="attr">theme:</span> "<span class="attr">theme2</span>")) %&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">......</div></pre></td></tr></table></figure>
-<p> <code>theme2.html.erb</code>的button部分与之类似：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.....</div><div class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"btn btn-info pull-right"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("切换到主题<span class="attr">1</span>", <span class="attr">project_path</span>(@<span class="attr">project</span>, <span class="attr">theme:</span> "<span class="attr">theme1</span>")) %&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">......</div></pre></td></tr></table></figure>
-<p>其他需要跳转到show 页面的link都做这样的处理，至于theme的值，如果你的默认主题是theme1， 则取默认主题即可。</p>
-<p>超级简单有没有？！</p>
-<p>你可能会问，为什么会想到这个解决方法？</p>
-<p>启发来自这里：👇</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fo70blzaw1j30kq0aswfp.jpg" alt=""></p>
-<p>虽然只有一个vote，但是不妨碍它好用啊！点赞Ankit Pandey.</p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://stackoverflow.com/questions/43558477/render-different-show-pages-with-category-in-ruby-on-rails" target="_blank" rel="external">render different show pages with category in ruby on rails</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2107,7 +2121,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">73</span>
+                <span class="site-state-item-count">74</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
