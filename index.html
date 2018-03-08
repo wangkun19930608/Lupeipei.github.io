@@ -270,6 +270,173 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2018/03/08/rendering-layout-for-special-action/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lucia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/03/08/rendering-layout-for-special-action/" itemprop="url">
+                  Rails中如何给action的render设置特定的layout？
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-08T08:00:15+08:00">
+                2018-03-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ROR/" itemprop="url" rel="index">
+                    <span itemprop="name">ROR</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/08/rendering-layout-for-special-action/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/08/rendering-layout-for-special-action/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>默认情况下，controller 中action的layout都是’application.html.erb’，也可以统一更换，在controller中，添加：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">layout <span class="string">'my_layout'</span></div></pre></td></tr></table></figure>
+<p>现在假定，针对action new，需要使用layout：my_layout， 其他的actions都采用application, 如何实现？</p>
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>我曾一厢情愿地以为应该可以这样， 在controller中添加如下语句👇：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">layout <span class="string">'my_layout'</span>, <span class="symbol">:only</span> =&gt; <span class="symbol">:new</span></div></pre></td></tr></table></figure>
+<p>显然，一厢情愿的结果常常都面临着悲剧。</p>
+<p>正确的脱坑方式是这样的👇：</p>
+<p>在controller中定义一个private method， 然后在该method中进行设置：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">layout <span class="symbol">:my_layout</span></div><div class="line">.....</div><div class="line"></div><div class="line"> private</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_layout</span></span></div><div class="line">	params[<span class="symbol">:action</span>] == <span class="string">'new'</span> ? <span class="string">'my_layout'</span> : <span class="string">'application'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>如果是指定的多个action都是my_layout呢？</p>
+<p>这么设置：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">layout <span class="symbol">:my_layout</span></div><div class="line">.....</div><div class="line"></div><div class="line"> private</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_layout</span></span></div><div class="line">	<span class="string">%w[action1 action2 action3……]</span>.<span class="keyword">include</span>?params[<span class="symbol">:action</span>] ? <span class="string">'my_layout'</span> : <span class="string">'application'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>Ok。</p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://stackoverflow.com/questions/9903261/rendering-layout-for-specific-actions" target="_blank" rel="external">Rendering Layout for specific actions</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2018/03/06/using-layer-photos-in-rails/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1895,183 +2062,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://lupeipei.github.io/2018/02/09/how-add-jquery-plugin-magnify-on-rails/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lucia">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/02/09/how-add-jquery-plugin-magnify-on-rails/" itemprop="url">
-                  一款超好用的图片预览插件Magnify
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-09T12:03:40+08:00">
-                2018-02-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ROR/" itemprop="url" rel="index">
-                    <span itemprop="name">ROR</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/09/how-add-jquery-plugin-magnify-on-rails/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/09/how-add-jquery-plugin-magnify-on-rails/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>在找图片预览的jQurey plugin时发现了这个<a href="https://nzbin.github.io/magnify/" target="_blank" rel="external">Magnify</a>，真的是好用，官方效果图：</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1foa0vblhsmg30sb0ihb29.gif" alt=""></p>
-<p>在项目中用它来做图片预览，很赞！</p>
-<p>具体的使用方法，<a href="https://nzbin.github.io/magnify/" target="_blank" rel="external">Magnify</a> 的Usage部分已经有详细的说明，不过在Rails 中，怎么用呢？这个问题其实就是如何在Rails中使用jQurey plugin。</p>
-<h4 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h4><p>很简单，三步即可。</p>
-<p>一、下载相关的JS和CSS文件，并包含在Rails项目中对应的文件夹下</p>
-<p>在magnify对应的 <a href="https://github.com/nzbin/magnify" target="_blank" rel="external">GitHub repo</a> 中，下载文件<code>jquery.magnify.css</code>, <code>jquery.magnify.js</code>或者<code>jquery.magnify.min.css</code>, <code>jquery.magnify.min.js</code>(推荐后者)：</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1foa1ckl4c3j30ac06qwey.jpg" alt=""></p>
-<p>下载后，将<code>jquery.magnify.js</code>放在app/assets/javascripts目录下，<code>jquery.magnify.css</code>放在app/assets/stylesheets目录下。</p>
-<p>二、修改<code>application.scss</code>文件：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">......</div><div class="line">+ @import <span class="string">"jquery.magnify"</span>;</div><div class="line">.....</div></pre></td></tr></table></figure>
-<p>修改<code>application.html.erb</code>文件,  在<head>中添加：</head></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">......</div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  ......</div><div class="line">+  <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">.....</div></pre></td></tr></table></figure>
-<p>三、HTML部分</p>
-<p>图片展示部分的代码:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">data-magnify</span>=<span class="string">"gallery"</span> <span class="attr">href</span>=<span class="string">"image_large_url"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"image_small_url"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">data-magnify</span>=<span class="string">"gallery"</span> <span class="attr">src</span>=<span class="string">"image_small_url"</span> <span class="attr">data-src</span>=<span class="string">"image_large_url"</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>这里：image_large_url指的是图片对应的大图的URL，image_small_url是小图的URL，当然也可以直接换成图片。</p>
-<p>类似这样：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">data-magnify</span>=<span class="string">"gallery"</span> <span class="attr">href</span>=<span class="string">"big.jpg"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"small.jpg"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>ok，搞定，开始一饱眼福吧！</p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://nzbin.github.io/magnify/" target="_blank" rel="external">magnify</a></p>
-<p>另，推荐<a href="http://photoswipe.com/" target="_blank" rel="external">photoswipe</a>， 也超好用的，可以试一试。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2121,7 +2111,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">74</span>
+                <span class="site-state-item-count">75</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
